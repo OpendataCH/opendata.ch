@@ -1,0 +1,33 @@
+{
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "johnpbloch/wordpress": "4.4.*",
+        "wpackagist-plugin/add-meta-tags": "2.*",
+        "wpackagist-plugin/akismet": "3.*",
+        "wpackagist-plugin/blog-copier": "1.*",
+        "wpackagist-plugin/bwp-google-xml-sitemaps": "1.3.*",
+        "wpackagist-plugin/disqus-comment-system": "2.*",
+        "wpackagist-plugin/embedit-pro": "1.*",
+        "wpackagist-plugin/enhanced-text-widget": "1.*",
+        "wpackagist-plugin/google-analytics-dashboard": "2.*",
+        "wpackagist-plugin/google-document-embedder": "2.*",
+        "wpackagist-plugin/iframe": "4.*",
+        "wpackagist-plugin/kb-advanced-rss-widget": "2.*",
+        "wpackagist-plugin/polylang": "0.9.*",
+        "wpackagist-plugin/redirect": "0.8.*",
+        "wpackagist-plugin/redirection": "2.*",
+        "wpackagist-plugin/search-in-place": "1.*",
+        "wpackagist-plugin/shortcodes-ultimate": "4.*",
+        "wpackagist-plugin/twitter-widget": "1.*",
+        "wpackagist-plugin/twitters-bootstrap-shortcodes-ultimate": "1.*",
+        "wpackagist-plugin/vimeo-quicktags": "2.*",
+        "wpackagist-plugin/w3-total-cache": "0.9.*",
+        "wpackagist-plugin/wordpress-importer": "0.6.*",
+        "wpackagist-plugin/wpgform": "0.84.*"
+    }
+}
