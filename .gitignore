@@ -5,5 +5,10 @@
 /wp-content/blogs.dir/
 /wp-content/upgrade/
 /wp-content/cache/
+/wp-content/object-cache.php
+/wp-content/db.php
+/wp-content/advanced-cache.php
+/wp-content/w3-total-cache-config-*.php
+/wp-content/w3tc-*/
 /wp-config.php
 /.htaccess
