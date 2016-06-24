@@ -1,0 +1,8 @@
+/vendor/
+/wordpress/
+/wp-content/plugins/
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-config.php
+/.htaccess
