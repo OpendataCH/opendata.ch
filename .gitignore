@@ -2,6 +2,7 @@
 /wordpress/
 /wp-content/plugins/
 /wp-content/uploads/
+/wp-content/blogs.dir/
 /wp-content/upgrade/
 /wp-content/cache/
 /wp-config.php
