@@ -1,4 +1,5 @@
 /vendor/
+/composer.lock
 /wordpress/
 /wp-content/plugins/
 /wp-content/uploads/
