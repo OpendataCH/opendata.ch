@@ -17,7 +17,6 @@
         "wpackagist-plugin/google-analytics-dashboard-for-wp": "4.9.*",
         "wpackagist-plugin/google-document-embedder": "2.*",
         "wpackagist-plugin/iframe": "4.*",
-        "wpackagist-plugin/kb-advanced-rss-widget": "2.*",
         "wpackagist-plugin/polylang": "0.9.*",
         "wpackagist-plugin/redirect": "0.8.*",
         "wpackagist-plugin/redirection": "2.*",
@@ -26,7 +25,6 @@
         "wpackagist-plugin/twitter-widget": "1.*",
         "wpackagist-plugin/twitters-bootstrap-shortcodes-ultimate": "1.*",
         "wpackagist-plugin/vimeo-quicktags": "2.*",
-        "wpackagist-plugin/w3-total-cache": "0.9.*",
         "wpackagist-plugin/wordpress-importer": "0.6.*",
         "wpackagist-plugin/wpgform": "0.84.*"
     }
