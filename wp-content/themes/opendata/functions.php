@@ -665,7 +665,7 @@ if( defined('DOING_AJAX') && DOING_AJAX ) { //Prevents the metaboxes from being 
 	return $post_id;
 }
 
-if( ereg('/\edit\.php', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
+if( preg_match('/\edit\.php/', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
 	return $post_id;
 }
 
