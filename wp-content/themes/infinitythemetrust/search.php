@@ -26,8 +26,6 @@
 		<?php endif; ?>
 		</div>
 		<?php include( TEMPLATEPATH . '/includes/pagination.php'); ?>					    	
-	</div>
-		
-	<?php get_sidebar(); ?>	
+	</div>	
 	
 <?php get_footer(); ?>

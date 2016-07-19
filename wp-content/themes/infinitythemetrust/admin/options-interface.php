@@ -5,22 +5,20 @@
  */
 
 function optionsframework_tabs() {
-
-	$optionsframework_settings = get_option('optionsframework');
+	$counter = 0;
+	$optionsframework_settings = get_option('options_framework_theme');
 	$options = optionsframework_options();
 	$menu = '';
-	$counter = 0;
 
 	foreach ($options as $value) {
+		$counter++;
 		// Heading for Navigation
 		if ($value['type'] == "heading") {
-			
-			if($counter >= 2){
-			   $output .= '</div>'."\n";
-			}
-			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
-			$jquery_click_hook = "of-option-" . $jquery_click_hook;
-			$menu .= '<li><a id="'.  esc_attr( $jquery_click_hook ) . '-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a></li>';		}
+			$id = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
+			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($id) );
+			$jquery_click_hook = "of-option-" . $jquery_click_hook . $counter;
+			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
+		}
 	}
 
 	return $menu;
@@ -75,7 +73,7 @@ function optionsframework_fields() {
 
 			$output .= '<div id="' . esc_attr( $id ) .'" class="' . esc_attr( $class ) . '">'."\n";
 			if ( isset( $value['name'] ) ) {
-				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
+				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
 			if ( $value['type'] != 'editor' ) {
 				$output .= '<div class="option">' . "\n" . '<div class="controls">' . "\n";
@@ -114,6 +112,11 @@ function optionsframework_fields() {
 			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '" />';
 			break;
 
+		// Password input
+		case 'password':
+			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="password" value="' . esc_attr( $val ) . '" />';
+			break;
+
 		// Textarea
 		case 'textarea':
 			$rows = '8';
@@ -130,7 +133,7 @@ function optionsframework_fields() {
 			break;
 
 		// Select Box
-		case ($value['type'] == 'select'):
+		case 'select':
 			$output .= '<select class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '">';
 
 			foreach ($value['options'] as $key => $option ) {
@@ -197,8 +200,13 @@ function optionsframework_fields() {
 
 		// Color picker
 		case "color":
-			$output .= '<div id="' . esc_attr( $value['id'] . '_picker' ) . '" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $val ) . '"></div></div>';
-			$output .= '<input class="of-color" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" type="text" value="' . esc_attr( $val ) . '" />';
+			$default_color = '';
+			if ( isset($value['std']) ) {
+				if ( $val !=  $value['std'] )
+					$default_color = ' data-default-color="' .$value['std'] . '" ';
+			}
+			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" class="of-color"  type="text" value="' . esc_attr( $val ) . '"' . $default_color .' />';
+ 	
 			break;
 
 		// Uploader
@@ -206,7 +214,7 @@ function optionsframework_fields() {
 			$output .= optionsframework_medialibrary_uploader( $value['id'], $val, null );
 			break;
 
-			// Typography
+		// Typography
 		case 'typography':
 		
 			unset( $font_size, $font_style, $font_face, $font_color );
@@ -264,8 +272,12 @@ function optionsframework_fields() {
 
 			// Font Color
 			if ( $typography_options['color'] ) {
-				$font_color = '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
-				$font_color .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
+				$default_color = '';
+				if ( isset($value['std']['color']) ) {
+					if ( $val !=  $value['std']['color'] )
+						$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
+				}
+				$font_color = '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-typography-color  type="text" value="' . esc_attr( $typography_stored['color'] ) . '"' . $default_color .' />';
 			}
 	
 			// Allow modification/injection of typography fields
@@ -281,8 +293,12 @@ function optionsframework_fields() {
 			$background = $val;
 
 			// Background Color
-			$output .= '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $background['color'] ) . '"></div></div>';
-			$output .= '<input class="of-color of-background of-background-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $background['color'] ) . '" />';
+			$default_color = '';
+			if ( isset($value['std']['color']) ) {
+				if ( $val !=  $value['std']['color'] )
+					$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
+			}
+			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-background-color"  type="text" value="' . esc_attr( $background['color'] ) . '"' . $default_color .' />';
 
 			// Background Image - New AJAX Uploader using Media Library
 			if (!isset($background['image'])) {
@@ -322,13 +338,13 @@ function optionsframework_fields() {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $background['attachment'], $key, false ) . '>' . esc_html( $attachment ) . '</option>';
 			}
 			$output .= '</select>';
-			$output .= '<div class="clear"></div></div>' . "\n";
+			$output .= '</div>';
 
 			break;
-
+			
 		// Editor
 		case 'editor':
-			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '<div class="clear"></div></div>'."\n";
+			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			echo $output;
 			$textarea_name = esc_attr( $option_name . '[' . $value['id'] . ']' );
 			$default_editor_settings = array(
@@ -361,7 +377,7 @@ function optionsframework_fields() {
 
 			$output .= '<div ' . $id . 'class="' . esc_attr( $class ) . '">' . "\n";
 			if ( isset($value['name']) ) {
-				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
+				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
 			if ( $value['desc'] ) {
 				$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
@@ -375,22 +391,23 @@ function optionsframework_fields() {
 				$output .= '</div>'."\n";
 			}
 			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['name']) );
-			$jquery_click_hook = "of-option-" . $jquery_click_hook;
+			$jquery_click_hook = "of-option-" . $jquery_click_hook . $counter;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '">';
-			$output .= '<h2>' . esc_html( $value['name'] ) . '</h2>' . "\n";
+			$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			break;
+
 		}
 
 		if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) ) {
-			$output .= '<div class="clear"></div></div>';
+			$output .= '</div>';
 			if ( ( $value['type'] != "checkbox" ) && ( $value['type'] != "editor" ) ) {
 				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			}
-			$output .= '<div class="clear"></div></div></div>'."\n";
+			$output .= '</div></div>'."\n";
 		}
 
 		echo $output;
 	}
-	echo '<div class="clear"></div></div>';
+	echo '</div>';
 }

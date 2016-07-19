@@ -24,7 +24,7 @@ jQuery(window).load(function(){
 		function( newElements ) {
 			var newElems = jQuery(newElements);
 			newElems.hide();
-			newElems.imagesLoaded(function(){
+			newElems.waitForImages(function(){
 				newElems.fadeIn('slow');
 			});
 			jQuery('.infscrBtn span').text("Load More"); 	

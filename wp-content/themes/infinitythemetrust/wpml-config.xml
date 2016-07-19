@@ -1,0 +1,20 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1">projects</custom-type>
+    </custom-types>
+    <taxonomies>
+        <taxonomy translate="1">skill</taxonomy>
+    </taxonomies>
+    <custom-fields>
+        <custom-field action="translate">_ttrust_featured_value</custom-field>
+        <custom-field action="translate">_ttrust_page_description_value</custom-field>
+        <custom-field action="translate">_ttrust_url_value</custom-field>
+    </custom-fields>
+    <admin-texts>
+        <key name="infinitybythemetrust">
+            <key name="ttrust_home_message"/>
+            <key name="ttrust_footer_left"/>
+            <key name="ttrust_footer_right"/>
+        </key>
+    </admin-texts>
+</wpml-config>

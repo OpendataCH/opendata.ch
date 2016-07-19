@@ -1,16 +1,11 @@
-//////////////////////////////////////////////////////////////
+///////////////////////////////		
 // Set Variables
-/////////////////////////////////////////////////////////////
+///////////////////////////////
 
-var transitionSpeed = 500;
-var scrollSpeed = 700;
-var fadeDelay = 100;
-var currentProject = "";
-var nextProject = "";
-var previousHeight = "";
-var emptyProjectBoxHeight = 100;
-var hasSlideshow = false;
-	
+var container = jQuery('.thumbs.masonry');
+var colWidth;
+var gridGutter = 20;
+
 ///////////////////////////////		
 // iPad and iPod Detection
 ///////////////////////////////
@@ -27,20 +22,6 @@ function isiPhone(){
         (navigator.platform.indexOf("iPod") != -1)
     );
 }
-
-
-///////////////////////////////		
-// Isotope Browser Check
-///////////////////////////////
-
-function isotopeAnimationEngine(){
-	if(jQuery.browser.mozilla || jQuery.browser.msie){
-		return "jquery";
-	}else{
-		return "css";
-	}
-}
-
 
 ///////////////////////////////		
 // Lightbox
@@ -63,18 +44,14 @@ function lightboxInit() {
 function projectFilterInit() {
 	jQuery('#filterNav a').click(function(){
 		var selector = jQuery(this).attr('data-filter');
-		var container = jQuery('.thumbs.masonry');
-		var colW = container.width() * 0.333;	
+		var container = jQuery('.thumbs.masonry');		
 		container.isotope({
 			filter: selector,			
 			hiddenStyle : {
 		    	opacity: 0,
 		    	scale : 1
 			},
-			resizable: false,
-			masonry: {
-				columnWidth: colW
-			}			
+			resizable: false
 		});
 	
 		if ( !jQuery(this).hasClass('selected') ) {
@@ -90,17 +67,30 @@ function projectFilterInit() {
 // Isotope Grid Resize
 ///////////////////////////////
 
+function setColumns()
+{
+	
+	var columns;	
+	if(container.width() < 480) {
+	    columns = 2;	
+	} else {
+	    columns = 3;
+	}
+	
+	colW = Math.floor(container.width() / columns);
+	jQuery('.thumbs.masonry .project.small').each(function(id){
+		jQuery(this).css('width',colW-gridGutter+'px');
+	});
+}
+
 function gridResize() {	
-	// update columnWidth on window resize
-	var container = jQuery('.thumbs.masonry');
-	var colW = container.width() * 0.333;	
+	setColumns();
 	container.isotope({
 		resizable: false,
-		layoutMode: 'fitRows',
 		masonry: {
 			columnWidth: colW
 		}
-	});			
+	});		
 }
 
 
@@ -133,18 +123,14 @@ function projectThumbInit() {
 		}
 	}	
 	
-	
-	var container = jQuery('.thumbs.masonry');
-	var colW = container.width() * 0.333;	
+	setColumns();
 	container.isotope({		
 		resizable: false,
 		layoutMode: 'fitRows',
 		masonry: {
 			columnWidth: colW
-		}
-		
-	});
-	
+		}		
+	});	
 
 	jQuery(".project.small").css("opacity", "1");	
 	
@@ -153,7 +139,7 @@ function projectThumbInit() {
 	
 jQuery.noConflict();
 jQuery(window).load(function(){
-	
+	jQuery("#content").fitVids();
 	lightboxInit();
 	projectThumbInit();	
 	projectFilterInit();

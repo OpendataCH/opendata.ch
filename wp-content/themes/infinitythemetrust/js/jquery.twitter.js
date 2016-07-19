@@ -40,7 +40,7 @@
 		$(this).show();
 	
 		$.getScript("http://twitter.com/javascripts/blogger.js");
-		$.getScript("http://twitter.com/statuses/user_timeline/"+o.userName+".json?callback=twitterCallback2&count="+o.numTweets, function() {
+		$.getScript("http://api.twitter.com/1/statuses/user_timeline/"+o.userName+".json?callback=twitterCallback2&count="+o.numTweets, function() {
 			// remove preLoader from container element
 			$(pl).remove();
 

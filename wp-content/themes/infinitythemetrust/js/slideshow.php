@@ -7,12 +7,18 @@
 
 jQuery(window).load(function() {			
 	jQuery('.flexslider').flexslider({
-		slideshowSpeed: <?php echo $slideshow_delay . '000'; ?>,  
-		directionNav: true,
-		slideshow: <?php echo $autoPlay; ?>, 
-		controlsContainer: '.slideshow',		 				
+		slideshowSpeed: <?php echo $slideshow_delay . '000'; ?>,  		
+		slideshow: <?php echo $autoPlay; ?>,				 				
 		animation: '<?php echo $slideshow_effect; ?>',
-		animationLoop: true	
+		animationLoop: true,
+		controlNav: true,  
+		smoothHeight: false,           
+		directionNav: true,
+		pauseOnAction: true,            
+		pauseOnHover: false,            
+		useCSS: true,                   
+		touch: true,                  
+		video: false
 	});  
 });
 

@@ -45,7 +45,7 @@
 							var regex = /<p>(.*?)<\/p>/g;
 							var input = item.description;
 							if(regex.test(input)) {
-								item.description = input.match(regex)[2]
+								item.description = input.match(regex)[2];
 								if(item.description!=undefined)
 									item.description = item.description.replace('<p>','').replace('</p>','');
 							}

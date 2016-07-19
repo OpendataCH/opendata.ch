@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+		
 		<div id="pageHead">
 			<?php global $post; if(is_archive() && have_posts()) :
 
@@ -19,8 +19,7 @@
 				<?php endif; ?>
 
 			<?php endif; ?>
-		</div>	
-		
+		</div>		
 						 
 		<div id="content">
 			<div class="posts clearfix">			

@@ -8,26 +8,8 @@ jQuery(document).ready(function($) {
 	// Fade out the save message
 	$('.fade').delay(1000).fadeOut(1000);
 	
-	// Color Picker
-	$('.colorSelector').each(function(){
-		var Othis = this; //cache a copy of the this variable for use inside nested function
-		var initialColor = $(Othis).next('input').attr('value');
-		$(this).ColorPicker({
-		color: initialColor,
-		onShow: function (colpkr) {
-		$(colpkr).fadeIn(500);
-		return false;
-		},
-		onHide: function (colpkr) {
-		$(colpkr).fadeOut(500);
-		return false;
-		},
-		onChange: function (hsb, hex, rgb) {
-		$(Othis).children('div').css('backgroundColor', '#' + hex);
-		$(Othis).next('input').attr('value','#' + hex);
-	}
-	});
-	}); //end color picker
+	$('.of-color').wpColorPicker();
+	
 	// Switches option sections
 	$('.group').hide();
 	var activetab = '';
@@ -51,14 +33,14 @@ jQuery(document).ready(function($) {
 	});
 	
 	if (activetab != '' && $(activetab + '-tab').length ) {
-		$(activetab + '-tab').parent('li').addClass('current');
+		$(activetab + '-tab').addClass('nav-tab-active');
 	}
 	else {
-		$('#of-nav li:first').addClass('current');
+		$('.nav-tab-wrapper a:first').addClass('nav-tab-active');
 	}
-	$('#of-nav li a').click(function(evt) {
-		$('#of-nav li').removeClass('current');
-		$(this).parent().addClass('current');
+	$('.nav-tab-wrapper a').click(function(evt) {
+		$('.nav-tab-wrapper a').removeClass('nav-tab-active');
+		$(this).addClass('nav-tab-active').blur();
 		var clicked_group = $(this).attr('href');
 		if (typeof(localStorage) != 'undefined' ) {
 			localStorage.setItem("activetab", $(this).attr('href'));
@@ -66,6 +48,15 @@ jQuery(document).ready(function($) {
 		$('.group').hide();
 		$(clicked_group).fadeIn();
 		evt.preventDefault();
+		
+		// Editor Height (needs improvement)
+		$('.wp-editor-wrap').each(function() {
+			var editor_iframe = $(this).find('iframe');
+			if ( editor_iframe.height() < 30 ) {
+				editor_iframe.css({'height':'auto'});
+			}
+		});
+	
 	});
            					
 	$('.group .collapsed input:checkbox').click(unhideHidden);
@@ -97,4 +88,4 @@ jQuery(document).ready(function($) {
 	$('.of-radio-img-img').show();
 	$('.of-radio-img-radio').hide();
 		 		
-});
+});	

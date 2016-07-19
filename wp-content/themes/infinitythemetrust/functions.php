@@ -1,6 +1,6 @@
 <?php
-  
-// Load main options panel file  
+
+// Load main options panel file
 if ( !function_exists( 'optionsframework_init' ) ) {
 	define('OPTIONS_FRAMEWORK_URL', TEMPLATEPATH . '/admin/');
 	define('OPTIONS_FRAMEWORK_DIRECTORY', get_bloginfo('template_directory') . '/admin/');
@@ -35,33 +35,38 @@ add_filter( 'http_request_args', 'ttrust_hidden_theme', 5, 2 );
 //////////////////////////////////////////////////////////////
 // Theme Header
 /////////////////////////////////////////////////////////////
-	
+
 add_action('wp_enqueue_scripts', 'ttrust_scripts');
 
 function ttrust_scripts() {
 
-	wp_enqueue_script('jquery');	
-	
-	if(is_active_widget(false,'','ttrust_flickr')) :	
+	wp_enqueue_style( 'infinity-style', get_stylesheet_uri(), false );
+
+	wp_enqueue_script('jquery');
+
+	if(is_active_widget(false,'','ttrust_flickr')) :
     	wp_enqueue_script('flickrfeed', get_bloginfo('template_url').'/js/jflickrfeed.js', array('jquery'), '0.8', true);
 	endif;
-	
-	if(is_active_widget(false,'','ttrust_twitter')) :	
+
+	if(is_active_widget(false,'','ttrust_twitter')) :
     	wp_enqueue_script('jquery_twitter', get_bloginfo('template_url').'/js/jquery.twitter.js', array('jquery'), '1.5', true);
-	endif;	
+	endif;
 
 	wp_enqueue_script('pretty_photo', get_bloginfo('template_url').'/js/jquery.prettyPhoto.js', array('jquery'), '3.1.2', true);
-	wp_enqueue_style('pretty_photo', get_bloginfo('template_url').'/css/prettyPhoto.css', false, '3.1.2', 'all' );	
-	
-	wp_enqueue_script('isotope', get_bloginfo('template_url').'/js/jquery.isotope.min.js', array('jquery'), '1.3.110525', true);	
-	
+	wp_enqueue_style('pretty_photo', get_bloginfo('template_url').'/css/prettyPhoto.css', false, '3.1.2', 'all' );
+
+	wp_enqueue_script('infinity-wait-for-images', get_bloginfo('template_url').'/js/jquery.waitforimages.min.js', array('jquery'), '1.0', true);
+	wp_enqueue_script('isotope', get_bloginfo('template_url').'/js/jquery.isotope.min.js', array('jquery'), '1.3.110525', true);
+
+	wp_enqueue_script('fitvids', get_bloginfo('template_url').'/js/jquery.fitvids.js', array('jquery'), '1.1', true);
+
 	wp_enqueue_script('slideshow', get_bloginfo('template_url').'/js/jquery.flexslider-min.js', array('jquery'), '1.7', true);
 	wp_enqueue_style('slideshow', get_bloginfo('template_url').'/css/flexslider.css', false, '1.7', 'all' );
-	
+
 	if(of_get_option('ttrust_infinite_scrolling') != "disabled") :
-		wp_enqueue_script('infinite_scroll', get_bloginfo('template_url').'/js/jquery.infinitescroll.min.js', array('jquery'), '2.0', true);	
-	endif;	
-	
+		wp_enqueue_script('infinite_scroll', get_bloginfo('template_url').'/js/jquery.infinitescroll.min.js', array('jquery'), '2.0', true);
+	endif;
+
 	wp_enqueue_script('theme_trust_js', get_bloginfo('template_url').'/js/theme_trust.js', array('jquery'), '1.0', true);
 }
 
@@ -107,14 +112,14 @@ function ttrust_theme_head() { ?>
 	#mainNav ul li.current-category-ancestor a,
 	#mainNav ul li.current-portfolio-ancestor a,
 	#mainNav ul li.current-projects-ancestor a {
-		color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;		
+		color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;
 	}
 	#mainNav ul li.sfHover a,
 	#mainNav ul li a:hover,
 	#mainNav ul li:hover {
-		color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;	
+		color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;
 	}
-	#mainNav ul li.sfHover ul a:hover { color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;}	
+	#mainNav ul li.sfHover ul a:hover { color: <?php echo(of_get_option('ttrust_color_menu_hover')); ?> !important;}
 <?php endif; ?>
 
 <?php if(of_get_option('ttrust_color_link')) : ?>a { color: <?php echo(of_get_option('ttrust_color_link')); ?>;}<?php endif; ?>
@@ -154,9 +159,9 @@ function remheadlink() {
 // Body Class
 /////////////////////////////////////////////////////////////
 
-function ttrust_body_classes($classes) {	
-	
-	$classes[] = of_get_option('ttrust_background');	
+function ttrust_body_classes($classes) {
+
+	$classes[] = of_get_option('ttrust_background');
 	return $classes;
 }
 add_filter('body_class','ttrust_body_classes');
@@ -168,9 +173,9 @@ add_filter('body_class','ttrust_body_classes');
 
 add_action('wp_footer','ttrust_footer');
 
-function ttrust_footer() {	
-	include(TEMPLATEPATH . '/js/slideshow.php');	
-	include(TEMPLATEPATH . '/js/infinite_scrolling.php');	
+function ttrust_footer() {
+	include(TEMPLATEPATH . '/js/slideshow.php');
+	include(TEMPLATEPATH . '/js/infinite_scrolling.php');
 }
 
 
@@ -246,7 +251,7 @@ add_image_size('ttrust_one_fourth', 220, 9999);
 //////////////////////////////////////////////////////////////
 // Enbale PrettyPhoto for Galleries
 /////////////////////////////////////////////////////////////
- 
+
 function sant_prettyadd ($content) {
 	$content = preg_replace("/<a/","<a rel=\"prettyPhoto[slides]\"",$content,1);
 	return $content;
@@ -264,19 +269,19 @@ function ttrust_button($a) {
 		'label' 	=> 'Button Text',
 		'id' 	=> '1',
 		'url'	=> '',
-		'target' => '_parent',		
+		'target' => '_parent',
 		'size'	=> '',
 		'ptag'	=> false
 	), $a));
-	
-	$link = $url ? $url : get_permalink($id);	
-	
+
+	$link = $url ? $url : get_permalink($id);
+
 	if($ptag) :
 		return  wpautop('<a href="'.$link.'" target="'.$target.'" class="button '.$size.'">'.$label.'</a>');
 	else :
 		return '<a href="'.$link.'" target="'.$target.'" class="button '.$size.'">'.$label.'</a>';
 	endif;
-	
+
 }
 
 add_shortcode('button', 'ttrust_button');
@@ -332,7 +337,7 @@ add_shortcode('slideshow', 'ttrust_slideshow');
 // Elastic Video
 /////////////////////////////////////////////////////////////
 
-function ttrust_elasticVideo( $atts, $content = null ) {    
+function ttrust_elasticVideo( $atts, $content = null ) {
 	return '<div class="videoContainer">' . $content . '</div>';
 }
 add_shortcode('elastic-video', 'ttrust_elasticVideo');
@@ -341,22 +346,22 @@ add_shortcode('elastic-video', 'ttrust_elasticVideo');
 // Add conainers to all videos
 /////////////////////////////////////////////////////////////
 
-function add_video_containers($content) { 
-	
-	
+function add_video_containers($content) {
+
+
 	$content = str_replace('<object', '<div class="videoContainer"><object', $content);
 	$content = str_replace('</object>', '</object></div>', $content);
-	
+
 	$content = str_replace('<embed', '<div class="videoContainer"><embed', $content);
 	$content = str_replace('</embed>', '</embed></div>', $content);
-	
+
 	$content = str_replace('<iframe', '<div class="videoContainer"><iframe', $content);
 	$content = str_replace('</iframe>', '</iframe></div>', $content);
-	
+
 	return $content;
 }
 
-add_action('the_content', 'add_video_containers');  
+add_action('the_content', 'add_video_containers');
 
 
 
@@ -365,11 +370,11 @@ add_action('the_content', 'add_video_containers');
 /////////////////////////////////////////////////////////////
 
 function more_link() {
-	global $post;	
+	global $post;
 	$more_link = '<p class="moreLink"><a href="'.get_permalink().'" title="'.get_the_title().'">';
 	$more_link .= '<span>Read More</span>';
 	$more_link .= '</a></p>';
-	echo $more_link;	
+	echo $more_link;
 }
 
 //////////////////////////////////////////////////////////////
@@ -377,18 +382,18 @@ function more_link() {
 /////////////////////////////////////////////////////////////
 
 add_action('admin_init','optionscheck_change_santiziation', 100);
- 
+
 
 function optionscheck_change_santiziation() {
     remove_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
     add_filter( 'of_sanitize_textarea', 'custom_sanitize_textarea' );
 }
- 
+
 function custom_sanitize_textarea($input) {
     global $allowedposttags;
-    
+
       $custom_allowedtags["script"] = array();
- 
+
       $custom_allowedtags = array_merge($custom_allowedtags, $allowedposttags);
       $output = wp_kses( $input, $custom_allowedtags);
     return $output;
@@ -402,7 +407,7 @@ function custom_sanitize_textarea($input) {
 add_action( 'init', 'create_post_types' );
 
 function create_post_types() {
-	
+
 	$labels = array(
 		'name' => __( 'Projects' ),
 		'singular_name' => __( 'Project' ),
@@ -418,22 +423,21 @@ function create_post_types() {
 		'not_found_in_trash' => __( 'No projects found in Trash' ),
 		'parent' => __( 'Parent Project' ),
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
 		'show_ui' => true,
-		'query_var' => true,		
+		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
 		'hierarchical' => false,
 		'menu_position' => null,
 		'supports' => array('title', 'editor', 'thumbnail', 'comments', 'revisions', 'excerpt')
-	); 	
-	
+	);
+
 	register_post_type( 'projects' , $args );
-	flush_rewrite_rules( false );
 }
 
 add_action( 'init', 'create_taxonomies' );
@@ -449,14 +453,35 @@ function create_taxonomies() {
     	'update_item' => __( 'Update Skill' ),
     	'add_new_item' => __( 'Add New Skill' ),
     	'new_item_name' => __( 'New Skill Name' )
-  	); 	
+  	);
 
   	register_taxonomy('skill','projects',array(
     	'hierarchical' => false,
     	'labels' => $labels
   	));
-	flush_rewrite_rules( false );
 }
+
+// Fix nav menu active classes for custom post types
+add_filter( 'nav_menu_css_class', 'ttrust_cpt_active_menu', 400 );
+
+function ttrust_cpt_active_menu( $menu ) {
+
+	global $post;
+
+	if ( 'projects' === get_post_type() )
+		$menu = str_replace( 'active', '', $menu );
+
+	return $menu;
+}
+
+function ttrust_custom_flush_rules(){
+	//defines the post type so the rules can be flushed.
+	create_post_types();
+	create_taxonomies();
+	//and flush the rules.
+	flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'ttrust_custom_flush_rules');
 
 // List custom post type taxonomies
 
@@ -515,7 +540,7 @@ function ttrust_get_terms_list( $id = '' , $echo = true ) {
 	    $output = "";
         foreach ( $my_taxonomies as $my_taxonomy ) {
           $output .= $my_taxonomy . "\n";
-        }        
+        }
       }
 
       if ( $echo )
@@ -564,16 +589,16 @@ $home_feature_options = array(
 );
 
 
-$page_options = array(	
+$page_options = array(
 		"description" => array(
     	"type" => "textarea",
 		"name" => $prefix."page_description",
     	"std" => "",
     	"title" => __('Description','themetrust'),
-    	"description" => __('Enter a description about this page.','themetrust'))		
+    	"description" => __('Enter a description about this page.','themetrust'))
 );
 
-$lightbox_options = array(		
+$lightbox_options = array(
 
 		"lightbox_img" => array(
     	"type" => "textfield",
@@ -590,7 +615,7 @@ $lightbox_options = array(
     	"description" => __('This video will be displayed when the thumbnail for this project is clicked. Enter the URL of a video from Vimeo or YouTube.','themetrust'))
 );
 
-$portfolio_options = array(	
+$portfolio_options = array(
 		"notes" => array(
     	"type" => "textarea",
 		"name" => $prefix."page_skills",
@@ -602,62 +627,62 @@ $portfolio_options = array(
 
 $meta_box_groups = array($project_details, $home_feature_options, $page_options, $portfolio_options, $lightbox_options);
 
-function new_meta_box($post, $metabox) {	
-	
+function new_meta_box($post, $metabox) {
+
 	$meta_boxes_inputs = $metabox['args']['inputs'];
 
 	foreach($meta_boxes_inputs as $meta_box) {
-	
+
 		$meta_box_value = get_post_meta($post->ID, $meta_box['name'].'_value', true);
 		if($meta_box_value == "") $meta_box_value = $meta_box['std'];
-		
+
 		echo'<div class="meta-field">';
-		
+
 		echo'<input type="hidden" name="'.$meta_box['name'].'_noncename" id="'.$meta_box['name'].'_noncename" value="'.wp_create_nonce( plugin_basename(__FILE__) ).'" />';
-		
+
 		echo'<p><strong>'.$meta_box['title'].'</strong></p>';
-		
+
 		if(isset($meta_box['type']) && $meta_box['type'] == 'checkbox') {
-		
+
 			if($meta_box_value == 'true') {
 				$checked = "checked=\"checked\"";
-			} elseif($meta_box['std'] == "true") {	
-					$checked = "checked=\"checked\"";	
+			} elseif($meta_box['std'] == "true") {
+					$checked = "checked=\"checked\"";
 			} else {
 					$checked = "";
 			}
-		
-			echo'<p class="clearfix"><input type="checkbox" class="meta-radio" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value" value="true" '.$checked.' /> ';		
-			echo'<label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';		
-		
-		} elseif(isset($meta_box['type']) && $meta_box['type'] == 'textarea')  {			
-			
-			echo'<textarea rows="4" style="width:98%" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value">'.$meta_box_value.'</textarea><br />';			
-			echo'<p><label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';			
-		
+
+			echo'<p class="clearfix"><input type="checkbox" class="meta-radio" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value" value="true" '.$checked.' /> ';
+			echo'<label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';
+
+		} elseif(isset($meta_box['type']) && $meta_box['type'] == 'textarea')  {
+
+			echo'<textarea rows="4" style="width:98%" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value">'.$meta_box_value.'</textarea><br />';
+			echo'<p><label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';
+
 		} else {
-			
-			echo'<input style="width:70%"type="text" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value" value="'.$meta_box_value.'" /><br />';		
-			echo'<p><label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';			
-		
+
+			echo'<input style="width:70%"type="text" name="'.$meta_box['name'].'_value" id="'.$meta_box['name'].'_value" value="'.$meta_box_value.'" /><br />';
+			echo'<p><label for="'.$meta_box['name'].'_value">'.$meta_box['description'].'</label></p><br />';
+
 		}
-		
+
 		echo'</div>';
-		
+
 	} // end foreach
-		
+
 	echo'<br style="clear:both" />';
-	
+
 } // end meta boxes
 
-function create_meta_box() {	
-	global $project_details, $home_feature_options, $page_options, $portfolio_options, $lightbox_options;	
-	
+function create_meta_box() {
+	global $project_details, $home_feature_options, $page_options, $portfolio_options, $lightbox_options;
+
 	if ( function_exists('add_meta_box') ) {
-		add_meta_box( 'new-meta-boxes-details', __('Project Details','themetrust'), 'new_meta_box', 'projects', 'normal', 'high', array('inputs'=>$project_details) );		
-		add_meta_box( 'new-meta-boxes-home-feature', __('Home Feature Options','themetrust'), 'new_meta_box', 'projects', 'normal', 'high', array('inputs'=>$home_feature_options) );		
-		add_meta_box( 'new-meta-boxes-page-options', __('Page Options','themetrust'), 'new_meta_box', 'page', 'side', 'low', array('inputs'=>$page_options) );	
-		add_meta_box( 'new-meta-boxes-portfolio-options', __('Portfolio Options','themetrust'), 'new_meta_box', 'page', 'side', 'low', array('inputs'=>$portfolio_options) );		
+		add_meta_box( 'new-meta-boxes-details', __('Project Details','themetrust'), 'new_meta_box', 'projects', 'normal', 'high', array('inputs'=>$project_details) );
+		add_meta_box( 'new-meta-boxes-home-feature', __('Home Feature Options','themetrust'), 'new_meta_box', 'projects', 'normal', 'high', array('inputs'=>$home_feature_options) );
+		add_meta_box( 'new-meta-boxes-page-options', __('Page Options','themetrust'), 'new_meta_box', 'page', 'side', 'low', array('inputs'=>$page_options) );
+		add_meta_box( 'new-meta-boxes-portfolio-options', __('Portfolio Options','themetrust'), 'new_meta_box', 'page', 'side', 'low', array('inputs'=>$portfolio_options) );
 		add_meta_box( 'new-meta-boxes-lightbox-options', __('Lightbox Options','themetrust'), 'new_meta_box', 'projects', 'normal', 'high', array('inputs'=>$lightbox_options) );
 	}
 }
@@ -675,7 +700,7 @@ if( defined('DOING_AJAX') && DOING_AJAX ) { //Prevents the metaboxes from being 
 	return $post_id;
 }
 
-if( ereg('/\edit\.php', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
+if( preg_match('/\edit\.php', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
 	return $post_id;
 }
 
@@ -703,13 +728,13 @@ foreach($meta_box_groups as $group) {
 		}
 
 
-		if(get_post_meta($post_id, $meta_box['name'].'_value') == "") 
+		if(get_post_meta($post_id, $meta_box['name'].'_value') == "")
 			add_post_meta($post_id, $meta_box['name'].'_value', $data, true);
 		elseif($data != get_post_meta($post_id, $meta_box['name'].'_value', true))
 			update_post_meta($post_id, $meta_box['name'].'_value', $data);
 		elseif($data == "" || $data == $meta_box['std'] )
 			delete_post_meta($post_id, $meta_box['name'].'_value', get_post_meta($post_id, $meta_box['name'].'_value', true));
-	
+
 		} // end foreach
 	} // end foreach
 } // end save_postdata
@@ -724,30 +749,30 @@ add_action('save_post', 'save_postdata');
 /////////////////////////////////////////////////////////////
 
 function ttrust_comments($comment, $args, $depth) {
-	$GLOBALS['comment'] = $comment; ?>		
-	<li id="li-comment-<?php comment_ID() ?>">		
-		
-		<div class="comment <?php echo get_comment_type(); ?>" id="comment-<?php comment_ID() ?>">						
-			
-			<?php echo get_avatar($comment,'60',get_bloginfo('template_url').'/images/default_avatar.png'); ?>			
-   	   			
+	$GLOBALS['comment'] = $comment; ?>
+	<li id="li-comment-<?php comment_ID() ?>">
+
+		<div class="comment <?php echo get_comment_type(); ?>" id="comment-<?php comment_ID() ?>">
+
+			<?php echo get_avatar($comment,'60',get_bloginfo('template_url').'/images/default_avatar.png'); ?>
+
    	   		<h5><?php comment_author_link(); ?></h5>
 			<span class="date"><?php comment_date(); ?></span>
-				
+
 			<?php if ($comment->comment_approved == '0') : ?>
 				<p><span class="message"><?php _e('Your comment is awaiting moderation.', 'themetrust'); ?></span></p>
 			<?php endif; ?>
-				
-			<?php comment_text() ?>				
-				
+
+			<?php comment_text() ?>
+
 			<?php
 			if(get_comment_type() != "trackback")
 				comment_reply_link(array_merge( $args, array('add_below' => 'comment','reply_text' => '<span>'. __('Reply', 'themetrust') .'</span>', 'login_text' => '<span>'. __('Log in to reply', 'themetrust') .'</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'])))
-			
+
 			?>
-				
+
 		</div><!-- end comment -->
-			
+
 <?php
 }
 

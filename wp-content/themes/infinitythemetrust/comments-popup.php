@@ -118,7 +118,7 @@ else: //have_posts()
 document.onkeypress = function esc(e) {
 	if(typeof(e) == "undefined") { e=event; }
 	if (e.keyCode == 27) { self.close(); }
-}
+};
 // -->
 </script>
 </body>
