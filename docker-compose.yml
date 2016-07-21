@@ -1,0 +1,22 @@
+---
+version: '2'
+services:
+
+  web:
+    build: .
+    links:
+      - mysql
+    ports:
+      - "8000:80"
+    volumes:
+      - ".:/var/www/html"
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: opendata
+    ports:
+      - "3307:3306"
