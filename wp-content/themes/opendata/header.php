@@ -38,6 +38,29 @@
 	<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 
 	<?php wp_head(); ?>
+	<style>
+		<?php $ttrust_color_scheme = of_get_option('ttrust_color_scheme'); ?>
+		<?php if($ttrust_color_scheme) : ?>
+			#content h1 a,
+			#content h2 a,
+			#content h3 a,
+			.widgetBox h3 a,
+			#slideshow .slideText h3 a,
+			#content h4 a,
+			#content h5 a,
+			#content h1 a:hover,
+			#content h2 a:hover,
+			#content h3 a:hover,
+			.widgetBox h3 a:hover,
+			#slideshow .slideText h3 a:hover,
+			#content h4 a:hover,
+			#content h5 a:hover,
+			#homeMessage,
+			#homeMessage h2 a {
+			 	color: <?php echo($ttrust_color_scheme); ?>;
+			}
+		<?php endif; ?>
+	</style>
 </head>
 
 <body <?php body_class(of_get_option('ttrust_background_texture')); ?> >

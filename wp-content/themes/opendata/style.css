@@ -102,19 +102,6 @@ h2,
 	font-size: 1.1em;
 }
 
-#mainNav ul li.current a,
-#mainNav ul li.current-cat a,
-#mainNav ul li.current_page_item a,
-#mainNav ul li.current-menu-item a,
-#mainNav ul li.current-post-ancestor a,
-#mainNav ul li.current_page_parent a,
-#mainNav ul li.current-category-parent a,
-#mainNav ul li.current-category-ancestor a,
-#mainNav ul li.current-portfolio-ancestor a,
-#mainNav ul li.current-projects-ancestor a {
-	color: #E61414;
-}
-
 #languageSwitcher {
 	font-family: "M3MonoRegular", "Helvetica Neue", sans-serif;
 	line-height: 40px;
@@ -135,26 +122,6 @@ h2,
 	margin-bottom: 10px;
 }
 
-#content h1 a,
-#content h2 a,
-#content h3 a,
-.widgetBox h3 a,
-#slideshow .slideText h3 a,
-#content h4 a,
-#content h5 a {
-	color: #E61414;
-}
-
-#content h1 a:hover,
-#content h2 a:hover,
-#content h3 a:hover,
-.widgetBox h3 a:hover,
-#slideshow .slideText h3 a:hover,
-#content h4 a:hover,
-#content h5 a:hover {
-	color: #E61414;
-}
-
 #content table td {
     padding: 0px 10px 10px 0px;
 }
@@ -164,7 +131,6 @@ h2,
 #homeMessage {
 	margin: -7px 0 35px 0;
 	padding: 0 0 15px 0;
-	color: #E61414;
 	border-bottom: 1px dotted #e3e2de !important;
 }
 
@@ -181,20 +147,6 @@ h2,
 	color: #B0B0AD;
 	text-decoration: none;
 	line-height: 1.3em;
-}
-
-#homeMessage h2 a {
-	color: #E61414;
-}
-
-/*Project Filter Navigation------------------*/
-
-#filterNav .selected {
-	color: #E61414 !important;
-}
-
-#filterNav li a.selected:hover {
-	color: #E61414 !important;
 }
 
 /*Projects------------------*/
@@ -222,10 +174,6 @@ h2,
 	margin: auto;
 	min-width: 120px;
 	min-height: 120px;
-}
-
-.projectNav a:hover {
-	background-color: #E61414;
 }
 
 /*Images------------------*/
