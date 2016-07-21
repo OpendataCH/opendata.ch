@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_Attributes(); ?>>
+<html <?php language_attributes(); ?>>
 
 <head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
@@ -10,24 +10,23 @@
 	<?php $body_font = of_get_option('ttrust_body_font'); ?>
 	<?php $home_message_font = of_get_option('ttrust_home_message_font'); ?>
 	<?php if ($heading_font != "") : ?>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=<?php echo(urlencode($heading_font)); ?>:regular,italic,bold,bolditalic" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=<?php echo(urlencode($heading_font)); ?>:regular,italic,bold,bolditalic" />
 	<?php else : ?>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
 	<?php endif; ?>
 
 	<?php if ($body_font != "" && $body_font != $heading_font) : ?>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=<?php echo(urlencode($body_font)); ?>:regular,italic,bold,bolditalic" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=<?php echo(urlencode($body_font)); ?>:regular,italic,bold,bolditalic" />
 	<?php elseif ($heading_font != "") : ?>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
 	<?php endif; ?>
 
 	<?php if ($home_message_font != "") : ?>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=<?php echo(urlencode($home_message_font)); ?>:regular,italic,bold,bolditalic" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=<?php echo(urlencode($home_message_font)); ?>:regular,italic,bold,bolditalic" />
 	<?php else : ?>
-		<!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Serif:regular,bold" />-->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" />
 	<?php endif; ?>
 
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?v=201206" type="text/css" media="screen" />
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -72,7 +71,7 @@
 		<div id="sideWidgets">
 		<?php
 			if(get_post_type() == 'projects' && is_active_sidebar('sidebar_projects')) : dynamic_sidebar('sidebar_projects');
-		    elseif(is_archive() && is_active_sidebar('sidebar_posts')) : dynamic_sidebar('sidebar_posts');
+		    elseif((is_archive() || is_search()) && is_active_sidebar('sidebar_posts')) : dynamic_sidebar('sidebar_posts');
 		    elseif(is_single() && is_active_sidebar('sidebar_posts')) : dynamic_sidebar('sidebar_posts');
 		    elseif(is_page() && is_active_sidebar('sidebar_pages')) : dynamic_sidebar('sidebar_pages');
 			elseif(is_search() && is_active_sidebar('sidebar_posts')) : dynamic_sidebar('sidebar_pages');

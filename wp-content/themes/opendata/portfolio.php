@@ -16,7 +16,7 @@ Template Name: Portfolio
 				<?php while (have_posts()) : the_post(); ?>											
 						<?php the_content(); ?>														
 				<?php endwhile; ?>			
-				<?php include( TEMPLATEPATH . '/includes/projects.php'); ?>						    	
+				<?php include( get_stylesheet_directory() . '/includes/projects.php'); ?>						    	
 			</div>
 	
 <?php get_footer(); ?>
