@@ -135,6 +135,12 @@ h2,
 	border-bottom: 1px dotted #e3e2de !important;
 }
 
+#homeMessage p {
+	font-size: 0.91em;
+	font-family: inherit;
+	line-height: 1.8em !important;
+}
+
 #homeMessage h1{
 	font-size: 1.85em;
 	font-weight: normal;
