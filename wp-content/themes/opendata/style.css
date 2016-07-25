@@ -34,7 +34,8 @@ Template: infinitythemetrust
 //  02 - Global
 /////////////////////////////////////////////////////////////////////*/
 
-body {  
+body {
+	background-color: #fff;
 	color: #444;
 }
 
