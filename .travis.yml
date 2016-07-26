@@ -1,0 +1,24 @@
+language: php
+
+php:
+  - 7.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer install
+
+deploy:
+  provider: script
+  script: >-
+    curl -s -X POST
+    -H "Content-Type: application/json"
+    -H "Accept: application/json"
+    -H "Travis-API-Version: 3"
+    -H "Authorization: token ${TRAVIS_TOKEN}"
+    -d '{"request": {"message": "Deployment triggered from OpendataCH/opendata.ch", "branch": "master"}}'
+    https://api.travis-ci.org/repo/OpendataCH%2Fplaybook/requests
+  on:
+    branch: master
