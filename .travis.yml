@@ -18,7 +18,7 @@ deploy:
     -H "Accept: application/json"
     -H "Travis-API-Version: 3"
     -H "Authorization: token ${TRAVIS_TOKEN}"
-    -d '{"request": {"message": "Deploy opendata.ch", "branch": "master", "config": {"deploy": {"provider": "script", "skip_cleanup": "true", "script": "ansible-playbook deploy-opendata-ch.yml", "on": {"branch": "master"}}}}}'
+    -d '{"request": {"message": "Deploy opendata.ch", "branch": "master", "config": {"deploy": {"provider": "script", "skip_cleanup": "true", "script": "ansible-playbook deploy-opendata-ch.yml"}}}}'
     https://api.travis-ci.org/repo/OpendataCH%2Fplaybook/requests
   on:
     branch: master
