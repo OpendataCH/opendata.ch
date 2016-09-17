@@ -8,6 +8,12 @@ services:
       - mysql
     ports:
       - "8000:80"
+      - "8001:80"
+      - "8002:80"
+      - "8003:80"
+      - "8004:80"
+      - "8005:80"
+      - "8006:80"
     volumes:
       - ".:/var/www/html"
     restart: always
