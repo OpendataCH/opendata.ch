@@ -42,7 +42,7 @@ Template Name: Landing
   
   <style>
   body.page-template-landing {
-    background-image: url("<?php the_post_thumbnail_url(); ?>");
+    background-image: url("<?php the_post_thumbnail_url('full'); ?>");
   }
   </style>
 </head>
