@@ -77,7 +77,7 @@ $children = get_pages($args);
   $containerCustom = get_post_custom_values('landing_container', $child->ID);
   $container = isset($containerCustom[0]) ? 'landing-container-' . $containerCustom[0] : '';
   ?>
-  <div class="landing-section <?php echo esc_html($section); ?>">
+  <div class="landing-section <?php echo esc_html($section); ?>" id="section-<?php echo esc_html($child->post_name); ?>">
 
     <div class="landing-container <?php echo esc_html($container); ?>">
       <?php echo apply_filters('the_content', $child->post_content); ?>
