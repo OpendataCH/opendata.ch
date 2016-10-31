@@ -43,6 +43,8 @@ Template Name: Landing
 
 <body <?php body_class(of_get_option('ttrust_background_texture')); ?>>
 
+<div id="content">
+
 <div id="container" class="clearfix">
 
   <?php $home_message = of_get_option('ttrust_home_message'); ?>
@@ -52,7 +54,7 @@ Template Name: Landing
     </div>
   <?php endif; ?>
 
-  <div id="content" class="clearfix">
+  <div class="clearfix">
     <?php while (have_posts()) : the_post(); ?>
         <?php the_content(); ?>
     <?php endwhile; ?>
@@ -86,6 +88,8 @@ $children = get_pages($args);
   </div>
 
 <?php endforeach; ?>
+
+</div>
 
 <?php wp_footer(); ?>
 
