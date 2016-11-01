@@ -43,6 +43,19 @@ Template Name: Landing
 
 <body <?php body_class(of_get_option('ttrust_background_texture')); ?>>
 
+<?php $ttrust_logo = of_get_option('logo'); ?>
+<div id="logo">
+<?php if($ttrust_logo) : ?>
+  <h1 class="logo"><a href="<?php bloginfo('url'); ?>"><img src="<?php echo $ttrust_logo; ?>" alt="<?php bloginfo('name'); ?>" /></a></h1>
+<?php else : ?>
+  <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
+<?php endif; ?>
+</div>
+
+<div id="mainNav" class="clearfix">
+  <?php wp_nav_menu( array('menu_class' => '', 'theme_location' => 'main', 'fallback_cb' => 'default_nav' )); ?>
+</div>
+
 <div id="content">
 
 <div id="container" class="clearfix">
