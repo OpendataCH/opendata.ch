@@ -1,0 +1,287 @@
+/*
+Theme Name: food.opendata.ch
+Version: 1.0
+Author: Opendata.ch
+*/
+
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+    border-top: 10px solid #ff6942;
+    background-image: url("images/OpenData_Banner_02.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    background-color: #f7f7f7;
+}
+
+a {
+    text-decoration: none;
+    color: #ff6943;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #ff3b0a;
+}
+
+p {
+    line-height: 1.8em;
+}
+
+#logo {
+    position: fixed;
+    left: 60px;
+    top: 40px;
+    margin: 0px 0 30px 0;
+    padding: 0;
+}
+
+#logo h1 {
+    margin: 0 !important;
+    line-height: 1em !important;
+    padding: 0 !important;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #575757;
+}
+
+#mainNav {
+    text-align: center;
+    height: 20px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    position: static;
+    width: auto;
+    max-width: 100%;
+    padding: 0 230px;
+    margin: 30px 0 100px 0;
+}
+
+#mainNav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#mainNav li {
+    margin: 0 0 0 1.5em;
+    display: inline-block;
+    padding: 0;
+}
+
+#mainNav li a {
+    font-size: 1.1em;
+}
+
+#mainNav ul a,
+#mainNav ul a:hover {
+    color: #999;
+    text-decoration: none;
+}
+
+.post p img,
+.page p img,
+.single p img {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.page-template-landing h1 {
+    font-size: 2em;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    color: #FF6943;
+}
+
+.page-template-landing h2 {
+    font-size: 1.6em;
+    color: #999;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+.page-template-landing h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.landing-section {
+    padding: 8em 20px;
+}
+
+.landing-section h1 {
+    margin: 0 0 8px 0;
+}
+
+.landing-section-blue {
+    background-color: #0C0944;
+    color: #fff;
+}
+
+.landing-section-blue h2 {
+    color: #3BDDE2;
+}
+
+.landing-section-blue h3 {
+    color: #FF6943;
+    margin-top: 50px;
+}
+
+.landing-section-green {
+    background-color: #BDC821;
+    color: #0C0944;
+}
+
+.landing-section-green h2 {
+    color: #fff;
+}
+
+.landing-container-narrow {
+    max-width: 44em;
+}
+
+.landing-container-tight {
+    max-width: 28em;
+}
+
+#section-countdown h1 {
+    margin: 0;
+    font-size: 3em;
+    color: #FF6943;
+}
+
+#section-countdown h2 {
+    margin: 0;
+}
+
+.btn {
+    padding: 20px 46px;
+    margin: 20px 10px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    border-radius: 6px;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    border: none;
+    line-height: normal;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary:active:hover {
+    background-color: #ff6943;
+}
+
+@media only screen and (max-width: 768px) {
+
+    #logo {
+        left: 20px;
+        top: 30px;
+    }
+    #logo a img {
+        max-width: 150px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    body {
+        background-size: 949px;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #mainNav {
+        padding: 0 60px;
+    }
+
+    h1 > img {
+        width: 160px;
+        height: 218px;
+    }
+}
+
+/* http://codex.wordpress.org/CSS#WordPress_Generated_Classes */
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
