@@ -167,6 +167,7 @@ p {
     font-weight: bold;
     border: none;
     line-height: normal;
+    white-space: normal;
 }
 
 .btn-primary,
