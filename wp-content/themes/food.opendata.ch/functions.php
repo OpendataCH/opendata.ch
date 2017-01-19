@@ -4,6 +4,8 @@ add_action('wp_enqueue_scripts', function () {
 
     wp_enqueue_style('style', get_stylesheet_uri());
 
+    wp_enqueue_script('jquery');
+
 });
 
 add_action('after_setup_theme', function () {
