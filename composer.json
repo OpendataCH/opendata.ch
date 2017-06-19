@@ -26,5 +26,9 @@
         "wpackagist-plugin/twitters-bootstrap-shortcodes-ultimate": "1.*",
         "wpackagist-plugin/vimeo-quicktags": "2.*",
         "wpackagist-plugin/wordpress-importer": "0.6.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "fabpot/goutte": "^3.2"
     }
 }
