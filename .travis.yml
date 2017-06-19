@@ -12,6 +12,9 @@ cache:
 before_script:
   - travis_retry composer install
 
+script:
+  - vendor/bin/phpunit
+
 deploy:
   provider: script
   script: >-
