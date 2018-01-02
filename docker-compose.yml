@@ -16,11 +16,9 @@ services:
       - "8006:80"
     volumes:
       - ".:/var/www/html"
-    restart: always
 
   mysql:
     image: mysql:5.7
-    restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: opendata
