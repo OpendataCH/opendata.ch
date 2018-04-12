@@ -1,10 +1,10 @@
 ---
-version: '2'
+version: "3"
 services:
 
   web:
     build: .
-    links:
+    depends_on:
       - mysql
     ports:
       - "8000:80"
@@ -15,7 +15,7 @@ services:
       - "8005:80"
       - "8006:80"
     volumes:
-      - ".:/var/www/html"
+      - .:/var/www/html
 
   mysql:
     image: mysql:5.7
