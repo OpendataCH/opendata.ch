@@ -44,7 +44,7 @@ class WebTest extends TestCase
 
         // check Vorstand
         $h2 = $crawler->filter('h2')->first()->text();
-        $this->assertEquals('André Golliez, Präsident', $h2);
+        $this->assertEquals('Andreas Kellerhals, Präsident', $h2);
     }
 
     public function testEvents()
