@@ -40,6 +40,7 @@ class WebTest extends TestCase
 		$crawler = $this->client->request('GET', $this->url);
 
 		// go to Vorstand
+		$crawler = $this->client->click($crawler->selectLink('Organisation')->link());
 		$crawler = $this->client->click($crawler->selectLink('Vorstand')->link());
 
 		// check Vorstand
