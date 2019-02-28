@@ -329,6 +329,19 @@ h2,
 	}
 }
 
+/* Cleaned up for print outs (TODO: add "be kind & save paper" notice) -------- */
+
+@media print {
+	
+	#disqus_thread,
+	#mainNav, 
+	#languageSwitcher, 
+	#sideWidgets { display:none; }
+	#header { position: relative; float: none; }
+	#main { float: none;          width: 100%; }
+	
+}
+
 /* Random Custom CSS Stuff ----------- */
 .widget_kbrss ul li a img {
 	float: left;
