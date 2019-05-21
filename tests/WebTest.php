@@ -20,6 +20,10 @@ class WebTest extends TestCase
 	{
 		$this->client = new Client();
 		$this->url = $_ENV['URL'];
+
+		if (!$this->url) {
+			$this->markTestSkipped('No URL defined in phpunit.xml.');
+		}
 	}
 
 	public function testHome()

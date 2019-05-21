@@ -6,6 +6,6 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="URL" value="https://opendata.ch/" />
+        <env name="URL" value="" />
     </php>
 </phpunit>
