@@ -23,7 +23,6 @@
         "wpackagist-plugin/shortcodes-ultimate": "4.*",
         "wpackagist-plugin/twitter-widget": "1.*",
         "wpackagist-plugin/twitters-bootstrap-shortcodes-ultimate": "1.*",
-        "wpackagist-plugin/vimeo-quicktags": "2.*",
         "wpackagist-plugin/wordpress-importer": "0.6.*"
     },
     "require-dev": {
