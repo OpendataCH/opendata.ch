@@ -16,3 +16,4 @@
 /.htaccess
 /wiki/
 /id_rsa
+/bin/settings.sh
