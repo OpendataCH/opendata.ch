@@ -12,10 +12,10 @@ before_script:
 
 deploy:
   provider: script
-  script: |
-    eval $(ssh-agent -s)
-    openssl aes-256-cbc -K $encrypted_fb9206684278_key -iv $encrypted_fb9206684278_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
-    chmod 600 ~/.ssh/id_rsa
+  script: >
+    eval $(ssh-agent -s) &&
+    openssl aes-256-cbc -K $encrypted_fb9206684278_key -iv $encrypted_fb9206684278_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d &&
+    chmod 600 ~/.ssh/id_rsa &&
     ssh -o ForwardAgent=yes ${SSH_USER}@${SSH_HOST} <<END
       cd /home/www-data/opendata.ch &&
       git pull --rebase --stat &&
