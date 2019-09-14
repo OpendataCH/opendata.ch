@@ -18,6 +18,6 @@ before_deploy:
 
 deploy:
   provider: script
-  script: ssh -o ForwardAgent=yes ${SSH_USER}@${SSH_HOST} "cd ${SSH_DOCUMENT_PATH} && git pull --rebase --stat && composer update --no-dev --no-interaction --no-progress --optimize-autoloader"
+  script: bash bin/deploy.sh
   on:
     branch: master
