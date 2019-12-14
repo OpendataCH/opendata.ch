@@ -6,7 +6,7 @@
         }
     ],
     "require": {
-        "johnpbloch/wordpress": "5.2.*",
+        "johnpbloch/wordpress": "5.3.*",
         "wpackagist-plugin/add-meta-tags": "2.*",
         "wpackagist-plugin/akismet": "3.*",
         "wpackagist-plugin/blog-copier": "1.*",
