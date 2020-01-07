@@ -23,7 +23,16 @@
         "wpackagist-plugin/shortcodes-ultimate": "4.*",
         "wpackagist-plugin/twitter-widget": "1.*",
         "wpackagist-plugin/twitters-bootstrap-shortcodes-ultimate": "1.*",
-        "wpackagist-plugin/wordpress-importer": "0.6.*"
+        "wpackagist-plugin/wordpress-importer": "0.6.*",
+        "wpackagist-plugin/admin-post-navigation": "2.*",
+        "wpackagist-plugin/duplicate-post": "3.*",
+        "wpackagist-plugin/email-encoder-bundle": "2.*",
+        "wpackagist-plugin/featured-image-admin-thumb-fiat": "1.*",
+        "wpackagist-plugin/jquery-collapse-o-matic": "1.*",
+        "wpackagist-plugin/post-types-order": "1.*",
+        "wpackagist-plugin/timber-library": "1.*",
+        "wpackagist-plugin/tinymce-advanced": "5.*",
+        "wpackagist-plugin/wordpress-seo": "12.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
