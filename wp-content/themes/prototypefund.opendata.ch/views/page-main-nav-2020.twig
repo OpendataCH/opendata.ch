@@ -27,29 +27,4 @@
 			</div>
 		{% endfor %}
 	</div>
-	{% if(post.video_embed_url) %}
-		<section class="section fullwidth video-section">
-			<div class="col-md-16 col-md-push-4 embed-responsive no-padding">
-				<div class="video-wrap video-2020 videoWrapper videoWrapper169 js-videoWrapper">
-					<!-- YouTube iframe. -->
-					<!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
-					<!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language --><iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowtransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed_url) }}?autoplay=1&modestbranding=1&rel=0&hl=sv"> </iframe>
-					<!-- the poster frame - in the form of a button to make it keyboard accessible -->
-					<div class="poster-wrap dark button-hidden">
-
-						<button class="videoPoster js-videoPoster" style="background-image:url(
-																																																								                        {% if post.videoposter %}
-																																																								                            {{ TimberImage(post.videoposter).src('ru-image-1030w') }}
-																																																								                        {% else %}
-																																																								                            {{ function('get_video_poster_url',post.video_embed) }}
-																																																								                        {% endif %});">
-							<div class="youtube-warning">
-								{{ options.youtube_warning_text }}
-							</div>
-						</button>
-					</div>
-				</div>
-			</div>
-		</section>
-	{% endif %}
 {% endblock %}

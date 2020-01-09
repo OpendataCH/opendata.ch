@@ -8,32 +8,6 @@
         </div>
         {% if(deviceType == "computer") %}<div class="deadline-text"><a class="underlined" href="{{ site.url }}">{{ options.cta_home }}</a></div>{% endif %}
     </section>
-    <section class="section fullwidth fullheight front-content sticky-wrapper">
-        <div class="row">
-            <div class="centered-page-area">
-                <div class="row">
-                    <h1 class="col-xs-24 col-md-15 col-lg-16 frontpage-headline">{{ front.frontpage_headline }}</h1>
-                </div>
-                <div class="row">
-                    <div class="col-xs-24 col-md-18 col-lg-14 content-area">
-                        <div class="col-xs-24 no-padding">
-                            {{ front.content_left_top|wpautop }}
-                        </div>
-                        <div class="col-xs-24 no-padding">
-                            {{ front.content_left_bottom|wpautop }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-22 col-xs-push-2 col-md-18 col-md-push-6 col-lg-10 col-lg-push-0 content-area no-padding sticky grey right grey-box">
-                <div class="row">
-                    <div class="col-xs-24">
-                        {{ front.content_right|wpautop  }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="section fullwidth fullheight fit-to-mobile margin-bottom-50 canvas-push">
         {% include 'views/paper-canvas-push.twig' %}
     </section>
