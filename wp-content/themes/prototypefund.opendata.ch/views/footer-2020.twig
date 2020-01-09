@@ -29,7 +29,8 @@
                     <div class="col-xs-24 no-padding sponsors">
                         {% if options.footer_logos %}
                             {% for logo in options.footer_logos %}
-                                <div class="sporsor-item">
+                                <div class="sponsor-item">
+                                    <p class="sponsor-item-caption">{{ logo.footer_logo_headline }}</p>
                                     <a href="{{ logo.footer_logo_url }}" target="_blank"><img class="img-responsive" src="{{TimberImage(logo.footer_logo_image).src}}" alt="{{logo.footer_logo_image.alt}}"></a>
                                 </div>
                             {% endfor %}
