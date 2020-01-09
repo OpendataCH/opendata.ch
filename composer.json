@@ -1,8 +1,8 @@
 {
     "repositories":[
         {
-            "type":"composer",
-            "url":"https://wpackagist.org"
+            "type": "composer",
+            "url": "https://wpackagist.org"
         }
     ],
     "require": {
