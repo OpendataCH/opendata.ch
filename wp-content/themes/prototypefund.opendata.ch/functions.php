@@ -208,7 +208,7 @@ if( function_exists('acf_add_options_page') ) {
 /*----------  ACF geolocation api key  ----------*/
 function my_acf_google_map_api( $api ){
 
-    $api['key'] = 'AIzaSyDzkUB-UZl7hETy724H4aMLjGlBSKN6eV4';
+    $api['key'] = '';
 
     return $api;
 
