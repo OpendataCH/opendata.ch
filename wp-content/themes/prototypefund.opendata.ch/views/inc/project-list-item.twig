@@ -1,0 +1,66 @@
+<div class="project-list-item" data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}">
+    <div class="project-list-item-inner">
+        <div class="row">
+            <div class="col-xs-24 col-md-10 project-list-item-inner-left">
+                <div class="project-list-item-text-wrap">
+                    <h3 class="project-list-item-headline uppercase"><a href="{{ post.link }}">{{ post.post_title }}</a></h3>
+                    <div class="project-list-item-copy">{{ post.get_field('content1') }}</div>
+                    <div class="project-list-item-members">{% for item in post.get_field('members') %}
+                            {% if item.email %}
+                                <span class="project-list-item-member"><a href="mailto:{{item.email}}" target="_blank">{{item.name}}</a></span>{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}
+                            {% else %}<span class="project-list-item-member">{{item.name}}{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}{% endif %}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-12 col-md-push-2 project-list-item-inner-right">
+                {% if(post.video_embed) %}
+                    <!-- has video -->
+                    <div class="video-wrap videoWrapper videoWrapper169 js-videoWrapper">
+                        <!-- YouTube iframe. -->
+                        <!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
+                        <!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language -->
+                        <iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed) }}?autoplay=1&modestbranding=1&rel=0&hl=sv"></iframe>
+                        <!-- the poster frame - in the form of a button to make it keyboard accessible -->
+                        <div class="poster-wrap button-hidden">
+
+                            <button class="videoPoster js-videoPoster" style="background-image:url(
+                            {% if post.video_poster %}
+                                {{ TimberImage(post.video_poster).src('ru-image-1030w') }}
+                            {% else %}
+                                {{ function('get_video_poster_url',post.video_embed) }}
+                            {% endif %});">
+                                <div class="youtube-warning">
+                                    {{ options.youtube_warning_text }}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    {% if post.thumbnail %}
+                        <!-- has teaser image -->
+                        {% set img = Image(post.thumbnail)  %}
+                        <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
+                    {% else %}
+                        <!-- has no teaser image -->
+                        <div class="project-teaser-image" style="background-image:url({{ theme.link }}/library/images/prototypefund-project-default.png)"></div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="project-teaser-footer col-xs-24">
+                <div class="project-list-item-categories fontsize-small uppercase">
+                    <span>#{{post.project_round}}</span>&nbsp;
+                    {% for item in post.cats %}
+                        <span>#{{item.name}}</span>&nbsp;
+                    {% endfor %}
+                </div>
+                <div class="project-list-item-link">
+                    <a href="{{ post.link }}" class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

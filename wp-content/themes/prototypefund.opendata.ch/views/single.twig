@@ -1,0 +1,51 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+    <div class="row page-2020-wrap">
+        <article id="post-{{ post.id }}" {{ fn('post_class','blogpost-single fullwidth fullheight cf') }} role="article" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="project-status-wrap fontsize-small uppercase">
+                {{ function('timePassedSinceDate', post.post_date) }}
+            </div>
+            <div data-sticky-container class="blogpost-content">
+                <div class="row no-margin">
+                    <div class="blogpost-left col-xs-24 {% if TimberImage(post.thumbnail).src('large')|length == 0 and video_embed_url == false %}col-md-18{% else %}col-md-14{% endif %} no-padding">
+                        <header class="article-header">
+                            <h1 class="page-title" itemprop="headline">{{ post.title }}</h1>
+                        </header>
+                        <section class="entry-content cf" itemprop="articleBody">
+                            {{ post.content }}
+                        </section>
+                        <div class="col-xs-24 social-2020 single-share">
+                            <a class="twitter-tweet-link" href="https://twitter.com/intent/tweet?url={{ post.link | url_encode }}&via={{ options.via }}&hashtags={{ options.hashtags }}">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-xs-24">
+                            {% for item in blognav.items %}
+                                <a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link project-nav-2020-link" href="{{item.link}}">
+                                    <div class="project-nav-2020">
+                                        <span>{{item.title}}</span>
+                                        <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if TimberImage(post.thumbnail).src('large')|length > 0 or post.get_field('images')|length > 0 or video_embed|length > 0 %}
+                        <div data-margin-top="100" class="sticky blogpost-right col-xs-24 col-md-10 no-padding blog-images">
+                            {% if( TimberImage(post.thumbnail).src('large')|length ) %}
+                                <div class="image-wrapper">
+                                    <div class="image-container">
+                                        <img src="{{ TimberImage(post.thumbnail).src('large') }}" class="img-responsive colorized" alt="{{post.title}}" />
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock %}
+
+

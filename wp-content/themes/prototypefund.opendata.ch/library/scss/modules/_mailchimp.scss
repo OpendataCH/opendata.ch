@@ -1,0 +1,156 @@
+.mc_embed_signup {
+
+  margin-bottom: 30px;
+  width: 70%;
+
+  .submit-arrow, .submit-arrow-hover{
+    @include transition(margin-left .25s ease);
+    margin-left: 5px;
+    display: inline-block;
+  }
+
+  .mc-field-group {
+
+    text-align: left;
+
+    // make the input stretch responsivley
+    .input-responsive-wrap {
+      display: table;
+      width: 100%;
+
+      .input-responsive {
+        /*display: table-cell;*/
+        width: 100%;
+      }
+    }
+
+    .mce-EMAIL {
+      font-size: 1.6em; // 20pt -> 26px -> 1.6 em
+      margin-bottom: 0;
+      height: 50px;
+      background-color: #fff;
+      color: #000;
+      border-bottom: 1px #000 solid;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .mc-embedded-subscribe {
+      font-size: 1em; // 18pt -> 24px -> 1.5 em
+      font-family: $font-regular;
+      white-space: nowrap;
+      padding: 0;
+      background-color: #fff;
+
+
+      a{
+        color: #000;
+        display: block;
+
+        .submit-arrow{
+          display: inline-block;
+        }
+        .submit-arrow-hover{
+          visibility: hidden;
+        }
+
+        &:hover{
+          color: $ptf-primary-color;
+          .submit-arrow{
+            display: none;
+          }
+          .submit-arrow-hover{
+            visibility: visible;
+            margin-left: 10px;
+          }
+        }
+      }
+
+      @include transition(color .25s ease);
+
+      &:hover{
+        color: $ptf-primary-color;
+      }
+
+    }
+  }
+
+  div.mce_inline_error {
+    text-align: left;
+  }
+
+	.mc-embedded-subscribe {
+ 		@extend %btn; // here we load the btn defaults
+ 	}
+
+
+}
+
+.mc_embed_signup.big{
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  width: 100%;
+
+  .submit-arrow, .submit-arrow-hover{
+    position: relative;
+    top:3px;
+  }
+
+  .mce-EMAIL {
+    border-bottom: 3px #000 solid;
+    max-width: 600px;
+    height: 60px;
+  }
+}
+
+.mce-response {
+ 	background-color: transparent !important;
+ 	margin: 0 0 1em 0 !important;
+ 	padding: 0 !important;
+ 	font-weight: normal !important;
+ 	z-index: 1;
+
+    &.error{
+      color: $ptf-secondary-color !important;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+}
+
+
+@media only screen and (min-width: 768px) {
+
+}
+
+
+@media only screen and (min-width: 1030px) {
+  .mc_embed_signup {
+    width: 85%;
+  }
+  .mc_embed_signup.big {
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
+}
+
+
+@media only screen and (min-width: 1240px) {
+} 
+
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+} 
+
+
+@media print {
+}

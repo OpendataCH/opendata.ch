@@ -1,0 +1,33 @@
+/*
+* Collapsable accordion
+*/
+
+.accordion{
+
+  position: relative;
+
+  &.collapse{
+    display: none;
+  }
+
+  &.collapse.in{
+    display: block;
+  }
+
+  &.collapsing{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transition-duration: .3s;
+    -o-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-property: height,visibility;
+    -o-transition-property: height,visibility;
+    transition-property: height,visibility;
+  }
+
+}
+

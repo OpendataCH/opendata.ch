@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="496" height="496" viewBox="529 132 387 496">
+  <style type="text/css">#groupUser{mix-blend-mode: multiply;}</style>
+  <g xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+    <g>
+      <g id="groupY" stroke="none">
+        <path d="M792.12154,143.77605l57.15489,7.28821l67.63968,129.65338l-67.38396,108.04448l-106.76585,27.61847l-66.48891,0.25573l-0.25573,172.87117l54.3419,19.94667l-1.15077,19.05163l-97.68756,-1.79009l-95.25815,1.4065l-2.30154,-18.54018l54.72549,-19.43522l-0.89504,-409.03467l-54.72549,-18.92377l2.04581,-18.66804 M676.27739,378.14947l56.25985,10.61265l85.92413,-59.45643l26.4677,-49.0995l-25.82839,-49.0995l-86.94704,-57.28276l-55.87626,7.6718" fill="#006EFA"/>
+      </g>
+      <g id="groupPaths" fill="none" stroke="#FF1414">
+        <path d="M789.12823,132.76299l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M846.28312,140.0512l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M913.9228,269.70458l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M846.53885,377.74906l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M739.773,405.36753l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M673.28409,405.62326l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M673.02836,578.49443l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M727.37026,598.4411l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M726.21949,617.49273l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M628.53193,615.70265l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M533.27378,617.10914l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M530.97224,598.56897l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M585.69773,579.13375l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M584.80269,170.09907l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M530.0772,151.17531l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M532.12301,132.50727l2.99331,11.01306" style="mix-blend-mode: multiply"/>
+        <path d="M673.28409,367.13641l2.99331,11.01306"/>
+        <path d="M729.54393,377.74906l2.99331,11.01306"/>
+        <path d="M815.46807,318.29263l2.99331,11.01306"/>
+        <path d="M841.93577,269.19313l2.99331,11.01306"/>
+        <path d="M816.10738,220.09362l2.99331,11.01306"/>
+        <path d="M729.16034,162.81087l2.99331,11.01306"/>
+        <path d="M673.28409,170.48266l2.99331,11.01306"/>
+      </g>
+      <g id="groupUser" stroke="none" opacity="0.85" style="mix-blend-mode: multiply">
+        <path d="M789.12823,132.76299l57.15489,7.28821l67.63968,129.65338l-67.38396,108.04448l-106.76585,27.61847l-66.48891,0.25573l-0.25573,172.87117l54.3419,19.94667l-1.15077,19.05163l-97.68756,-1.79009l-95.25815,1.4065l-2.30154,-18.54018l54.72549,-19.43522l-0.89504,-409.03467l-54.72549,-18.92377l2.04581,-18.66804z M673.28409,367.13641l56.25985,10.61265l85.92413,-59.45643l26.4677,-49.0995l-25.82839,-49.0995l-86.94704,-57.28276l-55.87626,7.6718z" fill="#FF1414" style="mix-blend-mode: normal"/>
+      </g>
+    </g>
+  </g>
+</svg>

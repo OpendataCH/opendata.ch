@@ -1,0 +1,267 @@
+.videoWrapper {
+  position: relative;
+  height: 0;
+
+  &43 {
+    padding-top: 75%;
+  }
+  &169 {
+    padding-top: 56%;
+  }
+}
+.videoIframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.poster-wrap{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+
+  .youtube-warning{
+    bottom: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    color: white;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  &.dark{
+    .youtube-warning{
+      color: black;
+    }
+
+  }
+
+  @include transition(filter .25s ease);
+
+  &.button-hidden{
+    &:after {
+      visibility: visible;
+    }
+    &:hover{
+      filter: grayscale(0%);
+      &:after {
+        visibility: visible;
+      }
+    }
+  }
+
+  .videoPoster {
+    display:block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    background-position: 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 800ms, height 0s;
+    transition-delay: 0s, 0s;
+
+    .videoWrapperActive & {
+      opacity: 0;
+      height: 0;
+      -webkit-transition-delay: 0s, 800ms;
+      -moz-transition-delay: 0s, 800ms;
+      transition-delay: 0s, 800ms;
+    }
+  }
+
+  &:after {
+    @include transition(transform .25s ease);
+    font-family: FontAwesome;
+    content: "\f04b";
+    pointer-events: none;
+
+    display: inline-block;
+    font-size: 9em;
+    color: $ptf-grey-color;
+    line-height: 1;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(0.4);
+    transform-origin: center;
+  }
+
+  &:hover{
+    &:after{
+      content: "\f04b";
+      transform: translate(-50%,-50%) scale(0.5);
+      color: $ptf-secondary-color;
+    }
+  }
+
+}
+
+@keyframes spin {
+  0%  {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 375px) {
+
+} // end of media query
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 414px) {
+  .poster-wrap {
+    &:after {
+      font-family: FontAwesome;
+      font-size: 10em;
+    }
+
+  }
+} // end of media query
+
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+  .poster-wrap {
+
+      .youtube-warning {
+        bottom: 25px;
+      }
+
+    &:after {
+      font-family: FontAwesome;
+      font-size: 12em;
+    }
+    &.small{
+      &:after {
+        font-size: 8em;
+      }
+    }
+  }
+} // end of media query
+
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1024px) {
+  .poster-wrap {
+    &:after {
+      font-family: FontAwesome;
+      font-size: 8em;
+    }
+    &.small{
+      &:after {
+        font-size: 8em;
+      }
+    }
+  }
+} // end of media query
+
+@media only screen and (min-width: 1030px) {
+  .poster-wrap {
+
+  }
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1200px) {
+  .poster-wrap {
+    &:after {
+      font-family: FontAwesome;
+      font-size: 6em;
+    }
+    &.small{
+      &:after {
+        font-size: 6em;
+      }
+    }
+  }
+} // end of media query
+
+@media only screen and (min-width: 1300px) {
+
+} // end of media query
+
+@media only screen and (min-width: 1400px) {
+  .poster-wrap {
+    &:after {
+      font-family: FontAwesome;
+      font-size: 7em;
+    }
+    &.small{
+      &:after {
+        font-size: 7em;
+      }
+    }
+  }
+} // end of media query
+
+@media only screen and (min-width: 1600px) {
+
+} //end of media query
+
+@media only screen and (min-width: 1920px) {
+  .poster-wrap {
+    &:after {
+      font-family: FontAwesome;
+      font-size: 8em;
+    }
+
+    &.small{
+      &:after {
+        font-size: 8em;
+      }
+    }
+
+  }
+} // end of media query
+
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+
+} // end of media query
+

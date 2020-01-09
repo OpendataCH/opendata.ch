@@ -1,0 +1,63 @@
+@-webkit-keyframes bounce-lr {
+  0% { transform: translateX(0px)  }
+  50% { transform: translateX(10px) }
+  100% { transform: translateX(0px) }
+}
+
+@keyframes bounce-lr {
+  0% { transform: translateX(0px)  }
+  50% { transform: translateX(10px) }
+  100% { transform: translateX(0px) }
+}
+
+.bounce-left-right {
+  -webkit-animation: bounce-lr 2s infinite ease-in-out;
+  -o-animation: bounce-lr 2s infinite ease-in-out;
+  -ms-animation: bounce-lr 2s infinite ease-in-out;
+  -moz-animation: bounce-lr 2s infinite ease-in-out;
+  animation: bounce-lr 2s infinite ease-in-out;
+}
+
+@mixin bounce-left-right{
+  -webkit-animation: bounce-lr 2s infinite ease-in-out;
+  -o-animation: bounce-lr 2s infinite ease-in-out;
+  -ms-animation: bounce-lr 2s infinite ease-in-out;
+  -moz-animation: bounce-lr 2s infinite ease-in-out;
+  animation: bounce-lr 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 0.5s linear infinite;
+  -moz-animation: rotating 0.5s linear infinite;
+  -ms-animation: rotating 0.5s linear infinite;
+  -o-animation: rotating 0.5s linear infinite;
+  animation: rotating 0.5s linear infinite;
+}

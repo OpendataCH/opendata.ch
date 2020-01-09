@@ -1,0 +1,34 @@
+.collapseomatic{
+
+  cursor: pointer;
+  @include transition(transform .25s ease);
+  transform: translateY(0%);
+  display: inline-block;
+
+  &:hover{
+    transform: translateY(25%);
+  }
+
+  &:before{
+    content:'';
+    display: inline-block;
+    width: 25px;
+    height: 28px;
+
+    background-image: url(../svgs/arrow-2020-down.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+
+  &.colomat-close{
+    &:hover{
+      transform: translateY(-25%);
+    }
+    &:before{
+      background-image: url(../svgs/arrow-2020-up.svg);
+    }
+  }
+
+}

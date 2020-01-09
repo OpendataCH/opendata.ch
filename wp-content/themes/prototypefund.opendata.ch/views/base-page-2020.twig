@@ -1,0 +1,154 @@
+{% block html_head_container %}
+	{% include 'views/html-header.twig' %}
+	{% block head %}{% endblock %}
+{% endblock %}
+
+<body {{ fn('body_class') }} itemscope itemtype="http://schema.org/WebPage">
+	<header class="header {% if isHome %}home{% endif %}">
+		<div class="logo-container col-xs-24 col-md-12 no-padding">
+			<div id="fixed-logo-p" {% if isHome %} style="opacity:0;{% endif %}">
+				<a class="logo-link" href="{{ site.url }}">
+					<div class="svg-logo-p svg-logo-p-dims"></div>
+				</a>
+			</div>
+			{% if isHome %}
+				<div class="header-inner-wrapper">
+					<div class="logo-large-wrapper show">
+						<a href="{{ site.url }}">
+							<h1 class="logo" title="{{ options.logo_title }}">
+								<img class="img-responsive" src="{{ theme.link }}/library/images/logo-ptf.svg"/>
+							</h1>
+						</a>
+					</div>
+				</div>
+			{% else %}
+				{% if(options.is_deadline_reached == 0) %}
+					<div class="col-xs-18 col-xs-push-3 no-padding apply-small-wrap">
+						{% include 'inc/apply-now-2020.twig' with {'type': 'small'} %}
+					</div>
+				{% endif %}
+			{% endif %}
+		</div>
+		<div class="nav-container col-xs-24 col-md-12 no-padding">
+			<div class="nav-toggle toggle-menu 2020">
+				<span></span>
+			</div>
+			<div class="main-nav-outer">
+				<div class="main-nav-wrap gone row">
+					<ul class="nav main-nav ">
+						{% for item in mainnav.items %}
+							<li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
+								<a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
+								{% if item.children %}
+									<ul class="mobile-sub-nav hidden-md hidden-lg hidden-xlg col-xs-24 no-padding">
+										{% for child in item.children %}
+											<li class="mobile-sub-nav-item">
+												<a href="{{ child.link }}">
+													<div class="">{{ child.title }}</div>
+												</a>
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							</li>
+						{% endfor %}
+					</ul>
+					<nav class="nav-language">
+						{% for language in options.languages %}
+							<a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>
+							{% if loop.last == false %}
+								<span class="language-divider">/</span>
+							{% endif %}
+						{% endfor %}
+					</nav>
+				</div>
+				<div class="sub-nav row">
+					{% for item in mainnav.items %}
+						{% if item.children %}
+							<ul data-id="nav-id-{{ loop.index0 }}" class="nav-dropdown col-xs-24 no-padding">
+								{% for child in item.children %}
+									<li class="nav-drop-item">
+										<a href="{{ child.link }}">
+											<div class="nav-drop-item-inner">{{ child.title }}</div>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</header>
+
+	{% block content %}
+		Sorry, no content
+	{% endblock %}
+
+	{% include 'views/footer-2020.twig' %}
+
+	{% block footer %}
+		{{ function('wp_footer') }}
+	{% endblock %}
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+_paq.push([
+"setDocumentTitle",
+document.domain + "/" + document.title
+]);
+_paq.push(["setCookieDomain", "*.prototypefund.de"]);
+_paq.push([
+"setDomains",
+[
+"*.prototypefund.de", "*.prototypefund.de"
+]
+]);
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function () {
+var u = "//traffic.okfn.de/";
+_paq.push([
+'setTrackerUrl',
+u + 'piwik.php'
+]);
+_paq.push(['setSiteId', 21]);
+var d = document,
+g = d.createElement('script'),
+s = d.getElementsByTagName('script')[0];
+g.type = 'text/javascript';
+g.async = true;
+g.defer = true;
+g.src = u + 'piwik.js';
+s.parentNode.insertBefore(g, s);
+})();
+	</script>
+	<noscript>
+		<p><img src="//traffic.okfn.de/piwik.php?idsite=21" style="border:0;" alt=""/></p>
+	</noscript>
+	<!-- End Piwik Code -->
+
+	<script>
+
+		var currentPageId = {{ post.id }};
+var themePath = '{{ function('get_template_directory_uri') }}';
+var siteURL = '{{ site.url }}';
+var languageCode = '{{ options.languageCode }}';
+var isHome = '{{ isHome }}';
+var showMap = '{{ showMap }}';{% if post.get_field('projects_total') %}
+var totalProject = '{{ post.get_field('projects_total') }}';{% endif %}
+{% if post.get_field('fill_percentage') %}
+var fillPercentage = '{{ post.get_field('fill_percentage') }}';{% endif %}
+
+function onFormularSend() {
+window.controller.onFormularSend();
+}
+
+jQuery(document).ready(function ($) {
+window.controller = new Controller($);
+window.controller.init();
+});
+	</script>
+
+</body></html>

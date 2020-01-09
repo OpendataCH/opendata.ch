@@ -1,0 +1,198 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Desktop Stylsheet
+
+This is the desktop size. It's larger than an iPad so it will only
+be seen on the Desktop.
+
+******************************************************************/
+
+
+
+.logo-margin-page-area{
+  margin: 0 0 0 110px;
+}
+
+.canvas-push{
+  height: 100vh;
+}
+
+.colorblock {
+  height: 100vh;
+}
+
+.couples {
+  height: 100vh;
+}
+
+.section-top-margined{
+  margin-top: 250px;
+}
+.section{
+
+  &.fullheight.fit-to-mobile{
+    min-height: 100vh;
+  }
+
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+.meta-wrap{
+  font-size: 1em;
+}
+
+.cta-social.big{
+  font-size: 1.6em;
+  margin-bottom: 150px;
+}
+.mc_embed_signup.big{
+  font-size: 1.6em;
+  a{
+    margin-bottom: 15px;
+  }
+}
+
+/*********************
+CONTENT SUBPAGE - FAQ, ABOUT
+*********************/
+
+.section-about-content, .section-jury-content{
+  margin-bottom: 100px;
+}
+
+/*********************
+JURY
+*********************/
+
+.section-jury-content {
+
+  .jury-item {
+    margin-bottom: 30px;
+  }
+}
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.news-tile-wrapper, .projects-content {
+  margin-bottom: 150px;
+}
+
+.tile-wrapper {
+
+  .tile {
+
+    .tile-hover{
+      &.ptf-project{
+        &.active{
+          .tile-hover:hover {
+            border: 8px $ptf-secondary-color solid;
+          }
+        }
+        &.open {
+          .tile-hover:hover {
+            border: 8px $ptf-secondary-color solid;
+          }
+        }
+      }
+    }
+
+    .inner-wrapper{
+      padding: 40px;
+    }
+
+    .svg-icon{
+      margin: 20px 0 20px 30px
+    }
+
+    .text {
+      &.size-0-20 {
+        font-size: 3em;
+        line-height: 1em;
+      }
+
+      &.size-20-50 {
+        font-size: 2.7em;
+        line-height: 1.1em;
+      }
+
+      &.size-50-80 {
+        font-size: 2.25em;
+        line-height: 1.1em;
+      }
+
+      &.size-80-100 {
+        font-size: 2em;
+        line-height: 1.2em;
+      }
+
+      &.size-100-120 {
+        font-size: 1.3em;
+        line-height: 1.2em;
+      }
+
+      &.size-120-140 {
+        font-size: 1.3em;
+        line-height: 1.2em;
+      }
+    }
+  }
+
+  .tile:hover{
+    .tile-hover{
+      border: 8px $background-color solid;
+    }
+
+    &.ptf-project {
+      .tile-hover {
+        border: 1px #fff solid;
+      }
+
+      &.active{
+        .tile-hover {
+          border: 8px $ptf-secondary-color solid;
+        }
+      }
+
+      &.open{
+        .tile-hover {
+          border: 8px $ptf-secondary-color solid;
+        }
+      }
+
+    }
+
+    &.wp-blogpost {
+      .tile-hover {
+        border-color: $ptf-primary-color;
+      }
+    }
+
+  }
+
+}
+
+
+
+/*********************
+SINGLE BLOGPOST
+*********************/
+
+
+[off-canvas*=left] {
+  width: 450px;
+}
+
+/*********************
+FOOTER
+*********************/
+
+.footer-text{
+  margin-bottom: 80px;
+}

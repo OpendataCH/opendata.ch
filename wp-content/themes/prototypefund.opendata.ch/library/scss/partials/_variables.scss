@@ -1,0 +1,64 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+
+$alert-yellow:      #ebe16f;
+$alert-red:         #fbe3e4;
+$alert-green:       #e6efc2;
+$alert-blue:        #d5edf8;
+
+$black:             #323944;
+$white:             #fff;
+
+$light-gray:        #f8f9fa;
+$gray:              #eaedf2;
+$text-color:        #000000;
+$meta-gray:         #8f8f8f;
+
+$tan:               #eceee5;
+$green:             #7dd667;
+
+$topstep-blue:      #002b4a;
+$topstep-grey:      #ededef;
+
+$bones-pink:        #FF1414;
+$blue:              #006EFA;
+
+$border-color:      #ccc;
+$disabled-gray:     #cfcfcf;
+
+$background-color: #f7f7f7;
+$background-color-news-with-image: #ffaed7;
+
+$general-margin-top: 40px;
+$general-margin-left: 40px;
+
+$ptf-primary-color:    #006EFA;
+$ptf-secondary-color:    #FF1414;
+$ptf-third-color:    #19008b;
+$ptf-grey-color:    #fafafa;
+
+$link-color:        #666666;
+$link-hover:        $ptf-primary-color;
+$time-passed-color: #c7c7c7;
+
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/

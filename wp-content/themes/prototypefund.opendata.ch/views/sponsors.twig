@@ -1,0 +1,10 @@
+<div class="sponsors col-xs-24 no-padding">
+    {% if options.footer_logos %}
+        {% for logo in options.footer_logos %}
+            <div class="sporsor-item">
+                <a href="{{ logo.footer_logo_url }}" target="_blank"><img class="img-responsive" src="{{TimberImage(logo.footer_logo_image).src}}" alt="{{logo.footer_logo_image.alt}}"></a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+

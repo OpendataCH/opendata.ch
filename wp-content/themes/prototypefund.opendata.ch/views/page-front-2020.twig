@@ -1,0 +1,68 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+    <div class="landing-hero">
+        <div class="col-xs-24 col-md-12 landing-teaser left">
+            <!-- front left -->
+            <div class="canvas-mesh">
+                {% include 'views/paper-canvas-mesh-2020.twig' %}
+            </div>
+        </div>
+        <div class="col-xs-24 col-md-12 landing-teaser right">
+            <!-- front right -->
+            <div class="header-content">
+                <div class="header-content-inner">
+                    {% if(options.is_deadline_reached == 1) %}
+                        <h1 class="header-headline">{{ post.header_headline }}</h1>
+                        <div class="header-text">{{ post.header_text|wpautop }}</div>
+                    {% else %}
+                        <h1 class="header-headline">{{ post.header_headline_apply }}</h1>
+                        <div class="header-text">{{ post.header_text_apply|wpautop }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if(options.is_deadline_reached == 1) %}
+                <!-- keine bewerbungsphase atm -->
+                {% if random_projects|length > 0 %}
+                <div class="header-ctas col-xs-24 no-padding">
+                    <div class="random-projects-btn">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <div class="header-ctas-inner">
+                        {% for project in random_projects %}
+                            <a class="project-link {% if loop.index0 < 3 %}active{% endif %}" href="{{ project.link }}">
+                                <span>{{ project.title }}</span>
+                                <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% else %}
+                <div class="header-ctas col-xs-24 no-padding">
+                    {% include 'inc/apply-now-2020.twig' %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div data-sticky-container class="row">
+        <section class="section col-xs-24 col-md-12 fullheight">
+            <div class="frontpage-content">
+                {{ post.content }}
+            </div>
+            {% if post.meta('hide_charts_on_page') == false %}
+                {% include 'views/charts-section.twig' %}
+            {% endif %}
+        </section>
+        <section class="section col-xs-24 col-md-12 bg-blue fullheight forced sticky">
+            <div class="frontpage-content faq">
+                {{ post.frontpage_faq | wpautop  }}
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="section col-xs-24 fullheight fit-to-mobile canvas-push">
+            {% include 'views/paper-canvas-push.twig' %}
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+<!-- has video -->
+<div class="video-wrap videoWrapper videoWrapper169 js-videoWrapper">
+    <!-- YouTube iframe. -->
+    <!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
+    <!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language -->
+    <iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.meta('video_embed_url')) }}?autoplay=1&modestbranding=1&rel=0&hl={{ options.languageCode }}"></iframe>
+    <!-- the poster frame - in the form of a button to make it keyboard accessible -->
+    <div class="poster-wrap button-hidden">
+
+        <button class="videoPoster js-videoPoster" style="background-image:url(
+        {% if post.video_poster %}
+            {{ TimberImage(post.video_poster).src('ru-image-1030w') }}
+        {% else %}
+            {% set id = function('get_youtube_video_id',item.video_embed_url) %}
+            {% set post_url = 'https://img.youtube.com/vi/' ~ id ~ '/0.jpg'  %}
+        {% endif %});">
+            <div class="youtube-warning">
+                {{ options.youtube_warning_text }}
+            </div>
+        </button>
+    </div>
+</div>

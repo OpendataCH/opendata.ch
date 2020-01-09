@@ -1,0 +1,98 @@
+/******************************************************************
+Site Name: 
+Author: 
+
+Stylesheet: Super Large Monitor Stylesheet
+
+You can add some advanced styles here if you like. This kicks in
+on larger screens.
+
+******************************************************************/
+
+.page-2020-wrap{
+  max-width: 1400px;
+}
+
+.centered-page-area, {
+  margin: 0px;
+  padding-left: 250px;
+  &.single-project-content{
+    margin: 100px auto;
+    padding: 0 162px;
+  }
+}
+
+.logo-margin-page-area{
+  padding-left: 250px;
+}
+
+
+.content-area {
+  &.frontpage-info-box-right {
+  }
+}
+
+.header-content{
+  width: 60%;
+}
+
+/*********************
+SINGLE PROJECT PAGE
+*********************/
+
+.project-content-tile {
+
+  .project-single {
+
+    .nav-toggle{
+      right: 130px
+    }
+
+  }
+}
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.timeline-item{
+  width:20%;
+}
+
+.tile-wrapper{
+  .tile{
+
+    .text {
+      &.size-0-20 {
+        font-size: 3.2em;
+        line-height: 1em;
+      }
+
+      &.size-20-50 {
+        font-size: 3em;
+        line-height: 1.1em;
+      }
+
+      &.size-50-80 {
+        font-size: 2.6em;
+        line-height: 1.1em;
+      }
+
+      &.size-80-100 {
+        font-size: 2.1em;
+        line-height: 1.2em;
+      }
+
+      &.size-100-120 {
+        font-size: 2em;
+        line-height: 1.2em;
+      }
+
+      &.size-120-140 {
+        font-size: 1.8em;
+        line-height: 1.2em;
+      }
+    }
+
+  }
+}

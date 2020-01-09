@@ -1,0 +1,26 @@
+{% extends "base-page.twig" %}
+
+{% block content %}
+
+<section class="section fullwidth fullheight front-content sticky-wrapper">
+    <div class="row">
+        <div class="centered-page-area">
+            <div class="row">
+                <h1 class="col-xs-24 col-md-15 col-lg-16 frontpage-headline">{{ category_name }}</h1>
+            </div>
+            <div class="row">
+                <div class="col-xs-24">
+                    {% if(projects) %}
+                        <div class="col-xs-24 col-md-18 col-lg-14 content-area">
+                            <!-- categories -->
+                            {% for item in projects %}
+                                <a href="{{ item.link }}">{{ item.post_title }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

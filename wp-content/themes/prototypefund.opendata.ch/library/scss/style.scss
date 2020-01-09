@@ -1,0 +1,328 @@
+/*! Made with Bones: http://themble.com/bones :) */
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+
+// normalize: http://necolas.github.io/normalize.css/
+@import "partials/normalize";
+
+// Sass variables
+@import "partials/variables";
+
+// typography
+@import "partials/typography";
+
+// Sass functions
+@import "partials/functions";
+
+// import mixins
+@import "partials/mixins";
+
+// the grid
+@import "partials/bootstrap-grid24";
+
+// the svg sprite
+@import "sprite";
+
+
+
+/*********************
+IMPORTING MODULES
+Modules are reusable blocks or elements we use throughout the project.
+We can break them up as much as we want or just keep them all in one.
+I mean, you can do whatever you want. The world is your oyster. Unless
+you hate oysters, then the world is your peanut butter & jelly sandwich.
+*********************/
+
+// animated burger
+@import "modules/animatedburgermenu";
+
+// alert boxes
+@import "modules/alerts";
+
+// buttons
+@import "modules/buttons";
+
+// forms (inputs & labels)
+@import "modules/forms";
+
+// image swiper
+@import "modules/swiper";
+
+// burger
+@import "modules/burger";
+
+// slick
+@import "modules/slick";
+
+// collapsomatic
+@import "modules/collapsomatic";
+
+// custom scrollbars
+@import "modules/scrollers";
+
+//leaflet map styles
+@import "modules/leaflet-custom";
+
+
+// animations
+@import "partials/animations";
+
+// off canvas menu
+//@import "modules/slidebars2";
+
+// mailchimp
+@import "modules/mailchimp";
+
+//accordion
+@import "modules/accordion";
+
+//isotope
+@import "modules/isotope";
+
+//flip 3d
+@import "modules/flip3d";
+
+//pie charts
+@import "modules/charts";
+
+//video
+@import "modules/video";
+
+//plyr
+@import "plyr/plyr";
+
+// fontawesome
+@import "fontawesome/font-awesome";
+
+/*********************
+SECTIONS
+Specific sections of website
+
+*********************/
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+
+// styles in base.scss
+@import "breakpoints/base";
+
+/*********************
+IPHONE 6
+*********************/
+
+@media only screen and (min-width: 375px) {
+
+  // styles in 375up.scss
+  @import "breakpoints/375up";
+
+} // end of media query
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 414px) {
+
+	// styles in 414up.scss
+	@import "breakpoints/414up";
+
+} // end of media query
+
+@media only screen and (min-width: 500px) {
+
+  // styles in 500up.scss
+  @import "breakpoints/500up";
+
+
+
+} // end of media query
+
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+
+	// styles in 768up.scss
+	@import "breakpoints/768up";
+
+} // end of media query
+
+/*********************
+IPAD MINI
+*********************/
+@media only screen and (min-width: 1024px) {
+
+  // styles in 1024up.scss
+  @import "breakpoints/1024up";
+
+} // end of media query
+
+
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1080px) {
+
+	// styles in 1080up.scss
+	@import "breakpoints/1080up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1180px) {
+
+	// styles in 1240up.scss
+	@import "breakpoints/1180up";
+
+} // end of media query
+
+/*********************
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1300px) {
+
+  // styles in 1240up.scss
+  @import "breakpoints/1300up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1400px) {
+
+  // styles in 1400up.scss
+  @import "breakpoints/1400up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1500px) {
+
+  // styles in 1500up.scss
+  @import "breakpoints/1500up";
+
+} // end of media query
+
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1600px) {
+
+  // styles in 1600up.scss
+  @import "breakpoints/1600up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1700px) {
+
+  // styles in 1700up.scss
+  @import "breakpoints/1700up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1800px) {
+
+  // styles in 1800up.scss
+  @import "breakpoints/1800up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1900px) {
+
+  // styles in 1900up.scss
+  @import "breakpoints/1900up";
+
+} // end of media query
+
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1980px) {
+
+  // styles in 1980up.scss
+  @import "breakpoints/1980up";
+
+} // end of media query
+
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+
+	// styles in 2x.scss
+	@import "breakpoints/2x";
+
+} // end of media query
+
+/*********************
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*********************/
+@media print {
+
+	// styles in print.scss
+	@import "partials/print";
+
+}

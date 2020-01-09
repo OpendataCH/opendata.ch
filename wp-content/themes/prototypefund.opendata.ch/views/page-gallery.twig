@@ -1,0 +1,16 @@
+{% extends "base-page-2020.twig" %}
+{% block content %}
+    <section class="section fullwidth section-top-margined gallery-tile-wrapper">
+        <div class="grid-sizer col-xs-12 col-sm-8 col-md-6 col-lg-4"></div>
+        {% for post in submissions %}
+            <div class="gallery-tile col-xs-12 col-sm-8 col-md-6 col-lg-4" style="opacity:1">
+                <a href="{{ post.link }}" class="gallery-tile-link" >
+                    <div class="inner-wrapper">
+                        {% set img = Image(post.thumbnail)  %}
+                        <img src="{{img.src}}" class="img-responsive" alt="{{post.title}}" />
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+	<div class="page-2020-wrap">
+		{% include 'views/inc/page-intro-block.twig' %}
+		{% for item in post.meta('pages') %}
+			<div class="page-teaser row">
+				<div class="col-xs-24 col-md-12">
+					{% if item.page %}
+						<a class="page-teaser-link" href="{{ item.page }}">
+						{% endif %}
+						<h3 class="teaser-title">{{ item.teaser_title }}</h3>
+						{% if item.page %}
+						</a>
+					{% endif %}
+				</div>
+				<div class="col-xs-24 col-md-12 teaser-text">
+					{{ item.teaser_text }}
+				</div>
+				<div class="page-teaser-footer">
+					{% if item.page %}
+						<div class="page-link">
+							<a href="{{ item.page }}" class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	{% if(post.video_embed_url) %}
+		<section class="section fullwidth video-section">
+			<div class="col-md-16 col-md-push-4 embed-responsive no-padding">
+				<div class="video-wrap video-2020 videoWrapper videoWrapper169 js-videoWrapper">
+					<!-- YouTube iframe. -->
+					<!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
+					<!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language --><iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowtransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed_url) }}?autoplay=1&modestbranding=1&rel=0&hl=sv"> </iframe>
+					<!-- the poster frame - in the form of a button to make it keyboard accessible -->
+					<div class="poster-wrap dark button-hidden">
+
+						<button class="videoPoster js-videoPoster" style="background-image:url(
+																																																								                        {% if post.videoposter %}
+																																																								                            {{ TimberImage(post.videoposter).src('ru-image-1030w') }}
+																																																								                        {% else %}
+																																																								                            {{ function('get_video_poster_url',post.video_embed) }}
+																																																								                        {% endif %});">
+							<div class="youtube-warning">
+								{{ options.youtube_warning_text }}
+							</div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

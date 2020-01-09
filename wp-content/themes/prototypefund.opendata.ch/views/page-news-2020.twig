@@ -1,0 +1,45 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+    <div class="page-2020-wrap row">
+        {% include 'views/inc/page-intro-block.twig' %}
+        {% if hide_filters == false %}
+            <div class="filter-wrap row" data-filter="{{ filter }}">
+                <div class="col-xs-24">
+                    <div data-id="topics" class="topics filter-tab blog no-border">
+                        <div class="filter-tab-header">
+                            <h4 class="filter-headline">{{ options.filter_title_blog_categories }}</h4>
+                        </div>
+                        <div class="filter-tab-content">
+                            <div class="filter-tab-content-inner row">
+                                <div class="col-xs-24">
+                                    <div data-reset="topics" class="btn-filter-reset"><span></span></div>
+                                    {% for item in cats %}
+                                        {% if item.slug != 'uncategorised' %}{% endif %}
+                                        <div data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="tile-wrapper posts-list col-xs-24 no-padding" style="opacity:1;">
+            {% for post in blogposts %}
+                {% if post.type == 'wp-blogpost'%}
+                    {% include 'views/inc/news-tile-blog.twig' %}
+                {% else %}
+                    {% include 'views/inc/news-tile-twitter.twig' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-xs-24">
+                <h4 class="nothing-found-info hidden h1">{{ options.nothing_found_info }}</h4>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

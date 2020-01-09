@@ -1,0 +1,411 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: iPad Mini Portrait  Stylsheet
+
+******************************************************************/
+
+/*********************
+DESKTOP NAV
+*********************/
+
+.nav-toggle{
+  display: none;
+}
+
+.main-nav-wrap{
+  width: auto;
+  height: auto;
+  position: relative;
+  background-color: transparent;
+
+  padding: 1.75em 2em 0 2em;
+
+  .main-nav{
+    float:left;
+    .menu-item{
+      float: left;
+      margin-right: 1.5em;
+
+      position: relative;
+      display: inline-block;
+      width: auto;
+
+      a{
+        &:hover, &:focus{
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .nav-language{
+    float: right;
+  }
+
+  &.gone{
+    transform: translateX(0%);
+  }
+}
+
+.sub-nav {
+  ul.nav-dropdown {
+    &.visible {
+      visibility: visible;
+      position: relative;
+    }
+  }
+}
+
+.section{
+  &.fullheight.fit-to-mobile{
+    height:100vh;
+  }
+}
+
+.filter-tab {
+  &.blog {
+    padding-right: 12px;
+  }
+}
+
+.video-section{
+  padding: 100px 0;
+}
+.page-teaser {
+  &:last-of-type {
+    margin-bottom: 100px;
+  }
+}
+
+.logo-margin-wrap{
+  width: 94%;
+  left: 6%;
+  float:right;
+}
+
+.canvas-push{
+  height: 650px;
+}
+
+.colorblock {
+  height: 650px;
+}
+
+.couples {
+  height: 650px;
+}
+
+.sidebar{
+  font-size: 0.8em;
+}
+
+.article {
+  font-size: 1rem;
+}
+.centered-page-area, .faqpage-area{
+  padding-left: 120px;
+  padding-right: 0px;
+  margin: 0;
+}
+.frontpage-text-wrap{
+  padding-left:70px;
+  padding-right: 0;
+  margin-top: 100px;
+}
+.projects-navi{
+  margin-left: 35px;
+}
+
+.projects-overview-description{
+  margin-bottom: 100px;
+}
+
+.accordion-headline.sub:before {
+  top: 8px;
+}
+
+.blogpost-left{
+  padding-right: 50px;
+  .entry-content{
+    blockquote{
+      margin: 2rem 0;
+      padding: 4rem 2rem;
+    }
+  }
+}
+
+.project-nav{
+  a{
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-right: 20px;
+    &:last-of-type{
+      margin-right: 0;
+    }
+  }
+}
+
+.menu-item.no-children{
+  margin-bottom: 0em;
+}
+
+.page-2020-wrap{
+  padding-top: 25vh;
+  padding-bottom: 200px;
+}
+
+.news-teaser-text{
+  font-size: 1.25em;
+}
+
+.generic-page-container{
+  padding: 0 3em;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.frontpage-content{
+
+  padding: 5vw;
+  max-width: 1000px;
+
+  &.faq{
+    padding: 5vw;
+  }
+}
+
+.projects-intro {
+  display: flex;
+}
+
+.project-list-item{
+
+  .project-list-item-members{
+    margin-bottom: 0;
+    .project-list-item-member{
+      display: inline;
+      margin-bottom: 0;
+    }
+    .project-list-item-member-spacer{
+      display: inline;
+    }
+  }
+
+  .project-teaser-footer{
+    display: flex;
+    .project-list-item-categories{
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+
+    .project-list-item-link{
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+}
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.tile-wrapper{
+  .tile{
+
+    &.ptf-project{
+      .front {
+        .inner-wrapper {
+        }
+      }
+
+      .project-image{
+        display: block;
+      }
+
+      .title{
+        width: 100%;
+        padding-right: 40px !important;
+      }
+
+      .text{
+        font-size: 1em;
+      }
+
+
+    }
+
+    .excerpt{
+      display: block;
+    }
+
+    .text {
+      &.size-0-20 {
+        font-size: 3em;
+        line-height: 1em;
+      }
+
+      &.size-20-50 {
+        font-size: 2.5em;
+        line-height: 1.1em;
+      }
+
+      &.size-50-80 {
+        font-size: 2.2em;
+        line-height: 1.1em;
+      }
+
+      &.size-80-100 {
+        font-size: 2.1em;
+        line-height: 1.2em;
+      }
+
+      &.size-100-120 {
+        font-size: 1.8em;
+        line-height: 1.2em;
+      }
+
+      &.size-120-140 {
+        font-size: 1.7em;
+        line-height: 1.2em;
+      }
+    }
+
+    .inner-wrapper{
+      padding: 40px;
+    }
+  }
+}
+
+.project-single{
+
+  .single-post-category-link{
+    flex-grow: 1;
+  }
+  .single-project-content{
+    .project-single-textblock {
+      margin-top: 100px;
+    }
+  }
+  .project-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/*********************
+CONTENT FRONT
+*********************/
+
+.content-area{
+
+  p{
+
+  }
+
+  &.right{
+    font-size: 0.7em;
+    line-height: 1.7em;
+    padding: 50px;
+
+    p:last-of-type {
+
+    }
+
+  }
+
+  .boxed-link-wrapper{
+  }
+  .boxed-link-wrapper:last-of-type{
+  }
+
+}
+
+blockquote{
+  margin: 60px;
+}
+
+/*********************
+NEWS TILE 2018
+*********************/
+.news-tile {
+  .news-tile-inner, .news-link{
+    margin: 6px 12px 6px 0;
+  }
+}
+
+/*********************
+2020
+*********************/
+.landing-hero{
+
+  height: 100vh;
+  display: flex;
+
+  .landing-teaser{
+
+    &.right{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
+.header{
+  height: auto;
+}
+.header-content{
+  padding-top: 0;
+  width: 80%;
+  margin-bottom: auto;
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  .header-content-inner{
+    padding-top: 6em;
+    width: 80%;
+  }
+
+  .header-headline{
+    margin-bottom: 0.5rem;
+  }
+}
+.header-ctas{
+  padding: 0 2em 3em 2em;
+  position: relative;
+  bottom: 0;
+}
+
+.page-content{
+  margin: 100px auto;
+}
+
+.footer-2020 {
+  margin: 5vw;
+  display: flex;
+  .footer-text-2020 {
+    margin-top: 50px;
+  }
+
+  .legal-wrap{
+    flex-grow: 1;
+    nav{
+      margin-top: 0;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+}
+
+

@@ -1,0 +1,99 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+<article id="post-{{ post.id }}" {{ fn('post_class','project-single') }} role="article" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="page-2020-wrap">
+        <div data-sticky-container class="row">
+            <div class="col-xs-24 col-md-10 no-padding">
+                <div class="sticky" data-margin-top="300" >
+                    <div class="col-xs-24 project-single-sticky-inner">
+                        <div class="project-status-wrap fontsize-small uppercase">
+                            <span>{{ options.project_status_title }}:</span>
+                            {% for choice in status %}
+                                <span class="project-status-item">
+                            <span class="project-status">
+                                <span class="svg-status-ok svg-status-ok-dims project-status-icon {% if choice.checked == 0 %}gone{% endif %}"></span>
+                                <span class="project-status-title">{{ choice.label }}</span>
+                            </span>
+                        </span>
+                            {% endfor %}
+                        </div>
+                        <div class="project-list-item-text-wrap">
+                            <h3 class="project-list-item-headline uppercase">{{ post.post_title }}</h3>
+                            <div class="project-list-item-copy">{{ post.get_field('content1') }}</div>
+                            <div class="project-list-item-members">{% for item in post.get_field('members') %}
+                                    {% if item.email %}
+                                        <span class="project-list-item-member"><a href="mailto:{{item.email}}" target="_blank">{{item.name}}</a></span>{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}
+                                    {% else %}<span class="project-list-item-member">{{item.name}}{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}{% endif %}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-24 project-single-links hidden-xs hidden-sm">
+                        {% for item in post.meta('websites') %}
+                            <span class="project-single-link">
+                                {% if item.url %}
+                                    <a href="{{ item.url }}">{{ item.name }}</a>
+                                {% else %}
+                                    <p>{{ item.name }}</p>
+                                {% endif %}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-12 col-md-push-2">
+                <div class="project-list-item-categories fontsize-small uppercase">
+                    <span>#{{post.project_round}}</span>&nbsp;
+                    {% for item in post.cats %}
+                        <span>#{{item.name}}</span>&nbsp;
+                    {% endfor %}
+                </div>
+                {% if(post.meta('video_embed_url')) %}
+                    {% include 'views/inc/video-embed.twig' %}
+                {% else %}
+                    {% if post.thumbnail %}
+                        <!-- has teaser image -->
+                        {% set img = Image(post.thumbnail)  %}
+                        <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
+                    {% else %}
+                        <!-- has no teaser image -->
+                        <div class="project-teaser-image" style="background-image:url({{ theme.link }}/library/images/prototypefund-project-default.png)"></div>
+                    {% endif %}
+                {% endif %}
+                <div class="row project-single-content">
+                    <div class="col-xs-24">
+                        {{ post.content }}
+                    </div>
+                    <div class="col-xs-24 project-single-links mobile hidden-md hidden-lg">
+                        {% for item in post.meta('websites') %}
+                            <span class="project-single-link">
+                                {% if item.url %}
+                                    <a href="{{ item.url }}">{{ item.name }}</a>
+                                {% else %}
+                                    <p>{{ item.name }}</p>
+                                {% endif %}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-24 social-2020 single-share">
+                        <a class="twitter-tweet-link" href="https://twitter.com/intent/tweet?url={{ post.link | url_encode }}&via={{ options.via }}&hashtags={{ options.hashtags }}">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-24">
+                            {% for item in projectnav.items %}
+                                <a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link project-nav-2020-link" href="{{item.link}}">
+                                    <div class="project-nav-2020">
+                                        <span>{{item.title}}</span>
+                                        <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </article>
+{% endblock %}

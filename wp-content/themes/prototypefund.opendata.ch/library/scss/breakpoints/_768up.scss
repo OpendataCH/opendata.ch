@@ -1,0 +1,674 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
+
+
+/*********************
+GENERAL STYLES
+*********************/
+
+body {}
+
+.logo-large-wrapper{
+  width: 170px;
+}
+
+.sidebar{
+  font-size: 1em;
+}
+
+.section{
+  &.fullheight.fit-to-mobile{
+    height:500px;
+  }
+}
+
+.section-top-margined{
+  margin-top: 200px;
+}
+
+.front-content{
+  margin-bottom: 100px;
+}
+
+
+.timeline-item{
+  width:25%;
+}
+
+a.fixed-top-left{
+  display: none;
+}
+
+.centered-page-area, .faqpage-area{
+  padding-left: 0;
+  margin: 0 0 0 35px;
+  padding-right: 80px;
+
+  &.projects{
+    margin-left:45px;
+  }
+}
+.frontpage-text-wrap{
+  padding-left:65px;
+  padding-right: 65px;
+}
+.projects-navi{
+  margin-left: 40px;
+}
+
+.sponsors{
+  .sporsor-item{
+    display: inline-block;
+  }
+}
+
+.boxed-link-wrapper:last-of-type, .grey-box, .video-content{
+  margin-bottom: 100px;
+}
+
+.accordion-panel {
+
+  p:last-of-type {
+    margin-bottom: 60px;
+  }
+
+}
+
+.content-area{
+  &.right{
+    padding: 60px;
+  }
+}
+
+blockquote{
+  margin: 35px;
+}
+
+.project-single{
+  .single-project-content{
+    .project-single-websites-list{
+      li {
+        &:before {
+          top: 15px;
+        }
+      }
+    }
+  }
+
+}
+
+
+/*********************
+HEADER STYLES
+*********************/
+
+.toggle-menu-wrapper{
+  top: 130px;
+}
+
+.phone,.tablet{
+  .toggle-menu-wrapper-mobile{
+    top:100px;
+  }
+}
+
+.toggle-menu {
+  &.small-p {
+    transform: translateY(-30px);
+  }
+}
+
+.header {
+
+    height:200px;
+
+  .header-inner-wrapper{
+    left: 2.5rem;
+    top: 1.75rem;
+  }
+
+    .cta-social{
+      display: inline-block;
+    }
+
+    .logo-large-wrapper{
+
+      .logo{
+        font-size: 2.5em;
+      }
+
+
+    }
+
+    .mobile-menu-toggle{
+      display: none;
+    }
+
+}
+
+.site-menu-inner{
+  padding-left: 40px;
+}
+
+
+.deadline-text{
+  left: $general-margin-left;
+  bottom: 50px;
+}
+
+#fixed-logo-p {
+  left: 2em;
+  top: 2em;
+}
+
+.page-2020-wrap{
+  padding: 150px 2em 100px 2em;
+}
+
+.toggle-menu-wrapper{
+  top: 145px;
+  left: 40px;
+}
+
+.meta-wrap{
+  font-size: 1.2em;
+}
+
+
+
+.canvas-push{
+  height: 500px;
+}
+
+.colorblock {
+  height: 500px;
+}
+.couples {
+  height: 500px;
+}
+
+/*********************
+PROJECTS PAGE
+*********************/
+.category-filters-wrapper{
+  margin: 15px 0 15px 0;
+}
+
+.category-filters {
+  font-size: 1.2rem;
+  ul.category-filters-items {
+    li {
+      display: inline-block;
+      a{
+        padding: 5px;
+      }
+    }
+  }
+}
+
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.tablet {
+
+  .news-tile-wrapper, .projects-content{
+    margin-top: 200px;
+  }
+
+  .tile-wrapper {
+
+    .tile-link:nth-child(even){
+      .tile{
+        .news-tile-hover {
+          border-left: 0;
+        }
+      }
+    }
+
+    .tile {
+      .tile-hover{
+        border: 8px #fff solid;
+        border-bottom: 0;
+      }
+
+
+    }
+  }
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+a.boxed-link{
+  font-size: 1.5rem;
+
+  &.page{
+    font-size: 2rem;
+    display: inline-block;
+    width: auto;
+    text-align: left;
+    padding: 3px 8px 0 8px;
+  }
+
+}
+
+.nav {
+
+	ul {
+		margin-top:0;
+	}
+	li {
+		position: relative;
+		a {
+
+            @include transition(color .2s ease-out);
+
+			/*
+			you can use hover styles here even though this size
+			has the possibility of being a mobile device.
+			*/
+			&:hover, &:focus {
+				color: $link-hover;
+				text-decoration: none;
+			}
+		}
+
+		&:first-child {}
+		&:last-child {}
+
+		/*
+		plan your menus and drop-downs wisely.
+		*/
+		ul.sub-menu,
+		ul.children {
+			margin-top: 0;
+			border: 1px solid #ccc;
+			border-top: 0;
+			position: absolute;
+			visibility: hidden;
+			z-index: 8999;
+
+			li {
+
+				a {
+
+					display: block;
+
+					&:hover,
+					&:focus {}
+
+					&:link {}
+				}
+
+				&:first-child {}
+
+				&:last-child {
+
+					a {
+						border-bottom: 0;
+					}
+				}
+
+				/*
+				if you need to go deeper, go nuts
+				just remember deeper menus suck
+				for usability. k, bai.
+				*/
+				ul {
+					top:0;
+					left:100%;
+				}
+			}
+
+			/* highlight sub-menu current page */
+			li.current-menu-item,
+			li.current_page_item,
+			li.current_page_ancestor {
+				a {}
+			}
+		}
+
+		/* showing sub-menus */
+		&:hover > ul {
+			top: auto;
+			visibility:visible;
+		}
+
+	} /* end .menu ul li */
+
+	/* highlight current page */
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+		a {}
+	}  /* end current highlighters */
+
+} /* end .nav */
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+
+.sidebar {
+	margin-top: 2.2em;
+}
+
+	.widgettitle {
+		border-bottom: 2px solid #444;
+		margin-bottom: 0.75em;
+	}
+
+	.widget {
+		padding: 0 10px;
+		margin: 2.2em 0;
+
+		ul {
+			li {
+				margin-bottom: 0.75em;
+
+				&:first-child {}
+				&:last-child {}
+				a {}
+				/* deep nesting */
+
+				ul {
+					margin-top: 0.75em;
+					padding-left: 1em;
+				}
+			}
+		}
+	}
+
+
+	/* links widget */
+	.widget_links {}
+	.widget_links ul {}
+	.widget_links ul li {}
+	.widget_links ul li a {}
+
+	/* meta widget */
+	.widget_meta {}
+	.widget_meta ul {}
+	.widget_meta ul li {}
+	.widget_meta ul li a {}
+
+	/* pages widget */
+	.widget_pages {}
+	.widget_pages ul {}
+	.widget_pages ul li {}
+	.widget_pages ul li a {}
+
+	/* recent-posts widget */
+	.widget_recent_entries {}
+	.widget_recent_entries ul {}
+	.widget_recent_entries ul li {}
+	.widget_recent_entries ul li a {}
+
+	/* archives widget */
+	.widget_archive {}
+	.widget_archive ul {}
+	.widget_archive ul li {}
+	.widget_archive ul li a {}
+	.widget_archive select {}
+	.widget_archive option {}
+
+	/* tag-cloud widget */
+	.widget_links {}
+	.widget_links li:after {}
+	.widget_links li:before {}
+	.widget_tag_cloud {}
+	.widget_tag_cloud a {}
+	.widget_tag_cloud a:after {}
+	.widget_tag_cloud a:before {}
+
+	/* calendar widget */
+	.widget_calendar {}
+	#calendar_wrap {}
+	#calendar_wrap th {}
+	#calendar_wrap td {}
+	#wp-calendar tr td {}
+	#wp-calendar caption {}
+	#wp-calendar a {}
+	#wp-calendar #today {}
+	#wp-calendar #prev {}
+	#wp-calendar #next {}
+	#wp-calendar #next a {}
+	#wp-calendar #prev a {}
+
+	/* category widget */
+	.widget_categories {}
+	.widget_categories ul {}
+	.widget_categories ul li {}
+	.widget_categories ul ul.children {}
+	.widget_categories a {}
+	.widget_categories select{}
+	.widget_categories select#cat {}
+	.widget_categories select.postform {}
+	.widget_categories option {}
+	.widget_categories .level-0 {}
+	.widget_categories .level-1 {}
+	.widget_categories .level-2 {}
+	.widget_categories .level-3 {}
+
+	/* recent-comments widget */
+	.recentcomments {}
+	#recentcomments {}
+	#recentcomments li {}
+	#recentcomments li a {}
+	.widget_recent_comments {}
+
+	/* search widget */
+	#searchform {}
+	.widget_search {}
+	.screen-reader-text {}
+
+	/* text widget */
+	.textwidget {}
+	.widget_text {}
+	.textwidget p {}
+
+
+/*********************
+FOOTER STYLES
+*********************/
+
+/*
+you'll probably need to do quite a bit
+of overriding here if you styled them for
+mobile. Make sure to double check these!
+*/
+.footer-links {
+	ul {
+		li {
+			a {
+				&:hover {}
+			}
+			/*
+			be careful with the depth of your menus.
+			it's very rare to have multi-depth menus in
+			the footer.
+			*/
+			ul {}
+		}
+	}
+} /* end .footer-links */
+
+/*********************
+CONTENT FRONT
+*********************/
+
+.faq-content-left{
+  margin-bottom: 100px;
+}
+
+/*********************
+JURY
+*********************/
+.section-jury-content {
+
+  .jury-item {
+    margin-bottom: 30px;
+  }
+
+
+}
+
+/*********************
+SINGLE PROJECT PAGE
+*********************/
+
+.project-content-tile {
+
+  .project-single {
+    margin-top: 50px;
+
+    .nav-toggle{
+      display: block;
+      right: 65px
+    }
+
+  }
+}
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.tile-link{
+  height: 450px;
+  display: inline;
+  &.featured{
+    height: auto;
+  }
+}
+.project-content-tile{
+  height: 900px;
+}
+
+.tile-wrapper{
+
+  .tile{
+
+    .inner-wrapper{
+      width: 100%;
+      height: 100%;
+      display: table;
+      padding: 40px;
+    }
+
+    .svg-icon{
+      position: absolute;
+      left:10px;
+      bottom:0;
+      display: none;
+      margin: 30px;
+    }
+
+    height: 450px;
+    &.featured{
+      height: auto;
+    }
+
+    .inner-wrapper{
+      padding: 40px;
+    }
+
+    .excerpt{
+      display: none;
+    }
+
+    .text {
+      &.size-0-20 {
+        font-size: 2.8em;
+        line-height: 1em;
+      }
+
+      &.size-20-50 {
+        font-size: 2.5em;
+        line-height: 1.1em;
+      }
+
+      &.size-50-80 {
+        font-size: 2.2em;
+        line-height: 1.1em;
+      }
+
+      &.size-80-100 {
+        font-size: 2.1em;
+        line-height: 1.2em;
+      }
+
+      &.size-100-120 {
+        font-size: 2em;
+        line-height: 1.2em;
+      }
+
+      &.size-120-140 {
+        font-size: 1.85em;
+        line-height: 1.2em;
+      }
+    }
+  }
+}
+
+/*********************
+FOOTER
+*********************/
+
+.sponsors{
+  .sporsor-item{
+  }
+}
+
+
+[off-canvas*=left] {
+  width: 450px;
+}
+
+.project-single{
+  .single-project-content{
+    .project-single-textblock {
+      margin-top: 50px;
+    }
+  }
+  .project-video{
+    margin-bottom: 50px;
+  }
+}
+
+.news-tile-inner, .news-link{
+  margin: 0 6px 12px 6px;
+}
+
+/*********************
+2020
+*********************/
+.landing-hero{
+  .landing-teaser{
+    &.right{
+      padding: 0 6em;
+    }
+  }
+}
+
+
+.page-content{
+  margin: 2em 6em;
+}
+
+
+

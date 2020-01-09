@@ -1,0 +1,7 @@
+{% for item in applynav.get_items %}
+    {% if( loop.last ) %}
+        <a class="apply-now-2020 {{ type }}" href="{{item.get_link}}">
+            <h4 class="apply-now-2020-text">{{item.title}}</h4>
+            <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
+        </a>{% endif %}
+{% endfor %}

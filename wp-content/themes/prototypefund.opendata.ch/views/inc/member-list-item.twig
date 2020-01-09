@@ -1,0 +1,26 @@
+<div class="project-list-item member" data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}">
+    <div class="project-list-item-inner">
+        <div class="row">
+            <div class="col-xs-24 col-md-11 project-list-item-inner-left">
+                <div class="project-list-item-text-wrap">
+                    <h3 class="project-list-item-headline uppercase">{{ post.post_title }}</h3>
+                    <div class="project-list-item-copy">{{ post.content }}</div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-12 col-md-push-1 project-list-item-inner-right">
+                {% if post.thumbnail %}
+                    <!-- has teaser image -->
+                    {% set img = Image(post.thumbnail)  %}
+                    <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
+                {% else %}
+                    <!-- has no teaser image -->
+                    <div class="project-teaser-image" style="background-image:url({{ theme.link }}/library/images/prototypefund-project-default.png)"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="project-teaser-footer col-xs-24"></div>
+        </div>
+
+    </div>
+</div>

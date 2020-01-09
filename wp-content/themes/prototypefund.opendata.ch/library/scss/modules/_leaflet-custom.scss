@@ -1,0 +1,33 @@
+.leaflet-container{
+  font-family: 'surt-regular';
+}
+.leaflet-popup-close-button{
+  display: none;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+  border-radius: 0;
+  box-shadow: 0 0px 0px rgba(0,0,0,0);
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip,.leaflet-container a.leaflet-popup-close-button{
+  color: black;
+}
+.marker-cluster-small{
+  background-color: rgba(0, 154, 207, 0.4);
+  div{
+
+    background-color: rgba(0, 154, 207, 0.8);
+
+  }
+}
+.leaflet-container a{
+  color: black;
+  &:hover{
+    color: black;
+  }
+}
+.leaflet-project-link{
+  text-align: right;
+  a{
+    display: inline-block;
+  }
+}

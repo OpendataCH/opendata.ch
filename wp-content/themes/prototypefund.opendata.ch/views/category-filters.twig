@@ -1,0 +1,10 @@
+<div class="category-filters">
+    <div class="category-filters-headline">{{ options.category_filter_title }}</div>
+    <ul class="category-filters-items filters">
+        {% for item in project_filters %}
+            <li>
+                <a href="#" data-description="{{ item.description }}" data-filter=".{{ item.slug }}">#{{ item.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

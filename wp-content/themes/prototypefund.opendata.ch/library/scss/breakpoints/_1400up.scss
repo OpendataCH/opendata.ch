@@ -1,0 +1,99 @@
+/******************************************************************
+Site Name: 
+Author: 
+
+Stylesheet: Super Large Monitor Stylesheet
+
+You can add some advanced styles here if you like. This kicks in
+on larger screens.
+
+******************************************************************/
+
+.meta-wrap{
+  margin-top: 50px;
+}
+.blogpost-left{
+  padding-right: 100px;
+}
+.centered-page-area, {
+  margin: 0px;
+
+  &.faqpage-area{
+    padding-right: 0;
+    max-width: none;
+    margin: 0;
+    padding-left: 150px;
+  }
+
+  &.single-project-content{
+    margin: 100px auto;
+    padding: 0 150px;
+  }
+
+}
+.logo-margin-page-area{
+
+}
+.frontpage-text-wrap{
+  padding-left:120px;
+}
+
+.main-nav-wrap {
+  padding: 1.75em 3em 0 3em;
+}
+.header-ctas{
+  padding: 0 3em 3em 3em;
+}
+.sub-nav {
+  padding: 0 3em;
+}
+
+/*********************
+SINGLE PROJECT PAGE
+*********************/
+
+.project-content-tile {
+
+  .project-single {
+
+    .nav-toggle{
+      right: 120px
+    }
+
+  }
+}
+
+.tile-wrapper {
+
+  .tile {
+
+    .svg-icon {
+      margin: 40px;
+    }
+  }
+}
+
+/*********************
+CONTENT NEWS
+*********************/
+
+.content-area{
+
+  &.frontpage-info-box-right{
+    font-size: 1rem;
+  }
+
+  /*
+
+  &.faqpage-info-box-right{
+    position: fixed;
+    right: 0;
+    top:50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    padding: 70px 50px 70px 70px;
+  }
+
+  */
+
+}

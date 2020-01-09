@@ -1,0 +1,33 @@
+<div class="uploader">
+    <div class="sharer-prompt col-xs-12 col-xs-push-6">
+        <div class="col-xs-12 shared-user-p">
+            <img src="" class="user-canvas img-responsive" alt="user prototype">
+        </div>
+        <div class="col-xs-12 sharer-content">
+            {{ options.sharer_text }}
+            <div class="sharer-nav-wrap">
+                <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    <ul class="nav sharer-nav cf">
+                        {% for item in sharernav.get_items %}
+                            <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <img class="uploader-spin" src="{{ theme.link }}/library/images/oval.svg" width="50" alt="" />
+    <div class="uploader-background"></div>
+</div>
+<canvas id="paper-canvas" resize></canvas>
+<div class="canvas-nav-wrap">
+    <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <ul class="nav canvas-nav cf">
+            {% for item in canvasnav.get_items %}
+                <li class="menu-item gone {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>

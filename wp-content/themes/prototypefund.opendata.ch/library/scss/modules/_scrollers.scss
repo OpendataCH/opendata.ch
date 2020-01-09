@@ -1,0 +1,20 @@
+//scrollabr
+html {
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: $ptf-grey-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: $ptf-secondary-color;
+
+    &:hover {
+      background-color: darken($ptf-secondary-color, 0%);
+    }
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: transparent;
+  }
+}

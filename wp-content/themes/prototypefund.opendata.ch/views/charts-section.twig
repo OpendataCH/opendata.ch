@@ -1,0 +1,26 @@
+<div class="row charts-wrap">
+    <div class="col-xs-24 col-sm-8 col-md-24 chart-wrap">
+        <div class="chart-container">
+            <div class="chart-text t1 gone">{{ post.get_field('funding_amount_total') }}</div>
+            <canvas id="chart-1"></canvas>
+            <canvas class="chart-bg" id="chart-1-bg"></canvas>
+        </div>
+        <h4 class="chart-subline">{{ post.get_field('chart_1_text') }}</h4>
+    </div>
+    <div class="col-xs-24 col-sm-8 col-md-24 chart-wrap">
+        <div class="chart-container">
+            <div class="chart-text t2 gone">{{ post.get_field('projects_total') }}</div>
+            <canvas id="chart-2"></canvas>
+            <canvas class="chart-bg" id="chart-2-bg"></canvas>
+        </div>
+        <h4 class="chart-subline">{{ post.get_field('chart_2_text')  }}</h4>
+    </div>
+    <div class="col-xs-24 col-sm-8 col-md-24 chart-wrap">
+        <div class="chart-container">
+            <div class="chart-text t3 gone">{{ post.get_field('funding_sum') }}</div>
+            <canvas id="chart-3"></canvas>
+            <canvas class="chart-bg" id="chart-3-bg"></canvas>
+        </div>
+        <h4 class="chart-subline">{{ post.get_field('chart_3_text')  }}</h4>
+    </div>
+</div>

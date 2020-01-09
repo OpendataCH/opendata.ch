@@ -1,0 +1,22 @@
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        {% for slide in slides %}
+            <div class="swiper-slide">
+                {% set img = TimberImage(slide.agency_slider_image) %}
+                <img class="img-responsive" src="{{ img.src }}" alt="{{ img.alt }}" height="{{ img.height }}" width="{{ img.width }}" />            
+            </div>
+        {% endfor %}
+    </div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+
+</div>
+

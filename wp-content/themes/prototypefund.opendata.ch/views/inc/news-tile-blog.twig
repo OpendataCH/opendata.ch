@@ -1,0 +1,36 @@
+<div data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}" class="news-tile post-list-item col-xs-24 col-sm-12 col-md-8 col-lg-6 no-padding">
+    <a data-index="{{ loop.index0 }}" href="{{ function('get_permalink', post.ID) }}" class="news-tile-inner">
+        <div class="svg-icon svg-arrow-2020-right svg-arrow-2020-right-dims"></div>
+        <div class="info">
+            <div class="user fontsize-small uppercase">
+                {{ options.blog_title }}
+            </div>
+            <div class="time-passed fontsize-small uppercase">
+                · {{ function('timePassedSinceDate', post.post_date) }}
+            </div>
+        </div>
+        <div class="news-tile-hover">
+            {% if post.get_field('excerpt')|length > 0 %}
+                <div class="news-tile-excerpt">
+                    {{ function('wp_trim_words', post.get_field('excerpt'), 30, '...') }}
+                </div>
+
+            {% else %}
+                <div class="news-tile-excerpt title">
+                    {{ post.post_title }}
+                </div>
+
+            {% endif %}
+
+            <div class="news-tile-color {% if TimberImage(post.thumbnail).src('medium')|length %}with-image{% endif %}" ></div>
+            {% if TimberImage(post.thumbnail).src('medium')|length > 0 %}<div class="news-tile-image"></div>{% endif %}
+        </div>
+        <div class="news-tile-content">
+            <div class="news-tile-content-inner">
+                <p class="text news-teaser-text col-xs-24 no-padding">
+                    {{ post.post_title }}
+                </p>
+            </div>
+        </div>
+    </a>
+</div>

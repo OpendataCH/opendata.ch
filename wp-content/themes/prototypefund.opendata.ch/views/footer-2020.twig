@@ -1,0 +1,63 @@
+<div class="row">
+    <section class="section col-xs-24">
+        <div class="footer-2020 row">
+            <div class="col-xs-24 col-md-12">
+                <div class="row">
+                    <div class="col-xs-24 col-md-12 col-lg-9 col-xlg-8 no-padding">
+                        <p>
+                            {% if options.email_button_url %}
+                                {% include 'inc/arrow-link.twig' with {'title': options.email_button_title , 'url': options.email_button_url } %}
+                            {% endif %}
+                            {% if options.newsletter_button_url %}
+                                {% include 'inc/arrow-link.twig' with {'title': options.newsletter_button_title , 'url': options.newsletter_button_url } %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-xs-24 col-md-12 col-md-push-4 no-padding conversation-text">
+                        {{ options.conversation_text }}
+                    </div>
+                    <div class="col-xs-24 no-padding hidden-md hidden-lg hidden-xlg">
+                        <div class="social-2020">
+                            {{ options.social_text }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-24 col-md-20 no-padding footer-text-2020">{{ options.footer_text }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-24 no-padding sponsors">
+                        {% if options.footer_logos %}
+                            {% for logo in options.footer_logos %}
+                                <div class="sporsor-item">
+                                    <a href="{{ logo.footer_logo_url }}" target="_blank"><img class="img-responsive" src="{{TimberImage(logo.footer_logo_image).src}}" alt="{{logo.footer_logo_image.alt}}"></a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-md-12 footer-2020-right no-padding">
+                <div class="col-xs-24 col-md-8 col-md-push-16 no-padding hidden-xs">
+                    <div class="social-2020">
+                        {{ options.social_text }}
+                    </div>
+                </div>
+                <div class="col-xs-24 col-md-8 col-md-push-16 no-padding legal-wrap">
+                    <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                        {% if( post.id != 58 and post.id != 157) %}
+                            <ul class="nav footer-nav">
+                                {% for item in footernav.get_items %}
+                                    <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

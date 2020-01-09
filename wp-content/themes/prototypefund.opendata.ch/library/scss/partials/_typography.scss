@@ -1,0 +1,116 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+
+
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+
+@font-face {
+  font-family: 'surt-regular';
+  src: url('../fonts/surt/Surt-Regular.eot');
+  src: url('../fonts/surt/Surt-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/surt/Surt-Regular.woff') format('woff'),
+  url('../fonts/surt/Surt-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'surt-bold';
+  src: url('../fonts/surt/Surt-Bold.eot');
+  src: url('../fonts/surt/Surt-Bold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/surt/Surt-Bold.woff') format('woff'),
+  url('../fonts/surt/Surt-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'surt-regular-oblique';
+  src: url('../fonts/surt/Surt-RegularOblique.eot');
+  src: url('../fonts/surt/Surt-RegularOblique.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/surt/Surt-RegularOblique.woff') format('woff'),
+  url('../fonts/surt/Surt-RegularOblique.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'surt-light-oblique';
+  src: url('../fonts/surt/Surt-LightOblique.eot');
+  src: url('../fonts/surt/Surt-LightOblique.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/surt/Surt-LightOblique.woff') format('woff'),
+  url('../fonts/surt/Surt-LightOblique.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+
+
+// font stacks
+$sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif:             "Georgia", Cambria, Times New Roman, Times, serif;
+
+
+$font-regular:              'surt-regular', sans-serif;
+$font-bold:              'surt-bold', sans-serif;
+$font-regular-oblique:              'surt-regular-oblique', sans-serif;
+$font-light-oblique:              'surt-light-oblique', sans-serif;
+
+$source-sans:       $font-light-oblique, sans-serif;
+
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+p {
+  -ms-word-wrap: break-word;
+  word-break: break-word; //non-standart css for webkit
+  word-wrap: break-word;
+  // cleaning up the ragged lines and breaks
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+  // sets a minimum number of characters before and after the break
+  -webkit-hyphenate-before: 2;
+   -webkit-hyphenate-after: 3;
+           hyphenate-lines: 3;
+  // enabling fancy ligatures when available
+  -webkit-font-feature-settings: "liga", "dlig" 0;
+   -moz-font-feature-settings: "liga=0, dlig=0";
+      -ms-font-feature-settings: "liga", "dlig" 0;
+       -o-font-feature-settings: "liga", "dlig" 0;
+          font-feature-settings: "liga", "dlig" 0;
+
+
+}
+

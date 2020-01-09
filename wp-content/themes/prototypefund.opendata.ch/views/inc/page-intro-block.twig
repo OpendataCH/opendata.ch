@@ -1,0 +1,9 @@
+<!-- page intro block include -->
+<div class="row projects-intro">
+	<div class="col-xs-24 col-md-10 projects-intro-left {% if round_slug %} round-view{% endif %}">
+		<h1 class="projects-intro-headline">{{ post.post_title }}</h1>
+	</div>
+	<div class="col-xs-24 col-md-push-2 col-md-12 projects-intro-right">
+		<div class="projects-intro-copy">{{ post.content | shortcodes }}</div>
+	</div>
+</div>

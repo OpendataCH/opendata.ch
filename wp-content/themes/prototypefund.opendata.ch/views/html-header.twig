@@ -1,0 +1,55 @@
+<!doctype html>
+
+<!--[if lt IE 7]><html {{site.language_attributes}} class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html {{site.language_attributes}} class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html {{site.language_attributes}} class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+	<html
+	{{site.language_attributes}} class="no-js"> <!--<![endif]-->
+
+	<head>
+		<meta charset="{{site.charset}}">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+		<title>
+			{% if wp_title %}
+				{{ wp_title }}
+				-
+				{{ site.name }}
+			{% else %}
+				{{ site.name }}
+			{% endif %}
+		</title>
+
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+		<!-- favicon is set in WP Customizer-->
+
+		<meta name="msapplication-TileColor" content="#f01d4f">
+		<meta name="msapplication-TileImage" content="{{ site.theme.parent.path }}/library/images/win8-tile-icon.png">
+
+		<link rel="pingback" href="{{site.pingback_url}}">
+
+		<link rel="stylesheet" href="{{ site.theme.path }}/library/css/fontawesome/solid.min.css">
+		<link rel="stylesheet" href="{{ site.theme.path }}/library/css/fontawesome/brands.min.css">
+		<link rel="stylesheet" href="{{ site.theme.path }}/library/css/fontawesome/fontawesome.min.css">
+
+		{% if showMap %}
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+			<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css"/>
+			<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
+
+			<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+			<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+		{% endif %}
+
+		{# start of wordpress head  #}
+		{{ fn('wp_head') }}
+		{# end of wordpress head  #}
+
+	</head>
+</html>
