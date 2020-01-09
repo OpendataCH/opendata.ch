@@ -7,6 +7,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/OpendataCH/advanced-custom-fields-pro.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/OpendataCH/sitepress-multilingual-cms.git"
         }
     ],
     "require": {
@@ -37,7 +41,8 @@
         "wpackagist-plugin/timber-library": "1.*",
         "wpackagist-plugin/tinymce-advanced": "5.*",
         "wpackagist-plugin/wordpress-seo": "12.*",
-        "opendatach/advanced-custom-fields-pro": "5.*"
+        "opendatach/advanced-custom-fields-pro": "5.*",
+        "opendatach/sitepress-multilingual-cms": "4.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
