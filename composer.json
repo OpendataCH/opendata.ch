@@ -46,7 +46,7 @@
         "wpackagist-plugin/tinymce-advanced": "5.*",
         "wpackagist-plugin/wordpress-seo": "12.*",
         "opendatach/advanced-custom-fields-pro": "5.*",
-        "opendatach/sitepress-multilingual-cms": "4.*",
+        "opendatach/sitepress-multilingual-cms": "3.*",
         "opendatach/wp-seo-multilingual": "1.*"
     },
     "require-dev": {
