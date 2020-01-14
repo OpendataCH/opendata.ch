@@ -216,13 +216,11 @@ function bones_scripts_and_styles() {
         /*
 		wp_enqueue_script( 'bones-js' );
 		wp_enqueue_script( 'fitvids-js' );
-		wp_enqueue_script( 'slidebars-js' );
 		wp_enqueue_script( 'logger-js' );
 		wp_enqueue_script( 'scrollmagic-js' );
 		wp_enqueue_script( 'scrollmagic-gsap-js' );
 		wp_enqueue_script( 'scrollmagic-debug-js' );
 		wp_enqueue_script( 'tweenmax-scroll-js' );
-		wp_enqueue_script( 'iframe-resizer-js' );
 		wp_enqueue_script( 'tweenmax-js' );
 		wp_enqueue_script( 'timelinemax-js' );
 		wp_enqueue_script( 'timelinemax-js' );
