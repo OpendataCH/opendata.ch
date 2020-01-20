@@ -45,6 +45,7 @@
         "wpackagist-plugin/timber-library": "1.*",
         "wpackagist-plugin/tinymce-advanced": "5.*",
         "wpackagist-plugin/wordpress-seo": "12.*",
+        "wpackagist-plugin/statify": "1.*",
         "opendatach/advanced-custom-fields-pro": "5.*",
         "opendatach/sitepress-multilingual-cms": "4.*",
         "opendatach/wp-seo-multilingual": "1.*"
