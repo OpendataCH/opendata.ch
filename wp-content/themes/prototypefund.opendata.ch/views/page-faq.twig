@@ -10,7 +10,7 @@
 			<div class="col-xs-24">
 				{% if post.get_field('basics_blocks') %}
 					{% for block in post.get_field('basics_blocks') %}
-						<div class="filter-tab">
+						<div id="{{ block.id }}" class="filter-tab">
 							<div class="filter-tab-header">
 								<h4 class="filter-headline">{{ block.headline }}</h4>
 							</div>

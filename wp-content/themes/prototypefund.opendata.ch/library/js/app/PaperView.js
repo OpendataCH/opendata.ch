@@ -727,82 +727,94 @@
         TweenMax.set($sharer, {autoAlpha: 0});
         TweenMax.to($uploader, 0.5, {autoAlpha: 1});
 
-        //create SVG
-        var svg = container.exportSVG({ asString: true });
-
-        // SVG cleanup
-        $svg = $(svg);
-
-        var pathY_1 = $svg.find('#groupY path:first-of-type ').attr('d');
-        var pathY_2 = $svg.find('#groupY path:last-of-type ').attr('d');
-
-        $svg.find('#groupY path:first-of-type ').attr('d',pathY_1 + ' ' + pathY_2);
-        $svg.find('#groupY path:last-of-type ').remove();
-
-        var pathU_1 = $svg.find('#groupUser path:first-of-type ').attr('d');
-        var pathU_2 = $svg.find('#groupUser path:last-of-type ').attr('d');
-
-        $svg.find('#groupUser path:first-of-type ').attr('d',pathU_1 + ' ' + pathU_2);
-        $svg.find('#groupUser path:last-of-type ').remove();
-
-        svg = $svg[0].outerHTML;
-
-        // calculating the viewBox
-        // min-x min-y width heigth
-        var containerWidth = Math.ceil(container.bounds.width);
-        var containerHeight = Math.ceil(container.bounds.height);
-        var containerX = Math.floor(container.position.x - (containerWidth/2));
-        var containerY = Math.floor(container.position.y - (containerHeight/2));
-        var viewBoxCords = containerX  + ' ' + containerY + ' ' + containerWidth + ' ' + containerHeight;
-        var blendStyle = '<style type="text/css">#groupUser{mix-blend-mode: multiply;}</style>';
-
-        svg = '<svg width="' + containerWidth + '" height="' + containerHeight +'" viewBox="' + viewBoxCords + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + blendStyle + svg + '</svg>';
-        
-        var data = {
-            svg: ref.b64EncodeUnicode(svg)
-        };
-
-        ref.createBackgroundShape();
-
-        data = JSON.stringify(data);
-
-        Logger.log("data -> " + data);
-
-        $.ajax({
-            type: 'POST',
-            url: controller.siteURL + '/wp-json/ptf/v1/create-submission',
-            data: data,
-            dataType: 'json',
-            contentType: "application/json",
-            success: function(data)
-            {
-
-                //recreate background
-                Logger.log("status -> " + data.status + ", url -> " + data.url);
-                if(data.status == 'success'){
-                    //all good
-                    controller.setUserCanvasURL(data.url);
-                    $('.user-canvas').attr('src',data.filename);
-                    ref.showSharer();
-
-                } else {
-                    //error uploading file
-                    TweenMax.to($uploader, 0.5, {autoAlpha: 0});
-                }
-
-                TweenMax.to($exportCanvas, 0.5, {autoAlpha: 0, onComplete:ref.hideUploadButton});
-
-
-            },
-            error: function (request, status, error) {
-
-                Logger.log("error.");
-                Logger.log("request: " + request);
-                Logger.log("status: " + status);
-                Logger.log("error: " + error);
-
+        setTimeout(function(){
+            if(groupBatch){
+                groupBatch.remove();
+                groupBatch = null;
             }
-        });
+
+            //create SVG
+            var svg = container.exportSVG({ asString: true });
+
+            // SVG cleanup
+            $svg = $(svg);
+
+            var pathY_1 = $svg.find('#groupY path:first-of-type ').attr('d');
+            var pathY_2 = $svg.find('#groupY path:last-of-type ').attr('d');
+
+            $svg.find('#groupY path:first-of-type ').attr('d',pathY_1 + ' ' + pathY_2);
+            $svg.find('#groupY path:last-of-type ').remove();
+
+            var pathU_1 = $svg.find('#groupUser path:first-of-type ').attr('d');
+            var pathU_2 = $svg.find('#groupUser path:last-of-type ').attr('d');
+
+            $svg.find('#groupUser path:first-of-type ').attr('d',pathU_1 + ' ' + pathU_2);
+            $svg.find('#groupUser path:last-of-type ').remove();
+
+            svg = $svg[0].outerHTML;
+
+            // calculating the viewBox
+            // min-x min-y width heigth
+            var containerWidth = Math.ceil(container.bounds.width);
+            var containerHeight = Math.ceil(container.bounds.height);
+            var containerX = Math.floor(container.position.x - (containerWidth/2));
+            var containerY = Math.floor(container.position.y - (containerHeight/2));
+            var viewBoxCords = containerX  + ' ' + containerY + ' ' + containerWidth + ' ' + containerHeight;
+            var blendStyle = '<style type="text/css">#groupUser{mix-blend-mode: multiply;}</style>';
+
+            svg = '<svg width="' + containerWidth + '" height="' + containerHeight +'" viewBox="' + viewBoxCords + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + blendStyle + svg + '</svg>';
+
+            var data = {
+                svg: ref.b64EncodeUnicode(svg)
+            };
+
+            ref.createBackgroundShape();
+
+            data = JSON.stringify(data);
+
+            Logger.log("data -> " + data);
+
+            $.ajax({
+                type: 'POST',
+                url: controller.siteURL + '/wp-json/ptf/v1/create-submission',
+                data: data,
+                dataType: 'json',
+                contentType: "application/json",
+                success: function(data)
+                {
+
+                    //recreate background
+                    Logger.log("status -> " + data.status + ", url -> " + data.url);
+                    if(data.status == 'success'){
+                        //all good
+                        controller.setUserCanvasURL(data.url);
+                        $('.user-canvas').attr('src',data.filename);
+                        ref.showSharer();
+
+                    } else {
+                        //error uploading file
+                        TweenMax.to($uploader, 0.5, {autoAlpha: 0});
+                    }
+
+                    TweenMax.to($exportCanvas, 0.5, {autoAlpha: 0, onComplete:ref.hideUploadButton});
+
+
+                },
+                error: function (request, status, error) {
+
+                    Logger.log("error.");
+                    Logger.log("request: " + request);
+                    Logger.log("status: " + status);
+                    Logger.log("error: " + error);
+
+                }
+            });
+
+        }, 500);
+
+
+
+
 
 
     };

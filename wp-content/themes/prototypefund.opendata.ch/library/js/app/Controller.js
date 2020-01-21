@@ -257,6 +257,14 @@
         });
         ref.resize();
 
+        //check hash
+        $(window).bind('hashchange', function (e) {
+            ref.onHashChange(e);
+        });
+        if(window.location.hash) {
+            ref.onHashChange();
+        }
+
         $isocontainer = $('.gallery-tile-wrapper');
         if($isocontainer.length > 0){
 
@@ -276,6 +284,11 @@
         }
 
     };
+
+    Controller.prototype.onHashChange = function(e){
+        var hash = window.location.hash.slice(1);
+        if(projectsFilter) projectsFilter.onHashChange(hash);
+    }
 
     Controller.prototype.closeDropdown = function()
     {

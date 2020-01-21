@@ -13,6 +13,8 @@
         ref = this;
         controller = pController;
 
+
+
         Array.prototype.diff = function(arr2) {
             var ret = [];
             this.sort();
@@ -107,6 +109,16 @@
             }
         } else {
             TweenMax.to($projectsList,0.5,{autoAlpha:1, ease:Sine.easeOut});
+        }
+    };
+
+    ProjectsFilter.prototype.onHashChange = function(hash){
+        var $tab = $('#'+hash);
+        if($tab.length > 0){
+            var $c = $tab.find('.filter-tab-content');
+            $tab.addClass('open');
+            TweenMax.set($c, {display:"block", height:"auto"});
+            var tl = TweenMax.from($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
         }
     };
 
