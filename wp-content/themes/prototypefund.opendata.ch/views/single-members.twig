@@ -1,0 +1,14 @@
+{% extends "base-page-2020.twig" %}
+
+{% block content %}
+    <div class="page-2020-wrap">
+        <div class="row projects-intro">
+            <div class="col-xs-24 col-md-12 projects-intro-left {% if round_slug %} round-view{% endif %}">
+                <h1 class="projects-intro-headline">{{ post.post_title }}</h1>
+            </div>
+        </div>
+        <div class="members-list">
+            {% include 'views/inc/member-list-item.twig' with {'hide_title': true} %}
+        </div>
+    </div>
+{% endblock %}
