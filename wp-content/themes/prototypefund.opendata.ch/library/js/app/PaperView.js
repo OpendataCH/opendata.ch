@@ -649,9 +649,10 @@
 
 
             };
-        }
 
-        container.onMouseDrag = ref.onMouseDrag;
+            container.onMouseDrag = ref.onMouseDrag;
+
+        }
 
         if(controller.deviceType == 'computer') {
             view.onMouseUp = function(event){
