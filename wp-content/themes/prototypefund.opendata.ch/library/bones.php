@@ -1,6 +1,6 @@
 <?php
 
-$cachebust = '?v=12.9';
+$cachebust = '?v=13.0';
 //$cachebust = '?v=' . rand(5, 15);
 
 /* Welcome to Bones :)
@@ -213,7 +213,7 @@ function bones_scripts_and_styles() {
         wp_enqueue_script( 'charts-js' );
         wp_enqueue_script( 'charts-manager-js' );
 
-
+        /*
 		wp_enqueue_script( 'bones-js' );
 		wp_enqueue_script( 'fitvids-js' );
 		wp_enqueue_script( 'logger-js' );
@@ -243,9 +243,9 @@ function bones_scripts_and_styles() {
 		wp_enqueue_script( 'projects-filter-js' );
         wp_enqueue_script( 'mapcontroller-js' );
 		wp_enqueue_script( 'controller-js' );
+        */
 
-
-       //wp_enqueue_script( 'app-min-js' );
+       wp_enqueue_script( 'app-min-js' );
 
 	}
 }
