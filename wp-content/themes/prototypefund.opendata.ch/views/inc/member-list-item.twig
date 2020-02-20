@@ -13,7 +13,7 @@
                 {% if post.thumbnail %}
                     <!-- has teaser image -->
                     {% set img = Image(post.thumbnail)  %}
-                    <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
+                    <div class="project-teaser-image" style="background-image:url({{img.src('large') }})"></div>
                 {% else %}
                     <!-- has no teaser image -->
                     <div class="project-teaser-image default" style="background-image:url({{ theme.link }}/library/images/prototypefund-project-default.png)"></div>

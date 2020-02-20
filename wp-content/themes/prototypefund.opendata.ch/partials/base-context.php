@@ -27,20 +27,12 @@ if(is_object($post)){
 
 
 if(ICL_LANGUAGE_CODE == 'de'){
-    $context['front'] = new TimberPost(2);
-    $context['projects_page'] = new TimberPost(1075);
     $context['photo_credits'] = 'Foto: ';
 } else {
-    $context['front'] = new TimberPost(20);
-    $context['projects_page'] = new TimberPost(1177);
     $context['photo_credits'] = 'Photo: ';
-    $context['photo_credits'] = 'Photo: ';
-
     //this hides the filers, as there is no filtering for english
     $context['hide_filters'] = true;
 }
-
-$context['front'] = new TimberPost(2);
 
 $post = new TimberPost();
 $context['post'] = $post;

@@ -68,8 +68,15 @@ a.fixed-top-left{
 }
 
 .sponsors{
-  .sporsor-item{
+  .sponsor-item{
     display: inline-block;
+  }
+}
+
+.apply-small-wrap{
+  display: block;
+  &.mobile{
+    display: none;
   }
 }
 

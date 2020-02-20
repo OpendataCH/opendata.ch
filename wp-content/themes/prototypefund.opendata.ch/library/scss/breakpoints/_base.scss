@@ -139,9 +139,9 @@ body {
 }
 
 html, body, #container {
-  height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   &.admin-bar{
     padding-top: 36px;
   }
@@ -947,6 +947,9 @@ CONTENT SUBPAGE - FAQ, ABOUT
 
   .main-nav{
     text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+
     .menu-item{
       position: relative;
       display: table;
@@ -975,6 +978,7 @@ CONTENT SUBPAGE - FAQ, ABOUT
 .mobile-sub-nav{
   margin: 0;
   padding-bottom: 1em;
+  list-style-type: none;
   .mobile-sub-nav-item{
     border-top: 1px solid black;
     padding: 1px 0;
@@ -3587,15 +3591,23 @@ FOOTER
 
 }
 
+.wp-block-image{
+  margin: 50px 0;
+}
+
 .sponsors{
-
   display: block;
+}
 
-  .sporsor-item{
-    margin-right: 3em;
-    width: 200px;
+.sponsor-item{
+  margin-right: 3em;
+  width: 200px;
+
+
+  .sponsor-item-caption{
+    font-size: 1rem;
+    padding-bottom: 10px;
   }
-
 }
 
 /*********************
@@ -3649,13 +3661,18 @@ EVENTS ARCHIVE
 
 }
 .header-ctas{
-  padding: 2em 0 0 0;
+  padding: 2em 0 2em 0;
   position: relative;
   bottom: 0;
 }
 
 .apply-small-wrap{
   margin-top: 2rem;
+  display: none;
+  &.mobile{
+    display: block;
+    margin-bottom: 2rem;
+  }
 }
 .apply-now-2020{
   display: block;
@@ -3665,6 +3682,8 @@ EVENTS ARCHIVE
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
+  background-color: white;
+
   @include transition(all .25s ease);
 
   &.small{
@@ -3776,6 +3795,14 @@ EVENTS ARCHIVE
   padding: 150px 23px 100px 23px;
   max-width: 1200px;
   margin: 0 auto;
+  &.one-column{
+    max-width: 900px;
+  }
+
+}
+
+.sharer-nav-wrap{
+  margin-top: 10px;
 }
 
 .projects-intro{
@@ -3791,7 +3818,6 @@ EVENTS ARCHIVE
     display:flex;
 
     .projects-intro-headline{
-      margin: 0;
       align-self: center;
     }
   }
@@ -3810,8 +3836,12 @@ EVENTS ARCHIVE
   height: 0;
   padding-top: 56.25%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: right;
+  margin-top: 50px;
+  &.default{
+    background-size: contain;
+  }
 }
 .project-list-item, .post-list-item{
   &.filtered{
@@ -3840,7 +3870,7 @@ EVENTS ARCHIVE
 
   .project-list-item-copy p{
     font-size: 1.5em;
-    line-height: 1.3;
+    line-height: 1.5;
   }
 
   .project-list-item-members{

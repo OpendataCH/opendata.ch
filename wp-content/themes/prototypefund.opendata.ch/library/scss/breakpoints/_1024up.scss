@@ -182,6 +182,37 @@ DESKTOP NAV
   display: flex;
 }
 
+.wp-block-image{
+  margin: 75px 0;
+}
+
+.full-width{
+  img{
+    width: 80vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -40vw;
+    margin-right: -40vw;
+    max-width: none;
+  }
+}
+
+.half-width{
+  img{
+    width: 50vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -25vw;
+    margin-right: -25vw;
+    max-width: none;
+  }
+}
+
+.project-teaser-image{
+  margin-top: 0;
+}
 .project-list-item{
 
   .project-list-item-members{

@@ -9,73 +9,82 @@ on larger screens.
 
 ******************************************************************/
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 3em;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 2.5em;
 }
 
-h3, .h3, .project-list-item-copy p {
+h3,
+.h3,
+.project-list-item-copy p {
   font-size: 1.6em;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: 1.4em;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   font-size: 1.25em;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   font-size: 1em;
 }
 
-.nav li a, .nav-language, p, .page-2020-wrap ul li {
+.nav li a,
+.nav-language,
+p,
+ul li,
+ol li {
   font-size: 1.25rem;
 }
 
-#fixed-logo-p{
+#fixed-logo-p {
   position: fixed;
 }
 
-.centered-page-area, .faqpage-area{
+.centered-page-area,
+.faqpage-area {
   max-width: none;
+
   margin: 0;
   padding-left: 162px;
 }
-.logo-margin-page-area{
+.logo-margin-page-area {
   margin: 0;
   padding-left: 162px;
 }
-.frontpage-text-wrap{
-  padding-left:110px;
+.frontpage-text-wrap {
+  padding-left: 110px;
 }
 
 .article {
   font-size: 1.25rem;
 }
 
-.project-single{
-  .project-single-content{
-    h2{
+.project-single {
+  .project-single-content {
+    h2 {
       font-size: 1.6em;
     }
   }
 }
-
-
 
 /*********************
 SINGLE PROJECT PAGE
 *********************/
 
 .project-content-tile {
-
   .project-single {
-
     margin-top: 150px;
   }
 }
@@ -92,9 +101,8 @@ PROJECTS PAGE
 CONTENT NEWS
 *********************/
 
-.tile-wrapper{
-  .tile{
-
+.tile-wrapper {
+  .tile {
     .text {
       &.size-0-20 {
         font-size: 3em;
@@ -126,7 +134,5 @@ CONTENT NEWS
         line-height: 1.2em;
       }
     }
-
   }
 }
-

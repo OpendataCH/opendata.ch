@@ -366,10 +366,15 @@
     Controller.prototype.onScroll = function(e)
     {
 
-        var scrollTop = $(window).scrollTop();
+        var scrollTop = $(document).scrollTop();
+
+
 
         //the logo
         if(ref.deviceType == 'computer' && ref.isHome){
+
+            console.log("laloalal " + scrollTop);
+
             if(scrollTop >= headerHeight + 150){
                 if(!$smallP.hasClass('show')){
                     logoTimeLine = new TimelineMax({delay:0, paused:false })
