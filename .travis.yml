@@ -15,7 +15,7 @@ before_deploy:
   - eval $(ssh-agent -s)
   - openssl aes-256-cbc -K $encrypted_fb9206684278_key -iv $encrypted_fb9206684278_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
-  - echo ${SSH_HOST_KEY} >> ~/.ssh/known_hosts
+  - echo 'opendata02.nine.ch ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1U2mdLkqfY5hzBOEvyiFVIif1wXAXOGMHlHhWquH2gYgxalKBOSmQrOXzks8fF7mdW8AR45Z2SbFeSxDZcKWvoIJz1C1Vr48Kt1HDtSq1ZC8w701diK688ErsuqzzBzO8iLycC0dFmFX3tndSAmvKK/8V/AJkhwxjYCW1zZ2PQRlpQK1zue5V/gJn0XWsaTZtAitz7UdenEwBeaPBM+jo3yw7xABdv6tLD/DaSIHU9Sw54OYoJfax+EUx02X9iMQawouQ6kKKhfdDeYqeaRBwCWyotTufQ3ZIpnwiAf0FOFjKn5DMrnQIAE0kTmByDFgjJewp28dAJpW1GHcf4FiR' >> ~/.ssh/known_hosts
 
 deploy:
   provider: script
