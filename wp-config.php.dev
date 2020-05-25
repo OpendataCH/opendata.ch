@@ -96,5 +96,10 @@ define('SUBDOMAIN_INSTALL', true);
 
 require_once(__DIR__ . '/vendor/autoload.php');
 
+/** Absolute path to the WordPress directory. */
+if (!defined( 'ABSPATH' )) {
+    define('ABSPATH', __DIR__ . '/wordpress/');
+}
+
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
