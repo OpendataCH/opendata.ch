@@ -39,6 +39,7 @@ if(count($round_slug_array) > 0){
         $context['hide_filters'] = true;
     }
 }
+$context['hide_filters'] = true;
 
 $context['projects_rounds_filter'] = get_rounds($round_slug_array);
 $context['projects'] = get_projects($round_slug_array);

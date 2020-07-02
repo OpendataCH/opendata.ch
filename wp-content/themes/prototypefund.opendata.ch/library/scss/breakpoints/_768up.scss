@@ -72,6 +72,9 @@ a.fixed-top-left{
     display: inline-block;
   }
 }
+.sponsor-item {
+  width: 200px;
+}
 
 .apply-small-wrap{
   display: block;
@@ -667,7 +670,7 @@ FOOTER
 .landing-hero{
   .landing-teaser{
     &.right{
-      padding: 0 6em;
+      padding: 0 2em;
     }
   }
 }

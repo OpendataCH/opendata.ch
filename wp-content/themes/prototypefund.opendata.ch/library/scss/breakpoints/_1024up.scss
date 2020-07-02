@@ -50,6 +50,7 @@ DESKTOP NAV
 }
 
 .sub-nav {
+  display: block;
   ul.nav-dropdown {
     &.visible {
       visibility: visible;
@@ -408,7 +409,8 @@ NEWS TILE 2018
   }
 
   .header-headline{
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
   }
 }
 .header-ctas{

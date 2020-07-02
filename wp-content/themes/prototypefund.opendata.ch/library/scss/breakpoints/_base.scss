@@ -136,9 +136,16 @@ body {
        on the container's size */
     background-size: cover;
 
+  &.single-project{
+    .project-teaser-image{
+      margin-bottom: 2rem;
+    }
+  }
+
 }
 
 html, body, #container {
+
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -941,7 +948,7 @@ CONTENT SUBPAGE - FAQ, ABOUT
   position: fixed;
   background-color: $light-gray;
   top:0;
-  padding: 150px 20px 20px 20px;
+  padding: 100px 20px 20px 20px;
   margin: 0;
   overflow-y: auto;
 
@@ -990,8 +997,10 @@ CONTENT SUBPAGE - FAQ, ABOUT
 
 .sub-nav{
   position: relative;
+
   margin: 0;
   padding: 0 2em;
+  display: none;
   ul.nav-dropdown{
     position: absolute;
     background-color: white;
@@ -2405,6 +2414,7 @@ HEADER STYLES
   background-color: transparent;
   top:0;
 
+
   .header-inner-wrapper{
     position: absolute;
     left:20px;
@@ -3601,7 +3611,7 @@ FOOTER
 
 .sponsor-item{
   margin-right: 3em;
-  width: 200px;
+  width: 140px;
 
 
   .sponsor-item-caption{
@@ -3834,14 +3844,11 @@ EVENTS ARCHIVE
 .project-teaser-image{
   overflow: hidden;
   height: 0;
-  padding-top: 56.25%;
+  padding-top: 75%;
+
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: right;
-  margin-top: 50px;
-  &.default{
-    background-size: contain;
-  }
+  background-size: contain;
+  background-position: center;
 }
 .project-list-item, .post-list-item{
   &.filtered{
