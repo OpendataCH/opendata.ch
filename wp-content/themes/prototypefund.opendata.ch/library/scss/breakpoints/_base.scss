@@ -180,6 +180,7 @@ p{
 
 .project-status-wrap{
   margin-left: 2px;
+  display: none;
 }
 .project-status-item{
   margin-left: 15px;
@@ -1921,6 +1922,7 @@ SINGLE PROJECT PAGE
   .project-list-item-categories{
     text-align: right;
     transform: translateX(4px);
+    opacity: 0;
   }
   .project-list-item-categories, .project-status-wrap{
     margin-bottom: 15px;
@@ -3728,8 +3730,18 @@ EVENTS ARCHIVE
 }
 .project-link{
   display: none;
-  padding: 1.5em 0;
+  padding: 1em 0;
   position: relative;
+  cursor: pointer;
+
+  &:nth-child(3){
+    padding-bottom: 0;
+  }
+
+  span{
+    display: block;
+    max-width: 90%;
+  }
 
   &.active{
     display: block;
@@ -3740,7 +3752,17 @@ EVENTS ARCHIVE
   }
 
   &:hover{
-    color: $ptf-primary-color;
+    color: $ptf-secondary-color;
+    a{
+      color: $ptf-secondary-color;
+      border-color: $ptf-secondary-color;
+
+      &:hover{
+        color: white;
+        background-color: $ptf-secondary-color;
+        border-color: $ptf-secondary-color;
+      }
+    }
     border-color: black !important;
     background-color: white !important;
     .arrow-right{
@@ -3902,6 +3924,7 @@ EVENTS ARCHIVE
     display: flex;
 
     .project-list-item-categories{
+      opacity: 0;
       display: flex;
       flex:2;
       align-self: center;
