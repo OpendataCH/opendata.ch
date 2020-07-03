@@ -2838,7 +2838,8 @@ a.boxed-link:hover, a.boxed-link:visited{
 }
 
 .random-projects-btn{
-  display: inline-block;
+  /*display: inline-block;*/
+  display: none;
   padding: 15px;
   float: right;
   transform: translateY(-100%);
@@ -3734,10 +3735,6 @@ EVENTS ARCHIVE
   position: relative;
   cursor: pointer;
 
-  &:nth-child(3){
-    padding-bottom: 0;
-  }
-
   span{
     display: block;
     max-width: 90%;
@@ -3750,6 +3747,8 @@ EVENTS ARCHIVE
   &:first-of-type{
     border-top: 1px solid black;
   }
+
+  border-bottom: 1px solid black;
 
   &:hover{
     color: $ptf-secondary-color;

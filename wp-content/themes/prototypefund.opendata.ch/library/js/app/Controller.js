@@ -40,6 +40,7 @@
         }
 
         ref.browser=ref.getBrowser();
+
         $('body').addClass(this.deviceType).addClass(ref.browser.name.toLowerCase()).addClass('version-'+ref.browser.version.toLowerCase());;
 
     }
@@ -52,7 +53,7 @@
         this.languageCode = window.languageCode;
         this.isHome = window.isHome;
 
-        Logger.info("!!!Startup site on deviceType: " + this.deviceType + ", on: " + ref.browser.name + " version " + ref.browser.version + " ,pageId: " + this.pageId + " languageCode: " + this.languageCode + ", width: " + ref.viewport().width + ", height: " + ref.viewport().height + ", screensize: " + ref.viewport().screensize);
+        Logger.info("!!!Startup site on -> deviceType: " + this.deviceType + ", on: " + ref.browser.name + " version " + ref.browser.version + " ,pageId: " + this.pageId + " languageCode: " + this.languageCode + ", width: " + ref.viewport().width + ", height: " + ref.viewport().height + ", screensize: " + ref.viewport().screensize);
 
         var lazyLoadInstance = new LazyLoad({
             elements_selector: ".lazy"
@@ -97,6 +98,11 @@
             var $first3 = $('.project-link').slice( 0, 3);
             $first3.appendTo('.header-ctas-inner');
             $('.project-link').slice( 0, 3).addClass('active');
+        });
+
+        $('.project-link').click(function(e){
+            e.preventDefault();
+            window.location.href = $(this).attr('data-href')
         });
 
         //handles video embeds with poster images
@@ -368,12 +374,8 @@
 
         var scrollTop = $(document).scrollTop();
 
-
-
         //the logo
         if(ref.deviceType == 'computer' && ref.isHome){
-
-            console.log("laloalal " + scrollTop);
 
             if(scrollTop >= headerHeight + 150){
                 if(!$smallP.hasClass('show')){
