@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "johnpbloch/wordpress": "5.4.*",
+        "johnpbloch/wordpress": "5.5.*",
         "wpackagist-plugin/add-meta-tags": "2.*",
         "wpackagist-plugin/akismet": "3.*",
         "wpackagist-plugin/blog-copier": "1.*",
