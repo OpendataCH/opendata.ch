@@ -47,6 +47,7 @@
         "wpackagist-plugin/wordpress-seo": "12.*",
         "wpackagist-plugin/statify": "1.*",
         "wpackagist-plugin/extended-evaluation-for-statify":"2.*",
+        "wpackagist-plugin/enable-jquery-migrate-helper": "^1.1",
         "opendatach/advanced-custom-fields-pro": "5.*",
         "opendatach/sitepress-multilingual-cms": "4.*",
         "opendatach/wp-seo-multilingual": "1.*"
