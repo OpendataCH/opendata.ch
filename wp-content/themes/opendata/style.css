@@ -353,3 +353,10 @@ h2,
 .widget_kbrss h3 a, .widget_text h3 a {
 	color: #444;
 }
+
+/* Fix for Wordpress https://core.trac.wordpress.org/ticket/50909 */
+
+.wp-block-media-text__media img,
+.wp-block-media-text__media video {
+  height: auto;
+}

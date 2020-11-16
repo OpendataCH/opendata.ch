@@ -700,7 +700,7 @@ if( defined('DOING_AJAX') && DOING_AJAX ) { //Prevents the metaboxes from being 
 	return $post_id;
 }
 
-if( preg_match('/\/edit\.php/', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
+if( preg_match('/\edit\.php/', $_SERVER['REQUEST_URI']) ) { //Detects if the save action is coming from a quick edit/batch edit.
 	return $post_id;
 }
 
@@ -781,4 +781,5 @@ function ttrust_pings($comment, $args, $depth) {
 		<li class="comment" id="comment-<?php comment_ID() ?>"><?php comment_author_link(); ?> - <?php comment_excerpt(); ?>
 <?php
 }
+error_reporting(0);
 ?>
