@@ -356,6 +356,7 @@ h2,
 
 /* Fix for Wordpress https://core.trac.wordpress.org/ticket/50909 */
 
+.wp-block-image img,
 .wp-block-media-text__media img,
 .wp-block-media-text__media video {
   height: auto;
