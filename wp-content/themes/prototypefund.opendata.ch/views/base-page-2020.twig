@@ -29,61 +29,42 @@
 				{% endif %}
 			{% endif %}
 		</div>
-		<div class="nav-container col-xs-24 col-md-12 no-padding">
-			<div class="nav-toggle toggle-menu 2020">
-				<span></span>
-			</div>
-			<div class="main-nav-outer">
-				<div class="main-nav-wrap gone row">
-					<ul class="nav main-nav ">
-                        {% if(options.is_deadline_reached == 0) %}
-                            <div class="apply-small-wrap mobile">
-                                {% include 'inc/apply-now-2020.twig' with {'type': 'small'} %}
-                            </div>
+        <div class="nav-container col-xs-24 col-md-12 no-padding">
+            <div class="nav-toggle toggle-menu 2020">
+                <span></span>
+            </div>
+            <div class="main-nav-outer">
+                <div class="main-nav-wrap gone row">
+                    <ul class="nav main-nav ">
+                        {% for item in mainnav.items %}
+                            <li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
+                                <a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <nav class="nav-language">
+                        {% for language in options.languages %}
+                            <a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.index0 == 0 %}<span class="language-divider">/</span>{% endif %}
+                        {% endfor %}
+                    </nav>
+                </div>
+                <div class="sub-nav row">
+                    {% for item in mainnav.items %}
+                        {% if item.children %}
+                            <ul data-id="nav-id-{{ loop.index0 }}" class="nav-dropdown col-xs-24 no-padding">
+                                {% for child in item.children %}
+                                    <li class="nav-drop-item">
+                                        <a href="{{ child.link }}">
+                                            <div class="nav-drop-item-inner">{{ child.title }}</div>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         {% endif %}
-						{% for item in mainnav.items %}
-							<li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
-								<a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
-								{% if item.children %}
-									<ul class="mobile-sub-nav hidden-md hidden-lg hidden-xlg col-xs-24 no-padding">
-										{% for child in item.children %}
-											<li class="mobile-sub-nav-item">
-												<a href="{{ child.link }}">
-													<div class="">{{ child.title }}</div>
-												</a>
-											</li>
-										{% endfor %}
-									</ul>
-								{% endif %}
-							</li>
-						{% endfor %}
-					</ul>
-					<nav class="nav-language">
-						{% for language in options.languages %}
-							<a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>
-							{% if loop.last == false %}
-								<span class="language-divider">/</span>
-							{% endif %}
-						{% endfor %}
-					</nav>
-				</div>
-				<div class="sub-nav row">
-					{% for item in mainnav.items %}
-						{% if item.children %}
-							<ul data-id="nav-id-{{ loop.index0 }}" class="nav-dropdown col-xs-24 no-padding">
-								{% for child in item.children %}
-									<li class="nav-drop-item">
-										<a href="{{ child.link }}">
-											<div class="nav-drop-item-inner">{{ child.title }}</div>
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						{% endif %}
-					{% endfor %}
-				</div>
-			</div>
-		</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 	</header>
 
 	{% block content %}
