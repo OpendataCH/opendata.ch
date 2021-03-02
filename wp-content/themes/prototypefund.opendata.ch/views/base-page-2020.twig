@@ -44,7 +44,7 @@
                     </ul>
                     <nav class="nav-language">
                         {% for language in options.languages %}
-                            <a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.index0 == 0 %}<span class="language-divider">/</span>{% endif %}
+                            <a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.last == false %}<span class="language-divider">/</span>{% endif %}
                         {% endfor %}
                     </nav>
                 </div>
