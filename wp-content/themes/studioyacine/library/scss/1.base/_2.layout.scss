@@ -1,0 +1,68 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Layout
+
+******************************************************************/
+
+@mixin sitepadding($attribute, $include-above: true, $small: false) {
+    @if $include-above {
+        @if $small {
+            #{$attribute}: calc(50% - #{$site-width-small / 2});
+        } @else {
+            #{$attribute}: calc(50% - #{$site-width / 2});
+        }
+    } @else {
+        #{$attribute}: 50px;
+    }
+
+    @include below-sitewidth {
+        #{$attribute}: 50px;
+    }
+
+    @include tablet-portrait {
+        #{$attribute}: 30px;
+    }
+    @include mobile {
+        #{$attribute}: 25px;
+    }
+    @include mobile-portrait {
+        #{$attribute}: 20px;
+    }
+}
+
+@mixin sitewidth {
+    @include sitepadding(margin-left, true);
+    @include sitepadding(margin-right, true);
+    position: relative;
+}
+
+@mixin sitewidth-s {
+    @include sitepadding(margin-left, true, true);
+    @include sitepadding(margin-right, true, true);
+}
+
+@mixin fullWidth {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+html:before {
+    content: "desktop";
+    display: none; /* Prevent from displaying. */
+}
+@include tablet {
+    html:before {
+        content: "tablet";
+    }
+}
+@include mobile {
+    html:before {
+        content: "mobile";
+    }
+}

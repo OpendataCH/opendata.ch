@@ -1,0 +1,41 @@
+/******************************************************************
+PAGE NAVI STYLES
+******************************************************************/
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 1rem;
+    @include font(normal);
+    margin-top: 3rem;
+
+    li + li {
+        margin-left: 1rem;
+    }
+
+    a,
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        @include above-mobile {
+            width: 45px;
+            height: 45px;
+        }
+    }
+
+    .current {
+        background: $greyLight;
+        border-radius: 50px;
+    }
+
+    a:hover {
+        color: $red;
+    }
+
+    span {
+        border-radius: 8px;
+    }
+}

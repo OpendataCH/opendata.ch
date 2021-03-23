@@ -1,0 +1,44 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Editor Stylesheet
+
+******************************************************************/
+
+/*********************
+IMPORTING PLUGINS
+*********************/
+
+/*********************
+SETUP
+*********************/
+@import "0.helpers/mediaqueries";
+@import "1.base/1.settings";
+@import "1.base/3.font";
+@import "1.base/4.text";
+
+.wp-block {
+    max-width: 1000px;
+}
+
+.wp-block[data-align="wide"] {
+    /* it can be "data-align=full" and also "right", "left" and "center" */
+    max-width: 1228px;
+}
+
+.wp-block[data-type="core/media-text"],
+.wp-block[data-type="core/image"],
+.wp-block[data-type="core/gallery"] {
+    // max-width: 1000px;
+}
+
+.wp-block[data-type="core/heading"],
+.wp-block[data-type="core/paragraph"],
+.wp-block[data-type="core/list"],
+.wp-block[data-type="core/quote"] {
+    // max-width: 800px;
+}
+
+.editor-post-title__block .editor-post-title__input {
+}

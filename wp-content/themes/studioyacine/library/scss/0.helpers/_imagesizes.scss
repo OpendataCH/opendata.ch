@@ -1,0 +1,44 @@
+@function get-image($image-name, $attribute: base) {
+    @return map-get(map-get($image-ratios, $image-name), $attribute);
+}
+
+@mixin image-ratio($format: false) {
+    background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPjxwYXRoIGQ9J00yIDBIMHYyaDJWMHptMiAySDJ2MmgyVjJ6Jy8+PC9zdmc+);
+    @if $format {
+        position: relative;
+        &:before {
+            display: block;
+            content: "";
+            width: 100%;
+            padding-bottom: (get-image($format, "height") / get-image($format, "width")) * 100%;
+        }
+
+        > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,17 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Social links
+
+******************************************************************/
+
+.SocialLinks {
+    li + li {
+        margin-top: 0.25rem;
+    }
+    a {
+        @include font(normal);
+        @include font-base;
+    }
+}

@@ -1,0 +1,47 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Main Stylesheet
+
+******************************************************************/
+
+/*********************
+IMPORTING PLUGINS
+*********************/
+
+/*********************
+SETUP
+*********************/
+
+@import "0.helpers/*";
+
+@import "1.base/0.reset";
+@import "1.base/1.settings";
+@import "1.base/2.layout";
+@import "1.base/3.font";
+@import "1.base/4.text";
+@import "1.base/5.global";
+
+/*********************
+BASE MODULES
+*********************/
+
+@import "2.modules/wordpress";
+@import "2.modules/buttons";
+// @import "modules/forms";
+@import "2.modules/pagination";
+@import "2.modules/cookie-consent";
+
+/*********************
+GENERAL
+*********************/
+
+@import "main";
+
+/*********************
+COMPONENTS
+*********************/
+
+@import "components/*";
+@import "pages/*";

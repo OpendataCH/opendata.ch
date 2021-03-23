@@ -1,0 +1,102 @@
+.HomeIntro {
+    @include sitewidth;
+    @include above-desktop {
+        padding-right: calc((#{$site-width} - #{$site-width-small}) / 2);
+    }
+    margin-bottom: 6rem;
+
+    h2 {
+        @include font-xl;
+        margin-bottom: 0.2em;
+    }
+
+    p {
+        @include font-base;
+        @include font(normal);
+        max-width: 1124px;
+
+        a {
+            @include a;
+            text-decoration-color: $red;
+        }
+    }
+}
+
+.HomeProjects {
+    margin-bottom: 5rem;
+}
+
+.HomeNews {
+    margin-bottom: 5rem;
+
+    .TeaserGrid {
+        @include mobile {
+            grid-template-columns: 1fr;
+            grid-gap: 1rem;
+        }
+    }
+
+    .TeaserGrid--item {
+        @include mobile {
+            margin: 0;
+        }
+    }
+
+    .Teaser {
+        @include mobile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    .Teaser--image {
+        @include mobile {
+            flex: 0 0 120px;
+            height: 120px;
+            margin: 0 1rem 0 0;
+        }
+    }
+}
+
+.HomeCTA {
+    @include fullWidth;
+    border-top: 1px solid $greyLight;
+    padding: 4rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    /* Supports Grid */
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    justify-content: center;
+
+    li {
+        text-align: center;
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+            @include link-anim;
+        }
+
+        &:hover span {
+            @include link-anim(true);
+        }
+
+        span {
+            @include font-m;
+        }
+    }
+
+    svg {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.5rem;
+    }
+}

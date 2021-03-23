@@ -1,0 +1,35 @@
+.wp-block-image {
+    margin: 3rem 0;
+
+    @include above-mobile-portrait {
+        margin: 3rem 0;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+    }
+
+    a:hover {
+        opacity: 1 !important;
+        img {
+            opacity: 0.8;
+            cursor: zoom-in;
+        }
+    }
+
+    figcaption {
+        @include font-s;
+        color: $greyLight;
+
+        a {
+            color: $greyLight !important;
+
+            &:hover {
+                color: #333 !important;
+            }
+        }
+    }
+}

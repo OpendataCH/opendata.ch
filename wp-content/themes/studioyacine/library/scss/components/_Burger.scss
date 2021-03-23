@@ -1,0 +1,21 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Burger flyout
+
+******************************************************************/
+.Burger {
+    position: relative;
+    z-index: 6;
+    display: block;
+    margin-right: 3px;
+    @include above-mobile {
+        display: none;
+    }
+
+    svg {
+        width: 26px;
+        height: 26px;
+    }
+}

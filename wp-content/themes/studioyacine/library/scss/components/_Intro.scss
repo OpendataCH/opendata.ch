@@ -1,0 +1,19 @@
+.Intro {
+    @include sitewidth;
+    @include above-sitewidth {
+        padding-right: calc((#{$site-width} - #{$site-width-small}) / 2);
+    }
+
+    margin-bottom: 2rem;
+
+    strong {
+        @include font-l;
+    }
+
+    h1 {
+        @include font-l;
+        @include above-sitewidth {
+            padding-left: calc((#{$site-width} - #{$site-width-small}) / 2);
+        }
+    }
+}

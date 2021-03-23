@@ -1,0 +1,64 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+******************************************************************/
+
+.Logo {
+    img {
+        width: 150px;
+        height: auto;
+        @include mobile {
+        }
+    }
+}
+
+.main {
+    @include sitewidth-s;
+}
+
+.SectionHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    strong {
+        @include text-uppercase;
+        @include font-base;
+    }
+
+    a {
+        @include font(normal);
+        @include font-s;
+        @include a;
+        letter-spacing: 0.02em;
+    }
+}
+
+#menu-main-navigation {
+    display: none;
+    @include above-mobile {
+        display: flex;
+    }
+
+    li + li {
+        margin-left: 1em;
+    }
+
+    li.current-menu-item a {
+        color: $red;
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    a {
+        @include font(normal);
+        @include font-base;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}

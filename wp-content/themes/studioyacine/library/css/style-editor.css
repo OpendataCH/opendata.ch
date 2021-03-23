@@ -1,0 +1,71 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Editor Stylesheet
+
+******************************************************************/
+/*********************
+IMPORTING PLUGINS
+*********************/
+/*********************
+SETUP
+*********************/
+body:after {
+  display: none;
+  content: "desktop";
+}
+
+@media (max-width: 1200px) {
+  body:after {
+    content: "tablet";
+  }
+}
+
+@media (max-width: 1050px) {
+  body:after {
+    content: "tablet-portrait";
+  }
+}
+
+@media (max-width: 750px) {
+  body:after {
+    content: "mobile";
+  }
+}
+
+@media (max-width: 400px) {
+  body:after {
+    content: "mobile-portrait";
+  }
+}
+
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Variables
+
+******************************************************************/
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Typography
+
+*******************************************************************/
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Text Styles
+
+******************************************************************/
+.wp-block {
+  max-width: 1000px;
+}
+
+.wp-block[data-align="wide"] {
+  /* it can be "data-align=full" and also "right", "left" and "center" */
+  max-width: 1228px;
+}

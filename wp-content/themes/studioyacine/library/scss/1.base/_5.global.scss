@@ -1,0 +1,85 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Global
+
+******************************************************************/
+
+html {
+    width: 100%;
+    font-size: $base-font-size; // uppercase PX won't be translated to rem
+    line-height: $base-line-height;
+    text-size-adjust: 100%;
+    background-color: $white;
+
+    @media (max-width: #{($mq-mobile + $mq-tablet-portrait) / 2}) {
+        font-size: calc(0.8 * #{$base-font-size});
+    }
+
+    @media (max-width: #{($mq-mobile-portrait + $mq-mobile) / 2}) {
+        font-size: calc(0.75 * #{$base-font-size});
+    }
+}
+
+body {
+    @include body-font;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    overflow-x: hidden;
+}
+
+/* stylelint-disable selector-no-vendor-prefix */
+::-moz-selection {
+    text-shadow: none;
+}
+
+::selection {
+    text-shadow: none;
+}
+/* stylelint-enable */
+
+body,
+input,
+select,
+button,
+textarea {
+    @include textantialiasing;
+}
+
+.logo {
+    text-decoration: none;
+
+    &:before {
+        content: "← ";
+    }
+}
+
+// links
+a:active {
+    outline: none;
+}
+
+// various text styles
+
+abbr {
+    border-bottom: 1px dotted gray;
+}
+
+p sup {
+    position: relative;
+    top: -0.75ex;
+}
+
+p sub {
+    position: relative;
+    top: 0.5ex;
+}
+
+button {
+    cursor: pointer;
+}
+
+svg {
+    width: 100%;
+}

@@ -1,0 +1,39 @@
+/**
+ * Hide only visually, but have it available for screen readers:
+ * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+@mixin visuallyhidden {
+    position: absolute;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+    white-space: nowrap; /* https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
+}
+
+.visuallyhidden {
+    @include visuallyhidden;
+}
+
+@mixin reset-visuallyhidden {
+    position: static;
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    width: auto;
+    white-space: inherit;
+}
+
+@mixin hidetext {
+    letter-spacing: -1ex;
+    text-indent: -9999px;
+    color: transparent;
+    text-decoration: none;
+    line-height: 1;
+}
