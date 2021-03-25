@@ -1,0 +1,123 @@
+.Footer {
+    // border-top: 1px solid $greyLight;
+    background: #f9f9f9;
+    padding: 3rem 0 1rem;
+    margin-top: 3rem;
+}
+
+.Footer--top {
+    @include sitewidth-s;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    /* Supports Grid */
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 1rem;
+
+    @include above-mobile {
+        grid-template-columns: 3fr 1fr 1fr 1fr;
+    }
+
+    .SocialLinks {
+        @include mobile {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        li {
+            margin-top: 0;
+            margin-right: 1.5rem;
+            margin-bottom: 0.1em;
+            @include above-mobile {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            @include a;
+            text-decoration-color: $black;
+        }
+    }
+}
+
+.Footer--links {
+    ul {
+        @include mobile {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    li {
+        margin-right: 1.5rem;
+        margin-bottom: 0.1em;
+        @include above-mobile {
+            margin-right: 0;
+        }
+    }
+
+    a {
+        @include font(normal);
+        @include font-base;
+        @include a;
+        text-decoration-color: $black;
+    }
+}
+
+.Footer--bottom {
+    @include sitewidth-s;
+    @include font-xs;
+    color: $grey;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.Footer--title {
+    @include text-uppercase;
+    display: block;
+    margin-bottom: 0.15rem;
+    @include above-mobile {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.Footer--text {
+    @include above-mobile {
+        padding-right: 2rem;
+    }
+
+    > div {
+        @include font-base;
+        @include font(normal);
+    }
+    p {
+        @include paragraph;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        @include a;
+    }
+}
+
+.Footer--button {
+    width: 125px;
+    height: 125px;
+    border-radius: 200px;
+    background: $red;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-uppercase;
+    @include font-base;
+    margin-left: auto;
+}

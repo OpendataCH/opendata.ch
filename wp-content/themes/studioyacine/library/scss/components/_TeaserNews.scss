@@ -1,0 +1,76 @@
+// DEFAULT
+.TeaserList--item:not(.TeaserList--item--big) {
+    .TeaserNews {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-top: 1px solid #eee;
+        padding: 1rem 0;
+
+        .TeaserNews--image {
+            flex-basis: 64px;
+            @include image-ratio("teasersquare");
+            background: orange;
+            margin-right: 1rem;
+            margin-bottom: 0;
+        }
+
+        .TeaserNews--text {
+            width: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+
+            @include above-mobile {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .TeaserNews--title {
+            @include font-m;
+            @include font(normal);
+        }
+
+        .TeaserNews--date {
+            @include above-mobile {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+.TeaserNews--date {
+    @include font-xs;
+    @include font(bold);
+    color: $red;
+}
+
+// BIG TEASER
+.TeaserList--item--big .TeaserNews {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    border: none;
+    padding: 0;
+
+    .TeaserNews--image {
+        @include image-ratio("teaserlarge");
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .TeaserNews--text {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .TeaserNews--title {
+        @include font-l;
+    }
+
+    .TeaserNews--date {
+        margin: 0;
+    }
+}

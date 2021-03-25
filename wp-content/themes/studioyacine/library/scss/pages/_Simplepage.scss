@@ -1,0 +1,47 @@
+.SimplePage {
+    @include sitewidth-s;
+}
+
+.SimplePage--title {
+    @include font-xl;
+    margin-bottom: 1em;
+}
+
+.SimplePage--body {
+    @include richtext(all);
+}
+
+body.single-news,
+body.single-event {
+    .SimplePage--title {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 940px;
+    }
+
+    .SimplePage--body {
+        max-width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+body.search-results,
+body.search-no-results {
+    .SimplePage--title--label {
+        display: block;
+        letter-spacing: 0;
+        @include font(normal);
+        @include font-base;
+        color: $grey;
+    }
+
+    .search-title {
+        margin-bottom: 0.25em;
+    }
+
+    .byline {
+        @include font-xs;
+        @include font(bold);
+    }
+}

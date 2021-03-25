@@ -1,0 +1,91 @@
+.TeaserGrid {
+    /* Grid Fallback */
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+
+    /* Supports Grid */
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+
+    @include above-mobile {
+        grid-gap: 2rem;
+    }
+
+    &.size--2 {
+        grid-template-columns: repeat(2, 1fr);
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.size--3 {
+        grid-template-columns: repeat(3, 1fr);
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.size--4 {
+        grid-template-columns: repeat(4, 1fr);
+        @include mobile {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+.TeaserGrid--item {
+    margin-bottom: 2rem;
+}
+
+.Teaser {
+}
+
+.Teaser:hover {
+    opacity: 0.7;
+}
+
+.Teaser--image {
+    @include image-ratio("teaserlarge");
+    margin-bottom: 0.5rem;
+}
+
+.Teaser--title {
+    @include font-l;
+    margin-bottom: 0.5rem;
+}
+
+.Teaser--text {
+    p {
+        @include font-s;
+        @include font(normal);
+    }
+}
+
+.Teaser--date {
+    display: block;
+    @include font-xs;
+    @include font(bold);
+    letter-spacing: 1px;
+    color: $red;
+    margin-bottom: 0.1rem;
+}
+
+.TeaserGrid.size--3 {
+    .Teaser--title {
+        @include font-m;
+        margin-bottom: 0.25rem;
+    }
+}
+
+.TeaserGrid.size--4 {
+    .TeaserGrid--item {
+        margin-bottom: 0rem;
+    }
+
+    .Teaser--title {
+        @include font-base;
+        margin-bottom: 0.25rem;
+    }
+}

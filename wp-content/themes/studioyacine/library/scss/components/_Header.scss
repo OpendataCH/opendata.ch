@@ -1,0 +1,42 @@
+.Header {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    background: $white;
+    margin-bottom: 5rem;
+    padding-top: 1rem;
+    border-top: 7px solid $red;
+    @include above-mobile {
+        padding-top: 2rem;
+    }
+
+    .Header--inner {
+        @include sitewidth;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        .Logo {
+            margin-right: auto;
+        }
+    }
+}
+
+.Header--nav {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.Header--search {
+    margin-top: -3px;
+    margin-left: 3rem;
+    @include mobile {
+        display: none;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}

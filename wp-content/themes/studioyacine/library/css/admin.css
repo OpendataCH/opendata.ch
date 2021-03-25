@@ -1,0 +1,52 @@
+/******************************************************************
+Site Name: 
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Admin Stylesheet
+
+******************************************************************/
+
+#wp-admin-bar-customize,
+#wp-admin-bar-comments,
+#wp-admin-bar-updates,
+#wp-admin-bar-new-content {
+    display: none;
+}
+
+#wp-admin-bar-new-content,
+#wp-admin-bar-comments,
+#wp-admin-bar-wp-logo {
+    display: none;
+}
+
+#adminmenu .menu-icon-news div.wp-menu-image img {
+    display: none;
+}
+
+#adminmenu .menu-icon-news div.wp-menu-image:before {
+    content: "\f464" !important;
+}
+
+#adminmenu .menu-icon-project div.wp-menu-image img {
+    display: none;
+}
+
+#adminmenu .menu-icon-project div.wp-menu-image:before {
+    content: "\f118" !important;
+}
+
+#adminmenu .menu-icon-event div.wp-menu-image img {
+    display: none;
+}
+
+#adminmenu .menu-icon-event div.wp-menu-image:before {
+    content: "\f145" !important;
+}
+
+#adminmenu .menu-icon-team_member div.wp-menu-image img {
+    display: none;
+}
+
+#adminmenu .menu-icon-team_member div.wp-menu-image:before {
+    content: "\f451" !important;
+}

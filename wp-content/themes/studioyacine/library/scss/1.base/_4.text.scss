@@ -1,0 +1,302 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Text Styles
+
+******************************************************************/
+
+@mixin body-font {
+    @include font(light);
+}
+
+@mixin font-xl {
+    @include font(normal);
+    font-size: rem(45px);
+    line-height: rem(50px);
+    letter-spacing: -0.02em;
+    @include above-mobile {
+        font-size: rem(65px);
+        line-height: rem(65px);
+    }
+    @include above-tablet {
+        font-size: rem(90px);
+        line-height: rem(90px);
+    }
+}
+
+@mixin font-l {
+    @include font(normal);
+    font-size: rem(28px);
+    line-height: rem(32px);
+    letter-spacing: -0.02em;
+    @include above-mobile {
+        font-size: rem(38px);
+        line-height: rem(42px);
+    }
+}
+
+@mixin font-m {
+    @include font(normal);
+    font-size: rem(26px);
+    line-height: rem(32px);
+    letter-spacing: -0.02em;
+}
+
+@mixin font-base {
+    font-size: calc(#{$base-font-size}* 0.8);
+    line-height: calc(#{$base-line-height}* 0.8);
+    @include above-mobile {
+        font-size: $base-font-size;
+        line-height: $base-line-height;
+    }
+}
+
+@mixin font-s {
+    font-size: rem(18px);
+    line-height: rem(24px);
+}
+
+@mixin font-xs {
+    font-size: rem(14px);
+    line-height: rem(18px);
+}
+
+@mixin text-uppercase {
+    @include font-s;
+    @include font(normal);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+@mixin h1 {
+    @include font-l;
+    @include font(normal);
+    margin-bottom: 0.5ex;
+}
+
+@mixin h2 {
+    @include font(normal);
+    @include font-m;
+
+    // margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+@mixin h3 {
+    @include font(normal);
+
+    // margin-top: 1.5em;
+    margin-bottom: 0.5ex;
+}
+
+@mixin h4 {
+    // @include font-s;
+}
+
+@mixin paragraph {
+    margin-bottom: 1em;
+}
+
+@mixin italic {
+    @include font("italic");
+}
+
+@mixin strong {
+    @include font("normal");
+}
+
+@mixin a {
+    text-decoration: underline;
+    text-decoration-color: $red;
+
+    &:hover {
+        color: $red;
+        text-decoration: none;
+    }
+}
+
+@mixin hr {
+    height: 1px;
+    background: $greyLight;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    border: none;
+}
+
+@mixin pre {
+    padding: 20px;
+    background: $white;
+}
+
+@mixin code {
+    background: white;
+}
+
+@mixin ul {
+    margin-left: -1em;
+    @include mobile {
+        max-width: 80%;
+    }
+
+    display: block;
+
+    > li {
+        padding-left: 1.25em;
+
+        position: relative;
+        list-style-type: none;
+        margin-bottom: 1.5ex;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            @include font(medium);
+            content: "\2013";
+            color: $red;
+        }
+    }
+}
+@mixin ol {
+    @include ul;
+
+    display: block;
+    counter-reset: ol--counter;
+
+    > li:not(.gfield) {
+        padding-left: 1.25em;
+        list-style-type: none;
+
+        &:before {
+            margin-left: -1.5em;
+            counter-increment: ol--counter;
+            content: counter(ol--counter) ".";
+            text-align: right;
+            width: 4ex;
+            color: $black;
+        }
+    }
+
+    /*html*/
+
+    .ie & {
+        > li {
+            list-style: decimal inside none;
+        }
+    }
+}
+
+@mixin table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@mixin richtext($include: most) {
+    @if $include == all {
+        h1 {
+            @include h1;
+        }
+
+        h2 {
+            @include h2;
+        }
+
+        h3 {
+            @include h3;
+        }
+
+        pre {
+            @include pre;
+
+            margin: 1em 0;
+        }
+
+        code {
+            @include code;
+        }
+
+        pre code,
+        pre pre,
+        code pre {
+            background: transparent;
+        }
+    }
+
+    @if $include == most or $include == all {
+        table {
+            @include table;
+        }
+
+        p {
+            @include paragraph;
+        }
+
+        p + h2 {
+            margin-top: 1em;
+        }
+
+        ul {
+            @include ul;
+
+            margin: 1em 0;
+        }
+
+        ol {
+            @include ol;
+
+            margin: 1em 0;
+        }
+    }
+
+    strong {
+        @include strong;
+    }
+
+    em,
+    i {
+        @include italic;
+    }
+
+    hr {
+        @include hr;
+    }
+
+    a {
+        &:not([class]) {
+            @include a;
+        }
+    }
+
+    ::-moz-selection {
+        text-shadow: none;
+        background: #eee;
+    }
+
+    ::selection {
+        text-shadow: none;
+        background: #eee;
+    }
+
+    .has-large-font-size {
+        @include font-l;
+    }
+
+    .has-red-color {
+        color: $red;
+    }
+}
+
+@mixin nowrap {
+    white-space: nowrap;
+}
+
+@mixin hyphenate {
+    hyphens: auto;
+}
+
+@mixin overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,61 @@
+{
+    "name": "studioyacine",
+    "version": "1.0.0",
+    "scripts": {
+        "clean": "gulp clean",
+        "dev": "gulp watch",
+        "start": "gulp --silent live",
+        "build": "cross-env NODE_ENV=production gulp build",
+        "sass": "gulp css",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Yacine Belarbi <hello@studioyacine.ch> (https://studioyacine.ch/)",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.13.1",
+        "@babel/preset-env": "^7.13.5",
+        "@rollup/plugin-babel": "^5.3.0",
+        "@rollup/plugin-commonjs": "^17.1.0",
+        "@rollup/plugin-node-resolve": "^11.2.0",
+        "@rollup/stream": "^2.0.0",
+        "browser-sync": "^2.26.14",
+        "browsersync": "0.0.1-security",
+        "cssnano": "^4.1.10",
+        "del": "^5.1.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-cli": "^2.2.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect": "^5.7.0",
+        "gulp-css-globbing": "^0.2.2",
+        "gulp-eslint": "^6.0.0",
+        "gulp-imagemin": "^6.2.0",
+        "gulp-minify": "^3.1.0",
+        "gulp-newer": "^1.4.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^8.0.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-svg-sprite": "^1.5.0",
+        "gulp-uglify": "^3.0.2",
+        "node-sass": "^4.13.0",
+        "rollup": "^2.40.0",
+        "sass": "^1.23.7",
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0",
+        "webpack": "^4.41.5",
+        "webpack-stream": "^5.2.1"
+    },
+    "dependencies": {
+        "chocolat": "^1.0.3",
+        "gsap": "^3.6.0",
+        "normalize": "^0.3.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://git.shapada.com/sd/specops/git"
+    },
+    "description": ""
+}

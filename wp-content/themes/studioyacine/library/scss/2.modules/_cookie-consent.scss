@@ -1,0 +1,125 @@
+.cookie-box {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background: #333;
+    position: fixed;
+    margin: 0;
+    z-index: 1001;
+    transition: all 0.5s ease;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    letter-spacing: 0;
+}
+.cookie-box,
+.cookie-box * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+.cookie-box.hidden {
+    transform: translateY(100%);
+}
+.cookie-box__inner {
+    padding: 15px;
+    @include above-mobile {
+        display: flex;
+        align-items: center;
+        padding: 25px 15px;
+    }
+}
+
+.cookie-box__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.cookie-box__content__inner {
+    flex: 1;
+}
+.cookie-box__icon {
+    margin-right: 20px;
+    width: 44px;
+    position: relative;
+}
+.cookie-box__icon svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    vertical-align: initial;
+}
+.cookie-box__title {
+    font-weight: 700;
+    color: currentColor;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 17px;
+}
+.cookie-box__desc {
+    color: currentColor;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    text-align: left;
+}
+.cookie-box__desc a {
+    text-decoration: underline;
+    white-space: nowrap;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+        text-decoration: none;
+    }
+}
+.cookie-box__desc a:hover {
+    color: currentColor;
+    text-decoration: underline;
+}
+.cookie-box__buttons {
+    @include above-mobile {
+        padding-left: 15px;
+    }
+}
+.cookie-box__button,
+.cookie-box__button:hover {
+    font-weight: 700;
+    display: block;
+    border-radius: 24px;
+    color: currentColor;
+    cursor: pointer;
+    font-size: 16px;
+    background: transparent;
+    border: 2px solid currentColor;
+    padding: 10px 20px;
+    white-space: nowrap;
+    text-transform: none;
+    height: auto;
+}
+
+.cookie-box__button {
+    @include mobile {
+        margin: 18px 0 0 60px;
+    }
+
+    span {
+        margin-right: 5px;
+    }
+    svg {
+        position: relative;
+        top: 3px;
+        width: 20px;
+    }
+
+    span,
+    svg {
+        display: inline-block;
+    }
+}

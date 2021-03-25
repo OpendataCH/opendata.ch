@@ -1,0 +1,67 @@
+/******************************************************************
+Site Name: opendata.ch
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Button Styles
+
+******************************************************************/
+
+@mixin button {
+    display: inline-block;
+    position: relative;
+    @include font(normal);
+    text-decoration: none;
+    color: $black;
+    font-weight: normal;
+    padding: 0.5em 1.4em;
+    border-radius: 0px;
+    border: 1px solid $black;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 140ms;
+    letter-spacing: 0px;
+    // @include ms-respond(font-size, -1);
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        outline: none;
+    }
+
+    &:active {
+        top: 1px; // adds a tiny hop to the click
+    }
+}
+
+@mixin link-anim($active: false, $color: $red) {
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background: $color;
+        transform: translateY(3px) scaleY(0);
+        transform-origin: 100% 100%;
+        transition: 0.3s all;
+        opacity: 0;
+    }
+
+    &:hover:after {
+        transform: translateY(0px) scaleY(1);
+        opacity: 1;
+    }
+
+    @if $active {
+        &:after {
+            transform: translateY(0px) scaleY(1);
+            opacity: 1;
+        }
+
+        &:hover:after {
+            opacity: 0;
+        }
+    }
+}
