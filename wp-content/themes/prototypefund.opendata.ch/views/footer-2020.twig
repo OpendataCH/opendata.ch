@@ -3,7 +3,7 @@
         <div class="footer-2020 row">
             <div class="col-xs-24 col-md-12">
                 <div class="row">
-                    <div class="col-xs-24 col-md-12 col-lg-9 col-xlg-8 no-padding">
+                    <div class="col-xs-24 col-md-12 col-lg-13 col-xlg-8 no-padding">
                         <p>
                             {% if options.email_button_url %}
                                 {% include 'inc/arrow-link.twig' with {'title': options.email_button_title , 'url': options.email_button_url } %}
@@ -13,7 +13,7 @@
                             {% endif %}
                         </p>
                     </div>
-                    <div class="col-xs-24 col-md-12 col-md-push-4 no-padding conversation-text">
+                    <div class="col-xs-24 col-md-12 col-md-push-4 col-lg-10 no-padding conversation-text">
                         {{ options.conversation_text }}
                     </div>
                     <div style="margin-top: 20px" class="col-xs-24 no-padding hidden-md hidden-lg hidden-xlg">
