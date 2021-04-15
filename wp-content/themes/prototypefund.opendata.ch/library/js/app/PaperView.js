@@ -480,7 +480,7 @@
 
         } else if(controller.viewport().width >= 1030){
 
-            targetH = wH*0.3;
+            targetH = wH*0.7;
             ref.char_move_offset = 35;
 
         }

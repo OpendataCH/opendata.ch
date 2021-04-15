@@ -23,7 +23,7 @@
 				</div>
 			{% else %}
 				{% if(options.is_deadline_reached == 0) %}
-					<div class="col-xs-18 col-xs-push-4 no-padding apply-small-wrap">
+					<div class="no-padding apply-small-wrap">
 						{% include 'inc/apply-now-2020.twig' with {'type': 'small'} %}
 					</div>
 				{% endif %}
@@ -39,6 +39,17 @@
                         {% for item in mainnav.items %}
                             <li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
                                 <a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
+                                {% if item.children %}
+                                    <ul class="mobile-sub-nav col-xs-24 no-padding">
+                                        {% for child in item.children %}
+                                            <li class="mobile-sub-nav-item">
+                                                <a href="{{ child.link }}">
+                                                    <div class="">{{ child.title }}</div>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                             </li>
                         {% endfor %}
                     </ul>
