@@ -225,6 +225,29 @@ register_taxonomy(
 	)
 );
 
+register_taxonomy(
+	'event_category',
+	array('event'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+	array(
+		'hierarchical' => false,     /* if this is true, it acts like categories */
+		'labels' => array(
+			'name' => __('Category', 'bonestheme'), /* name of the custom taxonomy */
+			'singular_name' => __('Category', 'bonestheme'), /* single taxonomy name */
+			'search_items' =>  __('Search Categories', 'bonestheme'), /* search title for taxomony */
+			'all_items' => __('All Categories', 'bonestheme'), /* all title for taxonomies */
+			'parent_item' => __('Parent Category', 'bonestheme'), /* parent title for taxonomy */
+			'parent_item_colon' => __('Parent Category:', 'bonestheme'), /* parent taxonomy title */
+			'edit_item' => __('Edit Category', 'bonestheme'), /* edit custom taxonomy title */
+			'update_item' => __('Update Category', 'bonestheme'), /* update title for taxonomy */
+			'add_new_item' => __('Add New Category', 'bonestheme'), /* add new title for taxonomy */
+			'new_item_name' => __('New Category Name', 'bonestheme') /* name title for taxonomy */
+		),
+		'show_admin_column' => true,
+		'show_ui' => true,
+		'query_var' => true
+	)
+);
+
 // adding the function to the Wordpress init
 add_action('init', 'post_project');
 add_action('init', 'post_news');
