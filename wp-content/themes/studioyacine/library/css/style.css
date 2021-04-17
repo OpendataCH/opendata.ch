@@ -834,6 +834,75 @@ Author: Yacine Belarbi @ studioyacine.ch
 /*********************
 COMPONENTS
 *********************/
+.SimplePage--body .wp-block-gallery {
+  margin: 3rem 0;
+}
+
+.SimplePage--body .wp-block-gallery img {
+  width: 100%;
+}
+
+.SimplePage--body .wp-block-gallery figure {
+  display: block;
+}
+
+.SimplePage--body .wp-block-gallery figcaption {
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  background: none;
+  padding: 0;
+  position: static;
+  text-align: left;
+  color: #000;
+  margin-top: 0.25em;
+}
+
+.SimplePage--body .wp-block-gallery figcaption em,
+.SimplePage--body .wp-block-gallery figcaption i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.SimplePage--body .wp-block-gallery figcaption strong,
+.SimplePage--body .wp-block-gallery figcaption b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.SimplePage--body .wp-block-gallery figcaption a {
+  color: #000 !important;
+}
+
+.SimplePage--body .wp-block-gallery figcaption.blocks-gallery-caption {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.wp-block-gallery .blocks-gallery-grid {
+  display: flex !important;
+  list-style: none;
+  max-width: none;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.wp-block-gallery .blocks-gallery-grid li.blocks-gallery-item:before {
+  display: none;
+}
+
+.wp-block-gallery .blocks-gallery-grid li.blocks-gallery-item {
+  padding: 0;
+}
+
+@media (max-width: 750px) {
+  .wp-block-gallery .blocks-gallery-grid li.blocks-gallery-item {
+    margin-bottom: 2rem;
+  }
+}
+
 .wp-block-image {
   margin: 3rem 0;
 }
@@ -848,7 +917,6 @@ COMPONENTS
   width: 100%;
   height: auto;
   border-radius: 3px;
-  margin-bottom: 1rem;
 }
 
 .wp-block-image a:hover {
@@ -863,15 +931,49 @@ COMPONENTS
 .wp-block-image figcaption {
   font-size: 0.9rem;
   line-height: 1.2rem;
-  color: #eee;
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
-.wp-block-image figcaption a {
-  color: #eee !important;
+.wp-block-image figcaption em,
+.wp-block-image figcaption i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
-.wp-block-image figcaption a:hover {
-  color: #333 !important;
+.wp-block-image figcaption strong,
+.wp-block-image figcaption b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.wp-block-quote {
+  position: relative;
+  margin: 3rem 0;
+  max-width: 980px;
+  border-left: 4px solid #e61414;
+  padding: 0.4em 0 0.4em 2rem;
+}
+
+.wp-block-quote p {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25em !important;
+}
+
+.wp-block-quote p em,
+.wp-block-quote p i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.wp-block-quote p strong,
+.wp-block-quote p b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.wp-block-quote cite {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  color: #aaa;
 }
 
 /******************************************************************
@@ -1808,7 +1910,7 @@ html.overlayIsOpen body {
 
 .Searchoverlay--close {
   position: absolute;
-  top: 1rem;
+  top: 2.2rem;
   right: calc(50% - 655px);
   z-index: 999;
   width: 24px;
@@ -1869,7 +1971,7 @@ Stylesheet: Social links
 
 ******************************************************************/
 .SocialLinks li + li {
-  margin-top: 0.25rem;
+  margin-top: 0.1em;
 }
 
 .SocialLinks a {
@@ -2028,7 +2130,7 @@ Stylesheet: Social links
 .TeaserGrid.size--3 .Teaser--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.3rem;
-  line-height: 1.6rem;
+  line-height: 1.7rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
 }
@@ -2112,7 +2214,7 @@ Stylesheet: Social links
 .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.3rem;
-  line-height: 1.6rem;
+  line-height: 1.7rem;
   letter-spacing: -0.02em;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
@@ -2476,7 +2578,7 @@ Stylesheet: Social links
 .HomeCTA a span {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.3rem;
-  line-height: 1.6rem;
+  line-height: 1.7rem;
   letter-spacing: -0.02em;
 }
 
@@ -2621,7 +2723,7 @@ Stylesheet: Social links
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.3rem;
-  line-height: 1.6rem;
+  line-height: 1.7rem;
   letter-spacing: -0.02em;
   margin-bottom: 1em;
 }
@@ -2690,34 +2792,34 @@ Stylesheet: Social links
   margin-top: 1em;
 }
 
-.SimplePage--body ul {
+.SimplePage--body ul:not([class]) {
   margin-left: -1em;
   display: block;
   margin: 1em 0;
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body ul {
+  .SimplePage--body ul:not([class]) {
     max-width: 80%;
   }
 }
 
-.SimplePage--body ul > li {
+.SimplePage--body ul:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 1.5ex;
 }
 
-.SimplePage--body ul > li:before {
+.SimplePage--body ul:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
-  color: #e61414;
+  color: #000;
 }
 
-.SimplePage--body ol {
+.SimplePage--body ol:not([class]) {
   margin-left: -1em;
   display: block;
   display: block;
@@ -2727,32 +2829,32 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body ol {
+  .SimplePage--body ol:not([class]) {
     max-width: 80%;
   }
 }
 
-.SimplePage--body ol > li {
+.SimplePage--body ol:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 1.5ex;
 }
 
-.SimplePage--body ol > li:before {
+.SimplePage--body ol:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
-  color: #e61414;
+  color: #000;
 }
 
-.SimplePage--body ol > li:not(.gfield) {
+.SimplePage--body ol:not([class]) > li:not(.gfield) {
   padding-left: 1.25em;
   list-style-type: none;
 }
 
-.SimplePage--body ol > li:not(.gfield):before {
+.SimplePage--body ol:not([class]) > li:not(.gfield):before {
   margin-left: -1.5em;
   counter-increment: ol--counter;
   content: counter(ol--counter) ".";
@@ -2761,7 +2863,7 @@ Stylesheet: Social links
   color: #000;
 }
 
-.ie .SimplePage--body ol > li {
+.ie .SimplePage--body ol:not([class]) > li {
   list-style: decimal inside none;
 }
 

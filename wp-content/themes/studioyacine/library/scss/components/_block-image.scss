@@ -9,7 +9,7 @@
         width: 100%;
         height: auto;
         border-radius: 3px;
-        margin-bottom: 1rem;
+        // margin-bottom: 1rem;
     }
 
     a:hover {
@@ -22,14 +22,9 @@
 
     figcaption {
         @include font-s;
-        color: $greyLight;
+        @include font(normal);
 
         a {
-            color: $greyLight !important;
-
-            &:hover {
-                color: #333 !important;
-            }
         }
     }
 }

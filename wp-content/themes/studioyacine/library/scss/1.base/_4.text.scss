@@ -39,7 +39,7 @@ Stylesheet: Text Styles
 @mixin font-m {
     @include font(normal);
     font-size: rem(26px);
-    line-height: rem(32px);
+    line-height: rem(34px);
     letter-spacing: -0.02em;
 }
 
@@ -154,7 +154,7 @@ Stylesheet: Text Styles
             display: inline-block;
             @include font(medium);
             content: "\2013";
-            color: $red;
+            color: $black;
         }
     }
 }
@@ -237,15 +237,17 @@ Stylesheet: Text Styles
         }
 
         ul {
-            @include ul;
-
-            margin: 1em 0;
+            &:not([class]) {
+                @include ul;
+                margin: 1em 0;
+            }
         }
 
         ol {
-            @include ol;
-
-            margin: 1em 0;
+            &:not([class]) {
+                @include ol;
+                margin: 1em 0;
+            }
         }
     }
 

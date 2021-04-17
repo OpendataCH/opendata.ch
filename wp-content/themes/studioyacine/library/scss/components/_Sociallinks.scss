@@ -8,7 +8,7 @@ Stylesheet: Social links
 
 .SocialLinks {
     li + li {
-        margin-top: 0.25rem;
+        margin-top: 0.1em;
     }
     a {
         @include font(normal);

@@ -1,0 +1,53 @@
+.SimplePage--body .wp-block-gallery {
+    margin: 3rem 0;
+
+    img {
+        width: 100%;
+    }
+
+    figure {
+        display: block;
+    }
+
+    figcaption {
+        @include font-xs;
+        @include font(normal);
+        background: none;
+        padding: 0;
+        position: static;
+        text-align: left;
+        color: $black;
+        margin-top: 0.25em;
+
+        a {
+            color: $black !important;
+        }
+    }
+
+    figcaption.blocks-gallery-caption {
+        @include font-s;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+    }
+}
+
+.wp-block-gallery .blocks-gallery-grid {
+    display: flex !important;
+    list-style: none;
+    max-width: none;
+    width: 100%;
+    margin-bottom: 0;
+
+    li.blocks-gallery-item:before {
+        display: none;
+    }
+
+    li.blocks-gallery-item {
+        padding: 0;
+        @include mobile {
+            margin-bottom: 2rem;
+        }
+    }
+}
