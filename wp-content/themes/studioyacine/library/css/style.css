@@ -796,11 +796,13 @@ Author: Yacine Belarbi @ studioyacine.ch
   margin-left: 1em;
 }
 
-#menu-main-navigation li.current-menu-item a {
+#menu-main-navigation > li.current-menu-item > a,
+#menu-main-navigation li.current_page_parent > a {
   color: #e61414;
 }
 
-#menu-main-navigation li.current-menu-item a:hover {
+#menu-main-navigation > li.current-menu-item > a:hover,
+#menu-main-navigation li.current_page_parent > a:hover {
   opacity: 1;
 }
 
@@ -829,6 +831,24 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 #menu-main-navigation a:hover {
   opacity: 0.5;
+}
+
+#menu-main-navigation li.menu-item-has-children:hover .sub-menu {
+  display: block;
+}
+
+#menu-main-navigation .sub-menu {
+  position: absolute;
+  display: none;
+}
+
+#menu-main-navigation .sub-menu li + li {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+#menu-main-navigation .sub-menu li.current_page_item a {
+  color: #ccc;
 }
 
 /*********************
@@ -863,7 +883,6 @@ COMPONENTS
   width: 100%;
   height: auto;
   border-radius: 3px;
-  margin-bottom: 1rem;
 }
 
 .wp-block-image a:hover {
@@ -878,11 +897,11 @@ COMPONENTS
 .wp-block-image figcaption {
   font-size: 0.9rem;
   line-height: 1.2rem;
-  color: #eee;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .wp-block-image figcaption a {
-  color: #eee !important;
+  color: rgba(0, 0, 0, 0.4) !important;
 }
 
 .wp-block-image figcaption a:hover {
@@ -2087,7 +2106,6 @@ Stylesheet: Social links
   flex-basis: 64px;
   background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPjxwYXRoIGQ9J00yIDBIMHYyaDJWMHptMiAySDJ2MmgyVjJ6Jy8+PC9zdmc+);
   position: relative;
-  background: orange;
   margin-right: 1rem;
   margin-bottom: 0;
 }
@@ -2156,6 +2174,10 @@ Stylesheet: Social links
   .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--date {
     margin-left: auto;
   }
+}
+
+.TeaserNews:hover {
+  opacity: 0.7;
 }
 
 .TeaserNews--date {
@@ -2564,6 +2586,12 @@ Stylesheet: Social links
   }
 }
 
+@media (max-width: 1382px) {
+  .SimplePage {
+    margin: 0;
+  }
+}
+
 .SimplePage--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 2.25rem;
@@ -2729,7 +2757,6 @@ Stylesheet: Social links
   left: 0;
   display: inline-block;
   content: "\2013";
-  color: #e61414;
 }
 
 .SimplePage--body ol {
@@ -2759,7 +2786,6 @@ Stylesheet: Social links
   left: 0;
   display: inline-block;
   content: "\2013";
-  color: #e61414;
 }
 
 .SimplePage--body ol > li:not(.gfield) {
