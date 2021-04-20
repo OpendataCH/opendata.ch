@@ -27,7 +27,7 @@ html.overlayIsOpen {
     position: relative;
     z-index: 10;
     padding: 2rem;
-    padding-right: 1.5rem;
+    padding-right: 1.8rem;
     padding-top: 15vh;
     width: 320px;
     height: 100vh;
@@ -44,6 +44,10 @@ html.overlayIsOpen {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    li {
+        text-align: right;
+    }
 
     li + li {
         margin-top: 1rem;
@@ -62,6 +66,20 @@ html.overlayIsOpen {
     li.current-menu-item a {
         opacity: 0.3;
         pointer-events: none;
+    }
+
+    .sub-menu {
+        padding: 1rem 0 0;
+
+        li {
+            line-height: 1;
+        }
+        li + li {
+            margin-top: 0;
+        }
+        a {
+            @include font-base;
+        }
     }
 }
 
