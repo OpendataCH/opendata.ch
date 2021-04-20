@@ -1,0 +1,14 @@
+.wp-block-media-text {
+    margin: 3rem 0;
+
+    img {
+        height: auto;
+    }
+
+    .wp-block-media-text__content {
+        @include mobile {
+            padding: 0;
+            margin: 1rem 0;
+        }
+    }
+}
