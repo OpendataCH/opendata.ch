@@ -38,6 +38,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 #menu-main-navigation {
     display: none;
+
     @include above-mobile {
         display: flex;
     }
@@ -46,8 +47,10 @@ Author: Yacine Belarbi @ studioyacine.ch
         margin-left: 1em;
     }
 
-    li.current-menu-item a {
+    > li.current-menu-item > a,
+    li.current_page_parent > a {
         color: $red;
+
         &:hover {
             opacity: 1;
         }
@@ -59,6 +62,24 @@ Author: Yacine Belarbi @ studioyacine.ch
 
         &:hover {
             opacity: 0.5;
+        }
+    }
+
+    li.menu-item-has-children:hover .sub-menu {
+        display: block;
+    }
+
+    .sub-menu {
+        position: absolute;
+        display: none;
+
+        li + li {
+            margin-left: 0;
+            margin-top: 0;
+        }
+
+        li.current_page_item a {
+            color: $grey;
         }
     }
 }

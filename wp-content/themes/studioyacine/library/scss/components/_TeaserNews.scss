@@ -10,7 +10,6 @@
         .TeaserNews--image {
             flex-basis: 64px;
             @include image-ratio("teasersquare");
-            background: orange;
             margin-right: 1rem;
             margin-bottom: 0;
         }
@@ -37,6 +36,12 @@
                 margin-left: auto;
             }
         }
+    }
+}
+
+.TeaserNews {
+    &:hover {
+        opacity: 0.7;
     }
 }
 

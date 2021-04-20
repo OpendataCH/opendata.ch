@@ -154,7 +154,6 @@ Stylesheet: Text Styles
             display: inline-block;
             @include font(medium);
             content: "\2013";
-            color: $red;
         }
     }
 }
