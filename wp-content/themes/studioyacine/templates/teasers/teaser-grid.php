@@ -14,10 +14,22 @@
     </div>
 
     <div class='Teaser--text'>
-        <?php// var_dump(get_field('date')); ?>
+        
         <?php if (isset($args['date'])) : ?>
             <time class='Teaser--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d. F Y'); ?></time>
         <?php endif; ?>
+
+		<?php if (isset($args['posttype']) && $args['posttype'] == 'event') : ?>
+			<?php 
+				$date_string = get_field('date');
+				if($date_string):
+					$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_string);
+				?>
+				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d. F Y'); ?></time>
+				<?php endif; 
+			?>
+			
+		<?php endif; ?>
 
 
         <h3 class='Teaser--title'><?php the_title(); ?></h3>

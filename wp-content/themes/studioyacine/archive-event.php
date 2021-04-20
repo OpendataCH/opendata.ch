@@ -32,9 +32,9 @@
 					<?php
 					foreach ($upcomingPosts as $post) :
 						setup_postdata($post);
+						$args = array('posttype' => 'event');
 						get_template_part('templates/teasers/teaser', 'grid', $args);
 					endforeach;
-
 					wp_reset_postdata();
 					?>
 
@@ -61,7 +61,7 @@
 
 					<div class="TeaserGrid--item">
 
-						<?php $args = array('text' => false, 'date' => true); ?>
+						<?php $args = array('text' => false, 'posttype' => 'event'); ?>
 						<?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
 
 					</div>
