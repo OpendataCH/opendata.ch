@@ -22,6 +22,7 @@
 
     &.size--3 {
         grid-template-columns: repeat(3, 1fr);
+        row-gap: 4rem;
         @include mobile {
             grid-template-columns: 1fr;
         }

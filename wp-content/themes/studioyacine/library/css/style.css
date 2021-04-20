@@ -1986,6 +1986,7 @@ Stylesheet: Social links
 
 .TeaserGrid.size--3 {
   grid-template-columns: repeat(3, 1fr);
+  row-gap: 4rem;
 }
 
 @media (max-width: 750px) {
