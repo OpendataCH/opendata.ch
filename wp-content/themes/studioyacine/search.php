@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="main" class="SimplePage" role="main">
+<main class="main" class="SimplePage" role="main">
 
 	<h1 class="SimplePage--title">
 		<span class='SimplePage--title--label'><?php _e('Search Results for:', 'bonestheme'); ?></span>

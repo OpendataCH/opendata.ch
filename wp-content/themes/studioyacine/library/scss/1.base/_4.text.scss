@@ -267,6 +267,11 @@ Stylesheet: Text Styles
         }
     }
 
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
     ::-moz-selection {
         text-shadow: none;
         background: #eee;

@@ -16,7 +16,7 @@
     <div class='Teaser--text'>
         
         <?php if (isset($args['date'])) : ?>
-            <time class='Teaser--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d. F Y'); ?></time>
+            <time class='Teaser--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d M Y'); ?></time>
         <?php endif; ?>
 
 		<?php if (isset($args['posttype']) && $args['posttype'] == 'event') : ?>
@@ -25,7 +25,7 @@
 				if($date_string):
 					$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_string);
 				?>
-				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d. F Y'); ?></time>
+				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M Y'); ?></time>
 				<?php endif; 
 			?>
 			
