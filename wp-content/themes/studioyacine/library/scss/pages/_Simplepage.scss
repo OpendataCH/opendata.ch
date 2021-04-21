@@ -1,13 +1,25 @@
 .SimplePage {
     @include sitewidth-s;
-    @include desktop {
-        margin: 0;
-    }
 }
 
 .SimplePage--title {
     @include font-xl;
-    margin-bottom: 1em;
+    margin-bottom: 0.25em;
+
+    &:last-child {
+        margin-bottom: 0.5em;
+    }
+}
+
+.SimplePage--postdate {
+    @include font-xs;
+    @include font(bold);
+    color: $red;
+    display: block;
+    margin-bottom: 2rem;
+    @include above-mobile {
+        text-align: center;
+    }
 }
 
 .SimplePage--body {
@@ -16,16 +28,16 @@
 
 body.single-news,
 body.single-event {
-    .SimplePage--title {
+    .SimplePage {
         margin-left: auto;
         margin-right: auto;
         max-width: 940px;
     }
 
-    .SimplePage--body {
-        max-width: 940px;
-        margin-left: auto;
-        margin-right: auto;
+    .SimplePage--title {
+        @include above-mobile {
+            text-align: center;
+        }
     }
 }
 

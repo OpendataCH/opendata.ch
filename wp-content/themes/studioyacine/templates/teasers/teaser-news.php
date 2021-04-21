@@ -19,7 +19,7 @@
 
         <h3 class='TeaserNews--title'><?php the_title(); ?></h3>
 
-        <time class='TeaserNews--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d.m.y'); ?></time>
+        <time class='TeaserNews--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d M Y'); ?></time>
 
     </div>
 

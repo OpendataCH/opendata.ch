@@ -1516,7 +1516,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Header {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
   }
 }
 
@@ -1870,7 +1870,7 @@ html.overlayIsOpen body {
 
 .Searchoverlay--close {
   position: absolute;
-  top: 1rem;
+  top: 1.8rem;
   right: calc(50% - 655px);
   z-index: 999;
   width: 24px;
@@ -2615,18 +2615,12 @@ Stylesheet: Social links
   }
 }
 
-@media (max-width: 1382px) {
-  .SimplePage {
-    margin: 0;
-  }
-}
-
 .SimplePage--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: -0.02em;
-  margin-bottom: 1em;
+  margin-bottom: 0.25em;
 }
 
 .SimplePage--title em,
@@ -2650,6 +2644,25 @@ Stylesheet: Social links
   .SimplePage--title {
     font-size: 4.5rem;
     line-height: 4.5rem;
+  }
+}
+
+.SimplePage--title:last-child {
+  margin-bottom: 0.5em;
+}
+
+.SimplePage--postdate {
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  color: #e61414;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 751px) {
+  .SimplePage--postdate {
+    text-align: center;
   }
 }
 
@@ -2867,6 +2880,11 @@ Stylesheet: Social links
   text-decoration: none;
 }
 
+.SimplePage--body img {
+  max-width: 100%;
+  height: auto;
+}
+
 .SimplePage--body ::-moz-selection {
   text-shadow: none;
   background: #eee;
@@ -2905,18 +2923,18 @@ Stylesheet: Social links
   color: #e61414;
 }
 
-body.single-news .SimplePage--title,
-body.single-event .SimplePage--title {
+body.single-news .SimplePage,
+body.single-event .SimplePage {
   margin-left: auto;
   margin-right: auto;
   max-width: 940px;
 }
 
-body.single-news .SimplePage--body,
-body.single-event .SimplePage--body {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
+@media (min-width: 751px) {
+  body.single-news .SimplePage--title,
+  body.single-event .SimplePage--title {
+    text-align: center;
+  }
 }
 
 body.search-results .SimplePage--title--label,
