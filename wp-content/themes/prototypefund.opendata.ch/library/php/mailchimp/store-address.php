@@ -3,13 +3,10 @@
 require_once('MCAPI.class.php');
 
 // grab an API Key from http://admin.mailchimp.com/account/api/
-//$api_key = 'bfb253af2c5146e08dae16504c51689b-us5'; // RU
-$api_key = 'aebb7b69c1176126406b1dc4c7875a89-us5';
-
+$api_key = '';
 // grab your List's Unique Id by going to http://admin.mailchimp.com/lists/
 // Click the "settings" link for the list - the Unique Id is at the bottom of that page.
-//$list_id = 'e560ebaf33'; // Rainbow Unicorn Testlist id
-$list_id = 'd6f6159664'; // Ptf list id
+$list_id = '';
 
 //deutsch
 $message_texts['de']['0'] = 'Bitte eine E-Mail Adresse angeben.';
