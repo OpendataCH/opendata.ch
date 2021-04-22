@@ -28,6 +28,7 @@
 
 .TeamMember--position {
     @include font-base;
+    color: $greyDark;
     @include above-mobile {
         @include font-s;
     }
@@ -36,6 +37,18 @@
 
 .TeamMember--text {
     margin-top: 1rem;
+    @include paragraph;
+}
+
+.TeamMember--twitter {
+    color: $greyDark;
+    a {
+        color: $red;
+    }
+
+    &:before {
+        content: "Twitter: ";
+    }
 }
 
 .TeamMember + .TeamMember {

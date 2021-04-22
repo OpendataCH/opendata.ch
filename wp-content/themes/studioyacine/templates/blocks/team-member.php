@@ -26,6 +26,18 @@
 			<div class='TeamMember--text'>
 				<?php echo $content; ?>
 			</div>
+
+			<?php
+			$link = get_field('twitter', $featured_post->ID);
+			if($link):
+				$link_target = $link['target'] ? $link['target'] : '_self';
+				?>
+				<div class='TeamMember--twitter'>
+					<a class='' target="<?php echo esc_attr($link_target); ?>" title='<?php echo $link['title']; ?>' href="<?php echo $link['url']; ?>">
+						<?php echo $link['title']; ?>
+					</a>
+				</div>
+			<?php endif; ?>
 		</div>
 
 	<?php endif; ?>
