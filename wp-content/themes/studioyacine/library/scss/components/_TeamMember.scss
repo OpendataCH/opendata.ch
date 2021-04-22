@@ -1,0 +1,56 @@
+.TeamMember {
+    margin-bottom: 3rem;
+    @include clearfix;
+
+    .TeamMember--image {
+        margin-bottom: 1rem;
+        @include above-mobile {
+            float: left;
+            max-width: 250px;
+            margin-right: 2rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .TeamMember--content {
+        display: block;
+        overflow: hidden;
+    }
+}
+
+.TeamMember--title {
+    @include font-l;
+    margin-bottom: 0;
+    @include above-mobile {
+        @include font-m;
+    }
+}
+
+.TeamMember--position {
+    @include font-base;
+    color: $greyDark;
+    @include above-mobile {
+        @include font-s;
+    }
+    display: block;
+}
+
+.TeamMember--text {
+    margin-top: 1rem;
+    @include paragraph;
+}
+
+.TeamMember--twitter {
+    color: $greyDark;
+    a {
+        color: $red;
+    }
+
+    &:before {
+        content: "Twitter: ";
+    }
+}
+
+.TeamMember + .TeamMember {
+    margin-top: 3rem;
+}

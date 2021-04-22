@@ -116,6 +116,16 @@ Stylesheet: Text Styles
     }
 }
 
+@mixin quote {
+    margin-bottom: 1em;
+    padding: 0.2em 0 0.2em 2rem;
+    border-left: 3px solid $red;
+    @include font-m;
+    @include font(light);
+    max-width: 700px;
+    letter-spacing: 0;
+}
+
 @mixin hr {
     height: 1px;
     background: $greyLight;
@@ -146,7 +156,7 @@ Stylesheet: Text Styles
 
         position: relative;
         list-style-type: none;
-        margin-bottom: 1.5ex;
+        margin-bottom: 0.25ex;
 
         &:before {
             position: absolute;
@@ -197,11 +207,11 @@ Stylesheet: Text Styles
             @include h1;
         }
 
-        h2 {
+        h2:not([class]) {
             @include h2;
         }
 
-        h3 {
+        h3\:not([class]) {
             @include h3;
         }
 
@@ -229,6 +239,10 @@ Stylesheet: Text Styles
 
         p {
             @include paragraph;
+        }
+
+        blockquote {
+            @include quote;
         }
 
         p + h2 {

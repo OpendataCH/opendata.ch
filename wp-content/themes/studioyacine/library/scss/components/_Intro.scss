@@ -11,7 +11,10 @@
     }
 
     h1 {
-        @include font-l;
+        @include font-xl;
+        @include above-mobile {
+            @include font-l;
+        }
         @include above-sitewidth {
             padding-left: calc((#{$site-width} - #{$site-width-small}) / 2);
         }
