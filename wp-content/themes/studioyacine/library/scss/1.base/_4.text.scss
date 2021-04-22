@@ -197,11 +197,11 @@ Stylesheet: Text Styles
             @include h1;
         }
 
-        h2 {
+        h2:not([class]) {
             @include h2;
         }
 
-        h3 {
+        h3:not([class]) {
             @include h3;
         }
 

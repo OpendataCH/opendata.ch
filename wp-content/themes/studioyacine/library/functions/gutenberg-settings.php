@@ -40,7 +40,8 @@ function studioyacine_allowed_block_types($allowed_blocks)
         'core/gallery',
         'core/media-text',
         'core/separator',
-        'core-embed/youtube'
+        'core-embed/youtube',
+		'acf/team-member'
     );
 }
 add_filter('allowed_block_types', 'studioyacine_allowed_block_types');
@@ -75,6 +76,8 @@ function ea_disable_editor($id = false)
 }
 
 
+
+
 /**
  * Disable Gutenberg by template
  *
@@ -92,3 +95,32 @@ function ea_disable_gutenberg($can_edit, $post_type)
 }
 // add_filter( 'gutenberg_can_edit_post_type', 'ea_disable_gutenberg', 10, 2 );
 add_filter('use_block_editor_for_post_type', 'ea_disable_gutenberg', 10, 2);
+
+
+
+
+
+
+
+
+// BLOCK - TEAM MEMBER
+function acf_blocks() {
+	
+	// check function exists
+	if( function_exists('acf_register_block') ) {
+		
+		// register a portfolio item block
+		acf_register_block(array(
+			'name' => 'team-member',
+			'title' => __('Team Member'),
+			'description'	=> __('Embed a team member'),
+			'render_template'	=> 'templates/blocks/team-member.php',
+			'category' => 'formatting',
+			'icon' => 'insert',
+			'mode' => 'edit',
+			'keywords' => array( 'team','member' ),
+    	));
+	}
+}
+
+add_action('acf/init', 'acf_blocks');
