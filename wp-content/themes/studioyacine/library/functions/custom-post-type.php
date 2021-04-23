@@ -182,7 +182,7 @@ register_taxonomy(
 	'news_category',
 	array('news'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 	array(
-		'hierarchical' => false,     /* if this is true, it acts like categories */
+		'hierarchical' => true,     /* if this is true, it acts like categories */
 		'labels' => array(
 			'name' => __('Category', 'bonestheme'), /* name of the custom taxonomy */
 			'singular_name' => __('Category', 'bonestheme'), /* single taxonomy name */
@@ -197,7 +197,8 @@ register_taxonomy(
 		),
 		'show_admin_column' => true,
 		'show_ui' => true,
-		'query_var' => true
+		'query_var' => true,
+		'show_in_rest' => true
 	)
 );
 
@@ -206,7 +207,7 @@ register_taxonomy(
 	'team_category',
 	array('team_member'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 	array(
-		'hierarchical' => false,     /* if this is true, it acts like categories */
+		'hierarchical' => true,     /* if this is true, it acts like categories */
 		'labels' => array(
 			'name' => __('Category', 'bonestheme'), /* name of the custom taxonomy */
 			'singular_name' => __('Category', 'bonestheme'), /* single taxonomy name */
@@ -229,7 +230,7 @@ register_taxonomy(
 	'event_category',
 	array('event'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 	array(
-		'hierarchical' => false,     /* if this is true, it acts like categories */
+		'hierarchical' => true,     /* if this is true, it acts like categories */
 		'labels' => array(
 			'name' => __('Category', 'bonestheme'), /* name of the custom taxonomy */
 			'singular_name' => __('Category', 'bonestheme'), /* single taxonomy name */
@@ -244,7 +245,8 @@ register_taxonomy(
 		),
 		'show_admin_column' => true,
 		'show_ui' => true,
-		'query_var' => true
+		'query_var' => true,
+		'show_in_rest' => true
 	)
 );
 
