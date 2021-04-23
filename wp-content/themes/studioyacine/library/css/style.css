@@ -733,7 +733,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 .SectionHeader strong {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -761,9 +761,8 @@ Author: Yacine Belarbi @ studioyacine.ch
 .SectionHeader a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
-  text-decoration: underline;
-  text-decoration-color: #e61414;
+  line-height: 1.27273rem;
+  color: #ccc;
   letter-spacing: 0.02em;
 }
 
@@ -778,6 +777,11 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 .SectionHeader a:hover {
+  text-decoration: underline;
+  text-decoration-color: #e61414;
+}
+
+.SectionHeader a:hover:hover {
   color: #e61414;
   text-decoration: none;
 }
@@ -809,7 +813,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 #menu-main-navigation a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
 }
 
 #menu-main-navigation a em,
@@ -889,7 +893,7 @@ COMPONENTS
 
 .wp-block-image figcaption {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -985,7 +989,7 @@ html.overlayIsOpen body {
 
 .Flyout--menu a {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1390,7 +1394,7 @@ html.overlayIsOpen body {
 
 .Footer--title {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1471,7 +1475,7 @@ html.overlayIsOpen body {
   align-items: center;
   justify-content: center;
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1812,7 +1816,7 @@ html.overlayIsOpen body {
   right: 0;
   color: #000;
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -2001,6 +2005,7 @@ Stylesheet: Social links
 @media (min-width: 751px) {
   .TeamMember .TeamMember--image {
     float: left;
+    width: 100%;
     max-width: 250px;
     margin-right: 2rem;
     margin-bottom: 0;
@@ -2071,23 +2076,26 @@ Stylesheet: Social links
 @media (min-width: 751px) {
   .TeamMember--position {
     font-size: 0.90909rem;
-    line-height: 1.18182rem;
+    line-height: 1.27273rem;
   }
 }
 
 .TeamMember--text {
   margin-top: 1rem;
   margin-bottom: 1em;
+  font-size: 0.90909rem;
+  line-height: 1.27273rem;
 }
 
 .TeamMember--twitter {
   color: #939393;
   display: flex;
+  align-items: center;
 }
 
 .TeamMember--twitter .icon {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   color: #00acee;
 }
 
@@ -2188,7 +2196,7 @@ Stylesheet: Social links
   font-size: 1.36364rem;
   line-height: 1.63636rem;
   letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .Teaser--title em,
@@ -2203,7 +2211,7 @@ Stylesheet: Social links
 
 .Teaser--text p {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
@@ -2521,7 +2529,7 @@ Stylesheet: Social links
 
 .HomeIntro p {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   max-width: 1124px;
 }
@@ -3087,7 +3095,7 @@ Stylesheet: Social links
 
 .SimplePage--body .has-small-font-size {
   font-size: 0.90909rem;
-  line-height: 1.18182rem;
+  line-height: 1.27273rem;
   font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   letter-spacing: 0;
 }
