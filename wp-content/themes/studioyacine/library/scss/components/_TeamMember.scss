@@ -42,12 +42,20 @@
 
 .TeamMember--twitter {
     color: $greyDark;
-    a {
-        color: $red;
+    display: flex;
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        color: #00acee;
     }
 
-    &:before {
-        content: "Twitter: ";
+    a {
+        color: $greyDark;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 

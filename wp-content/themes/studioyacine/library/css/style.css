@@ -352,7 +352,7 @@ Stylesheet: Global
 ******************************************************************/
 html {
   width: 100%;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 30px;
   text-size-adjust: 100%;
   background-color: #fff;
@@ -360,19 +360,19 @@ html {
 
 @media (max-width: 900px) {
   html {
-    font-size: calc(0.8 * 20px);
+    font-size: calc(0.8 * 22px);
   }
 }
 
 @media (max-width: 575px) {
   html {
-    font-size: calc(0.75 * 20px);
+    font-size: calc(0.75 * 22px);
   }
 }
 
 body {
   font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 30px;
   overflow-x: hidden;
 }
@@ -732,12 +732,12 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 .SectionHeader strong {
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
 }
 
@@ -753,15 +753,15 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 @media (min-width: 751px) {
   .SectionHeader strong {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
 
 .SectionHeader a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   text-decoration: underline;
   text-decoration-color: #e61414;
   letter-spacing: 0.02em;
@@ -808,8 +808,8 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 #menu-main-navigation a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: calc(20px* 0.8);
-  line-height: calc(30px* 0.8);
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
 }
 
 #menu-main-navigation a em,
@@ -820,13 +820,6 @@ Author: Yacine Belarbi @ studioyacine.ch
 #menu-main-navigation a strong,
 #menu-main-navigation a b {
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-}
-
-@media (min-width: 751px) {
-  #menu-main-navigation a {
-    font-size: 20px;
-    line-height: 30px;
-  }
 }
 
 #menu-main-navigation a:hover {
@@ -895,8 +888,8 @@ COMPONENTS
 }
 
 .wp-block-image figcaption {
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -991,14 +984,14 @@ html.overlayIsOpen body {
 }
 
 .Flyout--menu a {
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 2.04545rem;
+  line-height: 2.27273rem;
   letter-spacing: -0.02em;
   color: #fff;
 }
@@ -1025,15 +1018,15 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Flyout--menu a {
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 2.95455rem;
+    line-height: 2.95455rem;
   }
 }
 
 @media (min-width: 1201px) {
   .Flyout--menu a {
-    font-size: 4.5rem;
-    line-height: 4.5rem;
+    font-size: 4.09091rem;
+    line-height: 4.09091rem;
   }
 }
 
@@ -1059,13 +1052,13 @@ html.overlayIsOpen body {
 }
 
 .Flyout--menu .sub-menu a {
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
 }
 
 @media (min-width: 751px) {
   .Flyout--menu .sub-menu a {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1308,7 +1301,7 @@ html.overlayIsOpen body {
 
 .Footer--links a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   text-decoration: underline;
   text-decoration-color: #e61414;
@@ -1327,7 +1320,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--links a {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1340,8 +1333,8 @@ html.overlayIsOpen body {
 .Footer--bottom {
   margin-left: calc(50% - 545px);
   margin-right: calc(50% - 545px);
-  font-size: 0.7rem;
-  line-height: 0.9rem;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
   color: #ccc;
   padding-top: 2rem;
   padding-bottom: 1rem;
@@ -1396,8 +1389,8 @@ html.overlayIsOpen body {
 }
 
 .Footer--title {
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1428,14 +1421,14 @@ html.overlayIsOpen body {
 }
 
 .Footer--text > div {
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
 @media (min-width: 751px) {
   .Footer--text > div {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1477,12 +1470,12 @@ html.overlayIsOpen body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   margin-left: auto;
 }
@@ -1499,7 +1492,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--button {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1666,8 +1659,8 @@ html.overlayIsOpen body {
 
 .Intro strong {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
 }
 
@@ -1683,15 +1676,15 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Intro strong {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
 .Intro h1 {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 2.04545rem;
+  line-height: 2.27273rem;
   letter-spacing: -0.02em;
 }
 
@@ -1707,23 +1700,23 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Intro h1 {
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 2.95455rem;
+    line-height: 2.95455rem;
   }
 }
 
 @media (min-width: 1201px) {
   .Intro h1 {
-    font-size: 4.5rem;
-    line-height: 4.5rem;
+    font-size: 4.09091rem;
+    line-height: 4.09091rem;
   }
 }
 
 @media (min-width: 751px) {
   .Intro h1 {
     font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
+    font-size: 1.36364rem;
+    line-height: 1.63636rem;
     letter-spacing: -0.02em;
   }
   .Intro h1 em,
@@ -1738,8 +1731,8 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) and (min-width: 751px) {
   .Intro h1 {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
@@ -1767,8 +1760,8 @@ html.overlayIsOpen body {
   padding-left: 0;
   width: 100%;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   border: none;
   border-bottom: 3px solid #eee;
@@ -1787,8 +1780,8 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Searchoverlay input {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
@@ -1818,8 +1811,8 @@ html.overlayIsOpen body {
   top: 2rem;
   right: 0;
   color: #000;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1967,7 +1960,7 @@ Stylesheet: Social links
 
 .SocialLinks a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
 }
 
@@ -1983,7 +1976,7 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .SocialLinks a {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -2021,8 +2014,8 @@ Stylesheet: Social links
 
 .TeamMember--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   margin-bottom: 0;
 }
@@ -2039,16 +2032,16 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .TeamMember--title {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
 @media (min-width: 751px) {
   .TeamMember--title {
     font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-    font-size: 1.3rem;
-    line-height: 1.6rem;
+    font-size: 1.36364rem;
+    line-height: 1.63636rem;
     letter-spacing: -0.02em;
   }
   .TeamMember--title em,
@@ -2062,7 +2055,7 @@ Stylesheet: Social links
 }
 
 .TeamMember--position {
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   color: #939393;
   display: block;
@@ -2070,15 +2063,15 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .TeamMember--position {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
 
 @media (min-width: 751px) {
   .TeamMember--position {
-    font-size: 0.9rem;
-    line-height: 1.2rem;
+    font-size: 0.90909rem;
+    line-height: 1.18182rem;
   }
 }
 
@@ -2089,14 +2082,21 @@ Stylesheet: Social links
 
 .TeamMember--twitter {
   color: #939393;
+  display: flex;
+}
+
+.TeamMember--twitter .icon {
+  width: 32px;
+  height: 32px;
+  color: #00acee;
 }
 
 .TeamMember--twitter a {
-  color: #e61414;
+  color: #939393;
 }
 
-.TeamMember--twitter:before {
-  content: "Twitter: ";
+.TeamMember--twitter a:hover {
+  text-decoration: underline;
 }
 
 .TeamMember + .TeamMember {
@@ -2185,8 +2185,8 @@ Stylesheet: Social links
 
 .Teaser--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
 }
@@ -2201,16 +2201,9 @@ Stylesheet: Social links
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
-@media (min-width: 751px) {
-  .Teaser--title {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
-  }
-}
-
 .Teaser--text p {
-  font-size: 0.9rem;
-  line-height: 1.2rem;
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
@@ -2226,8 +2219,8 @@ Stylesheet: Social links
 
 .Teaser--date {
   display: block;
-  font-size: 0.7rem;
-  line-height: 0.9rem;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   letter-spacing: 1px;
   color: #e61414;
@@ -2236,8 +2229,8 @@ Stylesheet: Social links
 
 .TeaserGrid.size--3 .Teaser--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.3rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
 }
@@ -2257,14 +2250,14 @@ Stylesheet: Social links
 }
 
 .TeaserGrid.size--4 .Teaser--title {
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   margin-bottom: 0.25rem;
 }
 
 @media (min-width: 751px) {
   .TeaserGrid.size--4 .Teaser--title {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -2318,21 +2311,17 @@ Stylesheet: Social links
 }
 
 .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title {
+  font-size: calc(22px* 0.8);
+  line-height: calc(30px* 0.8);
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.3rem;
-  line-height: 1.6rem;
-  letter-spacing: -0.02em;
-  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  cursor: pointer;
 }
 
-.TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title em,
-.TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title i {
-  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-}
-
-.TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title strong,
-.TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title b {
-  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+@media (min-width: 751px) {
+  .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title {
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 
 .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--title em,
@@ -2356,8 +2345,8 @@ Stylesheet: Social links
 }
 
 .TeaserNews--date {
-  font-size: 0.7rem;
-  line-height: 0.9rem;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   color: #e61414;
 }
@@ -2403,8 +2392,8 @@ Stylesheet: Social links
 
 .TeaserList--item--big .TeaserNews .TeaserNews--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
 }
 
@@ -2420,8 +2409,8 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .TeaserList--item--big .TeaserNews .TeaserNews--title {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
@@ -2500,8 +2489,8 @@ Stylesheet: Social links
 
 .HomeIntro h2 {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 2.04545rem;
+  line-height: 2.27273rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.2em;
 }
@@ -2518,30 +2507,23 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .HomeIntro h2 {
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 2.95455rem;
+    line-height: 2.95455rem;
   }
 }
 
 @media (min-width: 1201px) {
   .HomeIntro h2 {
-    font-size: 4.5rem;
-    line-height: 4.5rem;
+    font-size: 4.09091rem;
+    line-height: 4.09091rem;
   }
 }
 
 .HomeIntro p {
-  font-size: calc(20px* 0.8);
-  line-height: calc(30px* 0.8);
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   max-width: 1124px;
-}
-
-@media (min-width: 751px) {
-  .HomeIntro p {
-    font-size: 20px;
-    line-height: 30px;
-  }
 }
 
 .HomeIntro p em,
@@ -2687,8 +2669,8 @@ Stylesheet: Social links
 
 .HomeCTA a span {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.3rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
 }
 
@@ -2763,8 +2745,8 @@ Stylesheet: Social links
 
 .SimplePage--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 2.04545rem;
+  line-height: 2.27273rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25em;
 }
@@ -2781,15 +2763,15 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .SimplePage--title {
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 2.95455rem;
+    line-height: 2.95455rem;
   }
 }
 
 @media (min-width: 1201px) {
   .SimplePage--title {
-    font-size: 4.5rem;
-    line-height: 4.5rem;
+    font-size: 4.09091rem;
+    line-height: 4.09091rem;
   }
 }
 
@@ -2798,8 +2780,8 @@ Stylesheet: Social links
 }
 
 .SimplePage--postdate {
-  font-size: 0.7rem;
-  line-height: 0.9rem;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   color: #e61414;
   display: block;
@@ -2814,8 +2796,8 @@ Stylesheet: Social links
 
 .SimplePage--body h1 {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   margin-bottom: 0.5ex;
@@ -2833,8 +2815,8 @@ Stylesheet: Social links
 
 @media (min-width: 751px) {
   .SimplePage--body h1 {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
+    font-size: 1.90909rem;
+    line-height: 2.09091rem;
   }
 }
 
@@ -2851,8 +2833,8 @@ Stylesheet: Social links
 .SimplePage--body h2:not([class]) {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.3rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   margin-bottom: 1em;
 }
@@ -2922,8 +2904,8 @@ Stylesheet: Social links
   padding: 0.2em 0 0.2em 2rem;
   border-left: 3px solid #e61414;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.3rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
   font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   max-width: 700px;
@@ -3074,28 +3056,50 @@ Stylesheet: Social links
   background: #eee;
 }
 
-.SimplePage--body .has-large-font-size {
+.SimplePage--body .has-medium-font-size {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
   letter-spacing: -0.02em;
+  font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  letter-spacing: 0;
 }
 
-.SimplePage--body .has-large-font-size em,
-.SimplePage--body .has-large-font-size i {
+.SimplePage--body .has-medium-font-size em,
+.SimplePage--body .has-medium-font-size i {
   font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
-.SimplePage--body .has-large-font-size strong,
-.SimplePage--body .has-large-font-size b {
+.SimplePage--body .has-medium-font-size strong,
+.SimplePage--body .has-medium-font-size b {
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
-@media (min-width: 751px) {
-  .SimplePage--body .has-large-font-size {
-    font-size: 1.9rem;
-    line-height: 2.1rem;
-  }
+.SimplePage--body .has-medium-font-size em,
+.SimplePage--body .has-medium-font-size i {
+  font-family: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.SimplePage--body .has-medium-font-size strong,
+.SimplePage--body .has-medium-font-size b {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.SimplePage--body .has-small-font-size {
+  font-size: 0.90909rem;
+  line-height: 1.18182rem;
+  font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  letter-spacing: 0;
+}
+
+.SimplePage--body .has-small-font-size em,
+.SimplePage--body .has-small-font-size i {
+  font-family: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.SimplePage--body .has-small-font-size strong,
+.SimplePage--body .has-small-font-size b {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
 .SimplePage--body .has-red-color {
@@ -3121,7 +3125,7 @@ body.search-no-results .SimplePage--title--label {
   display: block;
   letter-spacing: 0;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  font-size: calc(20px* 0.8);
+  font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
   color: #ccc;
 }
@@ -3143,7 +3147,7 @@ body.search-no-results .SimplePage--title--label b {
 @media (min-width: 751px) {
   body.search-results .SimplePage--title--label,
   body.search-no-results .SimplePage--title--label {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -3155,7 +3159,7 @@ body.search-no-results .search-title {
 
 body.search-results .byline,
 body.search-no-results .byline {
-  font-size: 0.7rem;
-  line-height: 0.9rem;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }

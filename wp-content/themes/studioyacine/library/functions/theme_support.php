@@ -70,12 +70,6 @@ function bones_theme_support()
             'shortName' => __('M', 'bonestheme'),
             'size'      => 28,
             'slug'      => 'medium'
-        ),
-        array(
-            'name'      => __('Large', 'bonestheme'),
-            'shortName' => __('L', 'bonestheme'),
-            'size'      => 40,
-            'slug'      => 'large'
         )
     ));
 

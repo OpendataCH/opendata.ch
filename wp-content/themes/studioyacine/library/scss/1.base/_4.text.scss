@@ -27,19 +27,19 @@ Stylesheet: Text Styles
 
 @mixin font-l {
     @include font(normal);
-    font-size: rem(28px);
-    line-height: rem(32px);
+    font-size: rem(30px);
+    line-height: rem(36px);
     letter-spacing: -0.02em;
     @include above-mobile {
-        font-size: rem(38px);
-        line-height: rem(42px);
+        font-size: rem(42px);
+        line-height: rem(46px);
     }
 }
 
 @mixin font-m {
     @include font(normal);
-    font-size: rem(26px);
-    line-height: rem(32px);
+    font-size: rem(30px);
+    line-height: rem(36px);
     letter-spacing: -0.02em;
 }
 
@@ -53,13 +53,13 @@ Stylesheet: Text Styles
 }
 
 @mixin font-s {
-    font-size: rem(18px);
-    line-height: rem(24px);
+    font-size: rem(20px);
+    line-height: rem(26px);
 }
 
 @mixin font-xs {
     font-size: rem(14px);
-    line-height: rem(18px);
+    line-height: rem(20px);
 }
 
 @mixin text-uppercase {
@@ -296,8 +296,16 @@ Stylesheet: Text Styles
         background: #eee;
     }
 
-    .has-large-font-size {
-        @include font-l;
+    .has-medium-font-size {
+        @include font-m;
+        @include font(light);
+        letter-spacing: 0;
+    }
+
+    .has-small-font-size {
+        @include font-s;
+        @include font(light);
+        letter-spacing: 0;
     }
 
     .has-red-color {
