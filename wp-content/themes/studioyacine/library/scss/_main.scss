@@ -31,8 +31,12 @@ Author: Yacine Belarbi @ studioyacine.ch
     a {
         @include font(normal);
         @include font-s;
-        @include a;
+        color: $grey;
         letter-spacing: 0.02em;
+
+        &:hover {
+            @include a;
+        }
     }
 }
 
@@ -58,7 +62,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 
     a {
         @include font(normal);
-        @include font-base;
+        @include font-s;
 
         &:hover {
             opacity: 0.5;

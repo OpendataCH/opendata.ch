@@ -27,8 +27,9 @@
         }
 
         .TeaserNews--title {
-            @include font-m;
+            @include font-base;
             @include font(normal);
+            cursor: pointer;
         }
 
         .TeaserNews--date {

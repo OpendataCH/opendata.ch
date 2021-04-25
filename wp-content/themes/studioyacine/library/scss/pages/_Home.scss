@@ -11,7 +11,7 @@
     }
 
     p {
-        @include font-base;
+        @include font-s;
         @include font(normal);
         max-width: 1124px;
 

@@ -33,6 +33,9 @@
 				$link_target = $link['target'] ? $link['target'] : '_self';
 				?>
 				<div class='TeamMember--twitter'>
+					<svg class="icon">
+						<use xlink:href="#social--twitter"></use>
+					</svg>				
 					<a class='' target="<?php echo esc_attr($link_target); ?>" title='<?php echo $link['title']; ?>' href="<?php echo $link['url']; ?>">
 						<?php echo $link['title']; ?>
 					</a>

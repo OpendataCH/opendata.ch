@@ -6,6 +6,7 @@
         margin-bottom: 1rem;
         @include above-mobile {
             float: left;
+            width: 100%;
             max-width: 250px;
             margin-right: 2rem;
             margin-bottom: 0;
@@ -38,16 +39,26 @@
 .TeamMember--text {
     margin-top: 1rem;
     @include paragraph;
+    @include font-s;
 }
 
 .TeamMember--twitter {
     color: $greyDark;
-    a {
-        color: $red;
+    display: flex;
+    align-items: center;
+
+    .icon {
+        width: 42px;
+        height: 42px;
+        color: #00acee;
     }
 
-    &:before {
-        content: "Twitter: ";
+    a {
+        color: $greyDark;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
