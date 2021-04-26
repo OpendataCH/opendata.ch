@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<?php $args = array('prefix' => 'project'); ?>
+<?php $args = array('prefix' => 'projects'); ?>
 <?php get_template_part('templates/intro/archive', null, $args); ?>
 
 <main id="" class="main" role="main" itemscope itemprop="mainContentOfPage">
