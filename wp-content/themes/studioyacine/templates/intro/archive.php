@@ -10,7 +10,7 @@ $title = get_field($args['prefix'] . '_title', 'option');
 $intro = get_field($args['prefix'] . '_intro', 'option');
 ?>
 
-<section class="Intro">
+<section class="Intro <?php echo $intro ? 'has-intro' : '' ?>">
 
     <?php if ($intro) : ?>
 

@@ -248,4 +248,13 @@ function custom_archive_query__events($query)
 }
 add_filter('pre_get_posts', 'custom_archive_query__events');
 
+function yourprefix_menu_arrow($item_output, $item, $depth, $args) {
+    if (in_array('menu-item-has-children', $item->classes)) {
+        $arrow = '<button class="submenu-toggle"><span>Open</span></button>'; // Change the class to your font icon
+        $item_output = str_replace('</a>', '</a>'. $arrow .'', $item_output);
+    }
+    return $item_output;
+}
+add_filter('walker_nav_menu_start_el', 'yourprefix_menu_arrow', 10, 4);
+
 /* DON'T DELETE THIS CLOSING TAG */

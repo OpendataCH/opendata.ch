@@ -2,7 +2,7 @@
     // border-top: 1px solid $greyLight;
     background: #f9f9f9;
     padding: 3rem 0 1rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
 }
 
 .Footer--top {
@@ -120,4 +120,7 @@
     @include text-uppercase;
     @include font-base;
     margin-left: auto;
+    @include above-mobile {
+        transform: translateY(-90%);
+    }
 }

@@ -26,8 +26,7 @@ html.overlayIsOpen {
 .Flyout--inner {
     position: relative;
     z-index: 10;
-    padding: 2rem;
-    padding-right: 1.8rem;
+    padding: 2rem 1rem;
     padding-top: 15vh;
     width: 320px;
     height: 100vh;
@@ -35,7 +34,7 @@ html.overlayIsOpen {
     margin-left: auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    // align-items: flex-end;
 }
 
 .Flyout--menu {
@@ -43,14 +42,39 @@ html.overlayIsOpen {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 
     li {
-        text-align: right;
+        // text-align: right;
     }
 
     li + li {
         margin-top: 1rem;
+    }
+
+    .submenu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 5px;
+        right: 0.5rem;
+        width: 30px;
+        height: 30px;
+
+        span {
+            @include visuallyhidden;
+        }
+
+        &:after {
+            content: "";
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid $white;
+            display: inline-block;
+        }
+    }
+    li.menu-item-has-children {
+        position: relative;
     }
 
     a {
@@ -64,12 +88,17 @@ html.overlayIsOpen {
     }
 
     li.current-menu-item a {
-        opacity: 0.3;
+        opacity: 0.5;
         pointer-events: none;
+    }
+
+    .submenu-toggle:hover + .sub-menu {
+        display: block;
     }
 
     .sub-menu {
         padding: 1rem 0 0;
+        display: none;
 
         li {
             line-height: 1;

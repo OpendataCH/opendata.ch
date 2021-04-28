@@ -671,6 +671,12 @@ Author: Yacine Belarbi @ studioyacine.ch
   height: auto;
 }
 
+@media (max-width: 750px) {
+  .Logo img {
+    width: 120px;
+  }
+}
+
 .main {
   margin-left: calc(50% - 545px);
   margin-right: calc(50% - 545px);
@@ -796,8 +802,12 @@ Author: Yacine Belarbi @ studioyacine.ch
   }
 }
 
+#menu-main-navigation .submenu-toggle {
+  display: none;
+}
+
 #menu-main-navigation li + li {
-  margin-left: 1em;
+  margin-left: 1.2em;
 }
 
 #menu-main-navigation > li.current-menu-item > a,
@@ -828,6 +838,16 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 #menu-main-navigation a:hover {
   opacity: 0.5;
+}
+
+#menu-main-navigation li.menu-item-has-children > a:after {
+  content: "";
+  margin-left: 6px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  display: inline-block;
+  margin-bottom: 3px;
 }
 
 #menu-main-navigation li.menu-item-has-children:hover .sub-menu {
@@ -959,8 +979,7 @@ html.overlayIsOpen body {
 .Flyout--inner {
   position: relative;
   z-index: 10;
-  padding: 2rem;
-  padding-right: 1.8rem;
+  padding: 2rem 1rem;
   padding-top: 15vh;
   width: 320px;
   height: 100vh;
@@ -968,7 +987,6 @@ html.overlayIsOpen body {
   margin-left: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 .Flyout--menu {
@@ -976,15 +994,47 @@ html.overlayIsOpen body {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-}
-
-.Flyout--menu li {
-  text-align: right;
 }
 
 .Flyout--menu li + li {
   margin-top: 1rem;
+}
+
+.Flyout--menu .submenu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  right: 0.5rem;
+  width: 30px;
+  height: 30px;
+}
+
+.Flyout--menu .submenu-toggle span {
+  position: absolute;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap;
+  /* https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
+}
+
+.Flyout--menu .submenu-toggle:after {
+  content: "";
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  display: inline-block;
+}
+
+.Flyout--menu li.menu-item-has-children {
+  position: relative;
 }
 
 .Flyout--menu a {
@@ -1039,12 +1089,17 @@ html.overlayIsOpen body {
 }
 
 .Flyout--menu li.current-menu-item a {
-  opacity: 0.3;
+  opacity: 0.5;
   pointer-events: none;
+}
+
+.Flyout--menu .submenu-toggle:hover + .sub-menu {
+  display: block;
 }
 
 .Flyout--menu .sub-menu {
   padding: 1rem 0 0;
+  display: none;
 }
 
 .Flyout--menu .sub-menu li {
@@ -1184,7 +1239,7 @@ html.overlayIsOpen body {
 .Footer {
   background: #f9f9f9;
   padding: 3rem 0 1rem;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .Footer--top {
@@ -1501,6 +1556,12 @@ html.overlayIsOpen body {
   }
 }
 
+@media (min-width: 751px) {
+  .Footer--button {
+    transform: translateY(-90%);
+  }
+}
+
 .Header {
   position: relative;
   top: 0;
@@ -1661,6 +1722,10 @@ html.overlayIsOpen body {
   }
 }
 
+.Intro.has-intro {
+  margin-bottom: 4rem;
+}
+
 .Intro strong {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.36364rem;
@@ -1681,7 +1746,7 @@ html.overlayIsOpen body {
 @media (min-width: 751px) {
   .Intro strong {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 
@@ -1736,7 +1801,7 @@ html.overlayIsOpen body {
 @media (min-width: 751px) and (min-width: 751px) {
   .Intro h1 {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 
@@ -1785,7 +1850,7 @@ html.overlayIsOpen body {
 @media (min-width: 751px) {
   .Searchoverlay input {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 
@@ -2038,7 +2103,7 @@ Stylesheet: Social links
 @media (min-width: 751px) {
   .TeamMember--title {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 
@@ -2418,7 +2483,7 @@ Stylesheet: Social links
 @media (min-width: 751px) {
   .TeaserList--item--big .TeaserNews .TeaserNews--title {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 
@@ -2751,6 +2816,12 @@ Stylesheet: Social links
   }
 }
 
+@media (max-width: 750px) {
+  .SimplePage {
+    margin: 0;
+  }
+}
+
 .SimplePage--title {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 2.04545rem;
@@ -2824,7 +2895,7 @@ Stylesheet: Social links
 @media (min-width: 751px) {
   .SimplePage--body h1 {
     font-size: 1.90909rem;
-    line-height: 2.09091rem;
+    line-height: 2.27273rem;
   }
 }
 

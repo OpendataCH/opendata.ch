@@ -1,5 +1,8 @@
 .SimplePage {
     @include sitewidth-s;
+    @include mobile {
+        margin: 0;
+    }
 }
 
 .SimplePage--title {

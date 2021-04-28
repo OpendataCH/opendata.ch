@@ -3,8 +3,11 @@
     @include above-sitewidth {
         padding-right: calc((#{$site-width} - #{$site-width-small}) / 2);
     }
-
     margin-bottom: 2rem;
+
+    &.has-intro {
+        margin-bottom: 4rem;
+    }
 
     strong {
         @include font-l;
