@@ -115,7 +115,7 @@
     @include font-base;
     position: absolute;
     right: 1rem;
-    transform: translateY(-20%);
+    transform: translateY(-120%);
     transform-origin: 50% 50%;
     @include above-mobile {
         position: static;
@@ -125,7 +125,6 @@
     }
 
     &:hover {
-        transform: scale(1.04) translateY(-20%);
         @include above-mobile {
             transform: scale(1.02) translateY(-90%);
         }

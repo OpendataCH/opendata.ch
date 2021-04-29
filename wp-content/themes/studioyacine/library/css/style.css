@@ -1561,7 +1561,7 @@ html.overlayIsOpen body {
   line-height: calc(30px* 0.8);
   position: absolute;
   right: 1rem;
-  transform: translateY(-20%);
+  transform: translateY(-120%);
   transform-origin: 50% 50%;
 }
 
@@ -1589,10 +1589,6 @@ html.overlayIsOpen body {
     width: 125px;
     height: 125px;
   }
-}
-
-.Footer--button:hover {
-  transform: scale(1.04) translateY(-20%);
 }
 
 @media (min-width: 751px) {
