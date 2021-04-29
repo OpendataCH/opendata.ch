@@ -1,5 +1,4 @@
 .Footer {
-    position: relative;
     background: #f9f9f9;
     padding: 3rem 0 1rem;
     margin-top: 5rem;
@@ -115,7 +114,6 @@
     @include text-uppercase;
     @include font-base;
     position: absolute;
-    top: 0;
     right: 1rem;
     transform: translateY(-20%);
     transform-origin: 50% 50%;
@@ -129,7 +127,7 @@
     &:hover {
         transform: scale(1.04) translateY(-20%);
         @include above-mobile {
-            transform: scale(1.04) translateY(-90%);
+            transform: scale(1.02) translateY(-90%);
         }
     }
 }
