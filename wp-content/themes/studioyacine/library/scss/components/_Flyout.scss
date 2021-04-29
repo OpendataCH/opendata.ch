@@ -75,19 +75,19 @@ html.overlayIsOpen {
     }
 
     li.current-menu-item > a {
-        color: darken($red, 15%);
+        text-decoration: underline;
+        // color: darken($red, 15%);
         pointer-events: none;
-    }
-
-    .submenu-toggle:hover + .sub-menu,
-    .submenu-toggle:focus-within + .sub-menu {
-        display: block;
     }
 }
 
 .Flyout .sub-menu {
     padding: 1rem 0 0;
     display: none;
+
+    &.show {
+        display: block;
+    }
 
     li {
         line-height: 1;

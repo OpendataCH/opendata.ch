@@ -8,6 +8,10 @@
     h2 {
         @include font-xl;
         margin-bottom: 0.2em;
+        @include mobile {
+            font-size: 3rem;
+            line-height: 1;
+        }
     }
 
     p {

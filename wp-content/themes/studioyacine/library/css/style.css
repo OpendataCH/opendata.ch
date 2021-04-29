@@ -687,7 +687,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 
 @media (max-width: 750px) {
   .Logo img {
-    width: 120px;
+    width: 150px;
   }
 }
 
@@ -1096,18 +1096,17 @@ html.overlayIsOpen body {
 }
 
 .Flyout--menu li.current-menu-item > a {
-  color: #a00e0e;
+  text-decoration: underline;
   pointer-events: none;
-}
-
-.Flyout--menu .submenu-toggle:hover + .sub-menu,
-.Flyout--menu .submenu-toggle:focus-within + .sub-menu {
-  display: block;
 }
 
 .Flyout .sub-menu {
   padding: 1rem 0 0;
   display: none;
+}
+
+.Flyout .sub-menu.show {
+  display: block;
 }
 
 .Flyout .sub-menu li {
@@ -2654,6 +2653,13 @@ Stylesheet: Social links
   .HomeIntro h2 {
     font-size: 4.09091rem;
     line-height: 4.09091rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .HomeIntro h2 {
+    font-size: 3rem;
+    line-height: 1;
   }
 }
 

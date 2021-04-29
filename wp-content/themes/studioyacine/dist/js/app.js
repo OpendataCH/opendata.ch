@@ -32,12 +32,14 @@
       this.elCloseButton = $(".Flyout--close");
       this.elOverlay = $(".Flyout--overlay");
       this.elMenu = $(".Flyout");
+      this.elSubNavTrigger = $(".submenu-toggle");
     }
 
     _createClass(Burger, [{
       key: "init",
       value: function init() {
         this.setupBindings();
+        this.submenuOpen = false;
       }
     }, {
       key: "setupBindings",
@@ -50,6 +52,17 @@
 
             _this.isMenuOpen = false;
           }
+        });
+        this.elSubNavTrigger.on("click", function (e) {
+          if (!_this.submenuOpen) {
+            _this.elMenu.find('.sub-menu.show').removeClass('show');
+
+            _this.submenuOpen = true;
+          } else {
+            _this.submenuOpen = false;
+          }
+
+          $(e.currentTarget).siblings('.sub-menu').toggleClass('show');
         });
         this.elOpenButton.on("click", function () {
           _this.openMenu();
