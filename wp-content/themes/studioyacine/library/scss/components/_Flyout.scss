@@ -153,7 +153,6 @@ html.overlayIsOpen {
 
     .icon {
         color: darken($red, 15%);
-        opacity: 0.3;
     }
 }
 
@@ -166,7 +165,7 @@ html.overlayIsOpen {
     svg {
         width: 32px;
         height: 32px;
-        color: $white;
+        color: darken($red, 15%);
     }
 }
 

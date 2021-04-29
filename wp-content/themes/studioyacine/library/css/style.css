@@ -1210,7 +1210,6 @@ html.overlayIsOpen body {
 
 .Flyout .SocialLinks .icon {
   color: #a00e0e;
-  opacity: 0.3;
 }
 
 .Flyout--close {
@@ -1247,7 +1246,7 @@ html.overlayIsOpen body {
 .Flyout--close svg {
   width: 32px;
   height: 32px;
-  color: #fff;
+  color: #a00e0e;
 }
 
 .Flyout.show {
@@ -2103,7 +2102,7 @@ Stylesheet: Social links
 .SocialLinks .icon {
   width: 32px;
   height: 32px;
-  color: #ccc;
+  color: #000;
 }
 
 .TeamMember {
@@ -2231,9 +2230,10 @@ Stylesheet: Social links
 }
 
 .TeamMember--twitter .icon {
-  width: 42px;
-  height: 42px;
-  color: #00acee;
+  width: 32px;
+  height: 32px;
+  color: #ccc;
+  margin-right: 10px;
 }
 
 .TeamMember--twitter a {
