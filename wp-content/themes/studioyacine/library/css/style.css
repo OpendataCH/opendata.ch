@@ -1784,6 +1784,222 @@ html.overlayIsOpen body {
   }
 }
 
+.Intro strong table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.Intro strong p {
+  margin-bottom: 1em;
+}
+
+.Intro strong blockquote {
+  margin-bottom: 1em;
+  padding: 0.2em 0 0.2em 1.2rem;
+  border-left: 3px solid #e61414;
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
+  letter-spacing: -0.02em;
+  font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  max-width: 900px;
+  letter-spacing: 0;
+}
+
+.Intro strong blockquote em,
+.Intro strong blockquote i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong blockquote strong,
+.Intro strong blockquote b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong blockquote em,
+.Intro strong blockquote i {
+  font-family: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong blockquote strong,
+.Intro strong blockquote b {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong p + h2 {
+  margin-top: 1em;
+}
+
+.Intro strong ul {
+  margin-left: -1em;
+  display: block;
+  margin: 1em 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong ul {
+    max-width: 80%;
+  }
+}
+
+.Intro strong ul > li {
+  padding-left: 1.25em;
+  position: relative;
+  list-style-type: none;
+  margin-bottom: 0.25ex;
+}
+
+.Intro strong ul > li:before {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  content: "\2013";
+}
+
+.Intro strong ol {
+  margin-left: -1em;
+  display: block;
+  display: block;
+  counter-reset: ol--counter;
+  /*html*/
+  margin: 1em 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong ol {
+    max-width: 80%;
+  }
+}
+
+.Intro strong ol > li {
+  padding-left: 1.25em;
+  position: relative;
+  list-style-type: none;
+  margin-bottom: 0.25ex;
+}
+
+.Intro strong ol > li:before {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  content: "\2013";
+}
+
+.Intro strong ol > li:not(.gfield) {
+  padding-left: 1.25em;
+  list-style-type: none;
+}
+
+.Intro strong ol > li:not(.gfield):before {
+  margin-left: -1.5em;
+  counter-increment: ol--counter;
+  content: counter(ol--counter) ".";
+  text-align: right;
+  width: 4ex;
+  color: #000;
+}
+
+.ie .Intro strong ol > li {
+  list-style: decimal inside none;
+}
+
+.Intro strong strong {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong strong em,
+.Intro strong strong i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong strong strong,
+.Intro strong strong b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong hr {
+  height: 1px;
+  background: #eee;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  border: none;
+}
+
+.Intro strong a:not([class]) {
+  text-decoration: underline;
+  text-decoration-color: #e61414;
+}
+
+.Intro strong a:not([class]):hover {
+  color: #e61414;
+  text-decoration: none;
+}
+
+.Intro strong img {
+  max-width: 100%;
+  height: auto;
+}
+
+.Intro strong ::-moz-selection {
+  text-shadow: none;
+  background: #eee;
+}
+
+.Intro strong ::selection {
+  text-shadow: none;
+  background: #eee;
+}
+
+.Intro strong .has-medium-font-size {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
+  letter-spacing: -0.02em;
+  font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  letter-spacing: 0;
+}
+
+.Intro strong .has-medium-font-size em,
+.Intro strong .has-medium-font-size i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-medium-font-size strong,
+.Intro strong .has-medium-font-size b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-medium-font-size em,
+.Intro strong .has-medium-font-size i {
+  font-family: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-medium-font-size strong,
+.Intro strong .has-medium-font-size b {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-small-font-size {
+  font-size: 0.90909rem;
+  line-height: 1.27273rem;
+  font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  letter-spacing: 0;
+}
+
+.Intro strong .has-small-font-size em,
+.Intro strong .has-small-font-size i {
+  font-family: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-small-font-size strong,
+.Intro strong .has-small-font-size b {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.Intro strong .has-red-color {
+  color: #e61414;
+}
+
 .Intro h1 {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 2.04545rem;

@@ -11,6 +11,7 @@
 
     strong {
         @include font-l;
+        @include richtext;
     }
 
     h1 {
