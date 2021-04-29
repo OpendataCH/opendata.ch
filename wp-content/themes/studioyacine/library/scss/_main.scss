@@ -49,11 +49,27 @@ Author: Yacine Belarbi @ studioyacine.ch
     }
 
     .submenu-toggle {
-        display: none;
+        position: absolute;
+        right: -2px;
+        pointer-events: none;
+        transform: translateX(100%);
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    li {
+        position: relative;
     }
 
     li + li {
-        margin-left: 1.2em;
+        margin-left: 1.25em;
+    }
+
+    li.menu-item-has-children + li {
+        margin-left: 1.5em;
     }
 
     > li.current-menu-item > a,
@@ -65,23 +81,18 @@ Author: Yacine Belarbi @ studioyacine.ch
         }
     }
 
+    > li.current-menu-item .submenu-toggle .icon,
+    li.current_page_parent .submenu-toggle .icon {
+        color: $red;
+    }
+
     a {
         @include font(normal);
         @include font-s;
 
         &:hover {
-            opacity: 0.5;
+            color: $greyDark;
         }
-    }
-
-    li.menu-item-has-children > a:after {
-        content: "";
-        margin-left: 6px;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 4px solid $black;
-        display: inline-block;
-        margin-bottom: 3px;
     }
 
     li.menu-item-has-children:hover .sub-menu {
@@ -98,7 +109,7 @@ Author: Yacine Belarbi @ studioyacine.ch
         }
 
         li.current_page_item a {
-            color: $grey;
+            color: $greyDark;
         }
     }
 }

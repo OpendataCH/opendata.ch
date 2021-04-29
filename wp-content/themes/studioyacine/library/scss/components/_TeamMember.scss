@@ -4,9 +4,9 @@
 
     .TeamMember--image {
         margin-bottom: 1rem;
+        width: 100%;
         @include above-mobile {
             float: left;
-            width: 100%;
             max-width: 250px;
             margin-right: 2rem;
             margin-bottom: 0;
@@ -39,10 +39,14 @@
 .TeamMember--text {
     margin-top: 1rem;
     @include paragraph;
-    @include font-s;
+    @include font-base;
+    @include above-mobile {
+        @include font-s;
+    }
 }
 
 .TeamMember--twitter {
+    @include font-s;
     color: $greyDark;
     display: flex;
     align-items: center;

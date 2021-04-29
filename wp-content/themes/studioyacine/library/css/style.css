@@ -482,8 +482,22 @@ PAGE NAVI STYLES
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
+@media (max-width: 750px) {
+  .pagination ul {
+    flex-wrap: wrap;
+    font-size: 0.90909rem;
+    line-height: 1.27273rem;
+  }
+}
+
 .pagination ul li + li {
   margin-left: 1rem;
+}
+
+@media (max-width: 750px) {
+  .pagination ul li + li {
+    margin-left: 0.5rem;
+  }
 }
 
 .pagination ul a,
@@ -803,11 +817,27 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 #menu-main-navigation .submenu-toggle {
-  display: none;
+  position: absolute;
+  right: -2px;
+  pointer-events: none;
+  transform: translateX(100%);
+}
+
+#menu-main-navigation .submenu-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+#menu-main-navigation li {
+  position: relative;
 }
 
 #menu-main-navigation li + li {
-  margin-left: 1.2em;
+  margin-left: 1.25em;
+}
+
+#menu-main-navigation li.menu-item-has-children + li {
+  margin-left: 1.5em;
 }
 
 #menu-main-navigation > li.current-menu-item > a,
@@ -818,6 +848,11 @@ Author: Yacine Belarbi @ studioyacine.ch
 #menu-main-navigation > li.current-menu-item > a:hover,
 #menu-main-navigation li.current_page_parent > a:hover {
   opacity: 1;
+}
+
+#menu-main-navigation > li.current-menu-item .submenu-toggle .icon,
+#menu-main-navigation li.current_page_parent .submenu-toggle .icon {
+  color: #e61414;
 }
 
 #menu-main-navigation a {
@@ -837,17 +872,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 #menu-main-navigation a:hover {
-  opacity: 0.5;
-}
-
-#menu-main-navigation li.menu-item-has-children > a:after {
-  content: "";
-  margin-left: 6px;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #000;
-  display: inline-block;
-  margin-bottom: 3px;
+  color: #939393;
 }
 
 #menu-main-navigation li.menu-item-has-children:hover .sub-menu {
@@ -865,7 +890,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 #menu-main-navigation .sub-menu li.current_page_item a {
-  color: #ccc;
+  color: #939393;
 }
 
 /*********************
@@ -1011,26 +1036,8 @@ html.overlayIsOpen body {
   height: 30px;
 }
 
-.Flyout--menu .submenu-toggle span {
-  position: absolute;
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  width: 1px;
-  white-space: nowrap;
-  /* https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
-}
-
-.Flyout--menu .submenu-toggle:after {
-  content: "";
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #fff;
-  display: inline-block;
+.Flyout--menu .submenu-toggle .icon {
+  color: #fff;
 }
 
 .Flyout--menu li.menu-item-has-children {
@@ -1093,30 +1100,32 @@ html.overlayIsOpen body {
   pointer-events: none;
 }
 
-.Flyout--menu .submenu-toggle:hover + .sub-menu {
+.Flyout--menu .submenu-toggle:hover + .sub-menu,
+.Flyout--menu .submenu-toggle:focus-within + .sub-menu {
   display: block;
 }
 
-.Flyout--menu .sub-menu {
+.Flyout .sub-menu {
   padding: 1rem 0 0;
   display: none;
 }
 
-.Flyout--menu .sub-menu li {
+.Flyout .sub-menu li {
   line-height: 1;
 }
 
-.Flyout--menu .sub-menu li + li {
+.Flyout .sub-menu li + li {
   margin-top: 0;
 }
 
-.Flyout--menu .sub-menu a {
+.Flyout .sub-menu a {
   font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
+  letter-spacing: 0;
 }
 
 @media (min-width: 751px) {
-  .Flyout--menu .sub-menu a {
+  .Flyout .sub-menu a {
     font-size: 22px;
     line-height: 30px;
   }
@@ -1151,10 +1160,8 @@ html.overlayIsOpen body {
 }
 
 .Flyout--search input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #a00e0e;
   opacity: 1;
-  /* Firefox */
   font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
@@ -1173,19 +1180,30 @@ html.overlayIsOpen body {
 }
 
 .Flyout .SocialLinks {
-  text-align: right;
-  margin-top: 3rem;
+  margin-top: auto;
+}
+
+.Flyout .SocialLinks li {
+  display: inline-block;
+}
+
+.Flyout .SocialLinks li + li {
+  margin-left: 0.25em;
 }
 
 .Flyout .SocialLinks a {
   color: #fff;
 }
 
+.Flyout .SocialLinks .icon {
+  color: #a00e0e;
+  opacity: 0.3;
+}
+
 .Flyout--close {
   position: absolute;
   z-index: 20;
   top: 1.4rem;
-  margin-right: 4px;
   right: calc(50% - 655px);
 }
 
@@ -1214,8 +1232,8 @@ html.overlayIsOpen body {
 }
 
 .Flyout--close svg {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   color: #fff;
 }
 
@@ -1317,15 +1335,7 @@ html.overlayIsOpen body {
 }
 
 .Footer--top .SocialLinks li {
-  margin-top: 0;
-  margin-right: 1.5rem;
-  margin-bottom: 0.1em;
-}
-
-@media (min-width: 751px) {
-  .Footer--top .SocialLinks li {
-    margin-right: 0;
-  }
+  display: inline-block;
 }
 
 .Footer--top .SocialLinks a {
@@ -1646,7 +1656,7 @@ html.overlayIsOpen body {
 }
 
 .Header--search {
-  margin-top: -3px;
+  margin-top: -1px;
   margin-left: 3rem;
 }
 
@@ -1898,6 +1908,11 @@ html.overlayIsOpen body {
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
+.Searchoverlay button[type="submit"]:after {
+  content: "→";
+  margin-left: 6px;
+}
+
 .Searchoverlay--inner {
   border-top: 7px solid #e61414;
   background: white;
@@ -1966,12 +1981,11 @@ html.overlayIsOpen body {
   top: 1.8rem;
   right: calc(50% - 655px);
   z-index: 999;
-  width: 24px;
-  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.25em;
+  margin-top: 0.2em;
+  margin-right: 2px;
 }
 
 @media (max-width: 1410px) {
@@ -1999,8 +2013,8 @@ html.overlayIsOpen body {
 }
 
 .Searchoverlay--close svg {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   color: #000;
 }
 
@@ -2024,13 +2038,24 @@ Stylesheet: Social links
 
 ******************************************************************/
 .SocialLinks li + li {
-  margin-top: 0.25rem;
+  margin-left: 1rem;
+}
+
+@media (min-width: 751px) {
+  .SocialLinks li + li {
+    margin-left: 0.2rem;
+  }
 }
 
 .SocialLinks a {
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
+  letter-spacing: -1ex;
+  text-indent: -9999px;
+  color: transparent;
+  text-decoration: none;
+  line-height: 1;
 }
 
 .SocialLinks a em,
@@ -2050,6 +2075,12 @@ Stylesheet: Social links
   }
 }
 
+.SocialLinks .icon {
+  width: 32px;
+  height: 32px;
+  color: #ccc;
+}
+
 .TeamMember {
   margin-bottom: 3rem;
 }
@@ -2065,12 +2096,12 @@ Stylesheet: Social links
 
 .TeamMember .TeamMember--image {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 @media (min-width: 751px) {
   .TeamMember .TeamMember--image {
     float: left;
-    width: 100%;
     max-width: 250px;
     margin-right: 2rem;
     margin-bottom: 0;
@@ -2148,11 +2179,27 @@ Stylesheet: Social links
 .TeamMember--text {
   margin-top: 1rem;
   margin-bottom: 1em;
-  font-size: 0.90909rem;
-  line-height: 1.27273rem;
+  font-size: calc(22px* 0.8);
+  line-height: calc(30px* 0.8);
+}
+
+@media (min-width: 751px) {
+  .TeamMember--text {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+@media (min-width: 751px) {
+  .TeamMember--text {
+    font-size: 0.90909rem;
+    line-height: 1.27273rem;
+  }
 }
 
 .TeamMember--twitter {
+  font-size: 0.90909rem;
+  line-height: 1.27273rem;
   color: #939393;
   display: flex;
   align-items: center;
@@ -2685,59 +2732,12 @@ Stylesheet: Social links
   align-items: center;
 }
 
-.HomeCTA a span {
-  position: relative;
+.HomeCTA a:hover {
+  color: #e61414;
 }
 
-.HomeCTA a span:after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: #e61414;
-  transform: translateY(3px) scaleY(0);
-  transform-origin: 100% 100%;
-  transition: 0.3s all;
-  opacity: 0;
-}
-
-.HomeCTA a span:hover:after {
-  transform: translateY(0px) scaleY(1);
-  opacity: 1;
-}
-
-.HomeCTA a:hover span {
-  position: relative;
-}
-
-.HomeCTA a:hover span:after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: #e61414;
-  transform: translateY(3px) scaleY(0);
-  transform-origin: 100% 100%;
-  transition: 0.3s all;
-  opacity: 0;
-}
-
-.HomeCTA a:hover span:hover:after {
-  transform: translateY(0px) scaleY(1);
-  opacity: 1;
-}
-
-.HomeCTA a:hover span:after {
-  transform: translateY(0px) scaleY(1);
-  opacity: 1;
-}
-
-.HomeCTA a:hover span:hover:after {
-  opacity: 0;
+.HomeCTA a:hover svg {
+  color: #e61414;
 }
 
 .HomeCTA a span {
@@ -2761,6 +2761,7 @@ Stylesheet: Social links
   width: 50px;
   height: 50px;
   margin-bottom: 0.5rem;
+  color: #000;
 }
 
 .SimplePage {
@@ -2816,9 +2817,17 @@ Stylesheet: Social links
   }
 }
 
-@media (max-width: 750px) {
-  .SimplePage {
-    margin: 0;
+body.single-news .SimplePage,
+body.single-event .SimplePage {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 940px;
+}
+
+@media (min-width: 751px) {
+  body.single-news .SimplePage--title,
+  body.single-event .SimplePage--title {
+    text-align: center;
   }
 }
 
@@ -2980,14 +2989,14 @@ Stylesheet: Social links
 
 .SimplePage--body blockquote {
   margin-bottom: 1em;
-  padding: 0.2em 0 0.2em 2rem;
+  padding: 0.2em 0 0.2em 1.2rem;
   border-left: 3px solid #e61414;
   font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   font-size: 1.36364rem;
   line-height: 1.63636rem;
   letter-spacing: -0.02em;
   font-family: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-  max-width: 700px;
+  max-width: 900px;
   letter-spacing: 0;
 }
 
@@ -3183,20 +3192,6 @@ Stylesheet: Social links
 
 .SimplePage--body .has-red-color {
   color: #e61414;
-}
-
-body.single-news .SimplePage,
-body.single-event .SimplePage {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 940px;
-}
-
-@media (min-width: 751px) {
-  body.single-news .SimplePage--title,
-  body.single-event .SimplePage--title {
-    text-align: center;
-  }
 }
 
 body.search-results .SimplePage--title--label,

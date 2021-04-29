@@ -33,7 +33,7 @@
     <button class='Flyout--close' role='button'>
         <span class='visuallyhidden'>Close</span>
         <svg aria-hidden='true' class="icon">
-            <use xlink:href="#base--close"></use>
+            <use xlink:href="#base--close(1)"></use>
         </svg>
     </button>
 

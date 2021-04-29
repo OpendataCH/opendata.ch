@@ -1,7 +1,19 @@
 .SimplePage {
     @include sitewidth-s;
-    @include mobile {
-        margin: 0;
+}
+
+body.single-news,
+body.single-event {
+    .SimplePage {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 940px;
+    }
+
+    .SimplePage--title {
+        @include above-mobile {
+            text-align: center;
+        }
     }
 }
 
@@ -27,21 +39,6 @@
 
 .SimplePage--body {
     @include richtext(all);
-}
-
-body.single-news,
-body.single-event {
-    .SimplePage {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 940px;
-    }
-
-    .SimplePage--title {
-        @include above-mobile {
-            text-align: center;
-        }
-    }
 }
 
 body.search-results,

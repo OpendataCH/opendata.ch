@@ -248,9 +248,20 @@ function custom_archive_query__events($query)
 }
 add_filter('pre_get_posts', 'custom_archive_query__events');
 
+
+
+
+
+
+
+
+/*********************
+SUBMENU TOGGLE BUTTON
+ *********************/
+
 function yourprefix_menu_arrow($item_output, $item, $depth, $args) {
     if (in_array('menu-item-has-children', $item->classes)) {
-        $arrow = '<button class="submenu-toggle"><span>Open</span></button>'; // Change the class to your font icon
+        $arrow = '<button class="submenu-toggle"><span class="visuallyhidden">Open</span><svg aria-hidden="true" class="icon"><use xlink:href="#base--chevron-down"></use></svg></button>'; 
         $item_output = str_replace('</a>', '</a>'. $arrow .'', $item_output);
     }
     return $item_output;

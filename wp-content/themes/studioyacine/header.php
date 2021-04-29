@@ -95,7 +95,7 @@
 
 				<button class='Header--search' role='button'>
 					<svg class="icon">
-						<use xlink:href="#base--search"></use>
+						<use xlink:href="#base--search(1)"></use>
 					</svg>
 				</button>
 

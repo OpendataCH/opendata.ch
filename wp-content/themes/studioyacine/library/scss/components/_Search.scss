@@ -47,6 +47,11 @@
         color: $black;
         @include text-uppercase;
         padding: 0 0.5rem;
+
+        &:after {
+            content: "→";
+            margin-left: 6px;
+        }
     }
 }
 
@@ -69,16 +74,15 @@
     top: 1.8rem;
     @include sitepadding(right, true);
     z-index: 999;
-    width: 24px;
-    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0.25em;
+    margin-top: 0.2em;
+    margin-right: 2px;
 
     svg {
-        width: 16px;
-        height: 16px;
+        width: 24px;
+        height: 24px;
         color: $black;
     }
 }

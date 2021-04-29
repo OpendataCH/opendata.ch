@@ -160,7 +160,7 @@ function bones_page_navi()
 		'next_text'    => '&rarr;',
 		'type'         => 'list',
 		'end_size'     => 3,
-		'mid_size'     => 3
+		'mid_size'     => 1
 	));
 	echo '</nav>';
 } /* end page navi */

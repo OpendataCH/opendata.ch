@@ -8,10 +8,20 @@ Stylesheet: Social links
 
 .SocialLinks {
     li + li {
-        margin-top: 0.25rem;
+        margin-left: 1rem;
+        @include above-mobile {
+            margin-left: 0.2rem;
+        }
     }
     a {
         @include font(normal);
         @include font-base;
+        @include hidetext;
+    }
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        color: $grey;
     }
 }

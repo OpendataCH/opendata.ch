@@ -14,7 +14,6 @@ html.overlayIsOpen {
     width: 100%;
     height: 100%;
     transform: translateX(100%);
-    // transition: transform 0.65s cubic-bezier(0.075, 0.82, 0.165, 1);
 
     @include above-tablet {
         width: 450px;
@@ -34,7 +33,6 @@ html.overlayIsOpen {
     margin-left: auto;
     display: flex;
     flex-direction: column;
-    // align-items: flex-end;
 }
 
 .Flyout--menu {
@@ -42,10 +40,6 @@ html.overlayIsOpen {
     z-index: 10;
     display: flex;
     flex-direction: column;
-
-    li {
-        // text-align: right;
-    }
 
     li + li {
         margin-top: 1rem;
@@ -61,18 +55,11 @@ html.overlayIsOpen {
         width: 30px;
         height: 30px;
 
-        span {
-            @include visuallyhidden;
-        }
-
-        &:after {
-            content: "";
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid $white;
-            display: inline-block;
+        .icon {
+            color: $white;
         }
     }
+
     li.menu-item-has-children {
         position: relative;
     }
@@ -92,23 +79,25 @@ html.overlayIsOpen {
         pointer-events: none;
     }
 
-    .submenu-toggle:hover + .sub-menu {
+    .submenu-toggle:hover + .sub-menu,
+    .submenu-toggle:focus-within + .sub-menu {
         display: block;
     }
+}
 
-    .sub-menu {
-        padding: 1rem 0 0;
-        display: none;
+.Flyout .sub-menu {
+    padding: 1rem 0 0;
+    display: none;
 
-        li {
-            line-height: 1;
-        }
-        li + li {
-            margin-top: 0;
-        }
-        a {
-            @include font-base;
-        }
+    li {
+        line-height: 1;
+    }
+    li + li {
+        margin-top: 0;
+    }
+    a {
+        @include font-base;
+        letter-spacing: 0;
     }
 }
 
@@ -129,9 +118,8 @@ html.overlayIsOpen {
         -webkit-appearance: none;
 
         &::placeholder {
-            /* Chrome, Firefox, Opera, Safari 10.1+ */
             color: darken($red, 15%);
-            opacity: 1; /* Firefox */
+            opacity: 1;
             @include font(light);
         }
     }
@@ -142,10 +130,23 @@ html.overlayIsOpen {
 }
 
 .Flyout .SocialLinks {
-    text-align: right;
-    margin-top: 3rem;
+    margin-top: auto;
+
+    li {
+        display: inline-block;
+    }
+
+    li + li {
+        margin-left: 0.25em;
+    }
+
     a {
         color: $white;
+    }
+
+    .icon {
+        color: darken($red, 15%);
+        opacity: 0.3;
     }
 }
 
@@ -153,12 +154,11 @@ html.overlayIsOpen {
     position: absolute;
     z-index: 20;
     top: 1.4rem;
-    margin-right: 4px;
     @include sitepadding(right);
 
     svg {
-        width: 20px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
         color: $white;
     }
 }

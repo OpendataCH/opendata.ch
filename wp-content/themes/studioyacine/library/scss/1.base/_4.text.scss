@@ -118,11 +118,11 @@ Stylesheet: Text Styles
 
 @mixin quote {
     margin-bottom: 1em;
-    padding: 0.2em 0 0.2em 2rem;
+    padding: 0.2em 0 0.2em 1.2rem;
     border-left: 3px solid $red;
     @include font-m;
     @include font(light);
-    max-width: 700px;
+    max-width: 900px;
     letter-spacing: 0;
 }
 
