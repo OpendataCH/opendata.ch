@@ -1,5 +1,5 @@
 .Footer {
-    // border-top: 1px solid $greyLight;
+    position: relative;
     background: #f9f9f9;
     padding: 3rem 0 1rem;
     margin-top: 5rem;
@@ -104,8 +104,8 @@
 }
 
 .Footer--button {
-    width: 125px;
-    height: 125px;
+    width: 80px;
+    height: 80px;
     border-radius: 200px;
     background: $red;
     color: $white;
@@ -114,8 +114,22 @@
     justify-content: center;
     @include text-uppercase;
     @include font-base;
-    margin-left: auto;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    transform: translateY(-20%);
+    transform-origin: 50% 50%;
     @include above-mobile {
+        position: static;
         transform: translateY(-90%);
+        width: 125px;
+        height: 125px;
+    }
+
+    &:hover {
+        transform: scale(1.04) translateY(-20%);
+        @include above-mobile {
+            transform: scale(1.04) translateY(-90%);
+        }
     }
 }

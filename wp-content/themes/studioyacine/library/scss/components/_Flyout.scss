@@ -74,8 +74,8 @@ html.overlayIsOpen {
         }
     }
 
-    li.current-menu-item a {
-        opacity: 0.5;
+    li.current-menu-item > a {
+        color: darken($red, 15%);
         pointer-events: none;
     }
 

@@ -1095,8 +1095,8 @@ html.overlayIsOpen body {
   text-decoration: underline;
 }
 
-.Flyout--menu li.current-menu-item a {
-  opacity: 0.5;
+.Flyout--menu li.current-menu-item > a {
+  color: #a00e0e;
   pointer-events: none;
 }
 
@@ -1255,6 +1255,7 @@ html.overlayIsOpen body {
 }
 
 .Footer {
+  position: relative;
   background: #f9f9f9;
   padding: 3rem 0 1rem;
   margin-top: 5rem;
@@ -1531,8 +1532,8 @@ html.overlayIsOpen body {
 }
 
 .Footer--button {
-  width: 125px;
-  height: 125px;
+  width: 80px;
+  height: 80px;
   border-radius: 200px;
   background: #e61414;
   color: #fff;
@@ -1546,7 +1547,11 @@ html.overlayIsOpen body {
   letter-spacing: 0.04em;
   font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
-  margin-left: auto;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  transform: translateY(-20%);
+  transform-origin: 50% 50%;
 }
 
 .Footer--button em,
@@ -1568,7 +1573,20 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--button {
+    position: static;
     transform: translateY(-90%);
+    width: 125px;
+    height: 125px;
+  }
+}
+
+.Footer--button:hover {
+  transform: scale(1.04) translateY(-20%);
+}
+
+@media (min-width: 751px) {
+  .Footer--button:hover {
+    transform: scale(1.04) translateY(-90%);
   }
 }
 
