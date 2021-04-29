@@ -1038,10 +1038,20 @@ html.overlayIsOpen body {
 
 .Flyout--menu .submenu-toggle .icon {
   color: #fff;
+  color: #a00e0e;
+  height: 32px;
 }
 
 .Flyout--menu li.menu-item-has-children {
   position: relative;
+}
+
+.Flyout--menu li.menu-item-has-children.show .sub-menu {
+  display: block;
+}
+
+.Flyout--menu li.menu-item-has-children.show .submenu-toggle .icon {
+  transform: rotate(180deg);
 }
 
 .Flyout--menu a {
@@ -1103,10 +1113,6 @@ html.overlayIsOpen body {
 .Flyout .sub-menu {
   padding: 1rem 0 0;
   display: none;
-}
-
-.Flyout .sub-menu.show {
-  display: block;
 }
 
 .Flyout .sub-menu li {

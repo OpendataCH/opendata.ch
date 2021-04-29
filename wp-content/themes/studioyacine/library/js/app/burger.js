@@ -10,7 +10,6 @@ class Burger {
 
 	init() {
 		this.setupBindings();
-		this.submenuOpen = false;
 	}
 
 	setupBindings() {
@@ -22,13 +21,8 @@ class Burger {
 		});
 
 		this.elSubNavTrigger.on("click", (e) => {
-			if (!this.submenuOpen) {
-				this.elMenu.find('.sub-menu.show').removeClass('show');
-				this.submenuOpen = true;
-			} else {
-				this.submenuOpen = false;
-			}
-			$(e.currentTarget).siblings('.sub-menu').toggleClass('show');
+			// this.elMenu.find('.sub-menu.show').removeClass('show');
+			$(e.currentTarget).parent('li').toggleClass('show');
 		});
 
 		this.elOpenButton.on("click", () => {

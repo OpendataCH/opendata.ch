@@ -57,11 +57,23 @@ html.overlayIsOpen {
 
         .icon {
             color: $white;
+            color: darken($red, 15%);
+            height: 32px;
         }
     }
 
     li.menu-item-has-children {
         position: relative;
+    }
+
+    li.menu-item-has-children.show {
+        .sub-menu {
+            display: block;
+        }
+
+        .submenu-toggle .icon {
+            transform: rotate(180deg);
+        }
     }
 
     a {
@@ -76,7 +88,6 @@ html.overlayIsOpen {
 
     li.current-menu-item > a {
         text-decoration: underline;
-        // color: darken($red, 15%);
         pointer-events: none;
     }
 }
@@ -84,10 +95,6 @@ html.overlayIsOpen {
 .Flyout .sub-menu {
     padding: 1rem 0 0;
     display: none;
-
-    &.show {
-        display: block;
-    }
 
     li {
         line-height: 1;
