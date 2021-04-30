@@ -9,7 +9,7 @@
 
     <div class="Teaser--image">
 
-        <?php the_post_thumbnail('medium'); ?>
+        <?php the_post_thumbnail('medium-large'); ?>
 
     </div>
 

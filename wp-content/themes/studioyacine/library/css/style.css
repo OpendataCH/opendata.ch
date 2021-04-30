@@ -2521,7 +2521,7 @@ Stylesheet: Social links
 }
 
 .Teaser--image {
-  background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPjxwYXRoIGQ9J00yIDBIMHYyaDJWMHptMiAySDJ2MmgyVjJ6Jy8+PC9zdmc+);
+  background-color: #fff;
   position: relative;
   margin-bottom: 0.5rem;
 }
@@ -2606,6 +2606,10 @@ Stylesheet: Social links
   font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 }
 
+.TeaserGrid.size--3 img {
+  object-fit: contain;
+}
+
 .TeaserGrid.size--4 .TeaserGrid--item {
   margin-bottom: 0rem;
 }
@@ -2623,6 +2627,10 @@ Stylesheet: Social links
   }
 }
 
+.TeaserGrid.size--4 img {
+  object-fit: contain;
+}
+
 .TeaserList--item:not(.TeaserList--item--big) .TeaserNews {
   display: flex;
   flex-direction: row;
@@ -2633,7 +2641,7 @@ Stylesheet: Social links
 
 .TeaserList--item:not(.TeaserList--item--big) .TeaserNews .TeaserNews--image {
   flex-basis: 64px;
-  background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPjxwYXRoIGQ9J00yIDBIMHYyaDJWMHptMiAySDJ2MmgyVjJ6Jy8+PC9zdmc+);
+  background-color: #fff;
   position: relative;
   margin-right: 1rem;
   margin-bottom: 0;
@@ -2722,7 +2730,7 @@ Stylesheet: Social links
 }
 
 .TeaserList--item--big .TeaserNews .TeaserNews--image {
-  background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPjxwYXRoIGQ9J00yIDBIMHYyaDJWMHptMiAySDJ2MmgyVjJ6Jy8+PC9zdmc+);
+  background-color: #fff;
   position: relative;
   width: 100%;
   margin-bottom: 0.5rem;

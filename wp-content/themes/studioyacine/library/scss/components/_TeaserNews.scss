@@ -12,6 +12,9 @@
             @include image-ratio("teasersquare");
             margin-right: 1rem;
             margin-bottom: 0;
+
+            img {
+            }
         }
 
         .TeaserNews--text {

@@ -73,10 +73,17 @@
     margin-bottom: 0.1rem;
 }
 
+.TeaserGrid.size--2 {
+}
+
 .TeaserGrid.size--3 {
     .Teaser--title {
         @include font-m;
         margin-bottom: 0.25rem;
+    }
+
+    img {
+        object-fit: contain;
     }
 }
 
@@ -88,5 +95,9 @@
     .Teaser--title {
         @include font-base;
         margin-bottom: 0.25rem;
+    }
+
+    img {
+        object-fit: contain;
     }
 }
