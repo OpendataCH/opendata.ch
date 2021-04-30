@@ -196,7 +196,7 @@ add_filter('tiny_mce_before_init', 'studioyacine_styles_dropdown');
 
 
 /*********************
-EXHIBITION ARCHIVE FILTER AND CATEGORY POST ORDER
+event ARCHIVE FILTER AND CATEGORY POST ORDER
  *********************/
 function custom_archive_query__events($query)
 {
@@ -206,47 +206,104 @@ function custom_archive_query__events($query)
   if (!is_admin() && $query->is_main_query()) {
     if (is_post_type_archive('event') && !isset($q_object->taxonomy)) {
 
-      //   $query = new WP_Query(array(
-      //     'tax_query' => array(
-      //         array(
-      //             'relation' => 'AND',
-      //             array(
-      //                 'taxonomy' => 'category',
-      //                 'terms' => '1',
-      //             ),
-      //             array(
-      //                 'taxonomy' => 'category',
-      //                 'field' => 'slug',
-      //                 'terms' => 'some-category-slug',
-      //                 'operator' => 'NOT IN',
-      //             ),
-      //         ),
-      //     )
-      // ));
-
-
       $query->set('post_type', array('event'));
-      $query->set('meta_key', 'date');
-      $query->set('meta_compare', 'NOT EXISTS');
-      // $query->set('posts_per_page', '2');
-      // $query->set('meta_compare', '<');
-      $query->set('meta_value', $today);
-      // $query->set('orderby', 'meta_value');
-      $query->set('order', 'desc');
-      // $taxquery = array(
-      //   array(
-      //     'taxonomy' => 'exhibition_category',
-      //     'field'    => 'term_id',
-      //     'terms'    => array( 5 ),
-      //     'operator' => 'NOT IN',
-      //   )
-      // );
-      // $query->set( 'tax_query', $taxquery );
+
+      $metaQuery = array(
+		'relation' => 'OR',
+		array(
+			'key'       => 'date',
+			'value'     =>  $today,
+			'compare'   => 'NOT EXISTS',
+		),
+		array(
+			'key'       => 'date',
+			'value'     =>  $today,
+			'compare'   => '<',
+		)
+		);
+      $query->set( 'meta_query', $metaQuery );
+	  $query->set('order', 'desc');
     }
   }
   return $query;
 }
 add_filter('pre_get_posts', 'custom_archive_query__events');
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+Add columns to event post list
+*******************************************************************************/
+
+/*********************
+ADD COLUMN LABELS
+*********************/
+add_filter ( 'manage_event_posts_columns', 'add_acf_columns' );
+function add_acf_columns ( $columns ) {
+ return array_merge ( $columns, array (
+   'event_date' => __ ( 'Event date' )
+ ));
+}
+
+/*********************
+ADD COLUMN DATA
+*********************/
+add_action ( 'manage_event_posts_custom_column', 'event_custom_column', 10, 2 );
+function event_custom_column ( $column, $post_id ) {
+  switch ( $column ) {
+    case 'event_date':
+      $oldDate = get_post_meta ( $post_id, 'date', true );
+      echo date("d M, Y", strtotime($oldDate));
+      break;
+  }
+}
+
+
+add_filter( 'manage_edit-event_sortable_columns', 'make_event_sortable_columns');
+function make_event_sortable_columns( $columns ) {
+  $columns['event_date'] = 'date';
+  return $columns;
+}
+
+
+add_action( 'pre_get_posts', 'events_order' );
+function events_order( $query ) {
+
+  // Nothing to do:
+  if( ! $query->is_main_query() || 'event' != $query->get( 'post_type' )  )
+      return;
+
+  //-------------------------------------------
+  // Modify the 'orderby' and 'meta_key' parts
+  //-------------------------------------------
+  $orderby = $query->get( 'orderby');
+
+  switch ( $orderby )
+  {
+      case 'date':
+          $query->set( 'orderby',  'meta_value' );
+          $query->set( 'meta_key', 'date' );
+          $query->set( 'meta_type', 'date' );
+          break;
+      default:
+          break;
+  }
+}
+
+
+
+
+
+
 
 
 

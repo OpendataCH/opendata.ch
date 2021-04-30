@@ -31,7 +31,6 @@
 			
 		<?php endif; ?>
 
-
         <h3 class='Teaser--title'><?php the_title(); ?></h3>
 
         <?php if (isset($args['text']) && $args['text']) : ?>
