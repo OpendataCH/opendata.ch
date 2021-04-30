@@ -13,7 +13,7 @@
 
 				<li class="TeaserList--item <?php echo ($k === 0 && !is_paged()) ? 'TeaserList--item--big' : '' ?>">
 
-					<?php $args = array('date' => true); ?>
+					<?php $args = array('teaserCount' => $k); ?>
 					<?php get_template_part('templates/teasers/teaser', 'news', $args); ?>
 					<?php $k++; ?>
 				</li>

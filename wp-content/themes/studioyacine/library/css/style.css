@@ -901,6 +901,35 @@ Author: Yacine Belarbi @ studioyacine.ch
   color: #939393;
 }
 
+#post-not-found {
+  min-height: 30vh;
+}
+
+#post-not-found h1 {
+  font-family: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  font-size: 1.36364rem;
+  line-height: 1.63636rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+#post-not-found h1 em,
+#post-not-found h1 i {
+  font-family: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+#post-not-found h1 strong,
+#post-not-found h1 b {
+  font-family: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+@media (min-width: 751px) {
+  #post-not-found h1 {
+    font-size: 1.90909rem;
+    line-height: 2.27273rem;
+  }
+}
+
 /*********************
 COMPONENTS
 *********************/

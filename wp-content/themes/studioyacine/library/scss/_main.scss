@@ -121,3 +121,11 @@ Author: Yacine Belarbi @ studioyacine.ch
         }
     }
 }
+
+#post-not-found {
+    min-height: 30vh;
+    h1 {
+        @include font-l;
+        text-align: center;
+    }
+}

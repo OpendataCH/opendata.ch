@@ -1,25 +1,19 @@
 <?php get_header(); ?>
 
-<div id="content">
 
-	<div id="inner-content" class="">
+<main id="" class="SimplePage" role="main" itemscope itemprop="mainContentOfPage">
 
-		<main id="" class="main" role="main" itemscope itemprop="mainContentOfPage">
+	<article id="post-not-found" class="">
 
-			<article id="post-not-found" class="">
+		<header class="article-header">
 
-				<header class="article-header">
+			<h1 class=''><?php _e("Sorry - This page doesn't exist (404)", 'bonestheme'); ?></h1>
 
-					<h1><?php _e("404 - This page doesn't exist", 'bonestheme'); ?></h1>
+		</header>
 
-				</header>
+	</article>
 
-			</article>
+</main>
 
-		</main>
-
-	</div>
-
-</div>
 
 <?php get_footer(); ?>
