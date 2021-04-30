@@ -923,6 +923,15 @@ COMPONENTS
   margin: 3rem 0;
 }
 
+.wp-block-image:before, .wp-block-image:after {
+  content: '';
+  display: table;
+}
+
+.wp-block-image:after {
+  clear: both;
+}
+
 @media (min-width: 401px) {
   .wp-block-image {
     margin: 3rem 0;

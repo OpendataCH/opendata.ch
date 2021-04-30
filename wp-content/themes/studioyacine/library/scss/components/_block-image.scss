@@ -1,4 +1,5 @@
 .wp-block-image {
+    @include clearfix;
     margin: 3rem 0;
 
     @include above-mobile-portrait {
