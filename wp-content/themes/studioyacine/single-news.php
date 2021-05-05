@@ -8,9 +8,23 @@
 
 				<div class="SimplePage--header">
 
+					<time class='SimplePage--postdate' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d. F Y'); ?></time>
+
 					<h1 class="SimplePage--title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
 
-					<time class='SimplePage--postdate' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d. F Y'); ?></time>
+					<div class="SimplePage--categories">
+						<?php
+							$terms = get_the_terms($post->ID , 'news_category');
+							if ( $terms && !is_wp_error( $terms ) ) :
+						?>
+						<ul>
+							<?php foreach ( $terms as $term ) { ?>
+								<li><?php echo $term->name; ?></li>
+							<?php } ?>
+						</ul>
+						<?php endif;?>
+
+					</div>
 
 				</div>
 

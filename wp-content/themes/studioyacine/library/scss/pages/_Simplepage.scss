@@ -32,7 +32,7 @@ body.single-event {
     @include font-xs;
     font-family: $mono;
     color: $red;
-    display: block;
+    display: inline-block;
 }
 
 .SimplePage--body {
@@ -41,10 +41,13 @@ body.single-event {
 
 .SimplePage--categories {
     @include font-xs;
-    display: flex;
-    flex-wrap: wrap;
-    font-family: $mono;
-    color: $red;
+
+    ul {
+        display: inline-flex;
+        flex-wrap: wrap;
+        font-family: $mono;
+        color: $greyDark;
+    }
 
     li:not(:last-child) {
         &:after {
@@ -55,7 +58,10 @@ body.single-event {
 }
 
 .SimplePage--eventdates {
-    display: none;
+    @include font-m;
+    color: $red;
+    font-family: $mono;
+    margin-bottom: 0.25rem;
 }
 
 body.search-results,

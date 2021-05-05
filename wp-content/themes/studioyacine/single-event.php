@@ -8,40 +8,47 @@
 
 				<div class="SimplePage--header">
 
+					<div class="SimplePage--eventdates">
+					<?php
+						$date_start = get_field('date');
+						$date_end = get_field('end_date');
+						if($date_start):
+							$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_start);
+						?>
+						<time class='SimplePage--eventstart' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished">
+						<?php if($date_end): ?>
+							<?php echo $date->format('d').' -'; ?>
+						<?php else: ?>
+							<?php echo $date->format('d M Y'); ?>
+						<?php endif; ?>
+						</time>
+						<?php
+						endif;
+						if($date_end):
+							$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_end);
+						?>
+						<time class='SimplePage--eventend' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M, Y'); ?></time>
+						<?php endif; ?>
+					</div>
+
 					<h1 class="SimplePage--title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
 
-					<div class='SimplePage--header--footer'>
+					<div class='SimplePage--categories'>
 
 						<?php
-							$taxonomy = 'event_category';
-							$terms = get_terms($taxonomy);
+							$terms = get_the_terms($post->ID , 'event_category');
 							if ( $terms && !is_wp_error( $terms ) ) :
 						?>
-						<ul class='SimplePage--categories'>
+
+						<ul>
 							<?php foreach ( $terms as $term ) { ?>
 								<li><?php echo $term->name; ?></li>
 							<?php } ?>
 						</ul>
 						<?php endif;?>
 
-						<div class="SimplePage--eventdates">
-
-						<?php 
-							$date_start = get_field('date');
-							$date_end = get_field('end_date');
-							if($date_start):
-								$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_start);
-							?>
-							<time class='SimplePage--eventstart' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M Y'); ?></time>
-							<?php
-							endif;
-							if($date_end):
-								$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_end);
-							?>
-							<time class='SimplePage--eventstart' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M Y'); ?></time>
-							<?php endif; ?>
-						</div>
-					</div>					
+					</div>
+					
 				</div>
 
 				<div class="SimplePage--body">

@@ -67,7 +67,6 @@
 .Teaser--date {
     display: block;
     @include font-xs;
-    @include font(bold);
     font-family: $mono;
     letter-spacing: 1px;
     color: $red;
