@@ -95,6 +95,7 @@
 
     .Teaser--title {
         @include font-base;
+        line-height: 28px;
         margin-bottom: 0.25rem;
     }
 
