@@ -262,7 +262,9 @@ function event_custom_column ( $column, $post_id ) {
   switch ( $column ) {
     case 'event_date':
       $oldDate = get_post_meta ( $post_id, 'date', true );
-      echo date("d M, Y", strtotime($oldDate));
+	  if($oldDate){
+      	echo date("d M, Y", strtotime($oldDate));
+	  }
       break;
   }
 }
