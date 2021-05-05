@@ -2076,6 +2076,38 @@ html.overlayIsOpen body {
   cursor: pointer;
 }
 
+.search-results .entry-header .search-title {
+  font-weight: normal;
+  font-size: 1.36364rem;
+  line-height: 1.54545rem;
+  letter-spacing: -0.02em;
+}
+
+.search-results .entry-header .byline {
+  color: #e61414;
+  font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.search-results .article-footer .article-categories {
+  list-style: none;
+  display: flex;
+}
+
+.search-results .article-footer .article-categories li {
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
+  font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+}
+
+.search-results .article-footer .article-categories li:not(:last-child) {
+  padding: 0;
+  margin-right: 0.5rem;
+}
+
+.search-results .article-footer .article-categories li:before {
+  display: none;
+}
+
 /******************************************************************
 Site Name: opendata.ch
 Author: Yacine Belarbi @ studioyacine.ch

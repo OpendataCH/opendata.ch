@@ -1,11 +1,12 @@
 <?php get_header(); ?>
 
 <main class="main" class="SimplePage" role="main">
-
-	<h1 class="SimplePage--title">
-		<span class='SimplePage--title--label'><?php _e('Search Results for:', 'bonestheme'); ?></span>
-		<span><?php echo esc_attr(get_search_query()); ?></span>
-	</h1>
+	<div class="SimplePage--header">
+		<h1 class="SimplePage--title">
+			<span class='SimplePage--title--label'><?php _e('Search Results for:', 'bonestheme'); ?></span>
+			<span><?php echo esc_attr(get_search_query()); ?></span>
+		</h1>
+	</div>
 
 	<div class="SimplePage--body">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -33,11 +34,18 @@
 
 					<footer class="article-footer">
 
-						<?php if (get_the_category_list(', ') != '') : ?>
-							<?php printf(__('Filed under: %1$s', 'bonestheme'), get_the_category_list(', ')); ?>
-						<?php endif; ?>
+						<ul class='article-categories'>
+							<?php
+							foreach (get_categories() as $category):
+								echo "<li>";
+								if ($category->name != 'Uncategorized'):
+									echo $category->name;
+								endif;
+								echo "</li>";
+							endforeach; ?>
+						</ul>
 
-						<?php the_tags('<p class="tags"><span class="tags-title">' . __('Tags:', 'bonestheme') . '</span> ', ', ', '</p>'); ?>
+						<?php //the_tags('<p class="tags"><span class="tags-title">' . __('Tags:', 'bonestheme') . '</span> ', ', ', '</p>'); ?>
 
 					</footer> <!-- end article footer -->
 

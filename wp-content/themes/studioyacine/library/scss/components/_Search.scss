@@ -98,3 +98,37 @@
     z-index: 4;
     cursor: pointer;
 }
+
+.search-results {
+    .entry-header {
+        .search-title {
+            @include font-m;
+        }
+
+        .byline {
+            color: $red;
+            font-family: $mono;
+        }
+    }
+
+    .article-footer {
+        .article-categories {
+            list-style: none;
+            display: flex;
+
+            li {
+                @include font-xs;
+                font-family: $mono;
+            }
+
+            li:not(:last-child) {
+                padding: 0;
+                margin-right: 0.5rem;
+            }
+
+            li:before {
+                display: none;
+            }
+        }
+    }
+}
