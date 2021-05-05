@@ -68,6 +68,7 @@
     display: block;
     @include font-xs;
     @include font(bold);
+    font-family: $monoBold;
     letter-spacing: 1px;
     color: $red;
     margin-bottom: 0.1rem;

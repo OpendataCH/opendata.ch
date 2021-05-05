@@ -5,7 +5,7 @@
 body.single-news,
 body.single-event {
     .SimplePage {
-        @include above-mobile {
+        @include above-tablet {
             margin-left: auto;
             margin-right: auto;
             max-width: 940px;
@@ -13,34 +13,48 @@ body.single-event {
     }
 
     .SimplePage--title {
-        @include above-mobile {
-            text-align: center;
+        @include above-tablet {
+            max-width: 900px;
         }
     }
+}
+
+.SimplePage--header {
+    margin-bottom: 3rem;
 }
 
 .SimplePage--title {
     @include font-xl;
     margin-bottom: 0.25em;
-
-    &:last-child {
-        margin-bottom: 0.5em;
-    }
 }
 
 .SimplePage--postdate {
     @include font-xs;
-    @include font(bold);
+    font-family: $mono;
     color: $red;
     display: block;
-    margin-bottom: 2rem;
-    @include above-mobile {
-        text-align: center;
-    }
 }
 
 .SimplePage--body {
     @include richtext(all);
+}
+
+.SimplePage--categories {
+    @include font-xs;
+    display: flex;
+    font-family: $mono;
+    color: $red;
+
+    li + li {
+        &:before {
+            content: "/";
+            margin: 0 0.5rem;
+        }
+    }
+}
+
+.SimplePage--eventdates {
+    display: none;
 }
 
 body.search-results,

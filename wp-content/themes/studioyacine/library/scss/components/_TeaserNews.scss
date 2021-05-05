@@ -51,7 +51,7 @@
 
 .TeaserNews--date {
     @include font-xs;
-    @include font(bold);
+    font-family: $monoBold;
     color: $red;
 }
 

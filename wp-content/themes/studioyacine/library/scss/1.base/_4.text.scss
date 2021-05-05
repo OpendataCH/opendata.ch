@@ -39,7 +39,7 @@ Stylesheet: Text Styles
 @mixin font-m {
     @include font(normal);
     font-size: rem(30px);
-    line-height: rem(36px);
+    line-height: rem(34px);
     letter-spacing: -0.02em;
 }
 

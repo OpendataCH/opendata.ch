@@ -16,6 +16,9 @@ $boldItalic: "m3bold_italic", -apple-system, system-ui, BlinkMacSystemFont, "Hel
 $body: "DroidSansRegular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 $bodyBold: "DroidSansBold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 
+$mono: "M3MonoRegular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+$monoBold: "M3MonoBold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+
 @mixin font($style) {
     @if $style == "light" {
         font-family: $light;
