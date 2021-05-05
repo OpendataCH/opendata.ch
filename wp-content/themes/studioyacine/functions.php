@@ -182,7 +182,7 @@ if (!function_exists('studioyacine_styles_dropdown')) {
     );
 
     // Merge old & new styles
-    $settings['style_formats_merge'] = false;
+    $settings['style_formats_merge'] = true;
 
     // Add new styles
     $settings['style_formats'] = json_encode($new_styles);

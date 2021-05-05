@@ -1,0 +1,34 @@
+.wp-block-image {
+    @include clearfix;
+    margin: 3rem 0;
+
+    @include above-mobile-portrait {
+        margin: 3rem 0;
+    }
+
+    img {
+        height: auto;
+        border-radius: 3px;
+    }
+
+    a:hover {
+        opacity: 1 !important;
+        img {
+            opacity: 0.8;
+            cursor: zoom-in;
+        }
+    }
+
+    figcaption {
+        @include font-s;
+        color: rgba($black, 0.4);
+
+        a {
+            color: rgba($black, 0.4) !important;
+
+            &:hover {
+                color: #333 !important;
+            }
+        }
+    }
+}

@@ -34,6 +34,7 @@ function studioyacine_allowed_block_types($allowed_blocks)
     return array(
         'core/image',
         'core/paragraph',
+		'core/buttons',
         'core/heading',
         'core/list',
         'core/quote',

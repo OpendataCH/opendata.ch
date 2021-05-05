@@ -1,9 +1,11 @@
-wp.domReady( () => {
+wp.domReady(() => {
 	wp.blocks.unregisterBlockStyle(
-        'core/image', 
-        ['default','rounded']
-    );
-    
+		'core/image',
+		['default', 'rounded']
+	);
+
+	wp.blocks.unregisterBlockStyle('core/button', 'outline');
+
 	// wp.blocks.getBlockTypes().forEach((block) => {
 	// 	if (_.isArray(block['styles'])) {
 	// 		console.log(block.name, _.pluck(block['styles'], 'name'));
@@ -34,4 +36,4 @@ wp.domReady( () => {
 	// 	'core/quote',
 	// 	[ 'default', 'large' ]
 	// );
-} );
+});

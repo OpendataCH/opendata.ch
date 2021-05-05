@@ -890,21 +890,6 @@ Author: Yacine Belarbi @ studioyacine.ch
 /*********************
 COMPONENTS
 *********************/
-.wp-block-media-text {
-  margin: 3rem 0;
-}
-
-.wp-block-media-text img {
-  height: auto;
-}
-
-@media (max-width: 750px) {
-  .wp-block-media-text .wp-block-media-text__content {
-    padding: 0;
-    margin: 1rem 0;
-  }
-}
-
 .wp-block-image {
   margin: 3rem 0;
 }
@@ -950,6 +935,60 @@ COMPONENTS
 
 .wp-block-image figcaption a:hover {
   color: #333 !important;
+}
+
+.wp-block-media-text {
+  margin: 3rem 0;
+}
+
+.wp-block-media-text img {
+  height: auto;
+}
+
+@media (max-width: 750px) {
+  .wp-block-media-text .wp-block-media-text__content {
+    padding: 0;
+    margin: 1rem 0;
+  }
+}
+
+.wp-block-buttons {
+  margin: 2rem 0;
+}
+
+.wp-block-buttons:before, .wp-block-buttons:after {
+  content: '';
+  display: table;
+}
+
+.wp-block-buttons:after {
+  clear: both;
+}
+
+.wp-block-buttons .wp-block-button {
+  width: auto !important;
+  margin: 0;
+}
+
+.wp-block-buttons .wp-block-button__link {
+  font-size: calc(22px* 0.8);
+  line-height: calc(30px* 0.8);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: #e61414;
+  color: #fff;
+}
+
+@media (min-width: 751px) {
+  .wp-block-buttons .wp-block-button__link {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+.wp-block-buttons .wp-block-button__link:hover {
+  background: #dd1313;
 }
 
 /******************************************************************
