@@ -7,6 +7,7 @@ Stylesheet: Text Styles
 ******************************************************************/
 
 @mixin body-font {
+    font-family: $regular;
     @include font(light);
 }
 

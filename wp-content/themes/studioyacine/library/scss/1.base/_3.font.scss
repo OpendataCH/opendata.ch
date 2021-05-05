@@ -6,50 +6,23 @@ Stylesheet: Typography
 
 *******************************************************************/
 
-$regular: "m3regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$regularItalic: "m3italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$light: "m3light", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$lightItalic: "m3light_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$bold: "m3bold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$boldItalic: "m3bold_italic", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+$regular: "M3Regular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 
-$body: "DroidSansRegular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$bodyBold: "DroidSansBold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+$body: "DroidSans", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 
-$mono: "M3MonoRegular", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
-$monoBold: "M3MonoBold", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+$mono: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
 
 @mixin font($style) {
     @if $style == "light" {
-        font-family: $light;
-
-        em,
-        i {
-            font-family: $lightItalic;
-        }
-
-        strong,
-        b {
-            font-family: $regular;
-        }
+        font-weight: 300;
     }
 
     @if $style == "normal" {
-        font-family: $regular;
-
-        em,
-        i {
-            font-family: $regularItalic;
-        }
-
-        strong,
-        b {
-            font-family: $bold;
-        }
+        font-weight: normal;
     }
 
     @if $style == "bold" {
-        font-family: $bold;
+        font-weight: 600;
     }
 }
 

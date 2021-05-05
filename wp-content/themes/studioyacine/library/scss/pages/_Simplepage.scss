@@ -42,11 +42,12 @@ body.single-event {
 .SimplePage--categories {
     @include font-xs;
     display: flex;
+    flex-wrap: wrap;
     font-family: $mono;
     color: $red;
 
-    li + li {
-        &:before {
+    li:not(:last-child) {
+        &:after {
             content: "/";
             margin: 0 0.5rem;
         }

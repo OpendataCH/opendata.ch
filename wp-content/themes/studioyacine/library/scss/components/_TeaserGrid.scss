@@ -68,7 +68,7 @@
     display: block;
     @include font-xs;
     @include font(bold);
-    font-family: $monoBold;
+    font-family: $mono;
     letter-spacing: 1px;
     color: $red;
     margin-bottom: 0.1rem;
@@ -95,8 +95,10 @@
 
     .Teaser--title {
         @include font-base;
-        line-height: 28px;
         margin-bottom: 0.25rem;
+        @include above-mobile {
+            line-height: 28px;
+        }
     }
 
     img {

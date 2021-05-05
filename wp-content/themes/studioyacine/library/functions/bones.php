@@ -159,7 +159,7 @@ function bones_page_navi()
 		'prev_text'    => '&larr;',
 		'next_text'    => '&rarr;',
 		'type'         => 'list',
-		'end_size'     => 3,
+		'end_size'     => 0,
 		'mid_size'     => 1
 	));
 	echo '</nav>';
