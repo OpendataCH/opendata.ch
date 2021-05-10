@@ -21,13 +21,25 @@
 
 		<?php if (isset($args['posttype']) && $args['posttype'] == 'event') : ?>
 			<?php 
-				$date_string = get_field('date');
-				if($date_string):
-					$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_string);
+				$date_start = get_field('date');
+				$date_end = get_field('end_date');
+				if($date_start):
+					$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_start);
 				?>
-				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M Y'); ?></time>
-				<?php endif; 
-			?>
+				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished">
+				<?php if($date_end): ?>
+					<?php echo $date->format('d').' -'; ?>
+				<?php else: ?>
+					<?php echo $date->format('d M Y'); ?>
+				<?php endif; ?>
+				</time>
+				<?php
+				endif;
+				if($date_end):
+					$date = DateTime::createFromFormat('Y-m-d H:i:s', $date_end);
+				?>
+				<time class='Teaser--date' datetime="<?php echo $date->format('c'); ?>" itemprop="datePublished"><?php echo $date->format('d M, Y'); ?></time>
+				<?php endif; ?>
 			
 		<?php endif; ?>
 

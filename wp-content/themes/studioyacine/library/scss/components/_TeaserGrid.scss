@@ -65,7 +65,7 @@
 }
 
 .Teaser--date {
-    display: block;
+    display: inline-block;
     @include font-xs;
     font-family: $mono;
     letter-spacing: 1px;

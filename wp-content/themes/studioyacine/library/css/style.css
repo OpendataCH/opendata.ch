@@ -2435,7 +2435,7 @@ Stylesheet: Social links
 }
 
 .Teaser--date {
-  display: block;
+  display: inline-block;
   font-size: 0.63636rem;
   line-height: 0.90909rem;
   font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
