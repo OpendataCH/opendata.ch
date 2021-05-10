@@ -1753,33 +1753,33 @@ html.overlayIsOpen body {
   margin-top: 1em;
 }
 
-.Intro strong ul {
+.Intro strong ul:not([class]) {
   margin-left: -1em;
   display: block;
   margin: 1em 0;
 }
 
 @media (max-width: 750px) {
-  .Intro strong ul {
+  .Intro strong ul:not([class]) {
     max-width: 80%;
   }
 }
 
-.Intro strong ul > li {
+.Intro strong ul:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 0.25ex;
 }
 
-.Intro strong ul > li:before {
+.Intro strong ul:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
 }
 
-.Intro strong ol {
+.Intro strong ol:not([class]) {
   margin-left: -1em;
   display: block;
   display: block;
@@ -1789,31 +1789,31 @@ html.overlayIsOpen body {
 }
 
 @media (max-width: 750px) {
-  .Intro strong ol {
+  .Intro strong ol:not([class]) {
     max-width: 80%;
   }
 }
 
-.Intro strong ol > li {
+.Intro strong ol:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 0.25ex;
 }
 
-.Intro strong ol > li:before {
+.Intro strong ol:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
 }
 
-.Intro strong ol > li:not(.gfield) {
+.Intro strong ol:not([class]) > li:not(.gfield) {
   padding-left: 1.25em;
   list-style-type: none;
 }
 
-.Intro strong ol > li:not(.gfield):before {
+.Intro strong ol:not([class]) > li:not(.gfield):before {
   margin-left: -1.5em;
   counter-increment: ol--counter;
   content: counter(ol--counter) ".";
@@ -1822,7 +1822,7 @@ html.overlayIsOpen body {
   color: #000;
 }
 
-.ie .Intro strong ol > li {
+.ie .Intro strong ol:not([class]) > li {
   list-style: decimal inside none;
 }
 
@@ -2923,7 +2923,7 @@ Stylesheet: Social links
   margin-bottom: 1em;
 }
 
-.SimplePage--body h3\:not([class]) {
+.SimplePage--body h3:not([class]) {
   font-weight: normal;
   margin-bottom: 0.5ex;
 }
@@ -2970,33 +2970,33 @@ Stylesheet: Social links
   margin-top: 1em;
 }
 
-.SimplePage--body ul {
+.SimplePage--body ul:not([class]) {
   margin-left: -1em;
   display: block;
   margin: 1em 0;
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body ul {
+  .SimplePage--body ul:not([class]) {
     max-width: 80%;
   }
 }
 
-.SimplePage--body ul > li {
+.SimplePage--body ul:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 0.25ex;
 }
 
-.SimplePage--body ul > li:before {
+.SimplePage--body ul:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
 }
 
-.SimplePage--body ol {
+.SimplePage--body ol:not([class]) {
   margin-left: -1em;
   display: block;
   display: block;
@@ -3006,31 +3006,31 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body ol {
+  .SimplePage--body ol:not([class]) {
     max-width: 80%;
   }
 }
 
-.SimplePage--body ol > li {
+.SimplePage--body ol:not([class]) > li {
   padding-left: 1.25em;
   position: relative;
   list-style-type: none;
   margin-bottom: 0.25ex;
 }
 
-.SimplePage--body ol > li:before {
+.SimplePage--body ol:not([class]) > li:before {
   position: absolute;
   left: 0;
   display: inline-block;
   content: "\2013";
 }
 
-.SimplePage--body ol > li:not(.gfield) {
+.SimplePage--body ol:not([class]) > li:not(.gfield) {
   padding-left: 1.25em;
   list-style-type: none;
 }
 
-.SimplePage--body ol > li:not(.gfield):before {
+.SimplePage--body ol:not([class]) > li:not(.gfield):before {
   margin-left: -1.5em;
   counter-increment: ol--counter;
   content: counter(ol--counter) ".";
@@ -3039,7 +3039,7 @@ Stylesheet: Social links
   color: #000;
 }
 
-.ie .SimplePage--body ol > li {
+.ie .SimplePage--body ol:not([class]) > li {
   list-style: decimal inside none;
 }
 

@@ -212,7 +212,7 @@ Stylesheet: Text Styles
             @include h2;
         }
 
-        h3\:not([class]) {
+        h3:not([class]) {
             @include h3;
         }
 
@@ -250,13 +250,13 @@ Stylesheet: Text Styles
             margin-top: 1em;
         }
 
-        ul {
+        ul:not([class]) {
             @include ul;
 
             margin: 1em 0;
         }
 
-        ol {
+        ol:not([class]) {
             @include ol;
 
             margin: 1em 0;
