@@ -328,3 +328,27 @@ function yourprefix_menu_arrow($item_output, $item, $depth, $args) {
 add_filter('walker_nav_menu_start_el', 'yourprefix_menu_arrow', 10, 4);
 
 /* DON'T DELETE THIS CLOSING TAG */
+
+
+
+
+/*********************
+Yoast SEO Default Article Image
+ *********************/
+
+function be_schema_default_image( $graph_piece ) {
+	$use_default = false;
+	if( has_post_thumbnail() ) {
+		$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+		if( empty( $image_src[1] ) || 1199 > $image_src[1] )
+			$use_default = true;
+	} else {
+		$use_default = true;
+	}
+
+	if( $use_default ) {
+		$graph_piece['image']['@id'] = home_url( '#logo' );
+	}
+	return $graph_piece;
+}
+add_filter( 'wpseo_schema_article', 'be_schema_default_image' );
