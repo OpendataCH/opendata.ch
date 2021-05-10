@@ -1,0 +1,22 @@
+.wp-block-buttons {
+    @include clearfix;
+    margin: 2rem 0;
+
+    .wp-block-button {
+        width: auto !important;
+        margin: 0;
+    }
+
+    .wp-block-button__link {
+        @include font-base;
+        @include font(normal);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        background: $red;
+        color: $white;
+
+        &:hover {
+            background: darken($red, 2%);
+        }
+    }
+}
