@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <?php $args = array('prefix' => 'events'); ?>
+
 <?php get_template_part('templates/intro/archive', null, $args); ?>
 
 <main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage">
