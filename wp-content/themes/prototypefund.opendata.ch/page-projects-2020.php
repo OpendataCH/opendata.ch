@@ -33,12 +33,14 @@ $round_slug_array = get_field('round',$post->ID);
 if(!is_array($round_slug_array)){
     $round_slug_array = explode(',',$round_slug_array);
 }
+var_dump($context['hide_filters']);
 if(count($round_slug_array) > 0){
     if(count($round_slug_array) < 2){
         //page is a single round page
         $context['hide_filters'] = true;
     }
 }
+var_dump($context['hide_filters']);
 
 //get projects
 //get projects
