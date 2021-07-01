@@ -9,6 +9,24 @@ on larger screens.
 
 ******************************************************************/
 
+
+h1,
+.h1 {
+  font-size: 2.75em;
+}
+
+h5,
+.h5,
+p,
+ul li,
+ol li,
+.article,
+.main-nav-wrap .nav li a, .nav-language,
+.sub-nav ul.nav-dropdown .nav-drop-item
+{
+  font-size: 1.125em;
+}
+
 .page-2020-wrap{
   max-width: 1400px;
 }
@@ -32,10 +50,6 @@ on larger screens.
   }
 }
 
-.header-content{
-  width: 60%;
-}
-
 /*********************
 SINGLE PROJECT PAGE
 *********************/
@@ -47,7 +61,6 @@ SINGLE PROJECT PAGE
     .nav-toggle{
       right: 130px
     }
-
   }
 }
 

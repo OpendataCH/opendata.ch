@@ -6,64 +6,23 @@
 		{% if hide_filters == false %}
 			<div class="row filter-wrap" data-filter="{{ filter }}">
 				<div class="col-xs-24">
-					<div data-id="rounds" class="rounds filter-tab">
-						<div class="filter-tab-header">
-							<h4 class="filter-headline">{{ options.filter_title_rounds }}</h4>
-						</div>
-						<div class="filter-tab-content">
-							<div class="filter-tab-content-inner row">
-								<div class="col-xs-24">
-									<div data-reset="rounds" class="btn-filter-reset">
-										<span></span>
-									</div>
-									{% for item in projects_rounds_filter %}
-										<a href="{{ item.url }}" data-filter="{{ item.slug }}" class="btn-project-filter">
-											<span>{{item.title}}</span>
-										</a>
-									{% endfor %}
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					<div data-id="topics" class="topics filter-tab">
-						<div class="filter-tab-header">
-							<h4 class="filter-headline">{{ options.filter_title_topics }}</h4>
-						</div>
-						<div class="filter-tab-content">
-							<div class="filter-tab-content-inner row">
-								<div class="col-xs-24">
-									<div data-reset="topics" class="btn-filter-reset">
-										<span></span>
-									</div>
-									{% for item in cats %}
-										{% if item.slug != 'uncategorised' %}
-											<div data-filter="{{ item.slug }}" class="btn-project-filter">
-												<span>{{item.name}}</span>
-											</div>
-										{% endif %}
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div data-id="map" class="map filter-tab">
-						<div class="filter-tab-header">
-							<h4 class="filter-headline">{{ options.filter_title_map }}</h4>
-						</div>
-						<div class="filter-tab-content">
-							<div class="filter-tab-content-inner row">
-								<div class="col-xs-24">
-									<div id="map" class="aspect-wrap aspect-map">
-										<div class="map-loading"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
+                    <!-- RUNDEN -->
+                    <div data-id="rounds" class="rounds filter-tab">
+                        <div class="filter-tab-header">
+                            <h4 class="filter-headline">{{ options.filter_title_rounds }}</h4>
+                        </div>
+                        <div class="filter-tab-content">
+                            <div class="filter-tab-content-inner row">
+                                <div class="col-xs-24">
+                                    {% for item in projects_rounds_filter %}
+                                        <a href="{{ item.url }}" data-filter="{{ item.slug }}" class="btn-project-filter">
+                                            <span>{{item.title}}</span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		{% endif %}

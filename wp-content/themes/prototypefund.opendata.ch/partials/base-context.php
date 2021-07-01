@@ -32,7 +32,6 @@ if(ICL_LANGUAGE_CODE == 'de'){
     $context['photo_credits'] = 'Photo: ';
     //this hides the filers, as there is no filtering for english
 }
-$context['hide_filters'] = true;
 
 $post = new TimberPost();
 $context['post'] = $post;

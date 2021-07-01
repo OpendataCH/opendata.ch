@@ -26,7 +26,7 @@ $args = array(
     'posts_per_page' => -1,
     'orderby' => 'rand'
 );
-$context['random_projects'] = Timber::get_posts($args);
+$context['projects_list'] = get_field('projects_list',$post->ID);
 
 Timber::render( array('views/page-front-2020.twig'), $context );
 ?>

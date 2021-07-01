@@ -23,15 +23,21 @@
             </div>
             {% if(options.is_deadline_reached == 1) %}
                 <!-- keine bewerbungsphase atm -->
-                {% if random_projects|length > 0 %}
+                {% if projects_list|length > 0 %}
                 <div class="header-ctas col-xs-24 no-padding">
                     <div class="random-projects-btn">
                         <i class="fas fa-sync"></i>
                     </div>
                     <div class="header-ctas-inner">
-                        {% for project in random_projects %}
-                            <div class="project-link {% if loop.index0 < 5 %}active{% endif %}" data-href="{{ project.link }}">
-                                <span>{{ project.title }}</span>
+                        {% for item in projects_list %}
+                            {% set project = Post(item.project) %}
+                            <div class="project-link active" data-href="{{ project.link }}">
+                                {% if project.meta('teaser_text') %}
+                                    <span>{{ project.meta('teaser_text') }}</span>
+                                {% else %}
+                                    <span>{{ project.post_title }}</span>
+                                {% endif %}
+
                                 <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
                             </div>
                         {% endfor %}

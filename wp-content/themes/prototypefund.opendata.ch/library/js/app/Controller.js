@@ -109,7 +109,7 @@
         videoPoster = new VideoPoster();
         projectsFilter = new ProjectsFilter();
         cookieManager = new CookieManager();
-        if(window.showMap) mapController = new MapController(this);
+        //if(window.showMap) mapController = new MapController(this);
 
         if($('.charts-wrap').length > 0){
             chartsManager = new ChartsManager(this);

@@ -6,12 +6,21 @@
     ProjectsFilter.prototype.constructor = ProjectsFilter;
     ProjectsFilter.prototype = {
     };
-    
+
     var ref, controller, $filterBtn, $filterTabs, $projects, $nothingFoundInfo, $projectsList, showFilter, $topicFilterBtns, $topicFilterResetBtn,
-        topicsFilterArray;
+        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions;
     function ProjectsFilter(pController){
         ref = this;
         controller = pController;
+        page_index = 1;
+
+        /*
+         var $claims = $('.project-list-item-copy.claim').find('p');
+         $claims.each(function(){
+         var $content = $(this).html();
+         $(this).html('<span class="claim-highlight">' + $content + '</span>');
+         });
+         */
 
 
 
@@ -31,24 +40,30 @@
 
         showFilter = $('.filter-wrap').attr('data-filter');
         var $tab = $(".filter-tab[data-id='" + showFilter +"']");
-        Logger.log("$tab -> " + $tab.length);
         if($tab.length > 0){
             var $c = $tab.find('.filter-tab-content');
             $tab.addClass('open');
             TweenMax.set($c, {display:"block", height:"auto"});
             var tl = TweenMax.from($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+            var url = ref.setUrlParameter(window.location.href,'filter',showFilter);
+            history.pushState(null, null, url);
         }
 
+        $descriptionWrap = $('.topic-description-wrap');
+        $descriptions = $('.topic-description');
+        $pagination = $('.projects-pagination');
+        $paginationButtons = $('.projects-pagination-btn',$pagination);
         $nothingFoundInfo = $('.nothing-found-info');
         $filterTabs = $('.filter-tab');
         $filterBtn = $('.filter-tab-header');
         $filterBtn.click(function(e){
             var $tab = $(this).parent();
             var $content = $(this).next();
+
+            var current = $tab.attr('data-id');
+
             if(!$tab.hasClass('open')){
                 //open
-
-                var current = $tab.attr('data-id');
 
                 //close others if open
                 $filterTabs.each(function(){
@@ -65,15 +80,21 @@
                 $tab.addClass('open');
                 TweenMax.set($content, {display:"block", height:"auto"});
                 var tl = TweenMax.from($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
-                var url = ref.setUrlParameter(window.location.href,'filter',current);
-                history.pushState(null, null, url);
+
+                if(current){
+                    var url = ref.setUrlParameter(window.location.href,'filter',current);
+                    history.pushState(null, null, url);
+                }
 
             } else {
                 //close
                 $tab.removeClass('open');
                 var tl = TweenMax.to($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
-                var url =  ref.setUrlParameter(window.location.href,'filter','');
-                history.pushState(null, null, url);
+
+                if(current){
+                    var url =  ref.setUrlParameter(window.location.href,'filter','');
+                    history.pushState(null, null, url);
+                }
             }
         });
 
@@ -90,14 +111,31 @@
             } else{
                 ref.removeTopicFromFilter(topic);
             }
-
+        }).mouseover(function() {
+            var filter = $(this).attr('data-filter');
+            ref.showTopicInfo(filter);
+        }).mouseout(function() {
+            ref.hideTopicInfo();
         });
-        $topicFilterResetBtn = $('.topics.filter-tab').find('.btn-filter-reset');
+
+        $topicFilterResetBtn = $(".btn-filter-reset[data-reset='topic']");
         $topicFilterResetBtn.click(function(e){
             topicsFilterArray = [];
             $topicFilterBtns.removeClass('selected');
             ref.filterProjectsByTopics();
             e.preventDefault();
+        });
+
+
+
+        $newsFilterResetBtn = $(".btn-filter-reset[data-reset='news']");
+        $newsFilterResetBtn.click(function(e){
+            $('.news-tile').removeClass('filtered');
+            topicsFilterArray = [];
+            $topicFilterBtns.removeClass('selected');
+            ref.filterProjectsByTopics();
+            e.preventDefault();
+
         });
 
         var initialTopics = ref.getUrlParameter(window.location.href,'topics');
@@ -107,19 +145,48 @@
             for(var a=0;a<initTopics.length;++a){
                 ref.addTopicToFilter(initTopics[a]);
             }
+            $pagination.addClass('hidden');
         } else {
             TweenMax.to($projectsList,0.5,{autoAlpha:1, ease:Sine.easeOut});
         }
+
+
+        if($paginationButtons.length > 0){
+            $paginationButtons.click(function(e){
+                e.preventDefault();
+                $paginationButtons.removeClass('active');
+                var page_id = $(this).attr('data-id');
+                page_index = page_id;
+                $(this).addClass('active');
+                $projects.addClass('paginated');
+                $projectsList.find("[data-page='" + page_id + "']").removeClass('paginated');
+                var eTop = $('.filter-wrap').offset().top; //get the offset top of the element
+                window.scroll({
+                    top: eTop,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
     };
 
-    ProjectsFilter.prototype.onHashChange = function(hash){
-        var $tab = $('#'+hash);
-        if($tab.length > 0){
-            var $c = $tab.find('.filter-tab-content');
-            $tab.addClass('open');
-            TweenMax.set($c, {display:"block", height:"auto"});
-            var tl = TweenMax.from($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+    ProjectsFilter.prototype.showTopicInfo = function(filter){
+        $descriptions.addClass('hidden');
+        var $info = $descriptionWrap.find("[data-slug='" + filter + "']");
+        if($info.length > 0){
+            //exists
+            $info.removeClass('hidden');
+            $descriptionWrap.removeClass('hidden');
+        } else {
+            $descriptionWrap.addClass('hidden');
         }
+
+    };
+
+    ProjectsFilter.prototype.hideTopicInfo = function(){
+        $descriptionWrap.addClass('hidden');
+        $descriptions.addClass('hidden');
     };
 
     ProjectsFilter.prototype.addTopicToFilter = function(topic){
@@ -135,6 +202,7 @@
             topicsFilterArray.push(topic);
             ref.filterProjectsByTopics();
         }
+
     };
 
     ProjectsFilter.prototype.removeTopicFromFilter = function(topic){
@@ -157,13 +225,34 @@
         history.pushState(null, null, url);
         Logger.log("url -> " + url);
 
+        $descriptions.addClass('hidden');
         if(topicsFilterArray.length ==0){
-            //no filter selected, show all
-            $projects.removeClass('filtered');
+
+            $descriptionWrap.addClass('hidden');
+            $topicFilterResetBtn.addClass('hidden');
+
+            //no filter selected, show all, depending on page_index
+            $projects.removeClass('filtered').addClass('paginated');
+            $projectsList.find("[data-page='" + page_index + "']").removeClass('paginated');
+            $pagination.removeClass('hidden');
+            $('.news-tile').removeClass('filtered').removeClass('paginated');
+
         } else {
+
+            $descriptionWrap.removeClass('hidden');
+            $topicFilterResetBtn.removeClass('hidden');
+            for(var a=0; a<topicsFilterArray.length;++a){
+                var topic = topicsFilterArray[a];
+                Logger.log("topic -> " + topic);
+                $descriptionWrap.find("[data-slug='" + topic + "']").removeClass('hidden');
+            }
+
+            $pagination.addClass('hidden');
             $projects.each(function(i){
                 var $item = $(this);
                 var pF = $(this).attr('data-filter');
+
+                $item.removeClass('paginated');
 
                 var projectTopicsArray = pF.split(",");
                 var res = projectTopicsArray.diff(topicsFilterArray);
@@ -182,10 +271,6 @@
 
         TweenMax.set($projectsList,{autoAlpha:0, ease:Sine.easeOut});
         TweenMax.to($projectsList,0.5,{autoAlpha:1, ease:Sine.easeOut});
-
-    };
-
-    ProjectsFilter.prototype.arrayDiff = function(arr1, arr2){
 
     };
 

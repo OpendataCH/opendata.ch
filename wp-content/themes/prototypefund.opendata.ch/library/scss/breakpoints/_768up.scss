@@ -19,6 +19,42 @@ GENERAL STYLES
 
 body {}
 
+h1, .h1 {
+  font-size: 2.75em;
+}
+
+h2, .h2 {
+  font-size: 2.25em;
+}
+
+h3, .h3 {
+  font-size: 2em;
+}
+
+h4, .h4 {
+  font-size: 1.75em;
+}
+
+h5,
+.h5 {
+  font-size: 1.5em;
+}
+
+h6, .h6 {
+  font-size: 1.25em;
+}
+
+
+
+p,
+ul li,
+ol li {
+  font-size: 1.5rem;
+}
+.article {
+  font-size: 1.5rem;
+}
+
 .logo-large-wrapper{
   width: 170px;
 }
@@ -81,6 +117,10 @@ a.fixed-top-left{
   &.mobile{
     display: none;
   }
+}
+
+.main-nav-wrap {
+  padding-top: 200px;
 }
 
 .boxed-link-wrapper:last-of-type, .grey-box, .video-content{

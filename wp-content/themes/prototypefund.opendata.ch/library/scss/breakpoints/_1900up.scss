@@ -9,6 +9,23 @@ on larger screens.
 
 ******************************************************************/
 
+h1,
+.h1 {
+  font-size: 3em;
+}
+
+h5,
+.h5,
+p,
+ul li,
+ol li,
+.article,
+.main-nav-wrap .nav li a, .nav-language,
+.sub-nav ul.nav-dropdown .nav-drop-item
+{
+  font-size: 1.25em;
+}
+
 .timeline-item{
   width:20%;
 }

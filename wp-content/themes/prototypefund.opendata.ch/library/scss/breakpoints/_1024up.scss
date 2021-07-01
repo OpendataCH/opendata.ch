@@ -6,56 +6,48 @@ Stylesheet: iPad Mini Portrait  Stylsheet
 
 ******************************************************************/
 
-/*********************
-DESKTOP NAV
-*********************/
+h1, .h1 {
+  font-size: 2em;
+}
 
-.nav-toggle{
-  display: none;
+h2, .h2 {
+  font-size: 1.75em;
+}
+
+h3, .h3 {
+  font-size: 1.5em;
+}
+
+h4, .h4 {
+  font-size: 1.25em;
+}
+
+h5, .h5 {
+  font-size: 1.1em;
+}
+
+h6, .h6 {
+  font-size: 1em;
+}
+
+p,
+ul li,
+ol li {
+  font-size: 1rem;
+}
+.article {
+  font-size: 1rem;
 }
 
 .main-nav-wrap{
-  width: auto;
-  height: auto;
-  position: relative;
-  background-color: transparent;
 
-  padding: 1.75em 2em 0 2em;
 
-  .main-nav{
-    float:left;
-    .menu-item{
-      float: left;
-      margin-right: 1.5em;
-
-      position: relative;
-      display: inline-block;
-      width: auto;
-
-      a{
-        &:hover, &:focus{
-          background-color: transparent;
-        }
-      }
-    }
-  }
-
-  .nav-language{
-    float: right;
-  }
+  padding: 150px 20px 20px 20px;
+  transform: translate(-50%,0);
+  @include transition(transform 0s ease-out);
 
   &.gone{
-    transform: translateX(0%);
-  }
-}
-
-.sub-nav {
-  display: block;
-  ul.nav-dropdown {
-    &.visible {
-      visibility: visible;
-      position: relative;
-    }
+    transform: translate(-50%, -100%);
   }
 }
 
@@ -211,6 +203,9 @@ DESKTOP NAV
   }
 }
 
+.project-link {
+  padding: 0.75em 0;
+}
 .project-teaser-image{
   margin-top: 0;
 }
@@ -387,7 +382,7 @@ NEWS TILE 2018
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0;
+      padding: 80px 0 0 0;
     }
   }
 }
@@ -397,16 +392,12 @@ NEWS TILE 2018
 .header-content{
   padding-top: 0;
   width: 80%;
+  max-width: 450px;
   margin-bottom: auto;
   flex-grow: 1;
   justify-content: center;
   display: flex;
   align-items: center;
-
-  .header-content-inner{
-    padding-top: 6em;
-    width: 80%;
-  }
 
   .header-headline{
     margin-bottom: 1.5rem;
@@ -414,7 +405,7 @@ NEWS TILE 2018
   }
 }
 .header-ctas{
-  padding: 0 2em 3em 2em;
+  padding: 0 2em 1.5em 2em;
   position: relative;
   bottom: 0;
 }

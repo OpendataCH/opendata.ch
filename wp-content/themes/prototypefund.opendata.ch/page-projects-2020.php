@@ -39,9 +39,46 @@ if(count($round_slug_array) > 0){
         $context['hide_filters'] = true;
     }
 }
-$context['hide_filters'] = true;
 
-$context['projects_rounds_filter'] = get_rounds($round_slug_array);
+//get projects
+//get projects
+$round_slug_array = get_field('round',$post->ID);
+$round_choices_array = get_field_object('round',$post->ID)['choices'];
+
+$round_choices_array = [];
+$round_choices_array['round_1'] = 'Round 1';
+$round_choices_array['round_2'] = 'Round 2';
+$round_choices_array['round_3'] = 'Round 3';
+$round_choices_array['round_4'] = 'Round 4';
+$round_choices_array['round_5'] = 'Round 5';
+$round_choices_array['round_6'] = 'Round 6';
+$round_choices_array['round_7'] = 'Round 7';
+$round_choices_array['round_8'] = 'Round 8';
+$round_choices_array['round_9'] = 'Round 9';
+$round_choices_array['round_10'] = 'Round 10';
+
+if(!is_array($round_slug_array) ){
+    $round_slug_array = explode(',',$round_slug_array);
+    $round_choices_array = explode(',',$round_choices_array);
+} else {
+    if(count($round_slug_array) > 1){
+        //overview
+        $round_slug_array = [];
+        $round_slug_array[] = 'round_1';
+        $round_slug_array[] = 'round_2';
+        $round_slug_array[] = 'round_3';
+        $round_slug_array[] = 'round_4';
+        $round_slug_array[] = 'round_5';
+        $round_slug_array[] = 'round_6';
+        $round_slug_array[] = 'round_7';
+        $round_slug_array[] = 'round_8';
+        $round_slug_array[] = 'round_9';
+        $round_slug_array[] = 'round_10';
+    }
+}
+
+$context['projects_rounds_filter'] = get_rounds($round_slug_array, $round_choices_array);
+
 $context['projects'] = get_projects($round_slug_array);
 
 //get categories

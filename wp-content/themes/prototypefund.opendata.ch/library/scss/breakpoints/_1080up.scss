@@ -178,6 +178,80 @@ CONTENT NEWS
 
 }
 
+/*********************
+DESKTOP NAV
+*********************/
+
+.nav-toggle{
+  display: none;
+}
+
+.mobile-sub-nav {
+  display: none;
+}
+
+.main-nav-wrap{
+  width: auto;
+  height: auto;
+  position: relative;
+  background-color: transparent;
+
+  padding: 1.75em 2em 0 2em;
+
+  .main-nav{
+    float:left;
+    .menu-item{
+      float: left;
+      margin-right: 1em;
+
+      position: relative;
+      display: inline-block;
+      width: auto;
+      font-size: 1rem;
+
+      a{
+        &:hover, &:focus{
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .nav-language{
+    float: right;
+    font-size: 1rem;
+    width: auto;
+  }
+
+  &.gone{
+    transform: translateX(0%);
+  }
+}
+
+.sub-nav {
+  display: block;
+  ul.nav-dropdown {
+    &.visible {
+      visibility: visible;
+      position: relative;
+    }
+    .nav-drop-item {
+      font-size: 1rem;
+    }
+  }
+}
+
+.main-nav-wrap {
+  transform: translate(0, 0);
+  @include transition(transform 0s ease-out);
+}
+
+.main-nav-wrap{
+  .nav li a {
+    font-size: 1rem;
+  }
+}
+
 
 
 /*********************

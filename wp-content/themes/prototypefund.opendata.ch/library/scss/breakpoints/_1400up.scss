@@ -42,10 +42,14 @@ on larger screens.
   padding: 1.75em 3em 0 3em;
 }
 .header-ctas{
-  padding: 0 3em 3em 3em;
+  padding: 0 3em 1.5em 3em;
 }
 .sub-nav {
   padding: 0 3em;
+}
+
+.header-content {
+  max-width: 550px;
 }
 
 /*********************

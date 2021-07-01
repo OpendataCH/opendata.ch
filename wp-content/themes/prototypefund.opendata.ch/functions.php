@@ -146,6 +146,8 @@ add_image_size( 'ptf-news', 450, 450, true );
 
 add_image_size('ptf-16x9_large', 1200, 675, true);
 add_image_size('ptf-16x9_small', 800, 450, true);
+add_image_size('ptf-4x3_large', 1200, 900, true);
+add_image_size('ptf-4x3_small', 800, 600, true);
 
   /************* ACTIVE SIDEBARS ********************/
 
@@ -405,44 +407,68 @@ function calc_deadline(){
 /**
  * Returns the rounds for the language
  */
-function get_rounds($rounds){
+function get_rounds($rounds, $choices){
     $rounds_array = array();
+    //query the single round page
+    $args = array(
+        'post_type' => 'page',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => '_wp_page_template',
+                'value' => 'page-projects-2020.php', // template name as stored in the dB
+            ),
+        )
+    );
+
+    $round_pages = get_posts($args);
+
     if(is_array($rounds)){
         foreach($rounds as $round){
+
             $round_filter = array();
-            $pos = strpos($round, '_');
-            $round_id = substr($round, intval($pos)+1);
-            if(ICL_LANGUAGE_CODE == 'de'){
-                $round_filter['title'] = 'Runde ' . $round_id;
-            } else $round_filter['title'] = 'Round ' . $round_id;
-            $round_filter['slug'] = $round;
 
-            //query the single round page
-            $args = array(
-                'post_type' => 'page',
-                'post_status' => 'publish',
-                'meta_query' => array(
-                    'relation' => 'AND',
-                    array(
-                        'key' => '_wp_page_template',
-                        'value' => 'page-projects-2020.php', // template name as stored in the dB
-                    ),
-                    array(
-                        'key' => 'round',
-                        'value' => $round,
-                    ),
-                )
-            );
-            $page = get_posts($args);
-            $round_filter['url'] = get_permalink($page[0]->ID);
+            if (strpos($round, 'round') !== false) {
+                $pos = strpos($round, '_');
+                $round_id = substr($round, intval($pos)+1);
 
-            //
-            $rounds_array[] = $round_filter;
+                if(ICL_LANGUAGE_CODE == 'de'){
+                    $round_filter['title'] = 'Runde ' . $round_id;
+                } else $round_filter['title'] = 'Round ' . $round_id;
+
+                $round_filter['slug'] = $round;
+            } else {
+                //virus round
+
+                $round_filter['title'] = $choices[$round];
+                $round_filter['slug'] = $round;
+            }
+
+            $projects = get_posts($args);
+
+            //there are projects for this round
+            foreach($round_pages as $page){
+                $r = get_field('round',$page->ID);
+                if(is_array($r) && count($r) > 1){
+                    //this is all projects page
+                    break;
+                }
+                if(is_array($r)){
+                    $r = $r[0];
+                }
+                if($r == $round){
+                    $round_filter['url'] = get_permalink($page->ID);
+                    $rounds_array[] = $round_filter;
+                }
+            }
         }
     }
 
     return $rounds_array;
 }
+
 
 /**
 * Returns the projects
@@ -533,25 +559,27 @@ function extendProjectPost($post){
         $projects = Timber::get_posts($args);
 
         $projects_rounds = [];
-        foreach ($projects as $post) {
+        if($projects){
+            foreach ($projects as $post) {
 
-            //get filters ROUNDS
-            $cats = get_project_round($post->ID);
+                //get filters ROUNDS
+                $cats = get_project_round($post->ID);
 
-            foreach ($cats as $cat) {
-                if(count($projects_rounds)>0){
-                    $found=false;
-                    foreach ($projects_rounds as $project_cat) {
-                        if($cat['slug'] === $project_cat['slug']) $found = true;
+                foreach ($cats as $cat) {
+                    if(count($projects_rounds)>0){
+                        $found=false;
+                        foreach ($projects_rounds as $project_cat) {
+                            if($cat['slug'] === $project_cat['slug']) $found = true;
+                        }
+                        if(!$found) $projects_rounds[] = $cat;
+                    } else {
+                        //first round added
+                        $projects_rounds[] = $cat;
                     }
-                    if(!$found) $projects_rounds[] = $cat;
-                } else {
-                    //first round added
-                    $projects_rounds[] = $cat;
                 }
             }
-
         }
+
 
         sort_array_of_array($projects_rounds, 'name');
         return $projects_rounds;
