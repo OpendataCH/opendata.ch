@@ -17,3 +17,5 @@
 /wiki/
 /id_rsa
 /bin/settings.sh
+
+node_modules

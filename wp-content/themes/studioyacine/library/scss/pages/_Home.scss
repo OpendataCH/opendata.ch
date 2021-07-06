@@ -5,7 +5,7 @@
     }
     margin-bottom: 6rem;
 
-    h2 {
+    h1,h2 {
         @include font-xl;
         margin-bottom: 0.2em;
         @include mobile {
