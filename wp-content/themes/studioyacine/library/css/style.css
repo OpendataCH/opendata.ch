@@ -2688,7 +2688,8 @@ Stylesheet: Social links
   }
 }
 
-.HomeIntro h1, .HomeIntro h2 {
+.HomeIntro h1,
+.HomeIntro h2 {
   font-weight: normal;
   font-size: 2.04545rem;
   line-height: 2.27273rem;
@@ -2697,29 +2698,30 @@ Stylesheet: Social links
 }
 
 @media (min-width: 751px) {
-  .HomeIntro h1, .HomeIntro h2 {
+  .HomeIntro h1,
+  .HomeIntro h2 {
     font-size: 2.95455rem;
     line-height: 2.95455rem;
   }
 }
 
 @media (min-width: 1201px) {
-  .HomeIntro h1, .HomeIntro h2 {
+  .HomeIntro h1,
+  .HomeIntro h2 {
     font-size: 4.09091rem;
     line-height: 4.09091rem;
   }
 }
 
 @media (max-width: 750px) {
-  .HomeIntro h1, .HomeIntro h2 {
+  .HomeIntro h1,
+  .HomeIntro h2 {
     font-size: 3rem;
     line-height: 1;
   }
 }
 
 .HomeIntro p {
-  font-size: 0.90909rem;
-  line-height: 1.27273rem;
   font-weight: normal;
   max-width: 1124px;
 }

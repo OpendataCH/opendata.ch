@@ -1,11 +1,13 @@
 .HomeIntro {
     @include sitewidth;
+    margin-bottom: 6rem;
+
     @include above-desktop {
         padding-right: calc((#{$site-width} - #{$site-width-small}) / 2);
     }
-    margin-bottom: 6rem;
-
-    h1,h2 {
+    
+    h1,
+    h2 {
         @include font-xl;
         margin-bottom: 0.2em;
         @include mobile {
@@ -15,7 +17,7 @@
     }
 
     p {
-        @include font-s;
+        // @include font-s;
         @include font(normal);
         max-width: 1124px;
 
