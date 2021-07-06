@@ -769,7 +769,7 @@ Author: Yacine Belarbi @ studioyacine.ch
   font-weight: normal;
   font-size: 0.90909rem;
   line-height: 1.27273rem;
-  color: #ccc;
+  color: #6b6b6b;
   letter-spacing: 0.02em;
 }
 
@@ -1370,6 +1370,10 @@ html.overlayIsOpen body {
   display: inline-block;
 }
 
+.Footer--top .SocialLinks li + li {
+  margin: 0;
+}
+
 .Footer--top .SocialLinks a {
   text-decoration: underline;
   text-decoration-color: #e61414;
@@ -1422,13 +1426,15 @@ html.overlayIsOpen body {
 }
 
 .Footer--bottom {
+  position: relative;
   margin-left: calc(50% - 545px);
   margin-right: calc(50% - 545px);
   font-size: 0.63636rem;
   line-height: 0.90909rem;
-  color: #ccc;
-  padding-top: 2rem;
+  color: #6b6b6b;
   padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1410px) {
@@ -1476,6 +1482,27 @@ html.overlayIsOpen body {
 @media (max-width: 400px) {
   .Footer--bottom {
     margin-right: 20px;
+  }
+}
+
+@media (min-width: 751px) {
+  .Footer--bottom {
+    padding-top: 2rem;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 750px) {
+  .Footer--bottom .Footer--okfn img {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 751px) {
+  .Footer--bottom .Footer--okfn {
+    flex: 0 0 calc(50% - 1rem);
   }
 }
 
@@ -1992,19 +2019,19 @@ html.overlayIsOpen body {
 
 .Searchoverlay input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ccc;
+  color: #6b6b6b;
   opacity: 1;
   /* Firefox */
 }
 
 .Searchoverlay input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 .Searchoverlay input::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 .Searchoverlay button[type="submit"] {
@@ -2324,12 +2351,12 @@ Stylesheet: Social links
 .TeamMember--twitter .icon {
   width: 32px;
   height: 32px;
-  color: #ccc;
+  color: #00d1ff;
   margin-right: 10px;
 }
 
 .TeamMember--twitter a {
-  color: #939393;
+  color: #00d1ff;
 }
 
 .TeamMember--twitter a:hover {
@@ -3163,7 +3190,7 @@ body.search-no-results .SimplePage--title--label {
   font-weight: normal;
   font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 @media (min-width: 751px) {

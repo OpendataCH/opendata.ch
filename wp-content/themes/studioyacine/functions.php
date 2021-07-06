@@ -353,3 +353,10 @@ function be_schema_default_image( $graph_piece ) {
 }
 add_filter( 'wpseo_schema_article', 'be_schema_default_image' );
 add_filter( 'wpseo_schema_webpage', 'be_schema_default_image' );
+
+
+function remove_post_type_page_from_search() {
+    global $wp_post_types;
+    $wp_post_types['post']->exclude_from_search = true;
+}
+add_action('init', 'remove_post_type_page_from_search');
