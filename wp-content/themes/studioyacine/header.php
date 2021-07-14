@@ -94,6 +94,7 @@
 				</nav>
 
 				<button class='Header--search' role='button'>
+					<span class='visuallyhidden'>Search</span>
 					<svg class="icon">
 						<use xlink:href="#base--search(1)"></use>
 					</svg>
