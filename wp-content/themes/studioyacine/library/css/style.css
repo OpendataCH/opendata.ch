@@ -1489,7 +1489,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--bottom {
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     align-items: center;
     flex-direction: row;
   }

@@ -30,10 +30,10 @@
         li {
             display: inline-block;
         }
-		
-		li + li {
-			margin: 0;
-		}
+
+        li + li {
+            margin: 0;
+        }
 
         a {
             @include a;
@@ -68,32 +68,32 @@
 }
 
 .Footer--bottom {
-	position: relative;
+    position: relative;
     @include sitewidth-s;
     @include font-xs;
     color: $grey;
     padding-bottom: 1rem;
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-	@include above-mobile {
-		padding-top: 2rem;
-		align-items: center;
-		flex-direction: row;
-	}
+    @include above-mobile {
+        padding-top: 0.5rem;
+        align-items: center;
+        flex-direction: row;
+    }
 
-	.Footer--okfn {
-		img {
-			@include mobile {
-				width: 100px;
-				margin-bottom: 1rem;
-			}
-		}
+    .Footer--okfn {
+        img {
+            @include mobile {
+                width: 100px;
+                margin-bottom: 1rem;
+            }
+        }
 
-		@include above-mobile {
-			flex: 0 0 calc(50% - 1rem);
-		}
-	}
+        @include above-mobile {
+            flex: 0 0 calc(50% - 1rem);
+        }
+    }
 }
 
 .Footer--title {
