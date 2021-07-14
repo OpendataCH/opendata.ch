@@ -5,7 +5,7 @@
     @include above-desktop {
         padding-right: calc((#{$site-width} - #{$site-width-small}) / 2);
     }
-    
+
     h1,
     h2 {
         @include font-xl;
@@ -17,9 +17,10 @@
     }
 
     p {
-        // @include font-s;
-        @include font(normal);
-        max-width: 1124px;
+        font-size: rem(24px);
+        line-height: rem(36px);
+        @include font(light);
+        // max-width: 1124px;
 
         a {
             @include a;
