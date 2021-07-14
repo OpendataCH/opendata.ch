@@ -9,7 +9,7 @@
 
     <div class="Searchoverlay--inner">
 
-        <?php get_search_form(); ?>
+        <?php get_search_form(array('name' => 'header-search')); ?>
 
     </div>
 
