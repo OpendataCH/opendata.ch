@@ -45,21 +45,9 @@
 	<?php // end of wordpress head 
 	?>
 
-	<?php // drop Google Analytics Here 
-	?>
-	<?php // end analytics 
-	?>
-
-	<script>
-		// CookieBoxConfig = {
-		// 	cookieKey: 'studioyacine-wordpress-starter.local',
-		// 	backgroundColor: '#333',
-		// 	language: 'en',
-		// 	url: '<?php // echo esc_url(get_page_link(68)); 
-						// 			
-						?>'
-		// }
-	</script>
+	<!-- Fathom - beautiful, simple website analytics -->
+	<script src="https://cdn.usefathom.com/script.js" data-site="DVTJEWOM" defer></script>
+	<!-- / Fathom -->
 
 </head>
 

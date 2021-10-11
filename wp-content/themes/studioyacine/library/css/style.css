@@ -877,7 +877,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 #post-not-found h1 {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   text-align: center;
 }
@@ -1593,7 +1593,7 @@ html.overlayIsOpen body {
 @media (min-width: 751px) {
   .Footer--button {
     position: static;
-    transform: translateY(-90%);
+    transform: translateY(-15%);
     width: 125px;
     height: 125px;
   }
@@ -1601,7 +1601,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--button:hover {
-    transform: scale(1.02) translateY(-90%);
+    transform: scale(1.02) translateY(-15%);
   }
 }
 
@@ -1772,7 +1772,7 @@ html.overlayIsOpen body {
 .Intro strong {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
 }
 
@@ -1788,6 +1788,27 @@ html.overlayIsOpen body {
   border-spacing: 0;
 }
 
+.Intro strong table thead {
+  border-bottom: 1px solid #000;
+}
+
+.Intro strong table tfoot td {
+  opacity: 0.5;
+}
+
+.Intro strong table td,
+.Intro strong table th {
+  padding: 0.2em 0;
+}
+
+.Intro strong table tr {
+  line-height: 1.5;
+}
+
+.Intro strong table th {
+  font-weight: normal;
+}
+
 .Intro strong p {
   margin-bottom: 1em;
 }
@@ -1798,11 +1819,18 @@ html.overlayIsOpen body {
   border-left: 3px solid #e61414;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   max-width: 900px;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong blockquote {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Intro strong p + h2 {
@@ -1922,10 +1950,17 @@ html.overlayIsOpen body {
 .Intro strong .has-medium-font-size {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong .has-medium-font-size {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Intro strong .has-small-font-size {
@@ -1964,7 +1999,7 @@ html.overlayIsOpen body {
   .Intro h1 {
     font-weight: normal;
     font-size: 1.36364rem;
-    line-height: 1.63636rem;
+    line-height: 1.72727rem;
     letter-spacing: -0.02em;
   }
 }
@@ -2001,7 +2036,7 @@ html.overlayIsOpen body {
   width: 100%;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   border: none;
   border-bottom: 3px solid #eee;
@@ -2174,8 +2209,15 @@ html.overlayIsOpen body {
 .search-results .entry-header .search-title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 750px) {
+  .search-results .entry-header .search-title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .search-results .entry-header .byline {
@@ -2279,7 +2321,7 @@ Stylesheet: Social links
 .TeamMember--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0;
 }
@@ -2295,8 +2337,15 @@ Stylesheet: Social links
   .TeamMember--title {
     font-weight: normal;
     font-size: 1.36364rem;
-    line-height: 1.54545rem;
+    line-height: 1.72727rem;
     letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 750px) {
+  .TeamMember--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
   }
 }
 
@@ -2452,9 +2501,16 @@ Stylesheet: Social links
 .Teaser--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .Teaser--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Teaser--text p {
@@ -2475,9 +2531,16 @@ Stylesheet: Social links
 .TeaserGrid.size--3 .Teaser--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .TeaserGrid.size--3 .Teaser--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .TeaserGrid.size--3 img {
@@ -2632,7 +2695,7 @@ Stylesheet: Social links
 .TeaserList--item--big .TeaserNews .TeaserNews--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
 }
 
@@ -2842,8 +2905,15 @@ Stylesheet: Social links
 .HomeCTA a span {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 750px) {
+  .HomeCTA a span {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .HomeCTA svg {
@@ -2959,7 +3029,7 @@ Stylesheet: Social links
 .SimplePage--body h1 {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: normal;
   margin-bottom: 0.5ex;
@@ -2976,9 +3046,16 @@ Stylesheet: Social links
   font-weight: normal;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 1em;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--body h2:not([class]) {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .SimplePage--body h3:not([class]) {
@@ -3007,6 +3084,27 @@ Stylesheet: Social links
   border-spacing: 0;
 }
 
+.SimplePage--body table thead {
+  border-bottom: 1px solid #000;
+}
+
+.SimplePage--body table tfoot td {
+  opacity: 0.5;
+}
+
+.SimplePage--body table td,
+.SimplePage--body table th {
+  padding: 0.2em 0;
+}
+
+.SimplePage--body table tr {
+  line-height: 1.5;
+}
+
+.SimplePage--body table th {
+  font-weight: normal;
+}
+
 .SimplePage--body p {
   margin-bottom: 1em;
 }
@@ -3017,11 +3115,18 @@ Stylesheet: Social links
   border-left: 3px solid #e61414;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   max-width: 900px;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--body blockquote {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .SimplePage--body p + h2 {
@@ -3141,10 +3246,17 @@ Stylesheet: Social links
 .SimplePage--body .has-medium-font-size {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--body .has-medium-font-size {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .SimplePage--body .has-small-font-size {
@@ -3178,11 +3290,18 @@ Stylesheet: Social links
 .SimplePage--eventdates {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   color: #e61414;
   font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--eventdates {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 body.search-results .SimplePage--title--label,

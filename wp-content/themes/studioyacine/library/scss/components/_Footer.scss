@@ -144,14 +144,14 @@
     transform-origin: 50% 50%;
     @include above-mobile {
         position: static;
-        transform: translateY(-90%);
+        transform: translateY(-15%);
         width: 125px;
         height: 125px;
     }
 
     &:hover {
         @include above-mobile {
-            transform: scale(1.02) translateY(-90%);
+            transform: scale(1.02) translateY(-15%);
         }
     }
 }
