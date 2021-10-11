@@ -1,0 +1,10 @@
+.wp-block-table {
+    @include clearfix;
+    margin: 2rem 0;
+
+    figcaption {
+        margin-top: 1rem;
+        color: $grey;
+        @include font-xs;
+    }
+}

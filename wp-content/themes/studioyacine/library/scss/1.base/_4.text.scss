@@ -211,7 +211,8 @@ Stylesheet: Text Styles
     }
 
     tfoot td {
-        opacity: 0.5;
+        // opacity: 0.5;
+        border-top: 1px solid $greyLight;
     }
 
     td,

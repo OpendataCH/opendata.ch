@@ -981,6 +981,26 @@ COMPONENTS
   height: 100%;
 }
 
+.wp-block-table {
+  margin: 2rem 0;
+}
+
+.wp-block-table:before, .wp-block-table:after {
+  content: '';
+  display: table;
+}
+
+.wp-block-table:after {
+  clear: both;
+}
+
+.wp-block-table figcaption {
+  margin-top: 1rem;
+  color: #6b6b6b;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
+}
+
 .wp-block-buttons {
   margin: 2rem 0;
 }
@@ -1793,7 +1813,7 @@ html.overlayIsOpen body {
 }
 
 .Intro strong table tfoot td {
-  opacity: 0.5;
+  border-top: 1px solid #eee;
 }
 
 .Intro strong table td,
@@ -3089,7 +3109,7 @@ Stylesheet: Social links
 }
 
 .SimplePage--body table tfoot td {
-  opacity: 0.5;
+  border-top: 1px solid #eee;
 }
 
 .SimplePage--body table td,
