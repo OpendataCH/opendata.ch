@@ -527,6 +527,37 @@ PAGE NAVI STYLES
   border-radius: 8px;
 }
 
+.pagination-news {
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: calc(22px* 0.8);
+  line-height: calc(30px* 0.8);
+  font-weight: normal;
+}
+
+@media (min-width: 751px) {
+  .pagination-news {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+.pagination-news a {
+  text-decoration: underline;
+}
+
+.pagination-news a:hover {
+  text-decoration: none;
+}
+
+.pagination-news p {
+  max-width: 400px;
+}
+
 .cookie-box {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
