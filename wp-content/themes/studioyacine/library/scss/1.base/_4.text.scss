@@ -235,11 +235,11 @@ Stylesheet: Text Styles
             @include h1;
         }
 
-        h2:not([class]) {
+        h2 {
             @include h2;
         }
 
-        h3:not([class]) {
+        h3 {
             @include h3;
         }
 

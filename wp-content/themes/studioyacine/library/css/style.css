@@ -3093,7 +3093,7 @@ Stylesheet: Social links
   }
 }
 
-.SimplePage--body h2:not([class]) {
+.SimplePage--body h2 {
   font-weight: normal;
   font-weight: normal;
   font-size: 1.36364rem;
@@ -3103,13 +3103,13 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body h2:not([class]) {
+  .SimplePage--body h2 {
     font-size: 1.54545rem;
     line-height: 1.90909rem;
   }
 }
 
-.SimplePage--body h3:not([class]) {
+.SimplePage--body h3 {
   font-weight: normal;
   margin-bottom: 0.5ex;
 }
