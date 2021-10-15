@@ -1986,6 +1986,7 @@ html.overlayIsOpen body {
 .Intro strong img {
   max-width: 100%;
   height: auto;
+  height: auto;
 }
 
 .Intro strong ::-moz-selection {
@@ -3281,6 +3282,7 @@ Stylesheet: Social links
 
 .SimplePage--body img {
   max-width: 100%;
+  height: auto;
   height: auto;
 }
 
