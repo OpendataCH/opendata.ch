@@ -14,6 +14,10 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/OpendataCH/wp-seo-premium.git"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/OpendataCH/wp-seo-multilingual.git"
         }
     ],
@@ -50,6 +54,7 @@
         "wpackagist-plugin/enable-jquery-migrate-helper": "^1.1",
         "opendatach/advanced-custom-fields-pro": "5.*",
         "opendatach/sitepress-multilingual-cms": "4.*",
+        "opendatach/wp-seo-premium": "1.*",
         "opendatach/wp-seo-multilingual": "1.*"
     },
     "require-dev": {
