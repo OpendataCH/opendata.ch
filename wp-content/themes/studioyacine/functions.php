@@ -360,3 +360,8 @@ function remove_post_type_page_from_search() {
     $wp_post_types['post']->exclude_from_search = true;
 }
 add_action('init', 'remove_post_type_page_from_search');
+
+
+// DISABLE YOAST AUTOMATIC REDIRECTS
+add_filter( 'wpseo_premium_post_redirect_slug_change', '__return_true' );
+add_filter( 'wpseo_premium_term_redirect_slug_change', '__return_true' );
