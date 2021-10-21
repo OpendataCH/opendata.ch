@@ -22,28 +22,9 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
-
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/library/favicon/favicon.png">
-	<!--[if IE]>
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-	<![endif]-->
-	<?php // or, set /favicon.ico for IE10 win 
-	?>
-	<meta name="msapplication-TileColor" content="#f01d4f">
-	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
-	<meta name="theme-color" content="#121212">
-
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-	<?php // wordpress head functions 
-	?>
 	<?php wp_head(); ?>
-	<?php // end of wordpress head 
-	?>
 
 	<!-- Fathom - beautiful, simple website analytics -->
 	<script src="https://cdn.usefathom.com/script.js" data-site="DVTJEWOM" defer></script>
