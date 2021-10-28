@@ -43,10 +43,9 @@
 		</div>
 
 		<div class="Footer--bottom">
-			<?php the_field('legal_text', 'option'); ?>
+			<a class='Footer--okfn' target="_blank" href="https://okfn.org/network/switzerland/"><img src="<?php echo get_template_directory_uri(); ?>/library/img/okfn-logo.png" alt="Open Knowledge Foundation"></a>
+			<p><?php the_field('legal_text', 'option'); ?></p>	
 		</div>
-
-
 
 	</footer>
 

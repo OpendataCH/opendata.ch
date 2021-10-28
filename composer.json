@@ -14,11 +14,15 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/OpendataCH/wp-seo-premium.git"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/OpendataCH/wp-seo-multilingual.git"
         }
     ],
     "require": {
-        "johnpbloch/wordpress": "5.5.*",
+        "johnpbloch/wordpress": "5.6.*",
         "wpackagist-plugin/add-meta-tags": "2.*",
         "wpackagist-plugin/akismet": "3.*",
         "wpackagist-plugin/blog-copier": "1.*",
@@ -48,8 +52,10 @@
         "wpackagist-plugin/statify": "1.*",
         "wpackagist-plugin/extended-evaluation-for-statify":"2.*",
         "wpackagist-plugin/enable-jquery-migrate-helper": "^1.1",
+        "wpackagist-plugin/yoast-test-helper": "1.15",
         "opendatach/advanced-custom-fields-pro": "5.*",
         "opendatach/sitepress-multilingual-cms": "4.*",
+        "opendatach/wp-seo-premium": "17.*",
         "opendatach/wp-seo-multilingual": "1.*"
     },
     "require-dev": {

@@ -527,6 +527,37 @@ PAGE NAVI STYLES
   border-radius: 8px;
 }
 
+.pagination-news {
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: calc(22px* 0.8);
+  line-height: calc(30px* 0.8);
+  font-weight: normal;
+}
+
+@media (min-width: 751px) {
+  .pagination-news {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+.pagination-news a {
+  text-decoration: underline;
+}
+
+.pagination-news a:hover {
+  text-decoration: none;
+}
+
+.pagination-news p {
+  max-width: 400px;
+}
+
 .cookie-box {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -748,7 +779,8 @@ Author: Yacine Belarbi @ studioyacine.ch
   align-items: baseline;
 }
 
-.SectionHeader strong {
+.SectionHeader strong,
+.SectionHeader h2 {
   font-size: 0.90909rem;
   line-height: 1.27273rem;
   font-weight: normal;
@@ -759,7 +791,8 @@ Author: Yacine Belarbi @ studioyacine.ch
 }
 
 @media (min-width: 751px) {
-  .SectionHeader strong {
+  .SectionHeader strong,
+  .SectionHeader h2 {
     font-size: 22px;
     line-height: 30px;
   }
@@ -769,7 +802,7 @@ Author: Yacine Belarbi @ studioyacine.ch
   font-weight: normal;
   font-size: 0.90909rem;
   line-height: 1.27273rem;
-  color: #ccc;
+  color: #6b6b6b;
   letter-spacing: 0.02em;
 }
 
@@ -875,7 +908,7 @@ Author: Yacine Belarbi @ studioyacine.ch
 #post-not-found h1 {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   text-align: center;
 }
@@ -977,6 +1010,26 @@ COMPONENTS
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.wp-block-table {
+  margin: 2rem 0;
+}
+
+.wp-block-table:before, .wp-block-table:after {
+  content: '';
+  display: table;
+}
+
+.wp-block-table:after {
+  clear: both;
+}
+
+.wp-block-table figcaption {
+  margin-top: 1rem;
+  color: #6b6b6b;
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
 }
 
 .wp-block-buttons {
@@ -1370,6 +1423,10 @@ html.overlayIsOpen body {
   display: inline-block;
 }
 
+.Footer--top .SocialLinks li + li {
+  margin: 0;
+}
+
 .Footer--top .SocialLinks a {
   text-decoration: underline;
   text-decoration-color: #e61414;
@@ -1422,13 +1479,15 @@ html.overlayIsOpen body {
 }
 
 .Footer--bottom {
+  position: relative;
   margin-left: calc(50% - 545px);
   margin-right: calc(50% - 545px);
   font-size: 0.63636rem;
   line-height: 0.90909rem;
-  color: #ccc;
-  padding-top: 2rem;
+  color: #6b6b6b;
   padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1410px) {
@@ -1476,6 +1535,27 @@ html.overlayIsOpen body {
 @media (max-width: 400px) {
   .Footer--bottom {
     margin-right: 20px;
+  }
+}
+
+@media (min-width: 751px) {
+  .Footer--bottom {
+    padding-top: 0.5rem;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 750px) {
+  .Footer--bottom .Footer--okfn img {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 751px) {
+  .Footer--bottom .Footer--okfn {
+    flex: 0 0 calc(50% - 1rem);
   }
 }
 
@@ -1564,7 +1644,7 @@ html.overlayIsOpen body {
 @media (min-width: 751px) {
   .Footer--button {
     position: static;
-    transform: translateY(-90%);
+    transform: translateY(-15%);
     width: 125px;
     height: 125px;
   }
@@ -1572,7 +1652,7 @@ html.overlayIsOpen body {
 
 @media (min-width: 751px) {
   .Footer--button:hover {
-    transform: scale(1.02) translateY(-90%);
+    transform: scale(1.02) translateY(-15%);
   }
 }
 
@@ -1743,7 +1823,7 @@ html.overlayIsOpen body {
 .Intro strong {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
 }
 
@@ -1759,6 +1839,27 @@ html.overlayIsOpen body {
   border-spacing: 0;
 }
 
+.Intro strong table thead {
+  border-bottom: 1px solid #000;
+}
+
+.Intro strong table tfoot td {
+  border-top: 1px solid #eee;
+}
+
+.Intro strong table td,
+.Intro strong table th {
+  padding: 0.2em 0;
+}
+
+.Intro strong table tr {
+  line-height: 1.5;
+}
+
+.Intro strong table th {
+  font-weight: normal;
+}
+
 .Intro strong p {
   margin-bottom: 1em;
 }
@@ -1769,11 +1870,18 @@ html.overlayIsOpen body {
   border-left: 3px solid #e61414;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   max-width: 900px;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong blockquote {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Intro strong p + h2 {
@@ -1878,6 +1986,7 @@ html.overlayIsOpen body {
 .Intro strong img {
   max-width: 100%;
   height: auto;
+  height: auto;
 }
 
 .Intro strong ::-moz-selection {
@@ -1893,10 +2002,17 @@ html.overlayIsOpen body {
 .Intro strong .has-medium-font-size {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .Intro strong .has-medium-font-size {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Intro strong .has-small-font-size {
@@ -1935,7 +2051,7 @@ html.overlayIsOpen body {
   .Intro h1 {
     font-weight: normal;
     font-size: 1.36364rem;
-    line-height: 1.63636rem;
+    line-height: 1.72727rem;
     letter-spacing: -0.02em;
   }
 }
@@ -1972,7 +2088,7 @@ html.overlayIsOpen body {
   width: 100%;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   border: none;
   border-bottom: 3px solid #eee;
@@ -1992,19 +2108,19 @@ html.overlayIsOpen body {
 
 .Searchoverlay input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ccc;
+  color: #6b6b6b;
   opacity: 1;
   /* Firefox */
 }
 
 .Searchoverlay input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 .Searchoverlay input::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 .Searchoverlay button[type="submit"] {
@@ -2145,8 +2261,15 @@ html.overlayIsOpen body {
 .search-results .entry-header .search-title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 750px) {
+  .search-results .entry-header .search-title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .search-results .entry-header .byline {
@@ -2250,7 +2373,7 @@ Stylesheet: Social links
 .TeamMember--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0;
 }
@@ -2266,8 +2389,15 @@ Stylesheet: Social links
   .TeamMember--title {
     font-weight: normal;
     font-size: 1.36364rem;
-    line-height: 1.54545rem;
+    line-height: 1.72727rem;
     letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 750px) {
+  .TeamMember--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
   }
 }
 
@@ -2324,12 +2454,12 @@ Stylesheet: Social links
 .TeamMember--twitter .icon {
   width: 32px;
   height: 32px;
-  color: #ccc;
+  color: #00d1ff;
   margin-right: 10px;
 }
 
 .TeamMember--twitter a {
-  color: #939393;
+  color: #00d1ff;
 }
 
 .TeamMember--twitter a:hover {
@@ -2423,15 +2553,21 @@ Stylesheet: Social links
 .Teaser--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .Teaser--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .Teaser--text p {
   font-size: 0.90909rem;
   line-height: 1.27273rem;
-  font-weight: normal;
 }
 
 .Teaser--date {
@@ -2447,9 +2583,16 @@ Stylesheet: Social links
 .TeaserGrid.size--3 .Teaser--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .TeaserGrid.size--3 .Teaser--title {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .TeaserGrid.size--3 img {
@@ -2604,7 +2747,7 @@ Stylesheet: Social links
 .TeaserList--item--big .TeaserNews .TeaserNews--title {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
 }
 
@@ -2688,6 +2831,7 @@ Stylesheet: Social links
   }
 }
 
+.HomeIntro h1,
 .HomeIntro h2 {
   font-weight: normal;
   font-size: 2.04545rem;
@@ -2697,6 +2841,7 @@ Stylesheet: Social links
 }
 
 @media (min-width: 751px) {
+  .HomeIntro h1,
   .HomeIntro h2 {
     font-size: 2.95455rem;
     line-height: 2.95455rem;
@@ -2704,6 +2849,7 @@ Stylesheet: Social links
 }
 
 @media (min-width: 1201px) {
+  .HomeIntro h1,
   .HomeIntro h2 {
     font-size: 4.09091rem;
     line-height: 4.09091rem;
@@ -2711,6 +2857,7 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
+  .HomeIntro h1,
   .HomeIntro h2 {
     font-size: 3rem;
     line-height: 1;
@@ -2718,10 +2865,9 @@ Stylesheet: Social links
 }
 
 .HomeIntro p {
-  font-size: 0.90909rem;
-  line-height: 1.27273rem;
-  font-weight: normal;
-  max-width: 1124px;
+  font-size: 1.09091rem;
+  line-height: 1.63636rem;
+  font-weight: 300;
 }
 
 .HomeIntro p a {
@@ -2811,8 +2957,15 @@ Stylesheet: Social links
 .HomeCTA a span {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 750px) {
+  .HomeCTA a span {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .HomeCTA svg {
@@ -2928,7 +3081,7 @@ Stylesheet: Social links
 .SimplePage--body h1 {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.63636rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: normal;
   margin-bottom: 0.5ex;
@@ -2941,16 +3094,23 @@ Stylesheet: Social links
   }
 }
 
-.SimplePage--body h2:not([class]) {
+.SimplePage--body h2 {
   font-weight: normal;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   margin-bottom: 1em;
 }
 
-.SimplePage--body h3:not([class]) {
+@media (max-width: 750px) {
+  .SimplePage--body h2 {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
+}
+
+.SimplePage--body h3 {
   font-weight: normal;
   margin-bottom: 0.5ex;
 }
@@ -2976,6 +3136,27 @@ Stylesheet: Social links
   border-spacing: 0;
 }
 
+.SimplePage--body table thead {
+  border-bottom: 1px solid #000;
+}
+
+.SimplePage--body table tfoot td {
+  border-top: 1px solid #eee;
+}
+
+.SimplePage--body table td,
+.SimplePage--body table th {
+  padding: 0.2em 0;
+}
+
+.SimplePage--body table tr {
+  line-height: 1.5;
+}
+
+.SimplePage--body table th {
+  font-weight: normal;
+}
+
 .SimplePage--body p {
   margin-bottom: 1em;
 }
@@ -2986,11 +3167,18 @@ Stylesheet: Social links
   border-left: 3px solid #e61414;
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   max-width: 900px;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--body blockquote {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .SimplePage--body p + h2 {
@@ -3095,6 +3283,7 @@ Stylesheet: Social links
 .SimplePage--body img {
   max-width: 100%;
   height: auto;
+  height: auto;
 }
 
 .SimplePage--body ::-moz-selection {
@@ -3110,10 +3299,17 @@ Stylesheet: Social links
 .SimplePage--body .has-medium-font-size {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--body .has-medium-font-size {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 .SimplePage--body .has-small-font-size {
@@ -3147,11 +3343,18 @@ Stylesheet: Social links
 .SimplePage--eventdates {
   font-weight: normal;
   font-size: 1.36364rem;
-  line-height: 1.54545rem;
+  line-height: 1.72727rem;
   letter-spacing: -0.02em;
   color: #e61414;
   font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 750px) {
+  .SimplePage--eventdates {
+    font-size: 1.54545rem;
+    line-height: 1.90909rem;
+  }
 }
 
 body.search-results .SimplePage--title--label,
@@ -3161,7 +3364,7 @@ body.search-no-results .SimplePage--title--label {
   font-weight: normal;
   font-size: calc(22px* 0.8);
   line-height: calc(30px* 0.8);
-  color: #ccc;
+  color: #6b6b6b;
 }
 
 @media (min-width: 751px) {

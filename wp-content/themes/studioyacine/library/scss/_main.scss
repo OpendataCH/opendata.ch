@@ -24,7 +24,8 @@ Author: Yacine Belarbi @ studioyacine.ch
     justify-content: space-between;
     align-items: baseline;
 
-    strong {
+    strong,
+    h2 {
         @include text-uppercase;
         @include font-base;
     }

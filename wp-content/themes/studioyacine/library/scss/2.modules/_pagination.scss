@@ -46,3 +46,27 @@ PAGE NAVI STYLES
         border-radius: 8px;
     }
 }
+
+.pagination-news {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid $greyLight;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include font-base;
+    @include font(normal);
+
+    a {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    p {
+        max-width: 400px;
+    }
+}

@@ -19,7 +19,7 @@
 
         <div class='SectionHeader'>
 
-            <strong><?php the_field('projects_title'); ?></strong>
+            <h2><?php the_field('projects_title'); ?></h2>
 
             <a href="<?php echo get_post_type_archive_link('project'); ?>">All Projects</a>
 

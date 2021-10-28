@@ -17,6 +17,8 @@ function bones_theme_support()
     // rss thingy
     add_theme_support('automatic-feed-links');
 
+	remove_theme_support('core-block-patterns');
+
     // adding post format support
     // add_theme_support( 'post-formats',
     // 	array(

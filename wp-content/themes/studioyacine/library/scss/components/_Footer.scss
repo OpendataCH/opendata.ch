@@ -31,6 +31,10 @@
             display: inline-block;
         }
 
+        li + li {
+            margin: 0;
+        }
+
         a {
             @include a;
             text-decoration-color: $black;
@@ -64,11 +68,32 @@
 }
 
 .Footer--bottom {
+    position: relative;
     @include sitewidth-s;
     @include font-xs;
     color: $grey;
-    padding-top: 2rem;
     padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    @include above-mobile {
+        padding-top: 0.5rem;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .Footer--okfn {
+        img {
+            @include mobile {
+                width: 100px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @include above-mobile {
+            flex: 0 0 calc(50% - 1rem);
+        }
+    }
 }
 
 .Footer--title {
@@ -119,14 +144,14 @@
     transform-origin: 50% 50%;
     @include above-mobile {
         position: static;
-        transform: translateY(-90%);
+        transform: translateY(-15%);
         width: 125px;
         height: 125px;
     }
 
     &:hover {
         @include above-mobile {
-            transform: scale(1.02) translateY(-90%);
+            transform: scale(1.02) translateY(-15%);
         }
     }
 }

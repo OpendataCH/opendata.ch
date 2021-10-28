@@ -13,7 +13,7 @@
             $link_target = $link['target'] ? $link['target'] : '_self';
             ?>
             <li>
-                <a target="<?php echo esc_attr($link_target); ?>" title='<?php echo $link['title']; ?>' href="<?php echo $link['url']; ?>">
+                <a rel="noopener" target="<?php echo esc_attr($link_target); ?>" title='<?php echo $link['title']; ?>' href="<?php echo $link['url']; ?>">
 					<?php $linkUrl = $link['url']; ?>
 
                     <?php if(stristr($linkUrl,'twitter')):?>

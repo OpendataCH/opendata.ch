@@ -9,7 +9,7 @@
     <div class="Flyout--inner">
 
         <div class="Flyout--search">
-            <?php get_search_form(); ?>
+			<?php get_search_form(array('name' => 'search-flyout')); ?>
         </div>
 
         <?php wp_nav_menu(array(

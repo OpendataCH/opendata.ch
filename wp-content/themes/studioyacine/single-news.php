@@ -38,6 +38,19 @@
 
 		<?php endwhile; ?>
 
+		<footer class='pagination-news'>
+			<p class="pagination-next">
+				<?php 
+					previous_post_link();
+				?>
+			</p>
+			<p class='pagination-prev'>
+				<?php 
+					next_post_link();
+				?>
+			</p>
+		</footer>
+
 	<?php else : ?>
 
 		<article id="post-not-found" class="hentry cf">

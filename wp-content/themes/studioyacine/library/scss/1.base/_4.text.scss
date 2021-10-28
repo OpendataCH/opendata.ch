@@ -29,7 +29,7 @@ Stylesheet: Text Styles
 @mixin font-l {
     @include font(normal);
     font-size: rem(30px);
-    line-height: rem(36px);
+    line-height: rem(38px);
     letter-spacing: -0.02em;
     @include above-mobile {
         font-size: rem(42px);
@@ -40,8 +40,13 @@ Stylesheet: Text Styles
 @mixin font-m {
     @include font(normal);
     font-size: rem(30px);
-    line-height: rem(34px);
+    line-height: rem(38px);
     letter-spacing: -0.02em;
+
+    @include mobile {
+        font-size: rem(34px);
+        line-height: rem(42px);
+    }
 }
 
 @mixin font-base {
@@ -200,6 +205,27 @@ Stylesheet: Text Styles
 @mixin table {
     border-collapse: collapse;
     border-spacing: 0;
+
+    thead {
+        border-bottom: 1px solid $black;
+    }
+
+    tfoot td {
+        border-top: 1px solid $greyLight;
+    }
+
+    td,
+    th {
+        padding: 0.2em 0;
+    }
+
+    tr {
+        line-height: 1.5;
+    }
+
+    th {
+        @include strong;
+    }
 }
 
 @mixin richtext($include: most) {
@@ -208,11 +234,11 @@ Stylesheet: Text Styles
             @include h1;
         }
 
-        h2:not([class]) {
+        h2 {
             @include h2;
         }
 
-        h3:not([class]) {
+        h3 {
             @include h3;
         }
 
@@ -284,6 +310,7 @@ Stylesheet: Text Styles
 
     img {
         max-width: 100%;
+        height: auto;
         height: auto;
     }
 

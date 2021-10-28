@@ -17,7 +17,7 @@
 
         <div class='SectionHeader'>
 
-            <strong><?php the_field('news_title'); ?></strong>
+            <h2><?php the_field('news_title'); ?></h2>
 
             <a href="<?php echo get_post_type_archive_link('news'); ?>">All News</a>
 
