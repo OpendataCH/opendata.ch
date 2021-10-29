@@ -2715,28 +2715,13 @@ Stylesheet: Social links
 }
 
 .TeaserList--item--big .TeaserNews .TeaserNews--image {
-  background-color: #fff;
-  position: relative;
   width: 100%;
   margin-bottom: 0.5rem;
 }
 
-.TeaserList--item--big .TeaserNews .TeaserNews--image:before {
-  display: block;
-  content: "";
+.TeaserList--item--big .TeaserNews .TeaserNews--image img {
   width: 100%;
-  padding-bottom: 61.11111%;
-}
-
-.TeaserList--item--big .TeaserNews .TeaserNews--image > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .TeaserList--item--big .TeaserNews .TeaserNews--text {

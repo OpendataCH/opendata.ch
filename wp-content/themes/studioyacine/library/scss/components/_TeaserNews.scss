@@ -65,9 +65,13 @@
     padding: 0;
 
     .TeaserNews--image {
-        @include image-ratio("teaserlarge");
         width: 100%;
         margin-bottom: 0.5rem;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 
     .TeaserNews--text {
