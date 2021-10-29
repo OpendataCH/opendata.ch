@@ -3094,7 +3094,7 @@ Stylesheet: Social links
   }
 }
 
-.SimplePage--body h2 {
+.SimplePage--body h2.has-text-align-center, .SimplePage--body h2.has-text-align-left, .SimplePage--body h2.has-text-align-right, .SimplePage--body h2:not([class]) {
   font-weight: normal;
   font-weight: normal;
   font-size: 1.36364rem;
@@ -3104,13 +3104,13 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
-  .SimplePage--body h2 {
+  .SimplePage--body h2.has-text-align-center, .SimplePage--body h2.has-text-align-left, .SimplePage--body h2.has-text-align-right, .SimplePage--body h2:not([class]) {
     font-size: 1.54545rem;
     line-height: 1.90909rem;
   }
 }
 
-.SimplePage--body h3 {
+.SimplePage--body h3.has-text-align-center, .SimplePage--body h3.has-text-align-left, .SimplePage--body h3.has-text-align-right, .SimplePage--body h3:not([class]) {
   font-weight: normal;
   margin-bottom: 0.5ex;
 }

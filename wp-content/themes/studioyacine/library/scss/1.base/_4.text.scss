@@ -235,11 +235,21 @@ Stylesheet: Text Styles
         }
 
         h2 {
-            @include h2;
+            &.has-text-align-center,
+            &.has-text-align-left,
+            &.has-text-align-right,
+            &:not([class]) {
+                @include h2;
+            }
         }
 
         h3 {
-            @include h3;
+            &.has-text-align-center,
+            &.has-text-align-left,
+            &.has-text-align-right,
+            &:not([class]) {
+                @include h3;
+            }
         }
 
         pre {
