@@ -42,8 +42,7 @@ function studioyacine_allowed_block_types($allowed_blocks)
         'core/media-text',
         'core/separator',
 		'core/table',
-        'core-embed/youtube',
-		'core-embed/twitter',
+		'core/embed',
 		'acf/team-member'
     );
 }
