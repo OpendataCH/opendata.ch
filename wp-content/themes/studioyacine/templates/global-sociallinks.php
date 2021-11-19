@@ -36,9 +36,9 @@
 						<svg class="icon">
 							<use xlink:href="#social--linkedin"></use>
 						</svg>
-					<?php elseif (stristr($linkUrl,'mastadon')):?>
+					<?php elseif (stristr($linkUrl,'mastodon')):?>
 						<svg class="icon">
-							<use xlink:href="#social--mastadon"></use>
+							<use xlink:href="#social--mastodon"></use>
 						</svg>						
                     <?php endif; ?>					
                 </a>
