@@ -36,6 +36,10 @@
 						<svg class="icon">
 							<use xlink:href="#social--linkedin"></use>
 						</svg>
+					<?php elseif (stristr($linkUrl,'mastadon')):?>
+						<svg class="icon">
+							<use xlink:href="#social--mastadon"></use>
+						</svg>						
                     <?php endif; ?>					
                 </a>
             </li>
