@@ -13,6 +13,7 @@
 /wp-content/w3-total-cache-config-*.php
 /wp-content/w3tc-*/
 /wp-config.php
+/wp-config-local.php
 /.htaccess
 /wiki/
 /id_rsa

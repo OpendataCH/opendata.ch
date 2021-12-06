@@ -7,6 +7,20 @@
 ?>
 <a class='Teaser' title="<?php the_title_attribute(); ?>" href='<?php the_permalink() ?>'>
 
+	<?php 
+		$postTypeName = get_post_type($post->ID);
+		$termsOutPut = array();
+		if($postTypeName == 'news' || $postTypeName == 'event'):
+			$terms = get_the_terms($post->ID, $postTypeName.'_category');
+			if ($terms):
+				foreach ($terms as $term) {
+					$termsOutPut[] = '<span>' .$term->name .'</span>';
+				}
+				$termsOutPut = join( ' / ', $termsOutPut );
+			endif; 	
+		endif;
+	?>
+
     <div class="Teaser--image">
 
         <?php the_post_thumbnail('medium-large'); ?>
@@ -68,5 +82,11 @@
         <?php endif; ?>
 
     </div>
+
+	<?php if(!empty($termsOutPut)): ?>
+		<div class='Teaser--terms'>
+			<?php echo $termsOutPut; ?>
+		</div>
+	<?php  endif; ?>
 
 </a>

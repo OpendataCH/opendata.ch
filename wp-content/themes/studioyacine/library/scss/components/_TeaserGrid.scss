@@ -72,6 +72,13 @@
     margin-bottom: 0.1rem;
 }
 
+.Teaser--terms {
+    @include font-xs;
+    font-family: $mono;
+    margin-top: 0.25rem;
+    color: $greyDark;
+}
+
 .TeaserGrid.size--2 {
 }
 

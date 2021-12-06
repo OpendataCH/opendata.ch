@@ -2580,6 +2580,14 @@ Stylesheet: Social links
   margin-bottom: 0.1rem;
 }
 
+.Teaser--terms {
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
+  font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  margin-top: 0.25rem;
+  color: #939393;
+}
+
 .TeaserGrid.size--3 .Teaser--title {
   font-weight: normal;
   font-size: 1.36364rem;
@@ -2679,6 +2687,7 @@ Stylesheet: Social links
   line-height: calc(30px* 0.8);
   font-weight: normal;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 @media (min-width: 751px) {
@@ -2696,6 +2705,13 @@ Stylesheet: Social links
 
 .TeaserNews:hover {
   opacity: 0.7;
+}
+
+.TeaserNews--terms {
+  font-size: 0.63636rem;
+  line-height: 0.90909rem;
+  font-family: "M3Mono", -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  color: #939393;
 }
 
 .TeaserNews--date {

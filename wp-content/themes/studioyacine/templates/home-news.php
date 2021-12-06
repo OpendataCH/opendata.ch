@@ -51,15 +51,13 @@
                 <li class='TeaserGrid--item'>
 
                     <?php $args = array('date' => true); ?>
-                    <?php get_template_part('templates/teasers/teaser', 'grid', $args);
-                    ?>
+                    <?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
 
                 </li>
 
                 <?php wp_reset_postdata(); ?>
 
-            <?php endwhile;
-        else : ?>
+            <?php endwhile; else : ?>
 
         <?php endif; ?>
 
