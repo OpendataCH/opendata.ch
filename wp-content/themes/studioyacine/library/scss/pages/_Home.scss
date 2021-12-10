@@ -67,7 +67,9 @@
 
     .Teaser--image{
         &:before {
-            display: none;
+            @include mobile {
+                display: none;
+            }
         }
         @include mobile{
             position: static;
