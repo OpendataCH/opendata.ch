@@ -31,6 +31,12 @@
 
 .HomeProjects {
     margin-bottom: 5rem;
+
+    .TeaserGrid {
+        @include mobile {
+            display: block;
+        }
+    }
 }
 
 .HomeNews {
@@ -50,11 +56,7 @@
     }
 
     .Teaser {
-        @include mobile {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+
     }
 
     .Teaser--image {

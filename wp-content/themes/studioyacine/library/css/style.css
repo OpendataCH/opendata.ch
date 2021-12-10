@@ -3154,6 +3154,12 @@ Stylesheet: Social links
   margin-bottom: 5rem;
 }
 
+@media (max-width: 750px) {
+  .HomeProjects .TeaserGrid {
+    display: block;
+  }
+}
+
 .HomeNews {
   margin-bottom: 5rem;
 }
@@ -3168,14 +3174,6 @@ Stylesheet: Social links
 @media (max-width: 750px) {
   .HomeNews .TeaserGrid--item {
     margin: 0;
-  }
-}
-
-@media (max-width: 750px) {
-  .HomeNews .Teaser {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
 }
 
