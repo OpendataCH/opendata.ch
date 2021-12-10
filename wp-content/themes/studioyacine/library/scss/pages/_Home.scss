@@ -55,16 +55,18 @@
         }
     }
 
+    .TeaserGrid--item + .TeaserGrid--item {
+        @include mobile {
+            margin-top: 2rem;
+        }
+    }
+
     .Teaser {
 
     }
 
     .Teaser--image {
-        @include mobile {
-            flex: 0 0 120px;
-            height: 120px;
-            margin: 0 1rem 0 0;
-        }
+
     }
 }
 
