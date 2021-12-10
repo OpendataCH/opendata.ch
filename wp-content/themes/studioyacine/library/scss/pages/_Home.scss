@@ -65,8 +65,13 @@
 
     }
 
-    .Teaser--image {
-
+    .Teaser--image{
+        &:before {
+            display: none;
+        }
+        @include mobile{
+            position: static;
+        }
     }
 }
 

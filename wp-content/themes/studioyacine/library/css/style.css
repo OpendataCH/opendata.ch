@@ -3183,6 +3183,16 @@ Stylesheet: Social links
   }
 }
 
+.HomeNews .Teaser--image:before {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .HomeNews .Teaser--image {
+    position: static;
+  }
+}
+
 .HomeCTA {
   width: 100vw;
   position: relative;
