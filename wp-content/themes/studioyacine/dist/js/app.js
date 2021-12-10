@@ -3805,11 +3805,13 @@
     _createClass(Sliders, [{
       key: "init",
       value: function init() {
-        this.flkty = new js(this.el, {
-          cellAlign: "left",
-          groupCells: true,
-          pageDots: false
-        });
+        if (this.el) {
+          this.flkty = new js(this.el, {
+            cellAlign: "left",
+            groupCells: true,
+            pageDots: false
+          });
+        }
       }
     }]);
 

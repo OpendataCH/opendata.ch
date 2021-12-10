@@ -7,11 +7,13 @@ export default class Sliders {
     }
 
     init() {
-        this.flkty = new Flickity(this.el, {
-            cellAlign: "left",
-            groupCells: true,
-            pageDots: false
-        });
+		if(this.el){
+			this.flkty = new Flickity(this.el, {
+				cellAlign: "left",
+				groupCells: true,
+				pageDots: false
+			});
+		}
     }
 }
 
