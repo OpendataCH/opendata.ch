@@ -90,7 +90,7 @@
 
 			<div class='SectionHeader'>
 
-				<h2>Related</h2>
+				<h2>News and Events</h2>
 
 			</div>
 
