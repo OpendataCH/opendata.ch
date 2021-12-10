@@ -76,8 +76,8 @@
 		'orderby' => 'DESC',
 		'tax_query' => array(
 			'relation' => 'OR',
-			array_values($eventsArrayTerm),
-			array_values($newsArrayTerm)
+			array($eventsArrayTerm),
+			array($newsArrayTerm)
 		)
 	);
 
