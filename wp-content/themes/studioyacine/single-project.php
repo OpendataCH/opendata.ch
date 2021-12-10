@@ -34,20 +34,50 @@
     <?php /* News list  */ ?>
     <?php
 
-	$termNews = get_field('related_news');
-	$termEvents = get_field('related_events');
+	$newsTerms = get_field('related_news');
+	$eventTerms = get_field('related_events');
+
+	$newsArrayTerm = array(
+		'taxonomy'=> 'news_category',
+		'field'=> 'slug',
+		'operator'=> 'IN'		
+	);
+
+	$eventsArrayTerm = array(
+		'taxonomy'=> 'event_category',
+		'field'=> 'slug',
+		'operator'=> 'IN'
+	);
+
+	if($eventTerms){
+		$temp = array();
+		foreach ( $eventTerms as $term ) {
+			array_push($temp,$term->slug);
+		}
+		$temp = implode(",", $temp);
+		$eventsArrayTerm['terms'] = $temp;
+	}
+
+	if($newsTerms){
+		$temp = array();
+		foreach ( $newsTerms as $term ) {
+			array_push($temp,$term->slug);
+		}
+		$temp = implode(",", $temp);
+		$newsArrayTerm['terms'] = $temp;
+	}
 
 	$args = array(
 		'post_type' => array(
-			!!$termEvents ? 'event' : false,
-			!!$termNews ? 'news' : false
+			!!$eventTerms ? 'event' : false,
+			!!$newsTerms ? 'news' : false
 		),
 		'posts_per_page' => '12',
 		'orderby' => 'DESC',
 		'tax_query' => array(
 			'relation' => 'OR',
-			array($termNews),
-			array($termEvents)
+			array_values($eventsArrayTerm),
+			array_values($newsArrayTerm)
 		)
 	);
 
