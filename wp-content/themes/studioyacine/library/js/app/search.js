@@ -1,13 +1,11 @@
-class Search {
+export default class Search {
     constructor() {
         this.isSearchOpen = false;
         this.elOpenButton = $(".Header--search");
         this.elCloseButton = $(".Searchoverlay--close");
         this.elSearch = $(".Searchoverlay");
         this.elOverlay = $(".Search--overlay");
-    }
 
-    init() {
         this.setupBindings();
     }
 
@@ -45,8 +43,4 @@ class Search {
     }
 }
 
-export { Search };
-
 const search = new Search();
-
-search.init();

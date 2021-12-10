@@ -1,4 +1,4 @@
-class Burger {
+export default class Burger {
 	constructor() {
 		this.isMenuOpen = false;
 		this.elOpenButton = $(".Burger");
@@ -6,9 +6,7 @@ class Burger {
 		this.elOverlay = $(".Flyout--overlay");
 		this.elMenu = $(".Flyout");
 		this.elSubNavTrigger = $(".submenu-toggle");
-	}
 
-	init() {
 		this.setupBindings();
 	}
 
@@ -52,8 +50,4 @@ class Burger {
 	}
 }
 
-export { Burger };
-
 const burger = new Burger();
-
-burger.init();

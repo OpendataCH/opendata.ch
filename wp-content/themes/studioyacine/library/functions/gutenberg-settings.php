@@ -46,7 +46,7 @@ function studioyacine_allowed_block_types($allowed_blocks)
 		'acf/team-member'
     );
 }
-add_filter('allowed_block_types', 'studioyacine_allowed_block_types');
+add_filter('allowed_block_types_all', 'studioyacine_allowed_block_types');
 
 
 

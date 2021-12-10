@@ -1,0 +1,39 @@
+@import "../../../node_modules/flickity/css/flickity";
+
+.flickity-viewport {
+    overflow: visible;
+}
+
+.flickity-button {
+    top: 30%;
+    background: none;
+
+    @include above-mobile {
+        top: 40%;
+    }
+
+    &:hover {
+        background: none;
+    }
+
+    &[disabled] {
+        display: none;
+    }
+
+    &.previous {
+        @include sitepadding(left, true);
+        @include below-sitewidth {
+            transform: translateX(-100%);
+        }        
+    }
+
+    &.next {
+        @include sitepadding(right, true);
+        @include below-sitewidth {
+            transform: translateX(100%);
+        }
+    }
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+}

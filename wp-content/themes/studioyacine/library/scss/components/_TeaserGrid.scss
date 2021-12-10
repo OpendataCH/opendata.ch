@@ -9,6 +9,7 @@
     grid-gap: 1rem;
     grid-template-columns: 1fr 1fr;
 
+
     @include above-mobile {
         grid-gap: 2rem;
     }
@@ -33,6 +34,31 @@
         @include mobile {
             grid-template-columns: repeat(2, 1fr);
         }
+    }
+}
+
+.TeaserGrid {
+    &.slider{
+        display: block;
+    }    
+
+    .TeaserGrid--item {
+        width: calc(80% - 2rem);
+        margin-right: 2rem;
+        opacity: 0.2;
+        transition: opacity 0.3s;
+
+        @include above-mobile {
+            width: calc(50% - 2rem);
+        }
+
+        @include above-desktop {
+            width: calc(33.33334% - 2rem);
+        }
+    }
+
+    .TeaserGrid--item.is-selected {
+        opacity: 1;
     }
 }
 
