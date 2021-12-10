@@ -2763,7 +2763,7 @@ Stylesheet: Social links
   display: block;
 }
 
-.TeaserGrid .TeaserGrid--item {
+.TeaserGrid.slider .TeaserGrid--item {
   width: calc(80% - 2rem);
   margin-right: 2rem;
   opacity: 0.2;
@@ -2771,18 +2771,18 @@ Stylesheet: Social links
 }
 
 @media (min-width: 751px) {
-  .TeaserGrid .TeaserGrid--item {
+  .TeaserGrid.slider .TeaserGrid--item {
     width: calc(50% - 2rem);
   }
 }
 
 @media (min-width: 1383px) {
-  .TeaserGrid .TeaserGrid--item {
+  .TeaserGrid.slider .TeaserGrid--item {
     width: calc(33.33334% - 2rem);
   }
 }
 
-.TeaserGrid .TeaserGrid--item.is-selected {
+.TeaserGrid.slider .TeaserGrid--item.is-selected {
   opacity: 1;
 }
 

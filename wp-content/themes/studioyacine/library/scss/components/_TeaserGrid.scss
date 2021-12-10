@@ -37,10 +37,8 @@
     }
 }
 
-.TeaserGrid {
-    &.slider{
-        display: block;
-    }    
+.TeaserGrid.slider {
+    display: block;
 
     .TeaserGrid--item {
         width: calc(80% - 2rem);
