@@ -65,14 +65,16 @@
 
     }
 
-    .Teaser--image{
+    .Teaser--image {
         &:before {
             @include mobile {
                 display: none;
             }
         }
-        @include mobile{
-            position: static;
+        img {
+            @include mobile{
+                position: static;
+            }
         }
     }
 }

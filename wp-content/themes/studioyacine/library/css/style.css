@@ -3190,7 +3190,7 @@ Stylesheet: Social links
 }
 
 @media (max-width: 750px) {
-  .HomeNews .Teaser--image {
+  .HomeNews .Teaser--image img {
     position: static;
   }
 }
