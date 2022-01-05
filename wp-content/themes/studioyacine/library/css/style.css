@@ -2206,6 +2206,11 @@ html.overlayIsOpen body {
   font-weight: normal;
 }
 
+.Intro strong em,
+.Intro strong i {
+  font-style: italic;
+}
+
 .Intro strong hr {
   height: 1px;
   background: #eee;
@@ -3537,6 +3542,11 @@ Stylesheet: Social links
 
 .SimplePage--body strong {
   font-weight: normal;
+}
+
+.SimplePage--body em,
+.SimplePage--body i {
+  font-style: italic;
 }
 
 .SimplePage--body hr {

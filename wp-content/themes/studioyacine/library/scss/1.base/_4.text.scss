@@ -105,7 +105,7 @@ Stylesheet: Text Styles
 }
 
 @mixin italic {
-    @include font("italic");
+    font-style: italic;
 }
 
 @mixin strong {
