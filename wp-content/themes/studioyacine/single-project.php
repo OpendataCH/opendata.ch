@@ -66,7 +66,7 @@
 		$temp = implode(",", $temp);
 		$newsArrayTerm['terms'] = $temp;
 	}
-	$today = date('Y-m-d H:i:s');
+
 	$args = array(
 		'post_type' => array(
 			!!$eventTerms ? 'event' : false,
@@ -78,10 +78,7 @@
 			'relation' => 'OR',
 			array($eventsArrayTerm),
 			array($newsArrayTerm)
-		),
-		'meta_key' => 'date',
-		'meta_compare' => '>=',
-		'meta_value' => $today
+		)
 	);
 
 	$projectPosts = new WP_Query($args);
