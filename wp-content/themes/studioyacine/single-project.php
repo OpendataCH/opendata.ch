@@ -66,7 +66,7 @@
 		$temp = implode(",", $temp);
 		$newsArrayTerm['terms'] = $temp;
 	}
-
+	$today = date('Y-m-d H:i:s');
 	$args = array(
 		'post_type' => array(
 			!!$eventTerms ? 'event' : false,
@@ -78,7 +78,10 @@
 			'relation' => 'OR',
 			array($eventsArrayTerm),
 			array($newsArrayTerm)
-		)
+		),
+		'meta_key' => 'date',
+		'meta_compare' => '>=',
+		'meta_value' => $today
 	);
 
 	$projectPosts = new WP_Query($args);
@@ -101,8 +104,9 @@
 						<?php setup_postdata($post); ?>
 
 						<div class='TeaserGrid--item'>
-
-							<?php $args = array('date' => true); ?>
+							<?php $post_type = get_post_type( get_the_ID() ); ?>
+							<?php $args = array('date' => true, 'posttype' => $post_type); ?>
+							
 							<?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
 
 						</div>
