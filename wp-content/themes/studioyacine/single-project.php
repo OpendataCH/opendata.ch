@@ -30,43 +30,44 @@
 
 	<?php endif; ?>
 
-    <?php /* =============================================  */ ?>
-    <?php /* News list  */ ?>
-    <?php
+	<?php /* =============================================  */ ?>
+	<?php /* News list  */ ?>
+	<?php
 
 	$newsTerms = get_field('related_news');
 	$eventTerms = get_field('related_events');
 
 	$newsArrayTerm = array(
-		'taxonomy'=> 'news_category',
-		'field'=> 'slug',
-		'operator'=> 'IN'		
+		'taxonomy' => 'news_category',
+		'field' => 'slug',
+		'operator' => 'IN'
 	);
 
 	$eventsArrayTerm = array(
-		'taxonomy'=> 'event_category',
-		'field'=> 'slug',
-		'operator'=> 'IN'
+		'taxonomy' => 'event_category',
+		'field' => 'slug',
+		'operator' => 'IN'
 	);
 
-	if($eventTerms){
+	if ($eventTerms) {
 		$temp = array();
-		foreach ( $eventTerms as $term ) {
-			array_push($temp,$term->slug);
+		foreach ($eventTerms as $term) {
+			array_push($temp, $term->slug);
 		}
 		$temp = implode(",", $temp);
 		$eventsArrayTerm['terms'] = $temp;
 	}
 
-	if($newsTerms){
+	if ($newsTerms) {
 		$temp = array();
-		foreach ( $newsTerms as $term ) {
-			array_push($temp,$term->slug);
+		foreach ($newsTerms as $term) {
+			array_push($temp, $term->slug);
 		}
 		$temp = implode(",", $temp);
 		$newsArrayTerm['terms'] = $temp;
 	}
-
+	
+	$today = date('Y-m-d H:i:s');
 	$args = array(
 		'post_type' => array(
 			!!$eventTerms ? 'event' : false,
@@ -78,14 +79,27 @@
 			'relation' => 'OR',
 			array($eventsArrayTerm),
 			array($newsArrayTerm)
+		),
+		'meta_query' => array(
+			'relation' => 'OR',
+			array(
+				'key' => 'date',
+				'compare' => '>=',
+				'value' => $today
+			),
+			array(
+				'key' => 'date',
+				'compare' => 'NOT EXISTS',
+				'value' => ''
+			)
 		)
 	);
 
 	$projectPosts = new WP_Query($args);
 	$projectPostsCount = $projectPosts->found_posts;
-?>
+	?>
 
-	<?php if($projectPostsCount > 0): ?>
+	<?php if ($projectPostsCount > 0) : ?>
 		<div class="Related--posts">
 
 			<div class='SectionHeader'>
@@ -101,16 +115,17 @@
 						<?php setup_postdata($post); ?>
 
 						<div class='TeaserGrid--item'>
-							<?php $post_type = get_post_type( get_the_ID() ); ?>
+							<?php $post_type = get_post_type(get_the_ID()); ?>
 							<?php $args = array('date' => true, 'posttype' => $post_type); ?>
-							
+
 							<?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
 
 						</div>
 
 						<?php wp_reset_postdata(); ?>
 
-					<?php endwhile; else : ?>
+					<?php endwhile;
+				else : ?>
 
 				<?php endif; ?>
 
