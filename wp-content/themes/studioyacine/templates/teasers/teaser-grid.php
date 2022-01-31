@@ -29,9 +29,7 @@
 
     <div class='Teaser--text'>
         
-        <?php if (isset($args['date'])) : ?>
-            <time class='Teaser--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d M Y'); ?></time>
-        <?php endif; ?>
+
 
 		<?php if (isset($args['posttype']) && $args['posttype'] == 'event') : ?>
 			<?php 
@@ -71,7 +69,9 @@
 					</time>
 				<?php endif; ?>
 			
-		<?php endif; ?>
+        <?php elseif (isset($args['date'])) : ?>
+            <time class='Teaser--date' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d M Y'); ?></time>
+        <?php endif; ?>		
 
         <h3 class='Teaser--title'><?php the_title(); ?></h3>
 
