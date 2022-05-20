@@ -1057,91 +1057,6 @@ Author: Yacine Belarbi @ studioyacine.ch
   border-top: 1px solid #eee;
 }
 
-#menu-main-navigation {
-  display: none;
-}
-
-@media (min-width: 751px) {
-  #menu-main-navigation {
-    display: flex;
-  }
-}
-
-#menu-main-navigation .submenu-toggle {
-  position: absolute;
-  right: -2px;
-  pointer-events: none;
-  transform: translateX(100%);
-}
-
-#menu-main-navigation .submenu-toggle svg {
-  width: 16px;
-  height: 16px;
-}
-
-#menu-main-navigation li {
-  position: relative;
-}
-
-#menu-main-navigation li + li {
-  margin-left: 1.25em;
-}
-
-#menu-main-navigation li.menu-item-has-children + li {
-  margin-left: 1.5em;
-}
-
-#menu-main-navigation > li.current-menu-item > a,
-#menu-main-navigation li.current_page_parent > a {
-  color: #e61414;
-}
-
-#menu-main-navigation > li.current-menu-item > a:hover,
-#menu-main-navigation li.current_page_parent > a:hover {
-  opacity: 1;
-}
-
-#menu-main-navigation > li.current-menu-item .submenu-toggle .icon,
-#menu-main-navigation li.current_page_parent .submenu-toggle .icon {
-  color: #e61414;
-}
-
-#menu-main-navigation a {
-  font-weight: normal;
-  font-size: 0.90909rem;
-  line-height: 1.27273rem;
-}
-
-#menu-main-navigation a:hover {
-  color: #939393;
-}
-
-#menu-main-navigation li.menu-item-has-children:hover .sub-menu {
-  display: block;
-}
-
-#menu-main-navigation .sub-menu {
-  position: absolute;
-  display: none;
-}
-
-#menu-main-navigation .sub-menu li + li {
-  margin-left: 0;
-}
-
-#menu-main-navigation .sub-menu li {
-  margin-top: 8px;
-}
-
-#menu-main-navigation .sub-menu li a {
-  display: block;
-  line-height: 1;
-}
-
-#menu-main-navigation .sub-menu li.current_page_item a {
-  color: #939393;
-}
-
 #post-not-found {
   min-height: 30vh;
 }
@@ -1994,6 +1909,91 @@ html.overlayIsOpen body {
 .Header--search svg {
   width: 24px;
   height: 24px;
+}
+
+.Header--nav > ul {
+  display: none;
+}
+
+@media (min-width: 751px) {
+  .Header--nav > ul {
+    display: flex;
+  }
+}
+
+.Header--nav > ul .submenu-toggle {
+  position: absolute;
+  right: -2px;
+  pointer-events: none;
+  transform: translateX(100%);
+}
+
+.Header--nav > ul .submenu-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.Header--nav > ul li {
+  position: relative;
+}
+
+.Header--nav > ul li + li {
+  margin-left: 1.25em;
+}
+
+.Header--nav > ul li.menu-item-has-children + li {
+  margin-left: 1.5em;
+}
+
+.Header--nav > ul > li.current-menu-item > a,
+.Header--nav > ul li.current_page_parent > a {
+  color: #e61414;
+}
+
+.Header--nav > ul > li.current-menu-item > a:hover,
+.Header--nav > ul li.current_page_parent > a:hover {
+  opacity: 1;
+}
+
+.Header--nav > ul > li.current-menu-item .submenu-toggle .icon,
+.Header--nav > ul li.current_page_parent .submenu-toggle .icon {
+  color: #e61414;
+}
+
+.Header--nav > ul a {
+  font-weight: normal;
+  font-size: 0.90909rem;
+  line-height: 1.27273rem;
+}
+
+.Header--nav > ul a:hover {
+  color: #939393;
+}
+
+.Header--nav > ul li.menu-item-has-children:hover .sub-menu {
+  display: block;
+}
+
+.Header--nav > ul .sub-menu {
+  position: absolute;
+  display: none;
+}
+
+.Header--nav > ul .sub-menu li + li {
+  margin-left: 0;
+}
+
+.Header--nav > ul .sub-menu li {
+  margin-top: 8px;
+}
+
+.Header--nav > ul .sub-menu li a {
+  display: block;
+  line-height: 1;
+}
+
+.Header--nav > ul .sub-menu li.current_page_item a {
+  color: #939393;
 }
 
 .Intro {
