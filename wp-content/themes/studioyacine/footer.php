@@ -12,19 +12,21 @@
 
 			<nav role="navigation">
 				<strong class='Footer--title'><?php pll_e("Links") ?></strong>
-				<?php wp_nav_menu(array(
-					'container' => 'div',                           // enter '' to remove nav container (just make sure .footer-links in _base.scss isn't wrapping)
-					'container_class' => 'Footer--links',         // class of container (should you choose to use it)
-					'menu' => __('Footer Links', 'bonestheme'),   // nav name
-					'menu_class' => 'nav footer-nav',            // adding custom nav class
-					'theme_location' => 'footer-links',             // where it's located in the theme
-					'before' => '',                                 // before the menu
-					'after' => '',                                  // after the menu
-					'link_before' => '',                            // before each link
-					'link_after' => '',                             // after each link
-					'depth' => 0,                                   // limit the depth of the nav
-					'fallback_cb' => 'bones_footer_links_fallback'  // fallback function
-				)); ?>
+				<?php if (have_rows('social_links', 'option')) : ?>
+				<ul class="Footer--links">
+					<?php while (have_rows('legal_links', 'option')) : the_row(); ?>
+						<?php
+						$link = get_sub_field('link');
+						$link_target = $link['target'] ? $link['target'] : '_self';
+						?>
+						<li>
+							<a rel="noopener" target="<?php echo esc_attr($link_target); ?>" title='<?php echo $link['title']; ?>' href="<?php echo $link['url']; ?>">
+								<?php echo $link['title']; ?>				
+							</a>
+						</li>
+					<?php endwhile; ?>
+				</ul>
+			<?php endif; ?>
 			</nav>
 			<div>
 				<strong class='Footer--title'><?php pll_e("Social") ?></strong>
