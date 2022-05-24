@@ -3,7 +3,7 @@
 		<div class="Footer--top">
 
 			<div class="Footer--text">
-				<strong class='Footer--title'>Contact</strong>
+				<strong class='Footer--title'><?php pll_e("Contact") ?></strong>
 				<?php $text = get_field('footer_text', 'option'); ?>
 				<div>
 					<?php echo $text; ?>
@@ -11,7 +11,7 @@
 			</div>
 
 			<nav role="navigation">
-				<strong class='Footer--title'>Links</strong>
+				<strong class='Footer--title'><?php pll_e("Links") ?></strong>
 				<?php wp_nav_menu(array(
 					'container' => 'div',                           // enter '' to remove nav container (just make sure .footer-links in _base.scss isn't wrapping)
 					'container_class' => 'Footer--links',         // class of container (should you choose to use it)
@@ -27,7 +27,7 @@
 				)); ?>
 			</nav>
 			<div>
-				<strong class='Footer--title'>Social</strong>
+				<strong class='Footer--title'><?php pll_e("Social") ?></strong>
 				<?php get_template_part('templates/global', 'sociallinks'); ?>
 			</div>
 			<div>
