@@ -365,3 +365,9 @@ add_action('init', 'remove_post_type_page_from_search');
 // DISABLE YOAST AUTOMATIC REDIRECTS
 add_filter( 'wpseo_premium_post_redirect_slug_change', '__return_true' );
 add_filter( 'wpseo_premium_term_redirect_slug_change', '__return_true' );
+
+
+add_action('init', function () {
+  pll_register_string('studioyacine', 'All News');
+  pll_register_string('studioyacine', 'All Projects');
+});

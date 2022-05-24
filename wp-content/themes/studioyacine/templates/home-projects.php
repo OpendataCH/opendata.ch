@@ -21,7 +21,7 @@
 
             <h2><?php the_field('projects_title'); ?></h2>
 
-            <a href="<?php echo get_post_type_archive_link('project'); ?>">All Projects</a>
+            <a href="<?php echo get_post_type_archive_link('project'); ?>"><?php pll_e("All Projects") ?></a>
 
         </div>
 
