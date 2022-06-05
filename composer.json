@@ -10,6 +10,10 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/OpendataCH/polylang-pro.git"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/OpendataCH/sitepress-multilingual-cms.git"
         },
         {
