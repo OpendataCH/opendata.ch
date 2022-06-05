@@ -55,6 +55,7 @@
         "wpackagist-plugin/enable-jquery-migrate-helper": "^1.1",
         "wpackagist-plugin/yoast-test-helper": "1.15",
         "opendatach/advanced-custom-fields-pro": "5.*",
+        "opendatach/polylang-pro": "3.*",
         "opendatach/sitepress-multilingual-cms": "4.*",
         "opendatach/wp-seo-premium": "17.*",
         "opendatach/wp-seo-multilingual": "1.*"
