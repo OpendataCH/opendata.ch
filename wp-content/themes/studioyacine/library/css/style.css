@@ -1057,6 +1057,10 @@ Author: Yacine Belarbi @ studioyacine.ch
   border-top: 1px solid #eee;
 }
 
+.Related--posts + .Related--posts {
+  margin-top: 0;
+}
+
 #post-not-found {
   min-height: 30vh;
 }

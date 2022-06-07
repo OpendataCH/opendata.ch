@@ -35,14 +35,73 @@
 	<?php
 
 	$newsTerms = get_field('related_news');
-	$eventTerms = get_field('related_events');
-
 	$newsArrayTerm = array(
 		'taxonomy' => 'news_category',
 		'field' => 'slug',
-		'operator' => 'IN'
+	);	
+
+	if ($newsTerms) {
+		$temp = array();
+		foreach ($newsTerms as $term) {
+			array_push($temp, $term->slug);
+		}
+		$temp = implode(",", $temp);
+		$newsArrayTerm['terms'] = $temp;
+	}
+
+	$newsArrayQuery = array(
+		'post_type' => array(
+			!!$newsTerms ? 'news' : false
+		),		
+		'posts_per_page' => '12',
+		'orderby' => 'DESC',
+		'tax_query' => array($newsArrayTerm)
 	);
 
+	$projectNews = new WP_Query($newsArrayQuery);
+	$projectNewsCount = $projectNews->found_posts;
+
+	?>
+
+	<?php if ($projectNewsCount > 0) : ?>
+		<div class="Related--posts">
+
+			<div class='SectionHeader'>
+
+				<h2><?php pll_e("News") ?></h2>
+
+			</div>
+
+			<div class="TeaserGrid size--3 slider">
+
+				<?php if ($projectNews->have_posts()) : while ($projectNews->have_posts()) : $projectNews->the_post(); ?>
+
+						<?php setup_postdata($post); ?>
+
+						<div class='TeaserGrid--item'>
+							<?php $post_type = get_post_type(get_the_ID()); ?>
+							<?php $args = array('date' => true, 'posttype' => $post_type); ?>
+
+							<?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
+
+						</div>
+
+						<?php wp_reset_postdata(); ?>
+
+					<?php endwhile;
+				else : ?>
+
+				<?php endif; ?>
+
+			</div>
+
+		</div>
+
+	<?php endif; ?>	
+
+	<?php
+
+	$eventTerms = get_field('related_events');
 	$eventsArrayTerm = array(
 		'taxonomy' => 'event_category',
 		'field' => 'slug',
@@ -57,29 +116,16 @@
 		$temp = implode(",", $temp);
 		$eventsArrayTerm['terms'] = $temp;
 	}
-
-	if ($newsTerms) {
-		$temp = array();
-		foreach ($newsTerms as $term) {
-			array_push($temp, $term->slug);
-		}
-		$temp = implode(",", $temp);
-		$newsArrayTerm['terms'] = $temp;
-	}
 	
 	$today = date('Y-m-d H:i:s');
-	$args = array(
+
+	$eventArrayQuery = array(
 		'post_type' => array(
-			!!$eventTerms ? 'event' : false,
-			!!$newsTerms ? 'news' : false
-		),
+			!!$eventTerms ? 'event' : false
+		),		
 		'posts_per_page' => '12',
 		'orderby' => 'DESC',
-		'tax_query' => array(
-			'relation' => 'OR',
-			array($eventsArrayTerm),
-			array($newsArrayTerm)
-		),
+		'tax_query' => array($eventsArrayTerm),
 		'meta_query' => array(
 			'relation' => 'OR',
 			array(
@@ -92,25 +138,25 @@
 				'compare' => 'NOT EXISTS',
 				'value' => ''
 			)
-		)
+		)		
 	);
 
-	$projectPosts = new WP_Query($args);
-	$projectPostsCount = $projectPosts->found_posts;
+	$projecEvents = new WP_Query($eventArrayQuery);
+	$projecEventsCount = $projecEvents->found_posts;
 	?>
 
-	<?php if ($projectPostsCount > 0) : ?>
+	<?php if ($projecEventsCount > 0) : ?>
 		<div class="Related--posts">
 
 			<div class='SectionHeader'>
 
-				<h2>News and Events</h2>
+				<h2><?php pll_e("Events") ?></h2>
 
 			</div>
 
 			<div class="TeaserGrid size--3 slider">
 
-				<?php if ($projectPosts->have_posts()) : while ($projectPosts->have_posts()) : $projectPosts->the_post(); ?>
+				<?php if ($projecEvents->have_posts()) : while ($projecEvents->have_posts()) : $projecEvents->the_post(); ?>
 
 						<?php setup_postdata($post); ?>
 

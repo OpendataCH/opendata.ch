@@ -3798,19 +3798,21 @@
     function Sliders() {
       _classCallCheck(this, Sliders);
 
-      this.el = document.querySelector(".slider");
+      this.els = document.querySelectorAll(".slider");
       this.init();
     }
 
     _createClass(Sliders, [{
       key: "init",
       value: function init() {
-        if (this.el) {
-          this.flkty = new js(this.el, {
-            cellAlign: "left",
-            groupCells: true,
-            pageDots: false
-          });
+        if (this.els) {
+          for (var i = 0; i < this.els.length; i++) {
+            this.flkty = new js(this.els[i], {
+              cellAlign: "left",
+              groupCells: true,
+              pageDots: false
+            });
+          }
         }
       }
     }]);

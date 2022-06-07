@@ -2,17 +2,19 @@ import Flickity from "flickity";
 
 export default class Sliders {
     constructor() {
-        this.el = document.querySelector(".slider");
+        this.els = document.querySelectorAll(".slider");
 		this.init();
     }
 
     init() {
-		if(this.el){
-			this.flkty = new Flickity(this.el, {
-				cellAlign: "left",
-				groupCells: true,
-				pageDots: false
-			});
+		if(this.els){
+			for (let i = 0; i < this.els.length; i++) {
+				this.flkty = new Flickity(this.els[i], {
+					cellAlign: "left",
+					groupCells: true,
+					pageDots: false
+				});
+			}
 		}
     }
 }

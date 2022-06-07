@@ -373,4 +373,6 @@ add_action('init', function () {
   pll_register_string('studioyacine', 'Links');
   pll_register_string('studioyacine', 'Contact');
   pll_register_string('studioyacine', 'Social');
+  pll_register_string('studioyacine', 'News');
+  pll_register_string('studioyacine', 'Events');
 });
