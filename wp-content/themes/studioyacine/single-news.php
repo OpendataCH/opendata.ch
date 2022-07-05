@@ -8,7 +8,7 @@
 
 				<div class="SimplePage--header">
 
-					<time class='SimplePage--postdate' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d. F Y'); ?></time>
+					<time class='SimplePage--postdate' datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('d F Y'); ?></time>
 
 					<h1 class="SimplePage--title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
 
