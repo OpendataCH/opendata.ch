@@ -222,7 +222,7 @@ function custom_archive_query__events($query)
         )
       );
       $query->set('meta_query', $metaQuery);
-      $query->set('order', 'asc');
+      $query->set('order', 'desc');
     }
   }
   return $query;
