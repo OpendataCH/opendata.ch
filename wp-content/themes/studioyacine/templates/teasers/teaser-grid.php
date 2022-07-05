@@ -65,7 +65,7 @@
 					<?php $dateEndFormat = DateTime::createFromFormat('Y-m-d H:i:s', $date_end);?>
 				
 					<time class='Teaser--date' datetime="<?php echo $dateEndFormat->format('c'); ?>" itemprop="datePublished">
-						<?php echo $dateEndFormat->format('d M, Y'); ?>
+						<?php echo $dateEndFormat->format('d M Y'); ?>
 					</time>
 				<?php endif; ?>
 			
