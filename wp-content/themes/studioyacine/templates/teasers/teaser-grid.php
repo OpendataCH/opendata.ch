@@ -47,11 +47,11 @@
 
 								// CHECK IF SAME MONTH
 								if($dateStartFormat->format('Y') != $dateEndFormat->format('Y')){
-									echo $dateStartFormat->format('d M Y').'-';
+									echo $dateStartFormat->format('d M Y').' - ';
 								} else if($dateStartFormat->format('M') != $dateEndFormat->format('M')){
-									echo $dateStartFormat->format('d M').'-';
+									echo $dateStartFormat->format('d M').' - ';
 								} else {
-									echo $dateStartFormat->format('d').'-';
+									echo $dateStartFormat->format('d').' - ';
 								}
 							else:
 								echo $dateStartFormat->format('d M Y');
