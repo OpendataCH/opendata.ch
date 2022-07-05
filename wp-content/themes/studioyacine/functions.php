@@ -209,20 +209,20 @@ function custom_archive_query__events($query)
       $query->set('post_type', array('event'));
 
       $metaQuery = array(
-		'relation' => 'OR',
-		array(
-			'key'       => 'date',
-			'value'     =>  $today,
-			'compare'   => 'NOT EXISTS',
-		),
-		array(
-			'key'       => 'date',
-			'value'     =>  $today,
-			'compare'   => '<',
-		)
-		);
-      $query->set( 'meta_query', $metaQuery );
-	  $query->set('order', 'desc');
+        'relation' => 'OR',
+        array(
+          'key'       => 'date',
+          'value'     =>  $today,
+          'compare'   => 'NOT EXISTS',
+        ),
+        array(
+          'key'       => 'date',
+          'value'     =>  $today,
+          'compare'   => '<',
+        )
+      );
+      $query->set('meta_query', $metaQuery);
+      $query->set('order', 'asc');
     }
   }
   return $query;
@@ -242,62 +242,65 @@ add_filter('pre_get_posts', 'custom_archive_query__events');
 
 /*******************************************************************************
 Add columns to event post list
-*******************************************************************************/
+ *******************************************************************************/
 
 /*********************
 ADD COLUMN LABELS
-*********************/
-add_filter ( 'manage_event_posts_columns', 'add_acf_columns' );
-function add_acf_columns ( $columns ) {
- return array_merge ( $columns, array (
-   'event_date' => __ ( 'Event date' )
- ));
+ *********************/
+add_filter('manage_event_posts_columns', 'add_acf_columns');
+function add_acf_columns($columns)
+{
+  return array_merge($columns, array(
+    'event_date' => __('Event date')
+  ));
 }
 
 /*********************
 ADD COLUMN DATA
-*********************/
-add_action ( 'manage_event_posts_custom_column', 'event_custom_column', 10, 2 );
-function event_custom_column ( $column, $post_id ) {
-  switch ( $column ) {
+ *********************/
+add_action('manage_event_posts_custom_column', 'event_custom_column', 10, 2);
+function event_custom_column($column, $post_id)
+{
+  switch ($column) {
     case 'event_date':
-      $oldDate = get_post_meta ( $post_id, 'date', true );
-	  if($oldDate){
-      	echo date("d M, Y", strtotime($oldDate));
-	  }
+      $oldDate = get_post_meta($post_id, 'date', true);
+      if ($oldDate) {
+        echo date("d M, Y", strtotime($oldDate));
+      }
       break;
   }
 }
 
 
-add_filter( 'manage_edit-event_sortable_columns', 'make_event_sortable_columns');
-function make_event_sortable_columns( $columns ) {
+add_filter('manage_edit-event_sortable_columns', 'make_event_sortable_columns');
+function make_event_sortable_columns($columns)
+{
   $columns['event_date'] = 'date';
   return $columns;
 }
 
 
-add_action( 'pre_get_posts', 'events_order' );
-function events_order( $query ) {
+add_action('pre_get_posts', 'events_order');
+function events_order($query)
+{
 
   // Nothing to do:
-  if( ! $query->is_main_query() || 'event' != $query->get( 'post_type' )  )
-      return;
+  if (!$query->is_main_query() || 'event' != $query->get('post_type'))
+    return;
 
   //-------------------------------------------
   // Modify the 'orderby' and 'meta_key' parts
   //-------------------------------------------
-  $orderby = $query->get( 'orderby');
+  $orderby = $query->get('orderby');
 
-  switch ( $orderby )
-  {
-      case 'date':
-          $query->set( 'orderby',  'meta_value' );
-          $query->set( 'meta_key', 'date' );
-          $query->set( 'meta_type', 'date' );
-          break;
-      default:
-          break;
+  switch ($orderby) {
+    case 'date':
+      $query->set('orderby',  'meta_value');
+      $query->set('meta_key', 'date');
+      $query->set('meta_type', 'date');
+      break;
+    default:
+      break;
   }
 }
 
@@ -318,12 +321,13 @@ function events_order( $query ) {
 SUBMENU TOGGLE BUTTON
  *********************/
 
-function yourprefix_menu_arrow($item_output, $item, $depth, $args) {
-    if (in_array('menu-item-has-children', $item->classes)) {
-        $arrow = '<button class="submenu-toggle"><span class="visuallyhidden">Open</span><svg aria-hidden="true" class="icon"><use xlink:href="#base--chevron-down"></use></svg></button>'; 
-        $item_output = str_replace('</a>', '</a>'. $arrow .'', $item_output);
-    }
-    return $item_output;
+function yourprefix_menu_arrow($item_output, $item, $depth, $args)
+{
+  if (in_array('menu-item-has-children', $item->classes)) {
+    $arrow = '<button class="submenu-toggle"><span class="visuallyhidden">Open</span><svg aria-hidden="true" class="icon"><use xlink:href="#base--chevron-down"></use></svg></button>';
+    $item_output = str_replace('</a>', '</a>' . $arrow . '', $item_output);
+  }
+  return $item_output;
 }
 add_filter('walker_nav_menu_start_el', 'yourprefix_menu_arrow', 10, 4);
 
@@ -336,35 +340,37 @@ add_filter('walker_nav_menu_start_el', 'yourprefix_menu_arrow', 10, 4);
 Yoast SEO Default Article Image
  *********************/
 
-function be_schema_default_image( $graph_piece ) {
-	$use_default = false;
-	if( has_post_thumbnail() ) {
-		$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
-		if( empty( $image_src[1] ) || 1199 > $image_src[1] )
-			$use_default = true;
-	} else {
-		$use_default = true;
-	}
+function be_schema_default_image($graph_piece)
+{
+  $use_default = false;
+  if (has_post_thumbnail()) {
+    $image_src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+    if (empty($image_src[1]) || 1199 > $image_src[1])
+      $use_default = true;
+  } else {
+    $use_default = true;
+  }
 
-	if( $use_default ) {
-		$graph_piece['image']['@id'] = home_url( '#logo' );
-	}
-	return $graph_piece;
+  if ($use_default) {
+    $graph_piece['image']['@id'] = home_url('#logo');
+  }
+  return $graph_piece;
 }
-add_filter( 'wpseo_schema_article', 'be_schema_default_image' );
-add_filter( 'wpseo_schema_webpage', 'be_schema_default_image' );
+add_filter('wpseo_schema_article', 'be_schema_default_image');
+add_filter('wpseo_schema_webpage', 'be_schema_default_image');
 
 
-function remove_post_type_page_from_search() {
-    global $wp_post_types;
-    $wp_post_types['post']->exclude_from_search = true;
+function remove_post_type_page_from_search()
+{
+  global $wp_post_types;
+  $wp_post_types['post']->exclude_from_search = true;
 }
 add_action('init', 'remove_post_type_page_from_search');
 
 
 // DISABLE YOAST AUTOMATIC REDIRECTS
-add_filter( 'wpseo_premium_post_redirect_slug_change', '__return_true' );
-add_filter( 'wpseo_premium_term_redirect_slug_change', '__return_true' );
+add_filter('wpseo_premium_post_redirect_slug_change', '__return_true');
+add_filter('wpseo_premium_term_redirect_slug_change', '__return_true');
 
 
 add_action('init', function () {
@@ -375,4 +381,6 @@ add_action('init', function () {
   pll_register_string('studioyacine', 'Social');
   pll_register_string('studioyacine', 'News');
   pll_register_string('studioyacine', 'Events');
+  pll_register_string('studioyacine', 'Upcoming Events');
+  pll_register_string('studioyacine', 'Past Events');
 });

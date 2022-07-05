@@ -9,7 +9,7 @@
 	<?php if (!is_paged()) : ?>
 
 		<div class="SectionHeader">
-			<strong>Upcoming Events</strong>
+			<strong><?php pll_e("Upcoming Events") ?></strong>
 		</div>
 
 		<section class='EventsNext'>
@@ -46,7 +46,7 @@
 		</section>
 
 		<div class="SectionHeader">
-			<strong>Past Events</strong>
+			<strong><?php pll_e("Past Events") ?></strong>
 		</div>
 
 	<?php endif; ?>
