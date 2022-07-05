@@ -222,6 +222,8 @@ function custom_archive_query__events($query)
         )
       );
       $query->set('meta_query', $metaQuery);
+      $query->set('meta_key', 'date');
+      $query->set('orderby', 'meta_value');
       $query->set('order', 'desc');
     }
   }
