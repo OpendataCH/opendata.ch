@@ -138,6 +138,7 @@
     justify-content: center;
     @include text-uppercase;
     @include font-base;
+    line-height: 1.1;
     position: absolute;
     right: 1rem;
     transform: translateY(-120%);
