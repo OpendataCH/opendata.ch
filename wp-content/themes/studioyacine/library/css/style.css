@@ -1796,6 +1796,7 @@ html.overlayIsOpen body {
   right: 1rem;
   transform: translateY(-120%);
   transform-origin: 50% 50%;
+  text-align: center;
 }
 
 @media (min-width: 751px) {

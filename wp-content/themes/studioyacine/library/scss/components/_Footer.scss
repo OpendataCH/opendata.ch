@@ -142,6 +142,7 @@
     right: 1rem;
     transform: translateY(-120%);
     transform-origin: 50% 50%;
+    text-align: center;
     @include above-mobile {
         position: static;
         transform: translateY(-15%);
