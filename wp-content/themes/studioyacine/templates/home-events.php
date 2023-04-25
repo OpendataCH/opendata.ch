@@ -7,7 +7,7 @@
 ?>
 
 
-<section class='HomeNews'>
+<section class='HomeNews HomeEvents'>
 
 
 
