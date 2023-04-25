@@ -8,6 +8,8 @@
 
 	<?php get_template_part('templates/home', 'news'); ?>
 
+	<?php get_template_part('templates/home', 'events'); ?>
+
 	<?php get_template_part('templates/home', 'cta'); ?>
 
 </main>
