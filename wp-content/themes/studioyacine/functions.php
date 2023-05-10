@@ -376,13 +376,15 @@ add_filter('wpseo_premium_term_redirect_slug_change', '__return_true');
 
 
 add_action('init', function () {
-  pll_register_string('studioyacine', 'All News');
-  pll_register_string('studioyacine', 'All Projects');
-  pll_register_string('studioyacine', 'Links');
-  pll_register_string('studioyacine', 'Contact');
-  pll_register_string('studioyacine', 'Social');
-  pll_register_string('studioyacine', 'News');
-  pll_register_string('studioyacine', 'Events');
-  pll_register_string('studioyacine', 'Upcoming Events');
-  pll_register_string('studioyacine', 'Past Events');
+  if (function_exists('pll_register_string')) {
+    pll_register_string('studioyacine', 'All News');
+    pll_register_string('studioyacine', 'All Projects');
+    pll_register_string('studioyacine', 'Links');
+    pll_register_string('studioyacine', 'Contact');
+    pll_register_string('studioyacine', 'Social');
+    pll_register_string('studioyacine', 'News');
+    pll_register_string('studioyacine', 'Events');
+    pll_register_string('studioyacine', 'Upcoming Events');
+    pll_register_string('studioyacine', 'Past Events');
+  }
 });
