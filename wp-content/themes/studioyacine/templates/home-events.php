@@ -38,7 +38,7 @@
         'post_status' => 'publish',
         'meta_key'          => 'date',
         'orderby'           => 'meta_value',
-        'order'             => 'DESC',
+        'order'             => 'ASC',
         'posts_per_page' => '3', 
     );
     $news = new WP_Query($args);
