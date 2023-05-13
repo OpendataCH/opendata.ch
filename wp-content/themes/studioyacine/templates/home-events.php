@@ -31,13 +31,15 @@
 
 
     <?php /* =============================================  */ ?>
-    <?php /* News list  */ ?>
+    <?php /* Event list  */ ?>
     <?php
     $args = array(
         'post_type' => 'event',
-        'order'     => 'DESC',
         'post_status' => 'publish',
-        'posts_per_page' => '3'
+        'meta_key'          => 'date',
+        'orderby'           => 'meta_value',
+        'order'             => 'DESC',
+        'posts_per_page' => '3', 
     );
     $news = new WP_Query($args);
     ?>
@@ -50,7 +52,7 @@
 
                 <li class='TeaserGrid--item'>
 
-                    <?php $args = array('date' => true); ?>
+                    <?php $args = array('posttype' => 'event'); ?>
                     <?php get_template_part('templates/teasers/teaser', 'grid', $args); ?>
 
                 </li>
