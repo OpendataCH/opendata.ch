@@ -40,9 +40,9 @@
         'meta_key'          => 'date',
         'orderby'           => 'meta_value',
         'meta_compare' => '>=',
-        'meta_value' => $today,
-        'order'             => 'DESC',
-        'posts_per_page' => '3',
+        'meta_value' => $today,        
+        'order'             => 'ASC',
+        'posts_per_page' => '3', 
     );
     $news = new WP_Query($args);
     ?>
@@ -62,8 +62,7 @@
 
                 <?php wp_reset_postdata(); ?>
 
-            <?php endwhile;
-        else : ?>
+            <?php endwhile; else : ?>
 
         <?php endif; ?>
 
