@@ -37,7 +37,7 @@
     $args = array(
         'post_type' => 'event',
         'post_status' => 'publish',
-        'meta_key'          => 'date',
+        'meta_key'          => 'end_date',
         'orderby'           => 'meta_value',
         'meta_compare' => '>=',
         'meta_value' => $today,        
