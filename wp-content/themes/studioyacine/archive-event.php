@@ -19,7 +19,7 @@
 			$upcomingPosts = get_posts(array(
 				'post_type' => 'event',
 				'posts_per_page'	=> -1,
-				'meta_key' => 'date',
+				'meta_key' => 'end_date',
 				'meta_compare' => '>=',
 				'meta_value' => $today,
 				'orderby' => 'meta_value',
