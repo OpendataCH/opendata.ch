@@ -37,11 +37,21 @@
     $args = array(
         'post_type' => 'event',
         'post_status' => 'publish',
-        'meta_key'          => 'end_date',
-        'orderby'           => 'meta_value',
-        'meta_compare' => '>=',
-        'meta_value' => $today,        
-        'order'             => 'ASC',
+        'meta_query' => array(
+            'relation' => 'OR',
+            array(
+                'key' => 'end_date',
+                'compare' => '>=',
+                'value' => $today,
+            ),
+            array(
+                'key'=> 'date',
+                'compare' => '>=',
+                'value' => $today,
+            ),
+        ),
+        'orderby' => 'meta_value',
+        'order' => 'ASC',
         'posts_per_page' => '3', 
     );
     $news = new WP_Query($args);
