@@ -253,7 +253,8 @@ add_filter('manage_event_posts_columns', 'add_acf_columns');
 function add_acf_columns($columns)
 {
   return array_merge($columns, array(
-    'event_date' => __('Event date')
+    'start_date' => __('Start date'),
+    'end_date' => __('End date')
   ));
 }
 
@@ -264,12 +265,19 @@ add_action('manage_event_posts_custom_column', 'event_custom_column', 10, 2);
 function event_custom_column($column, $post_id)
 {
   switch ($column) {
-    case 'event_date':
+    case 'start_date':
       $oldDate = get_post_meta($post_id, 'date', true);
       if ($oldDate) {
         echo date("d M, Y", strtotime($oldDate));
       }
       break;
+
+    case 'end_date':
+      $oldDate = get_post_meta($post_id, 'end_date', true);
+      if ($oldDate) {
+        echo date("d M, Y", strtotime($oldDate));
+      }
+      break;      
   }
 }
 
@@ -277,7 +285,7 @@ function event_custom_column($column, $post_id)
 add_filter('manage_edit-event_sortable_columns', 'make_event_sortable_columns');
 function make_event_sortable_columns($columns)
 {
-  $columns['event_date'] = 'date';
+  $columns['start_date'] = 'date';
   return $columns;
 }
 
