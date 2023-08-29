@@ -1985,9 +1985,9 @@ html.overlayIsOpen body {
 }
 
 .Header--nav > ul .sub-menu {
+  background: #fff;
   position: absolute;
   display: none;
-  background: #fff;
 }
 
 .Header--nav > ul .sub-menu li + li {

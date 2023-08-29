@@ -100,9 +100,9 @@
     }
 
     .sub-menu {
+        background: $white;
         position: absolute;
         display: none;
-        background: $white;
 
         li + li {
             margin-left: 0;
