@@ -1990,6 +1990,13 @@ html.overlayIsOpen body {
   display: none;
 }
 
+@media (min-width: 1201px) {
+  .Header--nav > ul .sub-menu {
+    box-shadow: 0 12px 9px rgba(0, 0, 0, 0.1);
+    outline: 6px solid #fff;
+  }
+}
+
 .Header--nav > ul .sub-menu li + li {
   margin-left: 0;
 }

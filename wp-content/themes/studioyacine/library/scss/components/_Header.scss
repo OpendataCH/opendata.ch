@@ -104,6 +104,11 @@
         position: absolute;
         display: none;
 
+        @include above-tablet {
+            box-shadow: 0 12px 9px rgba(0,0,0,0.1);
+            outline: 6px solid #fff;            
+        }        
+
         li + li {
             margin-left: 0;
         }
