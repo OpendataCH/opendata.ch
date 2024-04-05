@@ -1,7 +1,7 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-    <div class="page-2020-wrap row">
+    <main class="page-2020-wrap row">
         {% include 'views/inc/page-intro-block.twig' %}
         {% if hide_filters == false %}
             <div class="filter-wrap row" data-filter="{{ filter }}">
@@ -42,6 +42,6 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
 {% endblock %}

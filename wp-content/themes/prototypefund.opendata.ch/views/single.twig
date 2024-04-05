@@ -1,7 +1,7 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-    <div class="row page-2020-wrap">
+    <main class="row page-2020-wrap">
         <article id="post-{{ post.id }}" {{ fn('post_class','blogpost-single fullwidth fullheight cf') }} role="article" itemscope itemtype="http://schema.org/BlogPosting">
             <div class="project-status-wrap fontsize-small uppercase">
                 {{ function('timePassedSinceDate', post.post_date) }}
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </article>
-    </div>
+    </main>
 {% endblock %}
 
 

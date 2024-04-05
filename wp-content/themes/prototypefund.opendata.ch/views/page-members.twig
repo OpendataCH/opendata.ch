@@ -1,24 +1,24 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-    <div class="page-2020-wrap">
-        {% include 'views/inc/page-intro-block.twig' %}
-        <div class="members-list">
-            {% for post in members_current %}
+<main class="page-2020-wrap">
+    {% include 'views/inc/page-intro-block.twig' %}
+    <div class="members-list">
+        {% for post in members_current %}
+            {% include 'views/inc/member-list-item.twig' %}
+        {% endfor %}
+    </div>
+    {% if members_alumni|length > 0 %}
+        <div class="row projects-intro upper-margin">
+            <div class="col-xs-24 col-md-10 projects-intro-left">
+                <h2 class="projects-intro-headline">{{ post.alumni_headline }}</h2>
+            </div>
+        </div>
+        <div class="alumni-list">
+            {% for post in members_alumni %}
                 {% include 'views/inc/member-list-item.twig' %}
             {% endfor %}
         </div>
-        {% if members_alumni|length > 0 %}
-            <div class="row projects-intro upper-margin">
-                <div class="col-xs-24 col-md-10 projects-intro-left">
-                    <h2 class="projects-intro-headline">{{ post.alumni_headline }}</h2>
-                </div>
-            </div>
-            <div class="alumni-list">
-                {% for post in members_alumni %}
-                    {% include 'views/inc/member-list-item.twig' %}
-                {% endfor %}
-            </div>
-        {% endif %}
-    </div>
+    {% endif %}
+</main>
 {% endblock %}

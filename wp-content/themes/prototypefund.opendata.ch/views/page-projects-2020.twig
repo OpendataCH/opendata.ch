@@ -1,7 +1,7 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-	<div class="page-2020-wrap">
+	<main class="page-2020-wrap">
 		{% include 'inc/page-intro-block.twig' %}
 		{% if hide_filters == false %}
 			<div class="row filter-wrap" data-filter="{{ filter }}">
@@ -45,6 +45,5 @@
 				<h4 class="nothing-found-info hidden h1">{{ options.nothing_found_info }}</h4>
 			</div>
 		</div>
-	</div>
-
+	</main>
 {% endblock %}
