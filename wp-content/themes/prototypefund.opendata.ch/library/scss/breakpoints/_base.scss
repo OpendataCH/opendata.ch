@@ -3931,7 +3931,7 @@ EVENTS ARCHIVE
     &:last-of-type, &.last{
       border-bottom: 0px solid black;
     }
-    .project-teaser-image img{
+    .project-teaser-image:not(.default) img{
       object-fit: cover;
     }
   }
