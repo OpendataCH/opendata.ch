@@ -211,32 +211,6 @@
             }
         });
 
-        //main navigation
-        $('.main-nav .nav-main-link').mouseenter(function(){
-            if($(window).scrollTop() > 0) return;
-            var id = $(this).attr('data-id');
-            var $dropdown = $(".nav-dropdown[data-id='" + id + "']");
-            if($dropdown.length > 0){
-                //there is a dropdown to display
-                if(currentDropdownId && currentDropdownId != id){
-                    //hide open dropdown
-                    $(".nav-dropdown[data-id='" + currentDropdownId + "']").removeClass('visible');
-                }
-                if(!$dropdown.hasClass('visible')){
-                    $dropdown.addClass('visible');
-                }
-                currentDropdownId = id;
-            } else {
-                //no dropdown for item
-                ref.closeDropdown();
-            }
-        });
-
-        $('.main-nav-outer').mouseleave(function(){
-            //no dropdown for item
-            ref.closeDropdown();
-        });
-
         $('.collapseomatic').click(function(){
             if(!$(this).hasClass('colomat-close')){
                 //open content

@@ -958,7 +958,7 @@ CONTENT SUBPAGE - FAQ, ABOUT
   top:0;
   padding: 100px 20px 20px 20px;
   margin: 0;
-  overflow-y: auto;
+  overflow-y: visible;
 
   .main-nav{
     text-align: left;
@@ -1001,47 +1001,39 @@ CONTENT SUBPAGE - FAQ, ABOUT
   }
 }
 
-.sub-nav{
-  position: relative;
-  margin: 0;
-  padding: 0 2em;
+ul.submenu{
+  position: absolute;
+  background-color: white;
+
+  width: 100%;
   display: none;
 
-  ul.nav-dropdown{
-    position: absolute;
-    background-color: white;
+  li.nav-drop-item{
+    display: block;
+    text-align: left;
+    width: 100%;
 
-    visibility: hidden;
-    &.visible{
-      visibility: hidden;
+    .nav-drop-item-inner{
+      display: block;
+      padding: 7px 0;
     }
 
-    li.nav-drop-item{
-      display: block;
-      float: left;
-      width: 100%;
+    border-top: 1px solid black;
+    &:last-of-type{
+      border-bottom: 1px solid black;
+    }
 
-      .nav-drop-item-inner{
-        display: block;
-        padding: 7px 0;
-      }
-
-      border-top: 1px solid black;
-      &:last-of-type{
-        border-bottom: 1px solid black;
-      }
-
-      a{
-        color: black;
-        text-transform: uppercase;
-        &:hover{
-          color: $ptf-primary-color;
-        }
+    a{
+      color: black;
+      text-transform: uppercase;
+      &:hover{
+        color: $ptf-primary-color;
       }
     }
   }
-
 }
+
+
 
 
 /*********************

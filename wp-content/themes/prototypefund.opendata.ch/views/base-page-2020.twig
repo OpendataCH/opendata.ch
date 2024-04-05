@@ -34,17 +34,17 @@
                 <span></span>
             </div>
             <div class="main-nav-outer">
-                <div class="main-nav-wrap gone row">
+                <div class="main-nav-wrap gone">
                     <ul class="nav main-nav ">
                         {% for item in mainnav.items %}
                             <li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
-                                <a data-id="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
+								<a aria-expanded="false" aria-controls="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
                                 {% if item.children %}
-                                    <ul class="mobile-sub-nav col-xs-24 no-padding">
+                                    <ul class="submenu nav-dropdown">
                                         {% for child in item.children %}
-                                            <li class="mobile-sub-nav-item">
+											<li class="nav-drop-item">
                                                 <a href="{{ child.link }}">
-                                                    <div class="">{{ child.title }}</div>
+													<div class="nav-drop-item-inner">{{ child.title }}</div>
                                                 </a>
                                             </li>
                                         {% endfor %}
@@ -58,21 +58,6 @@
                             <a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.last == false %}<span class="language-divider">/</span>{% endif %}
                         {% endfor %}
                     </nav>
-                </div>
-                <div class="sub-nav row">
-                    {% for item in mainnav.items %}
-                        {% if item.children %}
-                            <ul data-id="nav-id-{{ loop.index0 }}" class="nav-dropdown col-xs-24 no-padding">
-                                {% for child in item.children %}
-                                    <li class="nav-drop-item">
-                                        <a href="{{ child.link }}">
-                                            <div class="nav-drop-item-inner">{{ child.title }}</div>
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    {% endfor %}
                 </div>
             </div>
         </div>
