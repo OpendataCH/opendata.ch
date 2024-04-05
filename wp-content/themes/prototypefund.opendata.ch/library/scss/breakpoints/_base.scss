@@ -2511,10 +2511,32 @@ ul.canvas-nav, ul.sharer-nav{
 
     float: left;
     margin-right: 25px;
-    overflow:hidden;
+    margin-bottom: 15px;
+    width: auto;
+    line-height: 25px;
+    background: none;
+  }
 
+  .svg-nav-eye {
+    background: url('../svgs/nav-eye.svg') no-repeat;
     a{
-      text-indent: 9999px;
+      padding-left: 40px;
+    }
+  }
+
+
+  .svg-nav-reset {
+    background: url('../svgs/nav-reset.svg') no-repeat;
+    a{
+      padding-left: 35px;
+    }
+  }
+
+
+  .svg-nav-share {
+    background: url('../svgs/nav-share.svg') no-repeat;
+    a{
+      padding-left: 35px;
     }
   }
 
