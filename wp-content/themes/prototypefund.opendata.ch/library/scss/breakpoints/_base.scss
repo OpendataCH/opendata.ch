@@ -45,7 +45,10 @@ html{
 
 }
 
-*:focus {outline:none !important}
+*:focus {
+  outline: 2px solid $ptf-secondary-color !important;
+  outline-offset: 0.2em;
+}
 
 a{
   color: black;
