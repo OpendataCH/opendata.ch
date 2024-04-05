@@ -12,9 +12,11 @@
 					{% for block in post.get_field('basics_blocks') %}
 						<div id="{{ block.id }}" class="filter-tab">
 							<div class="filter-tab-header">
-								<h4 class="filter-headline">{{ block.headline }}</h4>
+								<h4 class="filter-headline">
+									<button aria-expanded="false" id="filter-tab-button-{{ loop.index0 }}" aria-controls="filter-tab-content-{{ loop.index0 }}" >{{ block.headline }}</button>
+								</h4>							
 							</div>
-							<div class="filter-tab-content" style="height: 0px; display: block;">
+							<div role="region" id="filter-tab-content-{{ loop.index0 }}" aria-labelledby="filter-tab-button-{{ loop.index0 }}" class="filter-tab-content" style="height: 0px; display: block;">
 								<div class="filter-tab-content-inner row">
 									<div class="col-xs-24 col-md-12">
 										{{ block.content }}
@@ -33,9 +35,11 @@
 					{% for block in post.get_field('details_blocks') %}
 						<div class="filter-tab">
 							<div class="filter-tab-header">
-								<h4 class="filter-headline">{{ block.headline }}</h4>
-							</div>
-							<div class="filter-tab-content" style="height: 0px; display: block;">
+								<h4 class="filter-headline">
+									<button aria-expanded="false" id="filter-tab-button-{{ loop.index0 }}" aria-controls="filter-tab-content-{{ loop.index0 }}" >{{ block.headline }}</button>
+								</h4>									
+							</div>		
+							<div role="region" id="filter-tab-content-{{ loop.index0 }}" aria-labelledby="filter-tab-button-{{ loop.index0 }}" class="filter-tab-content" style="height: 0px; display: block;">
 								<div class="filter-tab-content-inner row">
 									<div class="col-xs-24 col-md-12">
 										{{ block.content }}

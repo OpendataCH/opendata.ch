@@ -43,6 +43,7 @@
         if($tab.length > 0){
             var $c = $tab.find('.filter-tab-content');
             $tab.addClass('open');
+            $tab.find('.filter-tab-header button')[0].setAttribute('aria-expanded', true);
             TweenMax.set($c, {display:"block", height:"auto"});
             var tl = TweenMax.from($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
             var url = ref.setUrlParameter(window.location.href,'filter',showFilter);
@@ -55,10 +56,10 @@
         $paginationButtons = $('.projects-pagination-btn',$pagination);
         $nothingFoundInfo = $('.nothing-found-info');
         $filterTabs = $('.filter-tab');
-        $filterBtn = $('.filter-tab-header');
+        $filterBtn = $('.filter-tab-header button');
         $filterBtn.click(function(e){
-            var $tab = $(this).parent();
-            var $content = $(this).next();
+            var $tab = $(this).closest('.filter-tab');
+            var $content = $tab.find('.filter-tab-content');
 
             var current = $tab.attr('data-id');
 
@@ -72,12 +73,15 @@
                         if($(this).hasClass('open')){
                             $(this).removeClass('open');
                             var $c = $(this).find('.filter-tab-content');
-                            var tl = TweenMax.to($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+                            $(this).find('.filter-tab-header button')[0].setAttribute('aria-expanded', false);
+                            var tl = TweenMax.to($c, 0.3, { height: 0, display: 'none', ease: Power3.easeOut }, 0);
                         }
                     }
                 });
 
                 $tab.addClass('open');
+
+                this.setAttribute('aria-expanded', true);
                 TweenMax.set($content, {display:"block", height:"auto"});
                 var tl = TweenMax.from($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
 
@@ -89,7 +93,8 @@
             } else {
                 //close
                 $tab.removeClass('open');
-                var tl = TweenMax.to($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+                this.setAttribute('aria-expanded', false);
+                var tl = TweenMax.to($content, 0.3, { height: 0, display: 'none', ease: Power3.easeOut }, 0);
 
                 if(current){
                     var url =  ref.setUrlParameter(window.location.href,'filter','');
