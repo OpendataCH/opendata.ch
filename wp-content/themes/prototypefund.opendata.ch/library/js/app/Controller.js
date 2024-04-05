@@ -213,6 +213,17 @@
             }
         });
 
+        $(document).keyup(function(e) {
+            if (e.keyCode == 27) {
+              if (!$mainNav.hasClass("gone")) {
+                $mainNav.addClass('gone');
+                $toggleSlideMenu.removeClass('active');
+                $toggleSlideMenu[0].setAttribute('aria-expanded',false);
+                $body.removeClass('mobile-menu-open');
+            }
+           }
+       });
+
         $('.collapseomatic').click(function(){
             if(!$(this).hasClass('colomat-close')){
                 //open content
