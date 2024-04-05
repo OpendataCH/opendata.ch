@@ -12,13 +12,13 @@
         val1 : ''
     };
     
-    var ref, options, controller, doughnutChart1, doughnutChart2, doughnutChart3;
+    var ref, options, controller, doughnutChart1, doughnutChart2, doughnutChart3, prefersReducedMotion;
     function ChartsManager(pController){
         ref = this;
         controller = pController;
 
         Chart.defaults.global.animation.onComplete = ref.onComplete;
-
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     };
 
     ChartsManager.prototype.init = function(){
@@ -84,14 +84,16 @@
                 },
                 responsive: true,
                 animation: {
-                    duration: 1000,
+                    duration: 0,
                     easing: 'easeOutCubic',
                     animateScale: false,
-                    animateRotate: true
+                    animateRotate: false
                 },
                 cutoutPercentage: 85
             }
         };
+        if(prefersReducedMotion) config.options.animation = false;
+
 
         doughnutChart1 = new Chart($('#chart-1'), config);
         $('#chart-1').addClass('initialized');
@@ -113,15 +115,11 @@
                     enabled: false
                 },
                 responsive: true,
-                animation: {
-                    duration: 1500,
-                    easing: 'easeOutCubic',
-                    animateScale: false,
-                    animateRotate: true
-                },
+                animation: false,
                 cutoutPercentage: 85
             }
         };
+        if(prefersReducedMotion) config.options.animation = false;
 
 
         // And for a doughnut chart
@@ -158,6 +156,7 @@
                 cutoutPercentage: 85
             }
         };
+        if(prefersReducedMotion) config.options.animation = false;
 
         // And for a doughnut chart
         doughnutChart3 = new Chart($('#chart-3'), config);
