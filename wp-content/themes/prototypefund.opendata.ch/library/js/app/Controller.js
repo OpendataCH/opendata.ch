@@ -202,11 +202,13 @@
                 //show menu on mobile
                 $mainNav.removeClass('gone');
                 $toggleSlideMenu.addClass('active');
+                $toggleSlideMenu[0].setAttribute('aria-expanded',true);
                 $body.addClass('mobile-menu-open');
             } else {
                 //hide menu on mobile
                 $mainNav.addClass('gone');
                 $toggleSlideMenu.removeClass('active');
+                $toggleSlideMenu[0].setAttribute('aria-expanded',false);
                 $body.removeClass('mobile-menu-open');
             }
         });

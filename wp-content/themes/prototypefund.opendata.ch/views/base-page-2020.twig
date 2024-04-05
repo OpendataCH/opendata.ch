@@ -30,11 +30,11 @@
 			{% endif %}
 		</div>
         <div class="nav-container col-xs-24 col-md-12 no-padding">
-            <div class="nav-toggle toggle-menu 2020">
-                <span></span>
-            </div>
+			<button aria-expanded="false" aria-controls="main-nav-wrap" class="nav-toggle toggle-menu 2020">
+				<span></span>
+			</button>
             <div class="main-nav-outer">
-                <div class="main-nav-wrap gone">
+                <div id="main-nav-wrap" class="main-nav-wrap gone">
                     <ul class="nav main-nav ">
                         {% for item in mainnav.items %}
                             <li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
