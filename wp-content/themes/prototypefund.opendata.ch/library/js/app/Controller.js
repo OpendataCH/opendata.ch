@@ -200,13 +200,21 @@
         $toggleMenu.click(function(){
             if($mainNav.hasClass('gone')){
                 //show menu on mobile
-                $mainNav.removeClass('gone');
+                $mainNav.css('display','block');
+
+                setTimeout(function(){
+                    $mainNav.removeClass('gone');
+                },50);
                 $toggleSlideMenu.addClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-expanded',true);
                 $body.addClass('mobile-menu-open');
             } else {
                 //hide menu on mobile
                 $mainNav.addClass('gone');
+                // delayed accroding to css transition (wait for it to complete)
+                setTimeout(function(){
+                    $mainNav.css('display','none');
+                },250);
                 $toggleSlideMenu.removeClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-expanded',false);
                 $body.removeClass('mobile-menu-open');
@@ -217,6 +225,9 @@
             if (e.keyCode == 27) {
               if (!$mainNav.hasClass("gone")) {
                 $mainNav.addClass('gone');
+                setTimeout(function(){
+                    $mainNav.css('display','none');
+                },250);
                 $toggleSlideMenu.removeClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-expanded',false);
                 $body.removeClass('mobile-menu-open');
