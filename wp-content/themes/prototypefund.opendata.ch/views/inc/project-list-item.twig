@@ -40,10 +40,14 @@
                     {% if post.thumbnail %}
                         <!-- has teaser image -->
                         {% set img = Image(post.thumbnail)  %}
-                        <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
+                        <div class="project-teaser-image">
+                            <img src="{{img.src('ptf-16x9_large')}}" width="{{img.width}}" height="{{img.height}}" alt="{{ img.alt }}">
+                        </div>                    
                     {% else %}
                         <!-- has no teaser image -->
-                        <div class="project-teaser-image" style="background-image:url({{ theme.link }}/library/images/prototypefund-project-default.png)"></div>
+                        <div class="project-teaser-image default" >
+                            <img src="{{ theme.link }}/library/images/prototypefund-project-default.png" width="800" height="800" alt="Das Prototype Fund P Logo">
+                        </div>                    
                     {% endif %}
                 {% endif %}
             </div>
