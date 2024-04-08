@@ -200,7 +200,7 @@
         $toggleMenu.click(function(){
             if($mainNav.hasClass('gone')){
                 //show menu on mobile
-                $mainNav.css('display','block');
+                $mainNav.css('display','flex');
 
                 setTimeout(function(){
                     $mainNav.removeClass('gone');

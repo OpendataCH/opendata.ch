@@ -892,6 +892,9 @@ CONTENT SUBPAGE - FAQ, ABOUT
   margin: 0;
   overflow-y: visible;
 
+  display: flex;
+  flex-direction: column;
+
   .main-nav{
     text-align: left;
      
