@@ -8,15 +8,16 @@
 		<div class="logo-container col-xs-24 col-md-12 no-padding">
 			<div id="fixed-logo-p" {% if isHome %} style="opacity:0;{% endif %}">
 				<a class="logo-link" href="{{ site.url }}">
-					<div class="svg-logo-p svg-logo-p-dims"></div>
+					<span class="sr-only">prototypefund.ch logo</span>
+					<div aria-hidden="true" class="svg-logo-p svg-logo-p-dims" ></div>
 				</a>
 			</div>
 			{% if isHome %}
 				<div class="header-inner-wrapper">
 					<div class="logo-large-wrapper show">
-						<a href="{{ site.url }}">
+						<a aria-hidden="true" href="{{ site.url }}">
 							<h1 class="logo" title="{{ options.logo_title }}">
-								<img class="img-responsive" src="{{ theme.link }}/library/images/logo-ptf.svg"/>
+								<img aria-hidden="true" class="img-responsive" src="{{ theme.link }}/library/images/logo-ptf.svg" alt="Prototype Fund"/>
 							</h1>
 						</a>
 					</div>
@@ -30,7 +31,7 @@
 			{% endif %}
 		</div>
         <div class="nav-container col-xs-24 col-md-12 no-padding">
-			<button aria-expanded="false" aria-controls="main-nav-wrap" class="nav-toggle toggle-menu 2020">
+			<button aria-label="{{ __('Open/close menu', 'theme') }}" aria-expanded="false" aria-controls="main-nav-wrap" class="nav-toggle toggle-menu 2020">
 				<span></span>
 			</button>
 
@@ -40,7 +41,7 @@
 						<ul class="nav main-nav ">
 							{% for item in mainnav.items %}
 								<li class="menu-item {% if item.children == false %}no-children{% endif %} {{item.classes | join(' ')}}">
-									<a aria-expanded="false" aria-controls="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
+									<a aria-label="{{ __('Sub Menu', 'theme') }}"  aria-expanded="false" aria-controls="nav-id-{{ loop.index0 }}" class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
 									{% if item.children %}
 										<ul class="submenu nav-dropdown">
 											{% for child in item.children %}
@@ -58,7 +59,7 @@
 					</nav>
 					<nav aria-label="{{ __('Language', 'theme') }}" class="nav-language">
                         {% for language in options.languages %}
-                            <a class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.last == false %}<span class="language-divider">/</span>{% endif %}
+                            <a aria-label="{{ language.native_name }}" class="language-switch {% if (language.active == 1)%}active{% endif %}" href="{{language.url}}">{{language.language_code}}</a>{% if loop.last == false %}<span aria-hidden="true" class="language-divider">/</span>{% endif %}
                         {% endfor %}
                     </nav>
                 </div>
