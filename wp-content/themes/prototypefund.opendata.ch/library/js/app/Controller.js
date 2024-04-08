@@ -216,7 +216,7 @@
                     $mainNav.css('display','none');
                 },250);
                 $toggleSlideMenu.removeClass('active');
-                $toggleSlideMenu[0].setAttribute('aria-expanded',false);
+                $toggleSlideMenu[0].setAttribute('aria-pressed',true);
                 $body.removeClass('mobile-menu-open');
             }
         });
@@ -229,7 +229,7 @@
                     $mainNav.css('display','none');
                 },250);
                 $toggleSlideMenu.removeClass('active');
-                $toggleSlideMenu[0].setAttribute('aria-expanded',false);
+                $toggleSlideMenu[0].setAttribute('aria-pressed',false);
                 $body.removeClass('mobile-menu-open');
             }
            }

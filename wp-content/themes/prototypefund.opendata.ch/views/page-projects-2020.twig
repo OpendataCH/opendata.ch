@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		{% endif %}
-		<div role="status" class="sr-status sr-only"></div>
+
 		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list" style="opacity:0;">
 			{% for post in projects %}
 				{% if post.get_field('featured') == 1 %}

@@ -3,6 +3,7 @@
 {% block content %}
 <main class="page-2020-wrap">
     {% include 'views/inc/page-intro-block.twig' %}
+    <h2 class="sr-only">{{ __('Team Members', 'theme') }}</h2>
     <div class="members-list">
         {% for post in members_current %}
             {% include 'views/inc/member-list-item.twig' %}
