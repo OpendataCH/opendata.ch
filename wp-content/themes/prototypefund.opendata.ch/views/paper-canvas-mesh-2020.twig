@@ -22,7 +22,7 @@
 </div>
 <canvas id="paper-canvas" resize></canvas>
 <div class="canvas-nav-wrap">
-    <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <nav aria-label="{{ __('Gallery', 'theme') }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
         <ul class="nav canvas-nav cf">
             {% for item in canvasnav.get_items %}
                 <li class="menu-item gone {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
