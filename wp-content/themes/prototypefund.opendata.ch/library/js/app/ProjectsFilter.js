@@ -114,9 +114,9 @@
             var topic = $(this).attr('data-filter');
             if(!$(this).hasClass('selected')){
                 ref.addTopicToFilter(topic);
-                $srStatus[0].textContent = 'Filter ' + topic + ' ausgewählt. Projektliste aktualisiert.';
+                $srStatus[0].textContent = 'Filter ' + $(this).text() + ' ausgewählt. Projektliste aktualisiert.';
             } else{
-                $srStatus[0].textContent = 'Filter ' + topic + ' nicht mehr ausgewählt. Projektliste aktualisiert.';
+                $srStatus[0].textContent = 'Filter ' + $(this).text() + ' nicht mehr ausgewählt. Projektliste aktualisiert.';
                 ref.removeTopicFromFilter(topic);
             }
         }).mouseover(function() {
@@ -131,6 +131,7 @@
             topicsFilterArray = [];
             $topicFilterBtns.removeClass('selected');
             ref.filterProjectsByTopics();
+            $srStatus[0].textContent = 'Filter reset';
             e.preventDefault();
         });
 
@@ -251,7 +252,7 @@
             $projectsList.find("[data-page='" + page_index + "']").removeClass('paginated');
             $pagination.removeClass('hidden');
             $('.news-tile').removeClass('filtered').removeClass('paginated');
-            $srStatus[0].textContent = 'Projekte: Kein Filter ausgewählt.';
+            $srStatus[0].textContent = 'Kein Filter ausgewählt.';
 
         } else {
 
