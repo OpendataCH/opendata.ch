@@ -28,7 +28,8 @@
 				</div>
 			</div>
 		{% endif %}
-		<div class="projects-list" style="opacity:0;">
+		<div role="status" class="sr-status sr-only"></div>
+		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list" style="opacity:0;">
 			{% for post in projects %}
 				{% if post.get_field('featured') == 1 %}
 					{% include 'views/inc/project-list-item.twig' %}

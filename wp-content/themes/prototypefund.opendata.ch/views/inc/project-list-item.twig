@@ -1,9 +1,9 @@
-<div class="project-list-item" data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}">
+<article aria-labelledby="title-id-{{ post.id }}" class="project-list-item" data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}">
     <div class="project-list-item-inner">
         <div class="row">
             <div class="col-xs-24 col-md-10 project-list-item-inner-left">
                 <div class="project-list-item-text-wrap">
-                    <h3 class="project-list-item-headline uppercase"><a href="{{ post.link }}">{{ post.post_title }}</a></h3>
+                    <h3 class="project-list-item-headline uppercase"><a id="title-id-{{ post.id }}" href="{{ post.link }}">{{ post.post_title }}</a></h3>
                     <div class="project-list-item-copy">{{ post.get_field('content1') }}</div>
                     <div class="project-list-item-members">{% for item in post.get_field('members') %}
                             {% if item.email %}
@@ -67,4 +67,4 @@
         </div>
 
     </div>
-</div>
+</article>

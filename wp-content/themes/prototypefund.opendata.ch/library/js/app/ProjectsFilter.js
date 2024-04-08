@@ -8,7 +8,7 @@
     };
 
     var ref, controller, $filterBtn, $filterTabs, $projects, $nothingFoundInfo, $projectsList, showFilter, $topicFilterBtns, $topicFilterResetBtn,
-        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions;
+        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions, $srStatus;
     function ProjectsFilter(pController){
         ref = this;
         controller = pController;
@@ -105,6 +105,7 @@
 
         $projectsList = $('.projects-list, .posts-list');
         $projects = $('.project-list-item, .post-list-item');
+        $srStatus = $('.sr-status');
 
         //category (topics) filters
         $topicFilterBtns = $('.topics.filter-tab').find('.btn-project-filter');
@@ -113,7 +114,9 @@
             var topic = $(this).attr('data-filter');
             if(!$(this).hasClass('selected')){
                 ref.addTopicToFilter(topic);
+                $srStatus[0].textContent = 'Filter ' + topic + ' ausgewählt. Projektliste aktualisiert.';
             } else{
+                $srStatus[0].textContent = 'Filter ' + topic + ' nicht mehr ausgewählt. Projektliste aktualisiert.';
                 ref.removeTopicFromFilter(topic);
             }
         }).mouseover(function() {
@@ -160,12 +163,17 @@
             $paginationButtons.click(function(e){
                 e.preventDefault();
                 $paginationButtons.removeClass('active');
+                $paginationButtons.attr('aria-pressed',false);
+
                 var page_id = $(this).attr('data-id');
                 page_index = page_id;
                 $(this).addClass('active');
+                $(this).attr('aria-pressed',true);
                 $projects.addClass('paginated');
                 $projectsList.find("[data-page='" + page_id + "']").removeClass('paginated');
                 var eTop = $('.filter-wrap').offset().top; //get the offset top of the element
+                $srStatus[0].textContent = 'Projeke: Seite ' + page_id; // TODO: multilang
+                $projectsList.focus();
                 window.scroll({
                     top: eTop,
                     left: 0,
@@ -197,6 +205,7 @@
     ProjectsFilter.prototype.addTopicToFilter = function(topic){
 
         $(".btn-project-filter[data-filter='" + topic +"']").addClass('selected');
+        $(".btn-project-filter[data-filter='" + topic +"']").attr('aria-pressed',true);
 
         var found = false;
         for(var a=0; a<topicsFilterArray.length;++a){
@@ -213,6 +222,7 @@
     ProjectsFilter.prototype.removeTopicFromFilter = function(topic){
 
         $(".btn-project-filter[data-filter='" + topic +"']").removeClass('selected');
+        $(".btn-project-filter[data-filter='" + topic +"']").attr('aria-pressed',false);
 
         for(var a=0; a<topicsFilterArray.length;++a){
             var t = topicsFilterArray[a];
@@ -241,6 +251,7 @@
             $projectsList.find("[data-page='" + page_index + "']").removeClass('paginated');
             $pagination.removeClass('hidden');
             $('.news-tile').removeClass('filtered').removeClass('paginated');
+            $srStatus[0].textContent = 'Projekte: Kein Filter ausgewählt.';
 
         } else {
 

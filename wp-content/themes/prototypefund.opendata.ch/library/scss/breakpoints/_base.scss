@@ -3901,6 +3901,10 @@ EVENTS ARCHIVE
   }
 }
 
+.projects-list:focus {
+  outline: none !important;
+}
+
 .nothing-found-info{
   margin: 50px 0;
 }
