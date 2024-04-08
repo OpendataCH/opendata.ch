@@ -10,7 +10,7 @@
                             <!-- YouTube iframe. -->
                             <!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
                             <!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language -->
-                            <iframe title="Youtube Video" class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed) }}?autoplay=1&modestbranding=1&rel=0&hl=sv"></iframe>
+                            <iframe title="Youtube Video" class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed) }}?autoplay=1&modestbranding=1&rel=0&hl={{ options.languageCode }}"></iframe>
                             <!-- the poster frame - in the form of a button to make it keyboard accessible -->
                             <div class="poster-wrap button-hidden">
 
