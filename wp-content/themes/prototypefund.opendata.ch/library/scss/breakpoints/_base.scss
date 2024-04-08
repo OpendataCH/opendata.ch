@@ -46,8 +46,8 @@ html{
 }
 
 *:focus {
-  outline: 2px solid $ptf-secondary-color !important;
-  outline-offset: 0.2em;
+  outline: none;
+  border: none;
 }
 
 a{
@@ -145,6 +145,12 @@ body {
     }
   }
 
+  &.focus-styled {
+    *:focus {
+      outline: 2px solid $ptf-secondary-color !important;
+      outline-offset: 0.2em;
+    }
+  }
 }
 
 html, body, #container {
@@ -888,6 +894,7 @@ CONTENT SUBPAGE - FAQ, ABOUT
 
   .main-nav{
     text-align: left;
+     
     .menu-item{
       position: relative;
       display: table;
@@ -3937,7 +3944,7 @@ EVENTS ARCHIVE
 
   &.open{
     .filter-tab-header{
-      &:before{
+      &:after{
         transform: rotate(180deg);
       }
     }
@@ -3949,7 +3956,15 @@ EVENTS ARCHIVE
     cursor: pointer;
     position: relative;
 
-    &:before{
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      display: flex;
+      width: 100%;
+    }
+
+    &:after{
 
       position: absolute;
       right: 0;
@@ -3957,6 +3972,7 @@ EVENTS ARCHIVE
       content:'';
       display: inline-block;
       width: 25px;
+      margin-left: auto;
       height: 28px;
       transform: rotate(0deg);
       @include transition(all .3s ease-in-out);
@@ -4022,9 +4038,16 @@ EVENTS ARCHIVE
   }
   .filter-tab-content{
     overflow: hidden;
+    display: none;
     height: 0;
     .filter-tab-content-inner{
       margin-bottom: 2em;
+      
+      > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
     }
   }
 }

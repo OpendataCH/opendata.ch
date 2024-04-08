@@ -74,8 +74,9 @@
                             $(this).removeClass('open');
                             var $c = $(this).find('.filter-tab-content');
                             $(this).find('.filter-tab-header button')[0].setAttribute('aria-expanded', false);
-                            var tl = TweenMax.to($c, 0.3, { height: 0, display: 'none', ease: Power3.easeOut }, 0);
-                        }
+                            var tl = TweenMax.to($c, 0.3, { height: 0, display: 'none', ease: Power3.easeOut,onStart : function() {
+                                this.target[0].style.overflow = 'hidden';
+                            } }, 0);                        }
                     }
                 });
 
@@ -83,7 +84,10 @@
 
                 this.setAttribute('aria-expanded', true);
                 TweenMax.set($content, {display:"block", height:"auto"});
-                var tl = TweenMax.from($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+                var tl = TweenMax.from(
+                    $content, 0.3, { height: 0, ease: Power3.easeOut,onComplete : function() {
+                        this.target[0].style.overflow = 'visible';
+                    }}, 0);
 
                 if(current){
                     var url = ref.setUrlParameter(window.location.href,'filter',current);
@@ -94,8 +98,10 @@
                 //close
                 $tab.removeClass('open');
                 this.setAttribute('aria-expanded', false);
-                var tl = TweenMax.to($content, 0.3, { height: 0, display: 'none', ease: Power3.easeOut }, 0);
-
+                var tl = TweenMax.to($content, 0.3, { height: 0, display: 'none', ease: Power3.easeOut, onStart : function() {
+                    this.target[0].style.overflow = 'hidden';
+                }}, 0);
+                
                 if(current){
                     var url =  ref.setUrlParameter(window.location.href,'filter','');
                     history.pushState(null, null, url);

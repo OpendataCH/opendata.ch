@@ -287,6 +287,13 @@
 
         }
 
+        // set focus styles (only when pressing tab key)
+        $(document).keyup(function(e) {
+            if (e.keyCode == 9) {
+                $body.addClass('focus-styled');
+            }
+        });         
+
     };
 
     Controller.prototype.onHashChange = function(e){
