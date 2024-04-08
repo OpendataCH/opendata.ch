@@ -147,7 +147,7 @@ body {
 
   &.focus-styled {
     *:focus {
-      outline: 2px solid $ptf-secondary-color !important;
+      outline: 2px solid #000000 !important;
       outline-offset: 0.2em;
     }
   }
