@@ -1,5 +1,5 @@
 <article aria-labelledby="title-id-{{ post.id }}"data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}" class="news-tile post-list-item col-xs-24 col-sm-12 col-md-8 col-lg-6 no-padding">
-    <a data-index="{{ loop.index0 }}" href="{{ function('get_permalink', post.ID) }}" class="news-tile-inner">
+    <a data-index="{{ loop.index0 }}" title="{{ post.title }}" href="{{ function('get_permalink', post.ID) }}" class="news-tile-inner">
         <div class="svg-icon svg-arrow-2020-right svg-arrow-2020-right-dims"></div>
         <div class="info">
             <div class="user fontsize-small uppercase">
