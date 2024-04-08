@@ -68,9 +68,12 @@
         </section>
     </div>
     <div class="row">
-        <section class="section col-xs-24 fullheight fit-to-mobile canvas-push">
+        <aside aria-label="{{ __('Word couples','theme') }}" id="paper-canvas-push" class="section col-xs-24 fullheight fit-to-mobile canvas-push">
             {% include 'views/paper-canvas-push.twig' %}
-        </section>
+            <button aria-controls="paper-canvas-push" class="h4 button js-nextcouple-button" >
+                {{ __('Next','theme') }} <span class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></span>
+            </button>
+        </aside>
     </div>
 </main>
 {% endblock %}

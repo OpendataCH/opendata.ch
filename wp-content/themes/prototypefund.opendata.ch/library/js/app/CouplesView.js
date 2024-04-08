@@ -13,10 +13,11 @@
     };
     
     var ref, controller, $hoverRed, $canvasPush, $hoverBlue, $areaRed, $areaBlue, currentIndex, index, $sideContainer,
-        animationTimeLine, isLocked, hammerTime;
+        animationTimeLine, isLocked, hammerTime, prefersReducedMotion;
     function CouplesView(pController){
         ref = this;
         controller = pController;
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     };
 
     CouplesView.prototype.init = function(){
@@ -26,6 +27,7 @@
         Logger.log("currentIndex -> " + currentIndex);
 
         $canvasPush = $('.canvas-push');
+        $nextCoupleButton = $('.js-nextcouple-button');
 
         $sideContainer = $('#sb-site');
 
@@ -33,6 +35,16 @@
             if(a != currentIndex){
                 TweenMax.set($('.couples-'+a+'-0'),{autoAlpha:0});
                 TweenMax.set($('.couples-'+a+'-1'),{autoAlpha:0});
+                TweenMax.set('.couples-'+a+'-0',{
+                    attr:{
+                      "aria-hidden": true
+                    }
+                });
+                TweenMax.set('.couples-'+a+'-1',{
+                    attr:{
+                      "aria-hidden": true
+                    }
+                });
             }
         }
 
@@ -51,6 +63,10 @@
                         break;
                 }
 
+            });
+
+            $nextCoupleButton.on('click', function(){
+                ref.showNextCouples();
             });
 
         }
@@ -81,7 +97,7 @@
 
     CouplesView.prototype.animateBlue = function(){
 
-        if($sideContainer.hasClass('menu-open') || isLocked) return;
+        if($sideContainer.hasClass('menu-open') || isLocked || prefersReducedMotion) return;
 
         animationTimeLine = new TimelineMax({delay:0, paused:false, onStart: ref.lockAnimation, onComplete: ref.unlockAnimation})
             .to($areaBlue,ref.speed, {x: '0%', ease: Sine.easeOut})
@@ -92,7 +108,7 @@
 
     CouplesView.prototype.animateRed = function(){
 
-        if($sideContainer.hasClass('menu-open') || isLocked) return;
+        if($sideContainer.hasClass('menu-open') || isLocked || prefersReducedMotion) return;
 
         animationTimeLine = new TimelineMax({delay:0, paused:false, onStart: ref.lockAnimation, onComplete: ref.unlockAnimation})
             .to($areaRed, ref.speed, {x: '0%', ease: Sine.easeOut})
@@ -115,6 +131,9 @@
             currentIndex++;
         } else currentIndex = 0;
 
+        var speed = 0.3;
+
+        prefersReducedMotion ? speed = 0 : null;
         for(var a=0;a<=ref.total_couples;++a){
             if(a != currentIndex){
                 TweenMax.set($('.couples-'+a+'-0'),{autoAlpha:0});
@@ -125,15 +144,33 @@
                 TweenMax.set($('.couples-'+a+'-1'),{x:'100%', autoAlpha:1});
 
 
-                var tl = new TimelineMax({delay:0})
-                    .to($('.couples-'+a+'-0'), 0.3, {x:'0%', ease: Power2.easeOut},'go')
-                    .to($('.couples-'+a+'-1'), 0.3, {x:'0%', ease: Power2.easeOut},'go')
-
+                var tl = new TimelineMax({delay:0, onComplete: ref.ariaVisible, onCompleteParams: ['.couples-'+a+'-0','.couples-'+a+'-1']})
+                    .to($('.couples-'+a+'-0'), speed, {x:'0%', ease: Power2.easeOut},'go')
+                    .to($('.couples-'+a+'-1'), speed, {x:'0%', ease: Power2.easeOut},'go')
 
             }
         }
 
     };
+
+    CouplesView.prototype.ariaVisible = function (c1, c2) {
+        TweenMax.set('.canvas-push .couples',{
+            attr:{
+              "aria-hidden": true
+            }
+        });
+
+         TweenMax.set(c1,{
+            attr:{
+              "aria-hidden": false
+            }
+        });
+        TweenMax.set(c2,{
+            attr:{
+              "aria-hidden": false
+            }
+        });
+    }
 
     window.CouplesView = CouplesView;
 
