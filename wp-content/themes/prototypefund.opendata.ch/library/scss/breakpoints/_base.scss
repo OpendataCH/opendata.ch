@@ -1628,7 +1628,7 @@ NEWS TILE 2018
     }
   }
   .news-tile-content{
-    h2 {
+    h2, .h2 {
       margin: 0;
     }
   }
@@ -2802,6 +2802,8 @@ a.boxed-link:hover, a.boxed-link:visited{
   float: right;
   transform: translateY(-100%);
   cursor: pointer;
+  background: transparent !important;
+  border: none !important;
 }
 
 /*********************

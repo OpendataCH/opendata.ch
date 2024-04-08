@@ -9,9 +9,9 @@
                     <div data-id="topics" class="topics filter-tab blog no-border">
                         <div class="filter-tab-header">
                         <button aria-expanded="false" id="filter-tab-button-0" aria-controls="filter-tab-content-0" >
-                            <h4 class="filter-headline">
+                            <h2 class="h4 filter-headline">
                                 {{ options.filter_title_blog_categories }}
-                            </h4>
+                            </h2>
                         </button>
                         </div>
                         <div role="region" id="filter-tab-content-0" aria-labelledby="filter-tab-button-0" class="filter-tab-content">
@@ -30,6 +30,7 @@
                 </div>
             </div>
         {% endif %}
+        <h2 class="sr-only">{{ __('News list', 'theme') }}</h2>
         <div class="tile-wrapper posts-list col-xs-24 no-padding" style="opacity:1;">
             {% for post in blogposts %}
                 {% if post.type == 'wp-blogpost'%}
