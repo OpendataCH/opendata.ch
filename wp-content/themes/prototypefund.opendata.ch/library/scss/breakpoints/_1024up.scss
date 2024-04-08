@@ -48,6 +48,7 @@ ol li {
 
   &.gone{
     transform: translate(-50%, -100%);
+    display: flex;
   }
 }
 
