@@ -1,6 +1,6 @@
 <?php
 
-$cachebust = '?v=15.03';
+$cachebust = '?v=16';
 //$cachebust = '?v=' . rand(5, 15);
 
 /* Welcome to Bones :)
