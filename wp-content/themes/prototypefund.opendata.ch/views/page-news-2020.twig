@@ -8,17 +8,20 @@
                 <div class="col-xs-24">
                     <div data-id="topics" class="topics filter-tab blog no-border">
                         <div class="filter-tab-header">
+                        <button aria-expanded="false" id="filter-tab-button-0" aria-controls="filter-tab-content-0" >
                             <h4 class="filter-headline">
-                                <button aria-expanded="false" id="filter-tab-button-0" aria-controls="filter-tab-content-0" >{{ options.filter_title_blog_categories }}</button>
+                                {{ options.filter_title_blog_categories }}
                             </h4>
+                        </button>
                         </div>
                         <div role="region" id="filter-tab-content-0" aria-labelledby="filter-tab-button-0" class="filter-tab-content">
                             <div class="filter-tab-content-inner row">
                                 <div class="col-xs-24">
                                     <button data-reset="topics" aria-label="Reset" class="btn-filter-reset"><span></span></button>
                                     {% for item in cats %}
-                                        {% if item.slug != 'uncategorised' %}{% endif %}
-                                    <button data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></button>
+                                        {% if item.slug != 'uncategorised' %}
+                                            <button aria-pressed="false" aria-label="Filter {{item.name}}" data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></button>
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
