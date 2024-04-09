@@ -32,7 +32,7 @@
                     <div class="header-ctas-inner">
                         {% for item in projects_list %}
                             {% set project = Post(item.project) %}
-                            <div class="project-link active" data-href="{{ project.link }}">
+                            <a class="project-link active" href="{{ project.link }}">
                                 {% if project.meta('teaser_text') %}
                                     <span>{{ project.meta('teaser_text') }}</span>
                                 {% else %}
@@ -40,7 +40,7 @@
                                 {% endif %}
 
                                 <div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>

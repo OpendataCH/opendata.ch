@@ -17,12 +17,12 @@
                         <div role="region" id="filter-tab-content-0" aria-labelledby="filter-tab-button-0" class="filter-tab-content">
                             <div class="filter-tab-content-inner row">
                                 <div class="col-xs-24">
-                                    <button data-reset="topics" aria-label="Reset" class="btn-filter-reset"><span></span></button>
                                     {% for item in cats %}
                                         {% if item.slug != 'uncategorised' %}
                                             <button aria-pressed="false" aria-label="Filter {{item.name}}" data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></button>
                                         {% endif %}
                                     {% endfor %}
+                                    {# <button data-reset="topics" aria-label="Reset" class="btn-filter-reset"><span></span></button> #}
                                 </div>
                             </div>
                         </div>

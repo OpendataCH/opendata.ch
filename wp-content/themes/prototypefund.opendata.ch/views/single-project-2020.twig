@@ -19,7 +19,7 @@
                             {% endfor %}
                         </div>
                         <div class="project-list-item-text-wrap">
-                            <h3 class="project-list-item-headline uppercase">{{ post.post_title }}</h3>
+                            <h1 class="project-list-item-headline uppercase">{{ post.post_title }}</h1>
                             <div class="project-list-item-copy">{{ post.get_field('content1') }}</div>
                             <div class="project-list-item-members">{% for item in post.get_field('members') %}
                                     {% if item.email %}
