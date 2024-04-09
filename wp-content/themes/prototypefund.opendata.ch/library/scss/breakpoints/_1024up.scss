@@ -44,10 +44,6 @@ ol li {
   padding: 150px 20px 20px 20px;
   justify-content: center;
 
-  .main-nav {
-    display: flex;
-  }
-
   transform: translate(-50%,0);
   @include transition(transform 0s ease-out);
 

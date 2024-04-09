@@ -40,6 +40,11 @@ on larger screens.
 
 .main-nav-wrap {
   padding: 1.75rem 3rem 0 3rem;
+  .main-nav {
+    .menu-item {
+      padding-right: 1.2em;
+    }
+  }
 }
 
 .header-ctas{

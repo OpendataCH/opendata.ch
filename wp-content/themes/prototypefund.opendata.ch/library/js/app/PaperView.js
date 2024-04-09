@@ -29,7 +29,7 @@
         path_user_outer, path_user_inner, path_r_outer, path_r_inner, path_r_outer_segments, path_r_inner_segments,
         groupBatch, groupY, groupR, groupUser, backgroundShape, groupPaths, container, pWrapper, type, containerInitX, containerInitY, speed,
         mousePercX, mousePercY, mouseMoveActive,hitOptions, clicked_segment, pathArrayOuter, pathArrayInner,
-        cookieManager, animationSeen, $uploader, $uploaderSpin, $sharer, $exportCanvas, $uploaderBG, freezed, prefersReducedMotion;
+        cookieManager, animationSeen, $uploader, $uploaderSpin, $sharer, $exportCanvas, $uploaderBG, freezed,prefersReducedMotion;
     function PaperView(pController){
         ref = this;
         controller = pController;
@@ -59,7 +59,7 @@
         prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         // prefersReducedMotion = true;
         
-        Logger.log("Readddd cookie: animationSeen, value: " + animationSeen);
+        Logger.log("Read cookie: animationSeen, value: " + animationSeen);
 
     };
 
@@ -85,6 +85,7 @@
             onLoad: function (item){
                 groupBatch = item;
                 groupBatch.opacity = 0;
+                groupBatch.strokeWidth = 0; 
                 ref.init();
             }};
 

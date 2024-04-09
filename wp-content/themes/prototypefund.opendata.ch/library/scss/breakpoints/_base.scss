@@ -899,13 +899,33 @@ CONTENT SUBPAGE - FAQ, ABOUT
     text-align: left;
      
     .menu-item{
-      position: relative;
-      display: table;
+      position: static;
       width: 100%;
       text-align: center;
       font-size: 1.5rem;
+
+      .toggle-submenu {
+        display: none;
+        border: none;
+        background: none;
+        position: relative;
+        z-index: 999;
+        svg {
+          height: 0.75rem;
+          width: auto;
+        }
+      }
+
       &:last-of-type{
         margin-right: 0;
+      }
+
+      &.open {
+        .toggle-submenu {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
       }
     }
   }
@@ -917,12 +937,12 @@ CONTENT SUBPAGE - FAQ, ABOUT
 
   &.gone{
     transform: translate(-100%, 0%);
+    display: none;
   }
 }
 
 .nav-language{
   display: inline-block;
-  font-size: 1rem;
   width: 100%;
   text-align: center;
 }
@@ -931,6 +951,7 @@ CONTENT SUBPAGE - FAQ, ABOUT
   margin: 0;
   padding-bottom: 1em;
   list-style: none;
+
   .mobile-sub-nav-item{
     padding: 1px 0;
     font-size: 1rem;
@@ -938,39 +959,24 @@ CONTENT SUBPAGE - FAQ, ABOUT
 }
 
 ul.submenu{
-  position: absolute;
-  background-color: white;
-
   width: 100%;
-  display: none;
+  margin: 0.5em 0;
+  line-height: 1.2;
 
   li.nav-drop-item{
-    display: block;
-    text-align: left;
+    display: inline-block;
     width: 100%;
+    font-size: 1rem;
 
-    .nav-drop-item-inner{
-      display: block;
-      padding: 7px 0;
-    }
-
-    border-top: 1px solid black;
-    &:last-of-type{
-      border-bottom: 1px solid black;
-    }
 
     a{
       color: black;
-      text-transform: uppercase;
       &:hover{
         color: $ptf-primary-color;
       }
     }
   }
 }
-
-
-
 
 /*********************
 JURY
@@ -1628,7 +1634,7 @@ NEWS TILE 2018
     }
   }
   .news-tile-content{
-    h2, .h2 {
+    h2, .h2, h3, .h3 {
       margin: 0;
     }
   }
@@ -2842,7 +2848,7 @@ a.language-switch{
   }
 }
 .language-divider{
-  letter-spacing: -3px;
+  // letter-spacing: -3px;
 }
 
 /*
@@ -2864,9 +2870,8 @@ and more scalable.
 			display: inline-block;
 			color: $text-color;
 			text-decoration: none;
-          border-bottom-width: 0;
+      border-bottom-width: 0;
 			padding: 0;
-            text-transform: uppercase;
 
 			/*
 			remember this is for mobile ONLY, so there's no need
@@ -2917,12 +2922,20 @@ and more scalable.
 
 	} /* end .menu li */
 
-	/* highlight current page */
-	li.current-menu-item > a,
-	li.current_page_item > a,
-	li.current_page_ancestor > a {
+  /* highlight current page */
+  li.current-menu-item,
+  li.current_page_item {
+
+    a {
       color: $ptf-primary-color;
-	}  /* end current highlighters */
+    }
+
+    > a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+  }  /* end current highlighters */
 
 } /* end .nav */
 
@@ -3949,7 +3962,7 @@ EVENTS ARCHIVE
 
   &.open{
     .filter-tab-header{
-      &:after{
+      button:after{
         transform: rotate(180deg);
       }
     }
@@ -3969,11 +3982,7 @@ EVENTS ARCHIVE
       width: 100%;
     }
 
-    &:after{
-
-      position: absolute;
-      right: 0;
-
+    button:after {
       content:'';
       display: inline-block;
       width: 25px;
@@ -3986,8 +3995,9 @@ EVENTS ARCHIVE
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-
     }
+
+
   }
 
   .filter-headline{
@@ -4000,9 +4010,10 @@ EVENTS ARCHIVE
     background-color: black;
     display: inline-block;
     margin: 0 10px 10px 0;
-    float: left;
     position: relative;
     cursor: pointer;
+    border: 0; 
+    outline: 0;
 
     &:hover{
       background-color: $ptf-primary-color;
@@ -4130,6 +4141,10 @@ EVENTS ARCHIVE
   a{
     border-bottom-width: 0;
     border-bottom: 1px solid black;
+  }
+
+  a.arrow-link {
+    border-bottom: none;
   }
 
   .legal-wrap{

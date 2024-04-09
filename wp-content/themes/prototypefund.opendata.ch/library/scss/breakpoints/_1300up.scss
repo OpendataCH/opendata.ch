@@ -25,61 +25,9 @@ html {
   }
 }
 
-.main-nav-wrap{
-  width: auto;
-  height: auto;
-  position: relative;
-  background-color: transparent;
-  flex-direction: row !important;
-  display: flex;
-
-  transform: translate(0, 0);
-  @include transition(transform 0s ease-out);
-
-  padding: 1.75em 2em 0 2em;
-
-  .main-nav{
-    display: flex;
-    .menu-item{
-      margin-right: 0;
-      display: block;
-      width: auto;
-      font-size: 1.25rem;
-      position: static;
-
-      a{
-        padding-right: 1.25em;
-
-        &:hover, &:focus{
-          background-color: transparent;
-        }
-      }
-    }
-  }
-
-  .nav-language{
-    margin-left: auto;
-    font-size: 1.25rem;
-    width: auto;
-  }
-
-  &.gone{
-    transform: translateX(0%);
-  }
+.nav-language{
+  // font-size: 1.25rem;
 }
-
-ul.submenu {
-  left: 0;
-  padding: 1rem 3rem 1rem 3rem;
-  li a {
-    font-size: 1rem;
-  }
-}
-
-.menu-item:hover ul.submenu {
-  display: block;
-}
-
 
 h1,
 .h1 {

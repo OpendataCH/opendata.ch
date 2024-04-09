@@ -67,6 +67,7 @@
         $logoLarge = $('.logo-large-wrapper',$header).css('opacity',1);
         $logo = $('.logo',$logoLarge);
         $toggleMenu = $('.toggle-menu');
+        $toggleSubmenu = $('.toggle-submenu');
         $smallP = $('#fixed-logo-p');
         $frontpageInfoboxRight = $('.frontpage-info-box-right');
         $faqpageInfoboxRight = $('.faqpage-info-box-right');
@@ -92,18 +93,18 @@
             formController = new FormController();
         }
 
-        $('.random-projects-btn').click(function(){
-            TweenMax.to($('.random-projects-btn').find('.fas'),0.25,{rotation:"+=360", ease:Sine.easeOut});
-            $('.project-link').removeClass('active');
-            var $first3 = $('.project-link').slice( 0, 3);
-            $first3.appendTo('.header-ctas-inner');
-            $('.project-link').slice( 0, 3).addClass('active');
-        });
+        // $('.random-projects-btn').click(function(){
+        //     TweenMax.to($('.random-projects-btn').find('.fas'),0.25,{rotation:"+=360", ease:Sine.easeOut});
+        //     $('.project-link').removeClass('active');
+        //     var $first3 = $('.project-link').slice( 0, 3);
+        //     $first3.appendTo('.header-ctas-inner');
+        //     $('.project-link').slice( 0, 3).addClass('active');
+        // });
 
-        $('.project-link').click(function(e){
-            e.preventDefault();
-            window.location.href = $(this).attr('data-href')
-        });
+        // $('.project-link').click(function(e){
+        //     e.preventDefault();
+        //     window.location.href = $(this).attr('data-href')
+        // });
 
         //handles video embeds with poster images
         videoPoster = new VideoPoster();
@@ -208,6 +209,8 @@
                 $toggleSlideMenu.addClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-expanded',true);
                 $body.addClass('mobile-menu-open');
+                $('main')[0].inert = true;
+                $('footer')[0].inert = true;
             } else {
                 //hide menu on mobile
                 $mainNav.addClass('gone');
@@ -218,6 +221,8 @@
                 $toggleSlideMenu.removeClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-pressed',true);
                 $body.removeClass('mobile-menu-open');
+                $('main')[0].inert = false;
+                $('footer')[0].inert = false;
             }
         });
 
@@ -231,9 +236,34 @@
                 $toggleSlideMenu.removeClass('active');
                 $toggleSlideMenu[0].setAttribute('aria-pressed',false);
                 $body.removeClass('mobile-menu-open');
+                $('main')[0].inert = false;
+                $('footer')[0].inert = false;
             }
            }
        });
+
+        //sub navigation
+        $toggleSubmenu.each(function(idx,el){
+            console.log(el);
+            el.addEventListener('click',function(e){
+                $toggleSubmenu.each(function(idx,al) {
+                    if(!al.isEqualNode(e.currentTarget)) {
+                        al.closest('.menu-item').classList.remove('open');
+                    }
+                });
+                this.closest('.menu-item').classList.toggle('open');
+            });
+        });
+
+        //main navigation
+        $('.main-nav > .menu-item').mouseenter(function(e){
+            e.currentTarget.classList.add('open');
+       });
+
+       $('.main-nav > .menu-item').mouseleave(function(e){
+            e.currentTarget.classList.remove('open');
+       });
+
 
         $('.collapseomatic').click(function(){
             if(!$(this).hasClass('colomat-close')){
