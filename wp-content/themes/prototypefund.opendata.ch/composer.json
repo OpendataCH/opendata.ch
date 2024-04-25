@@ -1,0 +1,11 @@
+{
+    "name": "rainbowunicorn/ptfchtheme",
+    "require": {
+        "timber/timber": "^2.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

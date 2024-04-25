@@ -11,6 +11,12 @@ sidebars, comments, etc.
 
 //flush_rewrite_rules( false ); //might be needed when setting up new custom post types, that is not displayed
 
+$composer_autoload = __DIR__ . '/vendor/autoload.php';
+if ( file_exists( $composer_autoload ) ) {
+    require_once $composer_autoload;
+    Timber\Timber::init();
+}
+
 if ( ! class_exists( 'Timber' ) ) {
     add_action( 'admin_notices', function() {
         echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php') ) . '</a></p></div>';
