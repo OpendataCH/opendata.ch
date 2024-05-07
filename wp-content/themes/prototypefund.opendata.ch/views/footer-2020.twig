@@ -1,5 +1,5 @@
-<div class="row">
-    <section class="section col-xs-24">
+<footer id="footer-wrap" class="row">
+    <div class="section col-xs-24">
         <div class="footer-2020 row">
             <div class="col-xs-24 col-md-12">
                 <div class="row">
@@ -41,11 +41,13 @@
             <div class="col-xs-24 col-md-12 footer-2020-right no-padding">
                 <div class="col-xs-24 col-md-8 col-md-push-16 no-padding hidden-xs">
                     <div class="social-2020">
-                        {{ options.social_text }}
+                        <nav aria-label="{{ __('Social Media', 'theme') }}">
+                            {{ options.social_text }}
+                        </nav>
                     </div>
                 </div>
                 <div class="col-xs-24 col-md-8 col-md-push-16 no-padding legal-wrap">
-                    <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    <nav aria-label="{{ __('Footer', 'theme') }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                         {% if( post.id != 58 and post.id != 157) %}
                             <ul class="nav footer-nav">
                                 {% for item in footernav.get_items %}
@@ -58,7 +60,7 @@
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</footer>
 
 

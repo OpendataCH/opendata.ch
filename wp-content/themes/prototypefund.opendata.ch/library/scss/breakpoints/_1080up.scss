@@ -195,19 +195,26 @@ DESKTOP NAV
   height: auto;
   position: relative;
   background-color: transparent;
+  flex-direction: row !important;
+  display: flex;
+
+  transform: translate(0, 0);
+  @include transition(transform 0s ease-out);
 
   padding: 1.75em 2em 0 2em;
 
   .main-nav{
-    float:left;
+    display: flex;
     .menu-item{
-      float: left;
-      margin-right: 1em;
-
-      position: relative;
-      display: inline-block;
+      margin-right: 0;
+      display: block;
       width: auto;
       font-size: 1rem;
+      padding-right: 0.5em;
+
+      .toggle-submenu {
+        display: inline-block;
+      }
 
       a{
         &:hover, &:focus{
@@ -218,9 +225,7 @@ DESKTOP NAV
   }
 
   .nav-language{
-    float: right;
-    font-size: 1rem;
-    width: auto;
+    display: flex;
   }
 
   &.gone{
@@ -228,17 +233,37 @@ DESKTOP NAV
   }
 }
 
-.sub-nav {
-  display: block;
-  ul.nav-dropdown {
-    &.visible {
-      visibility: visible;
-      position: relative;
+ul.submenu{
+  padding: 1rem 3em 1rem 3em;
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: white;
+  margin-bottom: 0;
+
+  li.nav-drop-item{
+    padding: 0.5rem 0 0.5rem 0;
+    text-align: left;
+
+    .nav-drop-item-inner{
+      display: block;
+      padding: 7px 0;
     }
-    .nav-drop-item {
-      font-size: 1rem;
+
+    border-top: 1px solid black;
+    &:last-of-type{
+      border-bottom: 1px solid black;
     }
   }
+}
+
+.menu-item.open ul.submenu {
+  display: block;
+}
+
+.nav-language{
+  margin-left: auto;
+  width: auto;
 }
 
 .main-nav-wrap {

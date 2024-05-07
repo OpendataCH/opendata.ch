@@ -8,7 +8,7 @@
     };
 
     var ref, controller, $filterBtn, $filterTabs, $projects, $nothingFoundInfo, $projectsList, showFilter, $topicFilterBtns, $topicFilterResetBtn,
-        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions;
+        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions, $srStatus;
     function ProjectsFilter(pController){
         ref = this;
         controller = pController;
@@ -43,6 +43,7 @@
         if($tab.length > 0){
             var $c = $tab.find('.filter-tab-content');
             $tab.addClass('open');
+            $tab.find('.filter-tab-header button')[0].setAttribute('aria-expanded', true);
             TweenMax.set($c, {display:"block", height:"auto"});
             var tl = TweenMax.from($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
             var url = ref.setUrlParameter(window.location.href,'filter',showFilter);
@@ -55,10 +56,10 @@
         $paginationButtons = $('.projects-pagination-btn',$pagination);
         $nothingFoundInfo = $('.nothing-found-info');
         $filterTabs = $('.filter-tab');
-        $filterBtn = $('.filter-tab-header');
+        $filterBtn = $('.filter-tab-header button');
         $filterBtn.click(function(e){
-            var $tab = $(this).parent();
-            var $content = $(this).next();
+            var $tab = $(this).closest('.filter-tab');
+            var $content = $tab.find('.filter-tab-content');
 
             var current = $tab.attr('data-id');
 
@@ -72,14 +73,21 @@
                         if($(this).hasClass('open')){
                             $(this).removeClass('open');
                             var $c = $(this).find('.filter-tab-content');
-                            var tl = TweenMax.to($c, 0.3, { height: 0, ease: Power3.easeOut }, 0);
-                        }
+                            $(this).find('.filter-tab-header button')[0].setAttribute('aria-expanded', false);
+                            var tl = TweenMax.to($c, 0.3, { height: 0, display: 'none', ease: Power3.easeOut,onStart : function() {
+                                this.target[0].style.overflow = 'hidden';
+                            } }, 0);                        }
                     }
                 });
 
                 $tab.addClass('open');
+
+                this.setAttribute('aria-expanded', true);
                 TweenMax.set($content, {display:"block", height:"auto"});
-                var tl = TweenMax.from($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
+                var tl = TweenMax.from(
+                    $content, 0.3, { height: 0, ease: Power3.easeOut,onComplete : function() {
+                        this.target[0].style.overflow = 'visible';
+                    }}, 0);
 
                 if(current){
                     var url = ref.setUrlParameter(window.location.href,'filter',current);
@@ -89,8 +97,11 @@
             } else {
                 //close
                 $tab.removeClass('open');
-                var tl = TweenMax.to($content, 0.3, { height: 0, ease: Power3.easeOut }, 0);
-
+                this.setAttribute('aria-expanded', false);
+                var tl = TweenMax.to($content, 0.3, { height: 0, display: 'none', ease: Power3.easeOut, onStart : function() {
+                    this.target[0].style.overflow = 'hidden';
+                }}, 0);
+                
                 if(current){
                     var url =  ref.setUrlParameter(window.location.href,'filter','');
                     history.pushState(null, null, url);
@@ -100,6 +111,7 @@
 
         $projectsList = $('.projects-list, .posts-list');
         $projects = $('.project-list-item, .post-list-item');
+        $srStatus = $('.sr-status');
 
         //category (topics) filters
         $topicFilterBtns = $('.topics.filter-tab').find('.btn-project-filter');
@@ -108,7 +120,9 @@
             var topic = $(this).attr('data-filter');
             if(!$(this).hasClass('selected')){
                 ref.addTopicToFilter(topic);
+                $srStatus[0].textContent = 'Filter ' + $(this).text() + ' ausgewählt. Projektliste aktualisiert.';
             } else{
+                $srStatus[0].textContent = 'Filter ' + $(this).text() + ' nicht mehr ausgewählt. Projektliste aktualisiert.';
                 ref.removeTopicFromFilter(topic);
             }
         }).mouseover(function() {
@@ -123,6 +137,7 @@
             topicsFilterArray = [];
             $topicFilterBtns.removeClass('selected');
             ref.filterProjectsByTopics();
+            $srStatus[0].textContent = 'Filter reset';
             e.preventDefault();
         });
 
@@ -155,12 +170,17 @@
             $paginationButtons.click(function(e){
                 e.preventDefault();
                 $paginationButtons.removeClass('active');
+                $paginationButtons.attr('aria-pressed',false);
+
                 var page_id = $(this).attr('data-id');
                 page_index = page_id;
                 $(this).addClass('active');
+                $(this).attr('aria-pressed',true);
                 $projects.addClass('paginated');
                 $projectsList.find("[data-page='" + page_id + "']").removeClass('paginated');
                 var eTop = $('.filter-wrap').offset().top; //get the offset top of the element
+                $srStatus[0].textContent = 'Projeke: Seite ' + page_id; // TODO: multilang
+                $projectsList.focus();
                 window.scroll({
                     top: eTop,
                     left: 0,
@@ -192,6 +212,7 @@
     ProjectsFilter.prototype.addTopicToFilter = function(topic){
 
         $(".btn-project-filter[data-filter='" + topic +"']").addClass('selected');
+        $(".btn-project-filter[data-filter='" + topic +"']").attr('aria-pressed',true);
 
         var found = false;
         for(var a=0; a<topicsFilterArray.length;++a){
@@ -208,6 +229,7 @@
     ProjectsFilter.prototype.removeTopicFromFilter = function(topic){
 
         $(".btn-project-filter[data-filter='" + topic +"']").removeClass('selected');
+        $(".btn-project-filter[data-filter='" + topic +"']").attr('aria-pressed',false);
 
         for(var a=0; a<topicsFilterArray.length;++a){
             var t = topicsFilterArray[a];
@@ -236,6 +258,7 @@
             $projectsList.find("[data-page='" + page_index + "']").removeClass('paginated');
             $pagination.removeClass('hidden');
             $('.news-tile').removeClass('filtered').removeClass('paginated');
+            $srStatus[0].textContent = 'Kein Filter ausgewählt.';
 
         } else {
 

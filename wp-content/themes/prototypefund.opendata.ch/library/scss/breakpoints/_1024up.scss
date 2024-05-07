@@ -41,13 +41,15 @@ ol li {
 
 .main-nav-wrap{
 
-
   padding: 150px 20px 20px 20px;
+  justify-content: center;
+
   transform: translate(-50%,0);
   @include transition(transform 0s ease-out);
 
   &.gone{
     transform: translate(-50%, -100%);
+    display: flex;
   }
 }
 

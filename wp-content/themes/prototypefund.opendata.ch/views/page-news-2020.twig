@@ -1,23 +1,28 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-    <div class="page-2020-wrap row">
+    <main class="page-2020-wrap row">
         {% include 'views/inc/page-intro-block.twig' %}
         {% if hide_filters == false %}
             <div class="filter-wrap row" data-filter="{{ filter }}">
                 <div class="col-xs-24">
                     <div data-id="topics" class="topics filter-tab blog no-border">
                         <div class="filter-tab-header">
-                            <h4 class="filter-headline">{{ options.filter_title_blog_categories }}</h4>
+                        <button aria-expanded="false" id="filter-tab-button-0" aria-controls="filter-tab-content-0" >
+                            <h2 class="h4 filter-headline">
+                                {{ options.filter_title_blog_categories }}
+                            </h2>
+                        </button>
                         </div>
-                        <div class="filter-tab-content">
+                        <div role="region" id="filter-tab-content-0" aria-labelledby="filter-tab-button-0" class="filter-tab-content">
                             <div class="filter-tab-content-inner row">
                                 <div class="col-xs-24">
-                                    <div data-reset="topics" class="btn-filter-reset"><span></span></div>
                                     {% for item in cats %}
-                                        {% if item.slug != 'uncategorised' %}{% endif %}
-                                        <div data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></div>
+                                        {% if item.slug != 'uncategorised' %}
+                                            <button aria-pressed="false" aria-label="Filter {{item.name}}" data-filter="{{ item.slug }}" class="btn-project-filter"><span>{{item.name}}</span></button>
+                                        {% endif %}
                                     {% endfor %}
+                                    {# <button data-reset="topics" aria-label="Reset" class="btn-filter-reset"><span></span></button> #}
                                 </div>
                             </div>
                         </div>
@@ -25,6 +30,7 @@
                 </div>
             </div>
         {% endif %}
+        <h2 class="sr-only">{{ __('News list', 'theme') }}</h2>
         <div class="tile-wrapper posts-list col-xs-24 no-padding" style="opacity:1;">
             {% for post in blogposts %}
                 {% if post.type == 'wp-blogpost'%}
@@ -40,6 +46,6 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
 {% endblock %}

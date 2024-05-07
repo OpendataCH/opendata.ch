@@ -1,7 +1,7 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-	<div class="page-2020-wrap one-column">
+	<main class="page-2020-wrap one-column">
         <article id="post-{{ post.id }}" {{ fn('post_class','fullwidth fullheight cf') }} role="article" itemscope itemtype="http://schema.org/BlogPosting">
             <div class="col-xs-24">
                 <h1 class="projects-intro-headline">
@@ -12,5 +12,5 @@
                 {{ post.content | shortcodes }}
             </div>
         </article>
-	</div>
+	</main>
 {% endblock %}

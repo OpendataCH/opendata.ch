@@ -29,7 +29,7 @@
         path_user_outer, path_user_inner, path_r_outer, path_r_inner, path_r_outer_segments, path_r_inner_segments,
         groupBatch, groupY, groupR, groupUser, backgroundShape, groupPaths, container, pWrapper, type, containerInitX, containerInitY, speed,
         mousePercX, mousePercY, mouseMoveActive,hitOptions, clicked_segment, pathArrayOuter, pathArrayInner,
-        cookieManager, animationSeen, $uploader, $uploaderSpin, $sharer, $exportCanvas, $uploaderBG, freezed;
+        cookieManager, animationSeen, $uploader, $uploaderSpin, $sharer, $exportCanvas, $uploaderBG, freezed,prefersReducedMotion;
     function PaperView(pController){
         ref = this;
         controller = pController;
@@ -56,8 +56,10 @@
         //cookieManager.eraseCookie('ptf-animation-seen');
 
         animationSeen = cookieManager.readCookie('ptf-animation-seen');
-
-        Logger.log("Readddd cookie: animationSeen, value: " + animationSeen);
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // prefersReducedMotion = true;
+        
+        Logger.log("Read cookie: animationSeen, value: " + animationSeen);
 
     };
 
@@ -83,6 +85,7 @@
             onLoad: function (item){
                 groupBatch = item;
                 groupBatch.opacity = 0;
+                groupBatch.strokeWidth = 0; 
                 ref.init();
             }};
 
@@ -227,7 +230,7 @@
 
         //expand outer area to full window size
 
-        if(animationSeen != 'true'){
+        if((animationSeen != 'true') && !prefersReducedMotion){
             var area = Math.floor(path_y_outer.segments.length/4);
             var index = 0;
             var block = 0;
@@ -348,7 +351,7 @@
         //render
         view.onFrame = function(event) {
 
-            if(!freezed){
+            if(!freezed && !prefersReducedMotion){
                 if(mouseMoveActive){
 
                     var yellow_endX = (containerInitX + groupY.nativeX) + (mousePercX*ref.char_move_offset);
@@ -436,12 +439,16 @@
             .to(groupUser.position,2, {x:container.position.x-30, y:container.position.y+30, ease:Elastic.easeOut},'userAni')
 
 
-        if(animationSeen != 'true'){
+        if(animationSeen != 'true' && !prefersReducedMotion){
             tl_inner_yellow.play();
             tl_inner_red.play();
         } else {
             //skip
-            tl_user_p.play();
+            if(prefersReducedMotion) {
+                tl_user_p.progress(1,false);
+            } else {
+                tl_user_p.play();
+            }
         }
 
     };

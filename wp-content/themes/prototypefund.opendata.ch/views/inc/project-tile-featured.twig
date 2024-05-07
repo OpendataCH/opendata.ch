@@ -1,4 +1,4 @@
-<div style="opacity:0;" data-title="{{ post.post_title }}" class="isotope-item flip-container tile-link featured {{ post.filters }} twitter-retweet-link col-xs-24 no-padding" data-type="ptf-project" {% if projects_active == true %} data-href="{{ post.link }}"{% endif %} >
+<article aria-labelledby="title-id-{{ post.id }}" style="opacity:0;" data-title="{{ post.post_title }}" class="isotope-item flip-container tile-link featured {{ post.filters }} twitter-retweet-link col-xs-24 no-padding" data-type="ptf-project" {% if projects_active == true %} data-href="{{ post.link }}"{% endif %} >
     <div class="flipper tile ptf-project featured {% if projects_active == true %} active {% endif %}">
         <div class="front">
             <div class="tile-hover"></div>
@@ -10,7 +10,7 @@
                             <!-- YouTube iframe. -->
                             <!-- note the iframe src is empty by default, the url is in the data-src="" argument -->
                             <!-- also note the arguments on the url, to autoplay video, remove youtube adverts/dodgy links to other videos, and set the interface language -->
-                            <iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed) }}?autoplay=1&modestbranding=1&rel=0&hl=sv"></iframe>
+                            <iframe title="Youtube Video" class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="{{ function('get_video_embedable_url',post.video_embed) }}?autoplay=1&modestbranding=1&rel=0&hl={{ options.languageCode }}"></iframe>
                             <!-- the poster frame - in the form of a button to make it keyboard accessible -->
                             <div class="poster-wrap button-hidden">
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="inner-wrapper">
                         <div class="top-align">
-                            <div class="title col-xs-20 col-sm-20 no-padding">
+                            <div id="title-id-{{ post.id }}" class="title col-xs-20 col-sm-20 no-padding">
                                 {{ post.post_title }}
                             </div>
                             <div class="info col-xs-20 col-sm-20 no-padding">
@@ -70,4 +70,4 @@
             </div>
         </div>
     </div>
-</div>
+</article>

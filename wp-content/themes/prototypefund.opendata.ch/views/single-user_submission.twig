@@ -1,7 +1,7 @@
 {% extends "base-page-2020.twig" %}
 
 {% block content %}
-
+<main>
     <section class="section fullwidth fullheight img-user-submission">
         <div class="the-p">
             <img src="{{post.thumbnail.src('large')}}" class="img-responsive-height" alt="{{post.title}}" />
@@ -11,4 +11,5 @@
     <section class="section fullwidth fullheight fit-to-mobile margin-bottom-50 canvas-push">
         {% include 'views/paper-canvas-push.twig' %}
     </section>
+</main>
 {% endblock %}

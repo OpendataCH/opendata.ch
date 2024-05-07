@@ -1,4 +1,4 @@
-<div data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}" class="news-tile post-list-item col-xs-24 col-sm-12 col-md-8 col-lg-6 no-padding">
+<article aria-labelledby="title-id-{{ post.id }}"  data-filter="{% for item in post.cats %}{{item.slug}}{% if(loop.last == false)%},{% endif %}{% endfor %}" class="news-tile post-list-item col-xs-24 col-sm-12 col-md-8 col-lg-6 no-padding">
     <div data-index="{{ loop.index0 }}" class="news-tile-inner">
         <div style="cursor:pointer;" onclick="javascript:window.open('{{ post.url }}'); return false;" class="svg-icon svg-arrow-2020-right svg-arrow-2020-right-dims"></div>
         <div class="info">
@@ -11,10 +11,10 @@
         </div>
         <div class="news-tile-content">
             <div class="news-tile-content-inner">
-                <p class="text news-teaser-text col-xs-24 no-padding">
+                <h2 id="title-id-{{ post.id }}" class="text news-teaser-text col-xs-24 no-padding">
                     {{ post.text }}
-                </p>
+                </h2>
             </div>
         </div>
     </div>
-</div>
+</article>

@@ -15,9 +15,5 @@
 		<path fill="#FF1414" d="M922.8,16.9h29.7v102h1.8l82.5-102h36.9l-89.1,105l97.2,111.6H1044l-89.7-104.7h-1.8v104.7h-29.7V16.9z"/>
 	</g>
 </g>
-<g id="Ebene_1_Kopie" display="none">
-	<rect x="308.4" y="16.4" display="inline" fill="none" width="818.7" height="295.2"/>
-	
-		<text transform="matrix(1 0 0 1 308.399 233.0036)" display="inline" fill="#FF1414" font-family="'Agipo-Regular'" font-size="300px">PULL</text>
-</g>
+
 </svg>

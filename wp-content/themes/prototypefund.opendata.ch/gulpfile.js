@@ -104,6 +104,7 @@ gulp.task('compass', function() {
 gulp.task('watch', function() {
     var server = livereload.listen();
     gulp.watch(config.base_path + 'scss/**/*.scss', ['compass']);
+    gulp.watch(config.base_path + 'js/app/**/*.js', ['uglify']).on('change',livereload.changed);
     gulp.watch(config.base_path + 'css/**/*.css').on('change',livereload.changed);
 });
 
