@@ -2247,6 +2247,10 @@ html.overlayIsOpen body {
   text-decoration: none;
 }
 
+.Intro strong s, .Intro strong strike {
+  text-decoration: line-through;
+}
+
 .Intro strong img {
   max-width: 100%;
   height: auto;
@@ -3583,6 +3587,10 @@ Stylesheet: Social links
 .SimplePage--body a:not([class]):hover {
   color: #e61414;
   text-decoration: none;
+}
+
+.SimplePage--body s, .SimplePage--body strike {
+  text-decoration: line-through;
 }
 
 .SimplePage--body img {

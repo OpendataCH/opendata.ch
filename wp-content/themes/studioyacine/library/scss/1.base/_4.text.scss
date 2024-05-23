@@ -318,6 +318,10 @@ Stylesheet: Text Styles
         }
     }
 
+    s,strike {
+        text-decoration: line-through;
+    }
+
     img {
         max-width: 100%;
         height: auto;
