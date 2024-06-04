@@ -11,24 +11,12 @@ sidebars, comments, etc.
 
 //flush_rewrite_rules( false ); //might be needed when setting up new custom post types, that is not displayed
 
-$composer_autoload = __DIR__ . '/vendor/autoload.php';
-if ( file_exists( $composer_autoload ) ) {
-    require_once $composer_autoload;
-    Timber\Timber::init();
-}
+require "library/php/vendor/autoload.php";
 
-if ( ! class_exists( 'Timber' ) ) {
-    add_action( 'admin_notices', function() {
-        echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php') ) . '</a></p></div>';
-    });
+use Abraham\TwitterOAuth\TwitterOAuth;
+use enshrined\svgSanitize\Sanitizer;
 
-    add_filter('template_include', function($template) {
-        return get_stylesheet_directory() . '/static/no-timber.html';
-    });
-
-    return;
-}
-
+Timber\Timber::init();
 Timber::$dirname = array('templates', 'views');
 
 class StarterSite extends TimberSite {
@@ -257,9 +245,6 @@ add_filter('upload_mimes', 'allow_svgimg_types');
 
 /************* CUSTOM FUNCTIONS *********************/
 
-    require "library/php/vendor/autoload.php";
-    use Abraham\TwitterOAuth\TwitterOAuth;
-    use enshrined\svgSanitize\Sanitizer;
 
 function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
   $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
@@ -1105,48 +1090,6 @@ function create_user_submission( $data ) {
           'filename'  =>   $attachmentURL,
           'url'  =>  get_post_permalink( $post_id )
       );
-
-    // PNG conversion
-      /*
-    require_once('library/php/svg2png/svg2pngPhantomJS.php');
-
-    try {
-
-      $svg2png = new svg2png();
-      $pngUrl = $svg2png->generatePng('file://' . get_attached_file($attach_id) , $upload_path . $hashed_filenameBase . '.png');
-
-      $file_return = upload_p_file( $hashed_filenameBase . '.png' ,'image/png');
-
-      //return error if there is one
-      if(isset($file_return['error']) || isset($file_return['upload_error_handler'])) {
-
-        $return = array(
-          'status'  =>  'error'
-          );
-
-        error_log("Error uploading PNG to wordpress");
-
-      } else {
-
-        $attach_id = create_p_attachment($file_return,$post_id);
-
-        update_field('png',$attach_id,$post_id);
-
-        $return = array(
-          'status'  =>  'success',
-          'filename'  =>   $attachmentURL,
-          'url'  =>  get_post_permalink( $post_id )
-          );
-      }
-
-    } catch (Exception $e) {
-
-        error_log($e->getMessage());
-        $return = array(
-          'status'  =>  'error'
-        );
-    }*/
-
   }
 
   return $return;
