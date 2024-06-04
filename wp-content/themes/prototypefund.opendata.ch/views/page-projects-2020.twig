@@ -33,12 +33,12 @@
 
 		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list" style="opacity:0;">
 			{% for post in projects %}
-				{% if post.get_field('featured') == 1 %}
+				{% if post.meta('featured') == 1 %}
 					{% include 'views/inc/project-list-item.twig' %}
 				{% endif %}
 			{%  endfor %}
 			{% for post in projects %}
-				{% if post.get_field('featured') != 1 %}
+				{% if post.meta('featured') != 1 %}
 					{% include 'views/inc/project-list-item.twig' %}
 				{% endif %}
 			{% endfor %}

@@ -8,8 +8,8 @@
             <div class="sharer-nav-wrap">
                 <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul class="nav sharer-nav cf">
-                        {% for item in sharernav.get_items %}
-                            <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                        {% for item in sharernav.items %}
+                            <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -24,8 +24,8 @@
 <div class="canvas-nav-wrap">
     <nav aria-label="{{ __('Gallery', 'theme') }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
         <ul class="nav canvas-nav cf">
-            {% for item in canvasnav.get_items %}
-                <li class="menu-item gone {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+            {% for item in canvasnav.items %}
+                <li class="menu-item gone {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
                 </li>
             {% endfor %}
         </ul>

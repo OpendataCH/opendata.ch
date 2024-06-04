@@ -1,7 +1,6 @@
 <?php
 
-
-$context = Timber::get_context();
+$context = Timber::context();
 //store global options page
 $context['options'] = get_fields('options');
 $context['options']['languageCode'] = ICL_LANGUAGE_CODE;
@@ -33,7 +32,7 @@ if(ICL_LANGUAGE_CODE == 'de'){
     //this hides the filers, as there is no filtering for english
 }
 
-$post = new TimberPost();
+$post = Timber::get_post();
 $context['post'] = $post;
 
 

@@ -5,11 +5,11 @@
 		{% include 'views/inc/page-intro-block.twig' %}
 		<div class="row filter-wrap" data-filter="">
 			<div class="col-xs-24">
-				<h2>{{ post.get_field('basics_headline') }}</h2>
+				<h2>{{ post.meta('basics_headline') }}</h2>
 			</div>
 			<div class="col-xs-24">
-				{% if post.get_field('basics_blocks') %}
-					{% for block in post.get_field('basics_blocks') %}
+				{% if post.meta('basics_blocks') %}
+					{% for block in post.meta('basics_blocks') %}
 						<div id="{{ block.id }}" class="filter-tab">
 							<div class="filter-tab-header">
 								<button aria-expanded="false" id="filter-tab-button-{{ loop.index0 }}" aria-controls="filter-tab-content-{{ loop.index0 }}" >
@@ -30,11 +30,11 @@
 				{% endif %}
 			</div>
 			<div class="col-xs-24">
-				<h2>{{ post.get_field('details_headline') }}</h2>
+				<h2>{{ post.meta('details_headline') }}</h2>
 			</div>
 			<div class="col-xs-24">
-				{% if post.get_field('details_blocks') %}
-					{% for block in post.get_field('details_blocks') %}
+				{% if post.meta('details_blocks') %}
+					{% for block in post.meta('details_blocks') %}
 						<div class="filter-tab">
 							<div class="filter-tab-header">
 								<h3 class="h4 filter-headline">

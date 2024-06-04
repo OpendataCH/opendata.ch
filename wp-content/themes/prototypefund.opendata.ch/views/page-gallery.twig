@@ -7,7 +7,7 @@
             <div class="gallery-tile col-xs-12 col-sm-8 col-md-6 col-lg-4" style="opacity:1">
                 <a href="{{ post.link }}" class="gallery-tile-link" >
                     <div class="inner-wrapper">
-                        {% set img = Image(post.thumbnail)  %}
+                        {% set img = get_image(post.thumbnail)  %}
                         <img src="{{img.src}}" class="img-responsive" alt="{{post.title}}" />
                     </div>
                 </a>

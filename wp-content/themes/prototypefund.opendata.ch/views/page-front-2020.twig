@@ -31,7 +31,7 @@
                     </div>
                     <div class="header-ctas-inner">
                         {% for item in projects_list %}
-                            {% set project = Post(item.project) %}
+                            {% set project = get_post(item.project) %}
                             <a class="project-link active" href="{{ project.link }}">
                                 {% if project.meta('teaser_text') %}
                                     <span>{{ project.meta('teaser_text') }}</span>
