@@ -2,7 +2,6 @@
 
 namespace Timber;
 
-use InvalidArgumentException;
 use Timber\Factory\CommentFactory;
 use Timber\Factory\MenuFactory;
 use Timber\Factory\PagesMenuFactory;
@@ -101,7 +100,7 @@ class Timber
     /**
      * @codeCoverageIgnore
      */
-    public static function init()
+    public static function init(): void
     {
         if (
             !\defined('ABSPATH')
@@ -117,10 +116,10 @@ class Timber
         Twig::init();
         ImageHelper::init();
 
-        \add_action('init', [__CLASS__, 'init_integrations']);
+        \add_action('init', [self::class, 'init_integrations']);
         \add_action('admin_init', [Admin::class, 'init']);
 
-        \add_filter('timber/post/import_data', [__CLASS__, 'handle_preview'], 10, 2);
+        \add_filter('timber/post/import_data', [self::class, 'handle_preview'], 10, 2);
 
         /**
          * Make an alias for the Timber class.
@@ -128,7 +127,7 @@ class Timber
          * This way, developers can use Timber::render() instead of Timber\Timber::render, which
          * is more user-friendly.
          */
-        \class_alias('Timber\Timber', 'Timber');
+        \class_alias(Timber::class, 'Timber');
 
         \define('TIMBER_LOADED', true);
     }
@@ -158,9 +157,7 @@ class Timber
         $integrations = \apply_filters('timber/integrations', $integrations);
 
         // Integration classes must implement the IntegrationInterface.
-        $integrations = \array_filter($integrations, static function ($integration) {
-            return $integration instanceof IntegrationInterface;
-        });
+        $integrations = \array_filter($integrations, static fn ($integration) => $integration instanceof IntegrationInterface);
 
         foreach ($integrations as $integration) {
             if (!$integration->should_init()) {
@@ -250,23 +247,11 @@ class Timber
      * @return Post|null Timber\Post object if a post was found, null if no post was
      *                           found.
      */
-    public static function get_post($query = false, $options = [])
+    public static function get_post(mixed $query = false, $options = [])
     {
-        if (\is_string($query) && !\is_numeric($query)) {
-            Helper::doing_it_wrong(
-                'Timber::get_post()',
-                'Getting a post by post slug or post name was removed from Timber::get_post() in Timber 2.0. Use Timber::get_post_by() instead.',
-                '2.0.0'
-            );
-        }
+        self::check_post_api_deprecations($query, $options, 'Timber::get_post()');
 
         if (\is_string($options)) {
-            Helper::doing_it_wrong(
-                'Timber::get_post()',
-                'The $PostClass parameter for passing in the post class to use in Timber::get_posts() was replaced with an $options array in Timber 2.0. To customize which class to instantiate for your post, use Class Maps instead: https://timber.github.io/docs/v2/guides/class-maps/',
-                '2.0.0'
-            );
-
             $options = [];
         }
 
@@ -314,8 +299,10 @@ class Timber
      * @return Attachment|null Timber\Attachment object if an attachment was found, null if no
      *                         attachment was found.
      */
-    public static function get_attachment($query = false, $options = [])
+    public static function get_attachment(mixed $query = false, $options = [])
     {
+        self::check_post_api_deprecations($query, $options, 'Timber::get_attachment()');
+
         $post = static::get_post($query, $options);
 
         // No need to instantiate a Post we're not going to use.
@@ -339,8 +326,10 @@ class Timber
      *
      * @return Image|null
      */
-    public static function get_image($query = false, $options = [])
+    public static function get_image(mixed $query = false, $options = [])
     {
+        self::check_post_api_deprecations($query, $options, 'Timber::get_image()');
+
         $post = static::get_post($query, $options);
 
         // No need to instantiate a Post we're not going to use.
@@ -377,6 +366,32 @@ class Timber
         ]);
 
         return ExternalImage::build($url, $args);
+    }
+
+    /**
+     * Checks for deprecated Timber::get_post() API usage.
+     *
+     * @param $query
+     * @param $options
+     * @param $function_name
+     */
+    private static function check_post_api_deprecations($query = false, $options = [], string $function_name = 'Timber::get_post()')
+    {
+        if (\is_string($query) && !\is_numeric($query)) {
+            Helper::doing_it_wrong(
+                $function_name,
+                'Getting a post by post slug or post name was removed from Timber::get_post() in Timber 2.0. Use Timber::get_post_by() instead.',
+                '2.0.0'
+            );
+        }
+
+        if (\is_string($options)) {
+            Helper::doing_it_wrong(
+                $function_name,
+                'The $PostClass parameter for passing in the post class to use in Timber::get_posts() was replaced with an $options array in Timber 2.0. To customize which class to instantiate for your post, use Class Maps instead: https://timber.github.io/docs/v2/guides/class-maps/',
+                '2.0.0'
+            );
+        }
     }
 
     /**
@@ -418,7 +433,7 @@ class Timber
      * @return PostCollectionInterface|null Null if no query could be run with the used
      *                                              query parameters.
      */
-    public static function get_posts($query = false, $options = [])
+    public static function get_posts(mixed $query = false, $options = [])
     {
         if (\is_string($query)) {
             Helper::doing_it_wrong(
@@ -572,12 +587,10 @@ class Timber
      * @api
      * @deprecated since 2.0.0 Use `Timber::get_post()` instead.
      *
-     * @param mixed $query
-     * @param array $options
      *
      * @return Post|array|bool|null
      */
-    public static function query_post($query = false, array $options = [])
+    public static function query_post(mixed $query = false, array $options = [])
     {
         Helper::deprecated('Timber::query_post()', 'Timber::get_post()', '2.0.0');
 
@@ -590,12 +603,10 @@ class Timber
      * @api
      * @deprecated since 2.0.0 Use `Timber::get_posts()` instead.
      *
-     * @param mixed $query
-     * @param array $options
      *
      * @return PostCollectionInterface
      */
-    public static function query_posts($query = false, array $options = [])
+    public static function query_posts(mixed $query = false, array $options = [])
     {
         Helper::deprecated('Timber::query_posts()', 'Timber::get_posts()', '2.0.0');
 
@@ -660,10 +671,6 @@ class Timber
                 return null;
             }
 
-            if (!ImageHelper::is_protocol_allowed($ident)) {
-                throw new InvalidArgumentException('The output file scheme is not supported.');
-            }
-
             if (!\file_exists($ident)) {
                 // Deal with a relative path.
                 $ident = URLHelper::get_full_path($ident);
@@ -726,7 +733,7 @@ class Timber
     public static function get_terms($args = null, array $options = []): iterable
     {
         // default to all queryable taxonomies
-        $args = $args ?? [
+        $args ??= [
             'taxonomy' => \get_taxonomies(),
         ];
 
@@ -1013,22 +1020,13 @@ class Timber
         $factory = new MenuFactory();
         $menu = null;
 
-        switch ($field) {
-            case 'id':
-            case 'term_id':
-            case 'ID':
-                $menu = $factory->from_id($value, $args);
-                break;
-            case 'slug':
-                $menu = $factory->from_slug($value, $args);
-                break;
-            case 'name':
-                $menu = $factory->from_name($value, $args);
-                break;
-            case 'location':
-                $menu = $factory->from_location($value, $args);
-                break;
-        }
+        $menu = match ($field) {
+            'id', 'term_id', 'ID' => $factory->from_id($value, $args),
+            'slug' => $factory->from_slug($value, $args),
+            'name' => $factory->from_name($value, $args),
+            'location' => $factory->from_location($value, $args),
+            default => $menu,
+        };
 
         return $menu;
     }
@@ -1452,7 +1450,7 @@ class Timber
         /**
          * Filters the compiled result before it is returned in `Timber::compile()`.
          *
-         * It adds the posibility to filter the output ready for render.
+         * It adds the possibility to filter the output ready for render.
          *
          * @since 2.0.0
          *
@@ -1574,7 +1572,7 @@ class Timber
      *                                       Default false.
      * @param string         $cache_mode     Optional. Any of the cache mode constants defined in Timber\Loader.
      */
-    public static function render($filenames, $data = [], $expires = false, $cache_mode = Loader::CACHE_USE_DEFAULT)
+    public static function render($filenames, $data = [], $expires = false, $cache_mode = Loader::CACHE_USE_DEFAULT): void
     {
         $output = self::compile($filenames, $data, $expires, $cache_mode, true);
         echo $output;

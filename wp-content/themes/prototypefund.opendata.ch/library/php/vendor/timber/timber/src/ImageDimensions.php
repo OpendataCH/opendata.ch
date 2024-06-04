@@ -2,8 +2,6 @@
 
 namespace Timber;
 
-use InvalidArgumentException;
-
 /**
  * Class FileSize
  *
@@ -24,17 +22,18 @@ class ImageDimensions
     protected $dimensions;
 
     /**
-     * File location.
-     *
-     * @api
-     * @var string The absolute path to the image in the filesystem
-     *             (Example: `/var/www/htdocs/wp-content/uploads/2015/08/my-pic.jpg`)
+     * @param string $file_loc
      */
-    public $file_loc;
-
-    public function __construct($file_loc = '')
-    {
-        $this->file_loc = $file_loc;
+    public function __construct(
+        /**
+         * File location.
+         *
+         * @api
+         * @var string The absolute path to the image in the filesystem
+         *             (Example: `/var/www/htdocs/wp-content/uploads/2015/08/my-pic.jpg`)
+         */
+        public $file_loc = ''
+    ) {
     }
 
     /**
@@ -46,7 +45,7 @@ class ImageDimensions
      * <img src="{{ image.src }}" width="{{ image.width }}" />
      * ```
      * ```html
-     * <img src="http://example.org/wp-content/uploads/2015/08/pic.jpg" width="1600" />
+     * <img src="https://example.org/wp-content/uploads/2015/08/pic.jpg" width="1600" />
      * ```
      *
      * @return int|null The width of the image in pixels. Null if the width can’t be read, e.g. because the file doesn’t
@@ -66,7 +65,7 @@ class ImageDimensions
      * <img src="{{ image.src }}" height="{{ image.height }}" />
      * ```
      * ```html
-     * <img src="http://example.org/wp-content/uploads/2015/08/pic.jpg" height="900" />
+     * <img src="https://example.org/wp-content/uploads/2015/08/pic.jpg" height="900" />
      * ```
      *
      * @return int|null The height of the image in pixels. Null if the height can’t be read, e.g. because the file
@@ -119,17 +118,13 @@ class ImageDimensions
             return $this->get_dimension_loaded($dimension);
         }
 
-        if (!ImageHelper::is_protocol_allowed($this->file_loc)) {
-            throw new InvalidArgumentException('The output file scheme is not supported.');
-        }
-
         // Load dimensions.
         if (\file_exists($this->file_loc) && \filesize($this->file_loc)) {
             if (ImageHelper::is_svg($this->file_loc)) {
                 $svg_size = $this->get_dimensions_svg($this->file_loc);
                 $this->dimensions = [(int) \round($svg_size->width), (int) \round($svg_size->height)];
             } else {
-                list($width, $height) = \getimagesize($this->file_loc);
+                [$width, $height] = \getimagesize($this->file_loc);
 
                 $this->dimensions = [];
                 $this->dimensions[0] = (int) $width;
@@ -151,7 +146,7 @@ class ImageDimensions
      */
     protected function get_dimension_loaded($dim = null): int
     {
-        $dim = \strtolower($dim);
+        $dim = \strtolower((string) $dim);
 
         if ('h' === $dim || 'height' === $dim) {
             return $this->dimensions[1];

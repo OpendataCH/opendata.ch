@@ -2,6 +2,8 @@
 
 namespace Timber;
 
+use Stringable;
+
 /**
  * The PostExcerpt class lets a user modify a post preview/excerpt to their liking.
  *
@@ -47,15 +49,8 @@ namespace Timber;
  * <p>{{ post.excerpt.length(50).read_more('Continue Reading') }}</p>
  * ```
  */
-class PostExcerpt
+class PostExcerpt implements Stringable
 {
-    /**
-     * Post.
-     *
-     * @var Post
-     */
-    protected $post;
-
     /**
      * Excerpt end.
      *
@@ -87,7 +82,7 @@ class PostExcerpt
     /**
      * Read more text.
      *
-     * @var string
+     * @var string|bool
      */
     protected $read_more = 'Read More';
 
@@ -151,10 +146,13 @@ class PostExcerpt
      *                                          shorter than the post’s content). Default `false`.
      * }
      */
-    public function __construct($post, array $options = [])
-    {
-        $this->post = $post;
-
+    public function __construct(
+        /**
+     * Post.
+     */
+        protected $post,
+        array $options = []
+    ) {
         $defaults = [
             'words' => 50,
             'chars' => false,
@@ -211,7 +209,7 @@ class PostExcerpt
      */
     public function __toString()
     {
-        return $this->run();
+        return (string) $this->run();
     }
 
     /**
@@ -299,7 +297,7 @@ class PostExcerpt
      * <p>{{ post.excerpt.read_more('Learn more') }}</p>
      * ```
      *
-     * @param string $text Text for the link. Default 'Read More'.
+     * @param string|bool $text Text for the link. Default 'Read More'.
      *
      * @return PostExcerpt
      */
@@ -497,7 +495,7 @@ class PostExcerpt
 
         // Build an excerpt text from the post’s content.
         if (empty($text)) {
-            $text = $this->post->content();
+            $text = $this->post->content(0, -1, true);
             $text = TextHelper::remove_tags($text, $this->destroy_tags);
             $text_before_trim = \trim($text);
             $text_before_char_trim = '';
@@ -522,11 +520,11 @@ class PostExcerpt
                 $add_read_more = true;
             }
         }
-        if (empty(\trim($text))) {
-            return \trim($text);
+        if (empty(\trim((string) $text))) {
+            return \trim((string) $text);
         }
         if ($this->strip) {
-            $text = \trim(\strip_tags($text, $allowable_tags));
+            $text = \trim(\strip_tags((string) $text, $allowable_tags));
         }
         if (!empty($text)) {
             return $this->assemble($text, [

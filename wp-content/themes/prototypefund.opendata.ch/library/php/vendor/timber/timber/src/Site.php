@@ -37,7 +37,7 @@ class Site extends Core implements CoreInterface
      *
      * @var WP_Site|null Will only be filled in multisite environments. Otherwise `null`.
      */
-    protected ?WP_Site $wp_object;
+    protected ?WP_Site $wp_object = null;
 
     /**
      * @api
@@ -405,7 +405,7 @@ class Site extends Core implements CoreInterface
      * </a>
      * ```
      * ```html
-     * <a href="http://example.org" title="Home">
+     * <a href="https://example.org" title="Home">
      *       <img src="/wp-content/uploads/logo.png" alt="Logo for some stupid thing" />
      * </a>
      * ```

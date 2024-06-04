@@ -293,12 +293,12 @@ function calc_deadline(){
     $upcoming_date = new DateTime($upcoming_date);
     $upcoming_date_format = $upcoming_date->format('Y-m-d');
 
-  $deadline_text = get_field('deadline_text', 'options');
-  $upcoming_text = get_field('upcoming_text', 'options');
-  $deadline_text_today = get_field('deadline_text_today', 'options');
-  $deadline_text_over = get_field('deadline_text_over', 'options');
-  $deadline_text_singular = get_field('deadline_text_singular', 'options');
-  $deadline_text_plural = get_field('deadline_text_plural', 'options');
+  $deadline_text = get_field('deadline_text', 'options') ?? '';
+  $upcoming_text = get_field('upcoming_text', 'options') ?? '';
+  $deadline_text_today = get_field('deadline_text_today', 'options') ?? '';
+  $deadline_text_over = get_field('deadline_text_over', 'options') ?? '';
+  $deadline_text_singular = get_field('deadline_text_singular', 'options') ?? '';
+  $deadline_text_plural = get_field('deadline_text_plural', 'options') ?? '';
 
   $now = current_time('Y-m-d');
 

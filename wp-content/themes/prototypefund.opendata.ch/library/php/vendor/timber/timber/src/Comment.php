@@ -2,6 +2,7 @@
 
 namespace Timber;
 
+use Stringable;
 use WP_Comment;
 
 /**
@@ -33,7 +34,7 @@ use WP_Comment;
  * <p class="comment-attribution">- Sullivan Ballou</p>
  * ```
  */
-class Comment extends CoreEntity
+class Comment extends CoreEntity implements Stringable
 {
     /**
      * The underlying WordPress Core object.
@@ -42,7 +43,7 @@ class Comment extends CoreEntity
      *
      * @var WP_Comment|null
      */
-    protected ?WP_Comment $wp_object;
+    protected ?WP_Comment $wp_object = null;
 
     public $object_type = 'comment';
 
@@ -132,7 +133,7 @@ class Comment extends CoreEntity
      * @internal
      * @param WP_Comment $wp_comment a native WP_Comment instance
      */
-    public static function build(WP_Comment $wp_comment): self
+    public static function build(WP_Comment $wp_comment): static
     {
         $comment = new static();
         $comment->import($wp_comment);
@@ -226,7 +227,7 @@ class Comment extends CoreEntity
      * <img src="{{comment.avatar(36,template_uri~"/img/dude.jpg")}}" alt="Image of {{comment.author.name}}" />
      * ```
      * ```html
-     * <img src="http://gravatar.com/i/sfsfsdfasdfsfa.jpg" alt="Image of Katherine Rich" />
+     * <img src="https://gravatar.com/i/sfsfsdfasdfsfa.jpg" alt="Image of Katherine Rich" />
      * ```
      * @param int|mixed    $size     Size of avatar.
      * @param string       $default  Default avatar URL.
@@ -278,7 +279,7 @@ class Comment extends CoreEntity
      */
     public function content()
     {
-        return \trim(\apply_filters('comment_text', $this->comment_content));
+        return \trim((string) \apply_filters('comment_text', $this->comment_content));
     }
 
     /**
@@ -374,7 +375,7 @@ class Comment extends CoreEntity
      */
     public function date($date_format = '')
     {
-        $df = $date_format ? $date_format : \get_option('date_format');
+        $df = $date_format ?: \get_option('date_format');
         $the_date = (string) \mysql2date($df, $this->comment_date);
         return \apply_filters('get_comment_date ', $the_date, $df);
     }
@@ -403,7 +404,7 @@ class Comment extends CoreEntity
      */
     public function time($time_format = '')
     {
-        $tf = $time_format ? $time_format : \get_option('time_format');
+        $tf = $time_format ?: \get_option('time_format');
         $the_time = (string) \mysql2date($tf, $this->comment_date);
         return \apply_filters('get_comment_time', $the_time, $tf);
     }
@@ -558,9 +559,9 @@ class Comment extends CoreEntity
             $host = 'https://secure.gravatar.com';
         } else {
             if (!empty($email_hash)) {
-                $host = \sprintf("http://%d.gravatar.com", (\hexdec($email_hash[0]) % 2));
+                $host = \sprintf("https://%d.gravatar.com", (\hexdec($email_hash[0]) % 2));
             } else {
-                $host = 'http://0.gravatar.com';
+                $host = 'https://0.gravatar.com';
             }
         }
         return $host;
@@ -576,7 +577,7 @@ class Comment extends CoreEntity
      */
     protected function avatar_default($default, $email, $size, $host)
     {
-        if (\substr($default, 0, 1) == '/') {
+        if (\str_starts_with($default, '/')) {
             $default = \home_url() . $default;
         }
 
@@ -588,6 +589,7 @@ class Comment extends CoreEntity
                 $default = $avatar_default;
             }
         }
+
         if ('mystery' == $default) {
             $default = $host . '/avatar/ad516503a11cd5ca435acc9bb6523536?s=' . $size;
             // ad516503a11cd5ca435acc9bb6523536 == md5('unknown@gravatar.com')
@@ -597,7 +599,7 @@ class Comment extends CoreEntity
             $default = '';
         } elseif ('gravatar_default' == $default) {
             $default = $host . '/avatar/?s=' . $size;
-        } elseif (empty($email) && !\strstr($default, 'http://')) {
+        } elseif (empty($email) && !\preg_match('/^https?:\/\//', (string) $default)) {
             $default = $host . '/avatar/?d=' . $default . '&amp;s=' . $size;
         }
         return $default;
@@ -630,6 +632,6 @@ class Comment extends CoreEntity
             $out
         );
 
-        return \str_replace('&#038;', '&amp;', \esc_url($out));
+        return \str_replace('&#038;', '&amp;', (string) \esc_url($out));
     }
 }
