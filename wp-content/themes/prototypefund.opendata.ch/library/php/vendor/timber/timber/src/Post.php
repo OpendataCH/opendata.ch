@@ -3,7 +3,6 @@
 namespace Timber;
 
 use SimpleXMLElement;
-use Stringable;
 use Timber\Factory\PostFactory;
 use Timber\Factory\UserFactory;
 use WP_Post;
@@ -49,7 +48,7 @@ use WP_Post;
  * </article>
  * ```
  */
-class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
+class Post extends CoreEntity implements DatedInterface, Setupable
 {
     /**
      * The underlying WordPress Core object.
@@ -58,7 +57,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      *
      * @var WP_Post|null
      */
-    protected ?WP_Post $wp_object = null;
+    protected ?WP_Post $wp_object;
 
     /**
      * @var string What does this class represent in WordPress terms?
@@ -176,7 +175,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      * @internal
      * @return Post
      */
-    public static function build(WP_Post $wp_post): static
+    public static function build(WP_Post $wp_post): self
     {
         $post = new static();
 
@@ -254,7 +253,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
     public function __call($field, $args)
     {
         if ('class' === $field) {
-            $class = $args[0] ?? '';
+            $class = isset($args[0]) ? $args[0] : '';
             return $this->css_class($class);
         }
 
@@ -292,7 +291,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
         global $post;
         global $wp_query;
 
-        // Mimic WordPress behavior to improve compatibility with third party plugins.
+        // Mimick WordPress behavior to improve compatibility with third party plugins.
         $wp_query->in_the_loop = true;
 
         if (!$this->wp_object) {
@@ -361,7 +360,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
     protected function get_post_preview_object()
     {
         global $wp_query;
-        if (static::is_previewing()) {
+        if ($this->is_previewing()) {
             $revision_id = $this->get_post_preview_id($wp_query);
             return Timber::get_post($revision_id);
         }
@@ -499,8 +498,11 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
     {
         $link = \_wp_link_page($i);
         $link = new SimpleXMLElement($link . '</a>');
+        if (isset($link['href'])) {
+            return $link['href'];
+        }
 
-        return $link['href'] ?? null;
+        return null;
     }
 
     /**
@@ -527,7 +529,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      * Gets the comment form for use on a single article page
      *
      * @api
-     * @param array $args see [WordPress docs on comment_form](https://codex.wordpress.org/Function_Reference/comment_form)
+     * @param array $args see [WordPress docs on comment_form](http://codex.wordpress.org/Function_Reference/comment_form)
      *                    for reference on acceptable parameters
      * @return string of HTML for the form
      */
@@ -807,7 +809,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      *    {# Some stuff here #}
      * </article>
      * ```
-     * @return string a space-separated list of classes
+     * @return string a space-seperated list of classes
      */
     public function post_class($class = '')
     {
@@ -816,7 +818,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
         $post = $this;
 
         $class_array = \get_post_class($class, $this->ID);
-        if (static::is_previewing()) {
+        if ($this->is_previewing()) {
             $class_array = \get_post_class($class, $this->post_parent);
         }
         $class_array = \implode(' ', $class_array);
@@ -838,7 +840,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      * </article>
      * ```
      *
-     * @return string a space-separated list of classes
+     * @return string a space-seperated list of classes
      */
     public function css_class($class = '')
     {
@@ -1213,11 +1215,10 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      *
      * @param int $page Optional. The page to show if the content of the post is split into multiple
      *                  pages. Read more about this in the [Pagination Guide](https://timber.github.io/docs/v2/guides/pagination/#paged-content-within-a-post). Default `0`.
-     * @param int $len Optional. The number of words to show. Default `-1` (show all).
-     * @param bool $remove_blocks Optional. Whether to remove blocks. Defaults to false. True when called from the $post->excerpt() method.
-     * @return string The content of the post.
+     *
+     * @return string
      */
-    public function content($page = 0, $len = -1, $remove_blocks = false)
+    public function content($page = 0, $len = -1)
     {
         if ($rd = $this->get_revised_data_from_method('content', [$page, $len])) {
             return $rd;
@@ -1240,8 +1241,8 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
          *
          * @see WP_Query::generate_postdata()
          */
-        if ($page && \str_contains((string) $content, '<!--nextpage-->')) {
-            $content = \str_replace("\n<!--nextpage-->\n", '<!--nextpage-->', (string) $content);
+        if ($page && false !== \strpos($content, '<!--nextpage-->')) {
+            $content = \str_replace("\n<!--nextpage-->\n", '<!--nextpage-->', $content);
             $content = \str_replace("\n<!--nextpage-->", '<!--nextpage-->', $content);
             $content = \str_replace("<!--nextpage-->\n", '<!--nextpage-->', $content);
 
@@ -1250,7 +1251,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
             $content = \str_replace('<!-- /wp:nextpage -->', '', $content);
 
             // Ignore nextpage at the beginning of the content.
-            if (\str_starts_with($content, '<!--nextpage-->')) {
+            if (0 === \strpos($content, '<!--nextpage-->')) {
                 $content = \substr($content, 15);
             }
 
@@ -1260,25 +1261,6 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
             if (\count($pages) > $page) {
                 $content = $pages[$page];
             }
-        }
-
-        /**
-         * Filters whether the content produced by block editor blocks should be removed or not from the content.
-         *
-         * If truthy then block whose content does not belong in the excerpt, will be removed.
-         * This removal is done using WordPress Core `excerpt_remove_blocks` function.
-         *
-         * @since 2.1.1
-         *
-         * @param bool $remove_blocks Whether blocks whose content should not be part of the excerpt should be removed
-         *                            or not from the excerpt.
-         *
-         * @see   excerpt_remove_blocks() The WordPress Core function that will handle the block removal from the excerpt.
-         */
-        $remove_blocks = (bool) \apply_filters('timber/post/content/remove_blocks', $remove_blocks);
-
-        if ($remove_blocks) {
-            $content = \excerpt_remove_blocks($content);
         }
 
         $content = $this->content_handle_no_teaser_block($content);
@@ -1301,7 +1283,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      */
     protected function content_handle_no_teaser_block($content)
     {
-        if ((\str_contains($content, 'noTeaser:true') || \str_contains($content, '"noTeaser":true')) && \str_contains($content, '<!-- /wp:more -->')) {
+        if ((\strpos($content, 'noTeaser:true') !== false || \strpos($content, '"noTeaser":true') !== false) && \strpos($content, '<!-- /wp:more -->') !== false) {
             $arr = \explode('<!-- /wp:more -->', $content);
             return \trim($arr[1]);
         }
@@ -1652,7 +1634,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      * ```twig
      * <a href="{{post.link}}">Read my post</a>
      * ```
-     * @return string ex: https://example.org/2015/07/my-awesome-post
+     * @return string ex: http://example.org/2015/07/my-awesome-post
      */
     public function link()
     {
@@ -1825,7 +1807,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
     }
 
     /**
-     * Gets the relative path of a WP Post, so while link() will return https://example.org/2015/07/my-cool-post
+     * Gets the relative path of a WP Post, so while link() will return http://example.org/2015/07/my-cool-post
      * this will return just /2015/07/my-cool-post
      *
      * @api
@@ -1865,7 +1847,7 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
         global $post;
         $old_global = $post;
         $post = $this;
-        $within_taxonomy = $in_same_term ?: 'category';
+        $within_taxonomy = ($in_same_term) ? $in_same_term : 'category';
         $adjacent = \get_adjacent_post(($in_same_term), '', true, $within_taxonomy);
         $prev_in_taxonomy = false;
         if ($adjacent) {
@@ -1980,9 +1962,11 @@ class Post extends CoreEntity implements DatedInterface, Setupable, Stringable
      */
     private function partition_tax_queries(array $query, array $taxonomies): array
     {
-        return \array_map(fn (string $tax): array => \array_merge($query, [
-            'taxonomy' => [$tax],
-        ]), $taxonomies);
+        return \array_map(function (string $tax) use ($query): array {
+            return \array_merge($query, [
+                'taxonomy' => [$tax],
+            ]);
+        }, $taxonomies);
     }
 
     /**

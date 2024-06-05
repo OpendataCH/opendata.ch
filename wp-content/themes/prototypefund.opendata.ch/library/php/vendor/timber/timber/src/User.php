@@ -2,7 +2,6 @@
 
 namespace Timber;
 
-use Stringable;
 use WP_User;
 
 /**
@@ -41,7 +40,7 @@ use WP_User;
  *     and it’s by David Foster Wallace</p>
  * ```
  */
-class User extends CoreEntity implements Stringable
+class User extends CoreEntity
 {
     /**
      * The underlying WordPress Core object.
@@ -50,7 +49,7 @@ class User extends CoreEntity implements Stringable
      *
      * @var WP_User|null
      */
-    protected ?WP_User $wp_object = null;
+    protected ?WP_User $wp_object;
 
     public $object_type = 'user';
 
@@ -107,7 +106,7 @@ class User extends CoreEntity implements Stringable
     /**
      * Build a new User object.
      */
-    public static function build(WP_User $wp_user): static
+    public static function build(WP_User $wp_user): self
     {
         $user = new static();
         $user->init($wp_user);
@@ -170,7 +169,7 @@ class User extends CoreEntity implements Stringable
      * Get the URL of the user's profile
      *
      * @api
-     * @return string https://example.org/author/lincoln
+     * @return string http://example.org/author/lincoln
      */
     public function link()
     {
@@ -430,7 +429,7 @@ class User extends CoreEntity implements Stringable
      *
      * @return bool Whether the user has the capability.
      */
-    public function can($capability, mixed ...$args)
+    public function can($capability, ...$args)
     {
         return \user_can($this->wp_object, $capability, ...$args);
     }

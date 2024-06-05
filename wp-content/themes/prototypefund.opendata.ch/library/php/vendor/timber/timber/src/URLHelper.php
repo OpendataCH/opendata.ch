@@ -47,9 +47,9 @@ class URLHelper
      */
     public static function starts_with($haystack, $starts_with)
     {
-        $haystack = \str_replace('https', 'http', \strtolower((string) $haystack));
-        $starts_with = \str_replace('https', 'http', \strtolower((string) $starts_with));
-        if (\str_starts_with($haystack, $starts_with)) {
+        $haystack = \str_replace('https', 'http', \strtolower($haystack));
+        $starts_with = \str_replace('https', 'http', \strtolower($starts_with));
+        if (0 === \strpos($haystack, $starts_with)) {
             return true;
         }
         return false;
@@ -79,7 +79,7 @@ class URLHelper
     public static function get_path_base()
     {
         $struc = \get_option('permalink_structure');
-        $struc = \explode('/', (string) $struc);
+        $struc = \explode('/', $struc);
         $p = '/';
         foreach ($struc as $s) {
             if (!\strstr($s, '%') && \strlen($s)) {
@@ -119,7 +119,7 @@ class URLHelper
      * Some setups like HTTP_HOST, some like SERVER_NAME, it's complicated
      *
      * @api
-     * @link https://stackoverflow.com/questions/2297403/http-host-vs-server-name
+     * @link http://stackoverflow.com/questions/2297403/http-host-vs-server-name
      *
      * @return string the HTTP_HOST or SERVER_NAME
      */
@@ -298,7 +298,7 @@ class URLHelper
             'timber/url_helper/get_content_subdir/home_url'
         );
 
-        return \str_replace($home_url, '', (string) WP_CONTENT_URL);
+        return \str_replace($home_url, '', WP_CONTENT_URL);
     }
 
     /**
@@ -308,7 +308,7 @@ class URLHelper
      */
     public static function get_rel_path($src)
     {
-        if (\str_contains($src, (string) ABSPATH)) {
+        if (\str_contains($src, ABSPATH)) {
             return \str_replace(ABSPATH, '', $src);
         }
         // its outside the WordPress directory, alternate setups:
@@ -320,8 +320,8 @@ class URLHelper
      * Look for accidental slashes in a URL and remove them
      *
      * @api
-     * @param  string $url to process (ex: https://nytimes.com//news/article.html)
-     * @return string the result (ex: https://nytimes.com/news/article.html)
+     * @param  string $url to process (ex: http://nytimes.com//news/article.html)
+     * @return string the result (ex: http://nytimes.com/news/article.html)
      */
     public static function remove_double_slashes($url)
     {
@@ -390,7 +390,7 @@ class URLHelper
      */
     public static function preslashit($path)
     {
-        if (!\str_starts_with($path, '/')) {
+        if (\strpos($path, '/') !== 0) {
             $path = '/' . $path;
         }
         return $path;
@@ -409,7 +409,7 @@ class URLHelper
     }
 
     /**
-     * This will evaluate wheter a URL is at an aboslute location (like https://example.org/whatever)
+     * This will evaluate wheter a URL is at an aboslute location (like http://example.org/whatever)
      *
      * @param string $path
      * @return boolean true if $path is an absolute url, false if relative.
@@ -444,11 +444,11 @@ class URLHelper
         // otherwise you run into errors with sites that:
         // 1. use WPML plugin
         // 2. or redefine content directory.
-        $is_content_url = \strstr($url, (string) \content_url());
+        $is_content_url = \strstr($url, \content_url());
 
         // this case covers when the upload directory has been redefined.
         $upload_dir = \wp_upload_dir();
-        $is_upload_url = \strstr($url, (string) $upload_dir['baseurl']);
+        $is_upload_url = \strstr($url, $upload_dir['baseurl']);
 
         return $is_content_url || $is_upload_url;
     }
@@ -460,7 +460,7 @@ class URLHelper
      * Otherwise, false.
      *
      * @api
-     * @param  string $url URL to evaluate.
+     * @param  string $url URL to evalute.
      * @return bool
      */
     public static function is_external(string $url): bool
@@ -496,8 +496,8 @@ class URLHelper
      * @api
      * @since  1.3.3
      * @author jarednova
-     * @param string $haystack ex: https://example.org/wp-content/uploads/dog.jpg
-     * @param string $needle ex: https://example.org/wp-content
+     * @param string $haystack ex: http://example.org/wp-content/uploads/dog.jpg
+     * @param string $needle ex: http://example.org/wp-content
      * @return string
      */
     public static function remove_url_component($haystack, $needle)
@@ -514,7 +514,7 @@ class URLHelper
      * @since  1.3.3
      * @author jarednova
      *
-     * @param  string $url ex: https://example.org/wp-content/uploads/dog.jpg.
+     * @param  string $url ex: http://example.org/wp-content/uploads/dog.jpg.
      * @return string ex: https://example.org/wp-content/uploads/dog.jpg
      */
     public static function swap_protocol($url)
@@ -559,7 +559,7 @@ class URLHelper
      * @example
      * ```php
      * // Given a $_SERVER["REQUEST_URI"] of:
-     * // https://example.org/blog/post/news/2014/whatever
+     * // http://example.org/blog/post/news/2014/whatever
      *
      * $params = URLHelper::get_params();
      * // => ["blog", "post", "news", "2014", "whatever"]
@@ -581,7 +581,7 @@ class URLHelper
      */
     public static function get_params($i = false)
     {
-        $uri = \trim((string) $_SERVER['REQUEST_URI']);
+        $uri = \trim($_SERVER['REQUEST_URI']);
         $params = \array_values(\array_filter(\explode('/', $uri)));
 
         if (false === $i) {
@@ -605,7 +605,7 @@ class URLHelper
      */
     public static function maybe_secure_url($url)
     {
-        if (\is_ssl() && !\str_starts_with($url, 'https') && \str_starts_with($url, 'http')) {
+        if (\is_ssl() && \strpos($url, 'https') !== 0 && \strpos($url, 'http') === 0) {
             $url = 'https' . \substr($url, \strlen('http'));
         }
 

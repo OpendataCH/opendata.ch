@@ -2,8 +2,6 @@
 
 namespace Timber;
 
-use Stringable;
-
 /**
  * The PostExcerpt class lets a user modify a post preview/excerpt to their liking.
  *
@@ -49,8 +47,15 @@ use Stringable;
  * <p>{{ post.excerpt.length(50).read_more('Continue Reading') }}</p>
  * ```
  */
-class PostExcerpt implements Stringable
+class PostExcerpt
 {
+    /**
+     * Post.
+     *
+     * @var Post
+     */
+    protected $post;
+
     /**
      * Excerpt end.
      *
@@ -82,7 +87,7 @@ class PostExcerpt implements Stringable
     /**
      * Read more text.
      *
-     * @var string|bool
+     * @var string
      */
     protected $read_more = 'Read More';
 
@@ -146,13 +151,10 @@ class PostExcerpt implements Stringable
      *                                          shorter than the post’s content). Default `false`.
      * }
      */
-    public function __construct(
-        /**
-     * Post.
-     */
-        protected $post,
-        array $options = []
-    ) {
+    public function __construct($post, array $options = [])
+    {
+        $this->post = $post;
+
         $defaults = [
             'words' => 50,
             'chars' => false,
@@ -209,7 +211,7 @@ class PostExcerpt implements Stringable
      */
     public function __toString()
     {
-        return (string) $this->run();
+        return $this->run();
     }
 
     /**
@@ -297,7 +299,7 @@ class PostExcerpt implements Stringable
      * <p>{{ post.excerpt.read_more('Learn more') }}</p>
      * ```
      *
-     * @param string|bool $text Text for the link. Default 'Read More'.
+     * @param string $text Text for the link. Default 'Read More'.
      *
      * @return PostExcerpt
      */
@@ -495,7 +497,7 @@ class PostExcerpt implements Stringable
 
         // Build an excerpt text from the post’s content.
         if (empty($text)) {
-            $text = $this->post->content(0, -1, true);
+            $text = $this->post->content();
             $text = TextHelper::remove_tags($text, $this->destroy_tags);
             $text_before_trim = \trim($text);
             $text_before_char_trim = '';
@@ -520,11 +522,11 @@ class PostExcerpt implements Stringable
                 $add_read_more = true;
             }
         }
-        if (empty(\trim((string) $text))) {
-            return \trim((string) $text);
+        if (empty(\trim($text))) {
+            return \trim($text);
         }
         if ($this->strip) {
-            $text = \trim(\strip_tags((string) $text, $allowable_tags));
+            $text = \trim(\strip_tags($text, $allowable_tags));
         }
         if (!empty($text)) {
             return $this->assemble($text, [

@@ -2,6 +2,7 @@
 
 namespace Timber\Image\Operation;
 
+use InvalidArgumentException;
 use Timber\Helper;
 use Timber\Image\Operation as ImageOperation;
 use Timber\ImageHelper;
@@ -13,12 +14,14 @@ use Timber\ImageHelper;
  */
 class ToWebp extends ImageOperation
 {
+    private $quality;
+
     /**
      * @param string $quality  ranges from 0 (worst quality, smaller file) to 100 (best quality, biggest file)
      */
-    public function __construct(
-        private $quality
-    ) {
+    public function __construct($quality)
+    {
+        $this->quality = $quality;
     }
 
     /**
@@ -43,6 +46,10 @@ class ToWebp extends ImageOperation
      */
     public function run($load_filename, $save_filename)
     {
+        if (!ImageHelper::is_protocol_allowed($load_filename)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
+        }
+
         if (!\is_file($load_filename)) {
             return false;
         }
@@ -56,7 +63,7 @@ class ToWebp extends ImageOperation
         if (isset($ext['ext'])) {
             $ext = $ext['ext'];
         }
-        $ext = \strtolower((string) $ext);
+        $ext = \strtolower($ext);
         $ext = \str_replace('jpg', 'jpeg', $ext);
 
         $imagecreate_function = 'imagecreatefrom' . $ext;

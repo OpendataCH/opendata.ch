@@ -55,7 +55,7 @@ class PagesMenuFactory
         }
 
         // Fallback on the default class.
-        $class ??= PagesMenu::class;
+        $class = $class ?? PagesMenu::class;
 
         return $class;
     }

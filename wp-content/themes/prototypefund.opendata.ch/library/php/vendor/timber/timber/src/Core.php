@@ -27,7 +27,10 @@ abstract class Core
      */
     public function __isset($field)
     {
-        return isset($this->$field);
+        if (isset($this->$field)) {
+            return $this->$field;
+        }
+        return false;
     }
 
     /**
@@ -162,7 +165,7 @@ abstract class Core
      * @param string $key   The key of the meta field to update.
      * @param mixed  $value The new value.
      */
-    public function update($key, mixed $value)
+    public function update($key, $value)
     {
         Helper::deprecated('Timber\Core::update()', 'update_metadata()', '2.0.0');
         \update_metadata($this->object_type, $this->ID, $key, $value);

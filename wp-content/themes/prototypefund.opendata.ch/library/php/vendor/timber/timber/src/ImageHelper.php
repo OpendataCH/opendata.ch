@@ -2,6 +2,7 @@
 
 namespace Timber;
 
+use InvalidArgumentException;
 use Timber\Image\Operation;
 
 /**
@@ -29,15 +30,19 @@ class ImageHelper
 
     public static $home_url;
 
+    protected const ALLOWED_PROTOCOLS = ['file', 'http', 'https'];
+
+    protected const WINDOWS_LOCAL_FILENAME_REGEX = '/^[a-z]:(?:[\\\\\/]?(?:[\w\s!#()-]+|[\.]{1,2})+)*[\\\\\/]?/i';
+
     /**
      * Inits the object.
      */
     public static function init()
     {
         self::$home_url = \get_home_url();
-        \add_action('delete_attachment', [self::class, 'delete_attachment']);
-        \add_filter('wp_generate_attachment_metadata', [self::class, 'generate_attachment_metadata'], 10, 2);
-        \add_filter('upload_dir', [self::class, 'add_relative_upload_dir_key']);
+        \add_action('delete_attachment', [__CLASS__, 'delete_attachment']);
+        \add_filter('wp_generate_attachment_metadata', [__CLASS__, 'generate_attachment_metadata'], 10, 2);
+        \add_filter('upload_dir', [__CLASS__, 'add_relative_upload_dir_key']);
         return true;
     }
 
@@ -52,7 +57,7 @@ class ImageHelper
      * <img src="{{ image.src | resize(300, 200, 'top') }}" />
      * ```
      * ```html
-     * <img src="https://example.org/wp-content/uploads/pic-300x200-c-top.jpg" />
+     * <img src="http://example.org/wp-content/uploads/pic-300x200-c-top.jpg" />
      * ```
      *
      * @param string     $src   A URL (absolute or relative) to the original image.
@@ -136,10 +141,15 @@ class ImageHelper
      */
     public static function is_animated_gif($file)
     {
-        if (!\str_contains(\strtolower($file), '.gif')) {
+        if (\strpos(\strtolower($file), '.gif') === false) {
             //doesn't have .gif, bail
             return false;
         }
+
+        if (!ImageHelper::is_protocol_allowed($file)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
+        }
+
         // Its a gif so test
         if (!($fh = @\fopen($file, 'rb'))) {
             return false;
@@ -169,7 +179,15 @@ class ImageHelper
      */
     public static function is_svg($file_path)
     {
-        if ('' === $file_path || !\file_exists($file_path)) {
+        if ('' === $file_path) {
+            return false;
+        }
+
+        if (!ImageHelper::is_protocol_allowed($file_path)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
+        }
+
+        if (!\file_exists($file_path)) {
             return false;
         }
 
@@ -221,7 +239,7 @@ class ImageHelper
      * @api
      *
      * @param string $src   A URL or path to the image
-     *                      (https://example.org/wp-content/uploads/2014/image.jpg) or
+     *                      (http://example.org/wp-content/uploads/2014/image.jpg) or
      *                      (/wp-content/uploads/2014/image.jpg).
      * @param string $bghex The hex color to use for transparent zones.
      * @return string The URL of the processed image.
@@ -236,7 +254,7 @@ class ImageHelper
      * Generates a new image by converting the source into WEBP if supported by the server.
      *
      * @param string $src     A URL or path to the image
-     *                        (https://example.org/wp-content/uploads/2014/image.webp) or
+     *                        (http://example.org/wp-content/uploads/2014/image.webp) or
      *                        (/wp-content/uploads/2014/image.webp).
      * @param int    $quality Range from `0` (worst quality, smaller file) to `100` (best quality,
      *                        biggest file).
@@ -289,7 +307,7 @@ class ImageHelper
      */
     public static function add_relative_upload_dir_key($arr)
     {
-        $arr['relative'] = \str_replace(self::$home_url, '', (string) $arr['baseurl']);
+        $arr['relative'] = \str_replace(self::$home_url, '', $arr['baseurl']);
         return $arr;
     }
 
@@ -313,7 +331,7 @@ class ImageHelper
      * Deletes the auto-generated files for resize and letterboxing created by Timber.
      *
      * @param string $local_file ex: /var/www/wp-content/uploads/2015/my-pic.jpg
-     *                           or: https://example.org/wp-content/uploads/2015/my-pic.jpg
+     *                           or: http://example.org/wp-content/uploads/2015/my-pic.jpg
      */
     public static function delete_generated_files($local_file)
     {
@@ -370,7 +388,7 @@ class ImageHelper
     public static function get_server_location($url)
     {
         // if we're already an absolute dir, just return.
-        if (\str_starts_with($url, (string) ABSPATH)) {
+        if (0 === \strpos($url, ABSPATH)) {
             return $url;
         }
         // otherwise, analyze URL then build mapping path
@@ -431,6 +449,10 @@ class ImageHelper
      */
     public static function sideload_image($file)
     {
+        if (!ImageHelper::is_protocol_allowed($file)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
+        }
+
         /**
          * Adds a filter to change the upload folder temporarily.
          *
@@ -441,13 +463,14 @@ class ImageHelper
          * @ticket 1098
          * @link https://github.com/timber/timber/issues/1098
          */
-        \add_filter('upload_dir', [self::class, 'set_sideload_image_upload_dir']);
+        \add_filter('upload_dir', [__CLASS__, 'set_sideload_image_upload_dir']);
 
         $loc = self::get_sideloaded_file_loc($file);
+
         if (\file_exists($loc)) {
             $url = URLHelper::file_system_to_url($loc);
 
-            \remove_filter('upload_dir', [self::class, 'set_sideload_image_upload_dir']);
+            \remove_filter('upload_dir', [__CLASS__, 'set_sideload_image_upload_dir']);
 
             return $url;
         }
@@ -470,7 +493,7 @@ class ImageHelper
         // delete tmp file
         @\unlink($file_array['tmp_name']);
 
-        \remove_filter('upload_dir', [self::class, 'set_sideload_image_upload_dir']);
+        \remove_filter('upload_dir', [__CLASS__, 'set_sideload_image_upload_dir']);
 
         return $file['url'];
     }
@@ -516,7 +539,7 @@ class ImageHelper
 
         if (!empty($subdir)) {
             // Remove slashes before or after.
-            $subdir = \trim((string) $subdir, '/');
+            $subdir = \trim($subdir, '/');
 
             $upload['subdir'] = '/' . $subdir;
             $upload['path'] = $upload['basedir'] . $upload['subdir'];
@@ -592,14 +615,14 @@ class ImageHelper
 
         $upload_dir = \wp_upload_dir();
         $tmp = $url;
-        if (\str_starts_with($tmp, (string) ABSPATH) || \str_starts_with($tmp, '/srv/www/')) {
+        if (\str_starts_with($tmp, ABSPATH) || \str_starts_with($tmp, '/srv/www/')) {
             // we've been given a dir, not an url
             $result['absolute'] = true;
-            if (\str_starts_with($tmp, (string) $upload_dir['basedir'])) {
+            if (\str_starts_with($tmp, $upload_dir['basedir'])) {
                 $result['base'] = self::BASE_UPLOADS; // upload based
                 $tmp = URLHelper::remove_url_component($tmp, $upload_dir['basedir']);
             }
-            if (\str_starts_with($tmp, (string) WP_CONTENT_DIR)) {
+            if (\str_starts_with($tmp, WP_CONTENT_DIR)) {
                 $result['base'] = self::BASE_CONTENT; // content based
                 $tmp = URLHelper::remove_url_component($tmp, WP_CONTENT_DIR);
             }
@@ -619,7 +642,7 @@ class ImageHelper
         $parts = PathHelper::pathinfo($tmp);
         $result['subdir'] = ($parts['dirname'] === '/') ? '' : $parts['dirname'];
         $result['filename'] = $parts['filename'];
-        $result['extension'] = (isset($parts['extension']) ? \strtolower((string) $parts['extension']) : '');
+        $result['extension'] = (isset($parts['extension']) ? \strtolower($parts['extension']) : '');
         $result['basename'] = $parts['basename'];
 
         return $result;
@@ -628,7 +651,7 @@ class ImageHelper
     /**
      * Converts a URL located in a theme directory into the raw file path.
      *
-     * @param string  $src A URL (https://example.org/wp-content/themes/twentysixteen/images/home.jpg).
+     * @param string  $src A URL (http://example.org/wp-content/themes/twentysixteen/images/home.jpg).
      * @return string Full path to the file in question.
      */
     public static function theme_url_to_dir(string $src): string
@@ -664,7 +687,7 @@ class ImageHelper
     /**
      * Converts a URL located in a theme directory into the raw file path.
      *
-     * @param string  $src A URL (https://example.org/wp-content/themes/twentysixteen/images/home.jpg).
+     * @param string  $src A URL (http://example.org/wp-content/themes/twentysixteen/images/home.jpg).
      * @return string Full path to the file in question.
      */
     private static function get_dir_from_theme_url(string $src): string
@@ -694,7 +717,7 @@ class ImageHelper
             return false;
         }
 
-        if (\str_starts_with($path, (string) $root)) {
+        if (0 === \strpos($path, (string) $root)) {
             return true;
         } else {
             return false;
@@ -743,7 +766,7 @@ class ImageHelper
      */
     protected static function maybe_realpath($path)
     {
-        if (\str_contains($path, '../')) {
+        if (\strstr($path, '../') !== false) {
             return \realpath($path);
         }
         return $path;
@@ -804,6 +827,10 @@ class ImageHelper
     {
         if (empty($src)) {
             return '';
+        }
+
+        if (!ImageHelper::is_protocol_allowed($src)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
         }
 
         $allow_fs_write = \apply_filters('timber/allow_fs_write', true);
@@ -876,8 +903,8 @@ class ImageHelper
         }
         // otherwise generate result file
         if ($op->run($source_path, $destination_path)) {
-            if ($op::class === Operation\Resize::class && $external) {
-                $new_url = \strtolower((string) $new_url);
+            if (\get_class($op) === 'Timber\Image\Operation\Resize' && $external) {
+                $new_url = \strtolower($new_url);
             }
             return $new_url;
         } else {
@@ -948,5 +975,37 @@ class ImageHelper
             $op->filename($au['filename'], $au['extension'])
         );
         return $new_path;
+    }
+
+    /**
+     * Checks if the protocol of the given filename is allowed.
+     *
+     * This fixes a security issue with a PHAR deserialization vulnerability
+     * with file_exists() in PHP < 8.0.0.
+     *
+     * @param  string $filepath File path.
+     * @return bool
+     */
+    public static function is_protocol_allowed($filepath)
+    {
+        $parsed_url = \parse_url($filepath);
+
+        if (false === $parsed_url) {
+            throw new InvalidArgumentException('The filename is not valid.');
+        }
+
+        $protocol = isset($parsed_url['scheme'])
+            ? \mb_strtolower($parsed_url['scheme'])
+            : 'file';
+
+        if (
+            \PHP_OS_FAMILY === 'Windows'
+            && \strlen($protocol) === 1
+            && \preg_match(self::WINDOWS_LOCAL_FILENAME_REGEX, $filepath)
+        ) {
+            $protocol = 'file';
+        }
+
+        return \in_array($protocol, self::ALLOWED_PROTOCOLS, true);
     }
 }

@@ -3,7 +3,6 @@
 namespace Timber;
 
 use stdClass;
-use Stringable;
 use Timber\Factory\PostFactory;
 use Timber\Factory\TermFactory;
 use WP_Post;
@@ -13,7 +12,7 @@ use WP_Post;
  *
  * @api
  */
-class MenuItem extends CoreEntity implements Stringable
+class MenuItem extends CoreEntity
 {
     /**
      * The underlying WordPress Core object.
@@ -86,6 +85,16 @@ class MenuItem extends CoreEntity implements Stringable
     public $current_item_ancestor;
 
     /**
+     * Timber Menu. Previously this was a public property, but converted to a method to avoid
+     * recursion (see #2071).
+     *
+     * @since 1.12.0
+     * @see \Timber\MenuItem::menu()
+     * @var Menu The `Menu` object the menu item is associated with.
+     */
+    protected $menu;
+
+    /**
      * Object ID.
      *
      * @api
@@ -113,26 +122,20 @@ class MenuItem extends CoreEntity implements Stringable
      * @param Menu $menu The `Menu` object the menu item is associated with.
      * @return MenuItem a new MenuItem instance
      */
-    public static function build($data, ?Menu $menu = null): static
+    public static function build($data, ?Menu $menu = null): self
     {
         return new static($data, $menu);
     }
 
     /**
      * @internal
+     * @param WP_Post $data
      * @param Menu $menu The `Menu` object the menu item is associated with.
      */
-    protected function __construct(
-        WP_Post $data, /**
-     * Timber Menu. Previously this was a public property, but converted to a method to avoid
-     * recursion (see #2071).
-     *
-     * @since 1.12.0
-     * @see \Timber\MenuItem::menu()
-     */
-        protected $menu = null
-    ) {
+    protected function __construct(WP_Post $data, $menu = null)
+    {
         $this->wp_object = $data;
+        $this->menu = $menu;
 
         /**
          * @property string $title The nav menu item title.
@@ -230,7 +233,7 @@ class MenuItem extends CoreEntity implements Stringable
      * @see \Timber\MenuItem::name()
      * @return string The label for the menu item.
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->name();
     }
@@ -547,7 +550,7 @@ class MenuItem extends CoreEntity implements Stringable
      *     <li><a href="{{ item.link }}">{{ item.title }}</a></li>
      * {% endfor %}
      * ```
-     * @return string A full URL, like `https://mysite.com/thing/`.
+     * @return string A full URL, like `http://mysite.com/thing/`.
      */
     public function link()
     {
@@ -588,7 +591,7 @@ class MenuItem extends CoreEntity implements Stringable
         /**
          * @see Walker_Nav_Menu::start_el()
          */
-        $title = \apply_filters('nav_menu_item_title', $this->title, $this->wp_object, $this->menu->args ?: new stdClass(), $this->level);
+        $title = \apply_filters('nav_menu_item_title', $this->title, $this->wp_object, $this->menu->args ? $this->menu->args : new stdClass(), $this->level);
         return $title;
     }
 

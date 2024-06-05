@@ -2,7 +2,6 @@
 
 namespace Timber;
 
-use Stringable;
 use Timber\Factory\TermFactory;
 use WP_Term;
 
@@ -42,7 +41,7 @@ use WP_Term;
  * </ul>
  * ```
  */
-class Term extends CoreEntity implements Stringable
+class Term extends CoreEntity
 {
     /**
      * The underlying WordPress Core object.
@@ -51,7 +50,7 @@ class Term extends CoreEntity implements Stringable
      *
      * @var WP_Term|null
      */
-    protected ?WP_Term $wp_object = null;
+    protected ?WP_Term $wp_object;
 
     public $object_type = 'term';
 
@@ -84,7 +83,7 @@ class Term extends CoreEntity implements Stringable
      * @param WP_Term      $wp_term The vanilla WordPress term object to build from.
      * @return Term
      */
-    public static function build(WP_Term $wp_term): static
+    public static function build(WP_Term $wp_term): self
     {
         $term = new static();
         $term->init($wp_term);
@@ -124,9 +123,11 @@ class Term extends CoreEntity implements Stringable
     }
 
     /* Setup
-       ===================== */
+    ===================== */
+
     /**
      * @internal
+     * @param WP_Term $term
      */
     protected function init(WP_Term $term)
     {
@@ -167,7 +168,7 @@ class Term extends CoreEntity implements Stringable
             global $wpdb;
             $query = $wpdb->prepare("SELECT taxonomy FROM $wpdb->term_taxonomy WHERE term_id = %d LIMIT 1", $tid);
             $tax = $wpdb->get_var($query);
-            if (isset($tax) && \strlen((string) $tax)) {
+            if (isset($tax) && \strlen($tax)) {
                 $this->taxonomy = $tax;
                 return \get_term($tid, $tax);
             }
@@ -177,9 +178,10 @@ class Term extends CoreEntity implements Stringable
 
     /**
      * @internal
+     * @param mixed $tid
      * @return int|array
      */
-    protected static function get_tid(mixed $tid)
+    protected static function get_tid($tid)
     {
         global $wpdb;
         if (\is_numeric($tid)) {
@@ -271,11 +273,11 @@ class Term extends CoreEntity implements Stringable
     {
         $prefix = '<p>';
         $desc = \term_description($this->ID, $this->taxonomy);
-        if (\str_starts_with((string) $desc, $prefix)) {
-            $desc = \substr((string) $desc, \strlen($prefix));
+        if (\substr($desc, 0, \strlen($prefix)) == $prefix) {
+            $desc = \substr($desc, \strlen($prefix));
         }
-        $desc = \preg_replace('/' . \preg_quote('</p>', '/') . '$/', '', (string) $desc);
-        return \trim((string) $desc);
+        $desc = \preg_replace('/' . \preg_quote('</p>', '/') . '$/', '', $desc);
+        return \trim($desc);
     }
 
     /**
@@ -318,7 +320,7 @@ class Term extends CoreEntity implements Stringable
     }
 
     /**
-     * Returns a full link to the term archive page like `https://example.com/category/news`
+     * Returns a full link to the term archive page like `http://example.com/category/news`
      *
      * @api
      * @example
@@ -528,7 +530,7 @@ class Term extends CoreEntity implements Stringable
             );
 
             // Honor the non-deprecated posts_per_page param over the deprecated second arg.
-            $query['post_type'] ??= $post_type_or_class;
+            $query['post_type'] = $query['post_type'] ?? $post_type_or_class;
         }
 
         if (\func_num_args() > 2) {

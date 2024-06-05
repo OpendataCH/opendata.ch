@@ -47,6 +47,8 @@ use Timber\Factory\CommentFactory;
  */
 class CommentThread extends ArrayObject
 {
+    public $post_id;
+
     public $_orderby = '';
 
     public $_order = 'ASC';
@@ -58,11 +60,10 @@ class CommentThread extends ArrayObject
      * @param array|boolean $args    Optional. An array of arguments or false if initialization
      *                               should be skipped.
      */
-    public function __construct(
-        public $post_id,
-        $args = []
-    ) {
+    public function __construct($post_id, $args = [])
+    {
         parent::__construct();
+        $this->post_id = $post_id;
         if ($args || \is_array($args)) {
             $this->init($args);
         }

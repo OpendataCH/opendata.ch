@@ -6,10 +6,17 @@ use Timber\Loader;
 
 class WPObjectCacheAdapter
 {
-    public function __construct(
-        private readonly Loader $timberloader,
-        private $cache_group = 'timber'
-    ) {
+    private $cache_group;
+
+    /**
+     * @var Loader
+     */
+    private $timberloader;
+
+    public function __construct(Loader $timberloader, $cache_group = 'timber')
+    {
+        $this->cache_group = $cache_group;
+        $this->timberloader = $timberloader;
     }
 
     public function fetch($key)

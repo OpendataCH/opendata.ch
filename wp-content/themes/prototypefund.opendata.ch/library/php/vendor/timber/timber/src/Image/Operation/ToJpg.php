@@ -2,6 +2,7 @@
 
 namespace Timber\Image\Operation;
 
+use InvalidArgumentException;
 use Timber\Image\Operation as ImageOperation;
 use Timber\ImageHelper;
 
@@ -12,12 +13,14 @@ use Timber\ImageHelper;
  */
 class ToJpg extends ImageOperation
 {
+    private $color;
+
     /**
      * @param string $color hex string of color to use for transparent zones
      */
-    public function __construct(
-        private $color
-    ) {
+    public function __construct($color)
+    {
+        $this->color = $color;
     }
 
     /**
@@ -42,6 +45,10 @@ class ToJpg extends ImageOperation
      */
     public function run($load_filename, $save_filename)
     {
+        if (!ImageHelper::is_protocol_allowed($load_filename)) {
+            throw new InvalidArgumentException('The output file scheme is not supported.');
+        }
+
         if (!\file_exists($load_filename)) {
             return false;
         }
@@ -55,7 +62,7 @@ class ToJpg extends ImageOperation
         if (isset($ext['ext'])) {
             $ext = $ext['ext'];
         }
-        $ext = \strtolower((string) $ext);
+        $ext = \strtolower($ext);
         $ext = \str_replace('jpg', 'jpeg', $ext);
 
         $imagecreate_function = 'imagecreatefrom' . $ext;
@@ -69,7 +76,7 @@ class ToJpg extends ImageOperation
             return false;
         }
 
-        [$width, $height] = \getimagesize($load_filename);
+        list($width, $height) = \getimagesize($load_filename);
         $output = \imagecreatetruecolor($width, $height);
         $c = self::hexrgb($this->color);
         $color = \imagecolorallocate($output, $c['red'], $c['green'], $c['blue']);

@@ -16,6 +16,11 @@ require "library/php/vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 use enshrined\svgSanitize\Sanitizer;
 
+if ( is_plugin_active( 'timber-library/timber.php' ) ) {
+    // Disable the old plugin version of timber.
+    deactivate_plugins( 'timber-library/timber.php' );
+} 
+
 Timber\Timber::init();
 Timber::$dirname = array('templates', 'views');
 
