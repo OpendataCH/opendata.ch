@@ -1,8 +1,8 @@
 <!-- slick slider -->
-{% if post.get_field('images')|length > 0 %}
+{% if post.meta('images')|length > 0 %}
     <div class="slider-wrap">
-        {% for image in post.get_field('images') %}
-            <img class="" src="{{TimberImage(image.image).src('large')}}" alt="{{ image.title }}" />
+        {% for image in post.meta('images') %}
+            <img class="" src="{{get_image(image.image).src('large')}}" alt="{{ image.title }}" />
         {% endfor %}
     </div>
 {% endif %}

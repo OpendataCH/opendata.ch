@@ -1,6 +1,6 @@
-{% for item in applynav.get_items %}
+{% for item in applynav.items %}
 	{% if( loop.last ) %}
-		<a class="apply-now-2020 {{ type }}" href="{{item.get_link}}" {% if item.target %} target="{{item.target}}" {% endif %}>
+		<a class="apply-now-2020 {{ type }}" href="{{item.link}}" {% if item.target %} target="{{item.target}}" {% endif %}>
 			<p class="h5 apply-now-2020-text">{{item.title}}</p>
 			<div class="svg-arrow-2020-right svg-arrow-2020-right-dims arrow-right"></div>
 		</a>

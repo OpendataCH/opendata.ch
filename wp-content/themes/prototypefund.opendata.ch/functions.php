@@ -11,62 +11,37 @@ sidebars, comments, etc.
 
 //flush_rewrite_rules( false ); //might be needed when setting up new custom post types, that is not displayed
 
-if ( ! class_exists( 'Timber' ) ) {
-    add_action( 'admin_notices', function() {
-        echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php') ) . '</a></p></div>';
-    });
+require "library/php/vendor/autoload.php";
 
-    add_filter('template_include', function($template) {
-        return get_stylesheet_directory() . '/static/no-timber.html';
-    });
+use Abraham\TwitterOAuth\TwitterOAuth;
+use enshrined\svgSanitize\Sanitizer;
 
-    return;
-}
+if ( is_plugin_active( 'timber-library/timber.php' ) ) {
+    // Disable the old plugin version of timber.
+    deactivate_plugins( 'timber-library/timber.php' );
+} 
 
+Timber\Timber::init();
 Timber::$dirname = array('templates', 'views');
 
-class StarterSite extends TimberSite {
+class StarterSite extends Timber\Site {
 
     function __construct() {
-        add_theme_support( 'post-formats' );
-        add_theme_support( 'post-thumbnails' );
-        add_theme_support( 'menus' );
-        add_filter( 'timber_context', array( $this, 'add_to_context' ) );
-        add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
-        add_action( 'init', array( $this, 'register_post_types' ) );
-        add_action( 'init', array( $this, 'register_taxonomies' ) );
+        add_action('after_setup_theme', array($this, 'theme_supports'));
+        add_filter('timber/context', array($this, 'add_to_context'));        
         parent::__construct();
     }
 
-    function register_post_types() {
-        //this is where you can register custom post types
-    }
-
-    function register_taxonomies() {
-        //this is where you can register custom taxonomies
-    }
-
     function add_to_context( $context ) {
-        $context['foo'] = 'bar';
-        $context['stuff'] = 'I am a value set in your functions.php file';
-        $context['notes'] = 'These values are available everytime you call Timber::get_context();';
-        $context['menu'] = new TimberMenu();
+        $context['menu'] = Timber::get_menu('primary');
         $context['site'] = $this;
         return $context;
     }
 
-    function myfoo( $text ) {
-        $text .= ' bar!';
-        return $text;
+    public function theme_supports() {
+        add_theme_support('post-thumbnails');
+        add_theme_support('menus');
     }
-
-    function add_to_twig( $twig ) {
-        /* this is where you can add your own functions to twig */
-        $twig->addExtension( new Twig_Extension_StringLoader() );
-        $twig->addFilter('myfoo', new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
-        return $twig;
-    }
-
 }
 
 new StarterSite();
@@ -184,13 +159,13 @@ register_nav_menus(
 // make the menus available in timber
 function add_to_context($data){
 
-  $data['mainnav'] = new TimberMenu('main-nav');
-  $data['canvasnav'] = new TimberMenu('canvas-nav');
-  $data['sharernav'] = new TimberMenu('sharer-nav');
-  $data['applynav'] = new TimberMenu('apply-nav');
-  $data['blognav'] = new TimberMenu('blog-nav');
-  $data['projectnav'] = new TimberMenu('project-nav');
-  $data['footernav'] = new TimberMenu('footer-nav');
+  $data['mainnav'] = Timber::get_menu('main-nav');
+  $data['canvasnav'] = Timber::get_menu('canvas-nav');
+  $data['sharernav'] = Timber::get_menu('sharer-nav');
+  $data['applynav'] = Timber::get_menu('apply-nav');
+  $data['blognav'] = Timber::get_menu('blog-nav');
+  $data['projectnav'] = Timber::get_menu('project-nav');
+  $data['footernav'] = Timber::get_menu('footer-nav');
 
   require_once 'library/php/Mobile_Detect.php';
   $detect = new Mobile_Detect;
@@ -200,7 +175,7 @@ function add_to_context($data){
 
   return $data;
 }
-add_filter('timber_context', 'add_to_context');
+add_filter('timber/context', 'add_to_context');
 
 /*----------  Option Pages  ----------*/
 if( function_exists('acf_add_options_page') ) {
@@ -251,9 +226,6 @@ add_filter('upload_mimes', 'allow_svgimg_types');
 
 /************* CUSTOM FUNCTIONS *********************/
 
-    require "library/php/vendor/autoload.php";
-    use Abraham\TwitterOAuth\TwitterOAuth;
-    use enshrined\svgSanitize\Sanitizer;
 
 function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
   $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
@@ -302,12 +274,12 @@ function calc_deadline(){
     $upcoming_date = new DateTime($upcoming_date);
     $upcoming_date_format = $upcoming_date->format('Y-m-d');
 
-  $deadline_text = get_field('deadline_text', 'options');
-  $upcoming_text = get_field('upcoming_text', 'options');
-  $deadline_text_today = get_field('deadline_text_today', 'options');
-  $deadline_text_over = get_field('deadline_text_over', 'options');
-  $deadline_text_singular = get_field('deadline_text_singular', 'options');
-  $deadline_text_plural = get_field('deadline_text_plural', 'options');
+  $deadline_text = get_field('deadline_text', 'options') ?? '';
+  $upcoming_text = get_field('upcoming_text', 'options') ?? '';
+  $deadline_text_today = get_field('deadline_text_today', 'options') ?? '';
+  $deadline_text_over = get_field('deadline_text_over', 'options') ?? '';
+  $deadline_text_singular = get_field('deadline_text_singular', 'options') ?? '';
+  $deadline_text_plural = get_field('deadline_text_plural', 'options') ?? '';
 
   $now = current_time('Y-m-d');
 
@@ -380,20 +352,20 @@ function calc_deadline(){
 
                 if(isset($projects[$index+1])){
                     $next_id = $projects[$index+1]->ID;
-                    $next_post = new TimberPost($next_id);
+                    $next_post = Timber::get_post($next_id);
                 } else {
                     //last
                     $next_id = $projects[0]->ID;
-                    $next_post = new TimberPost($next_id);
+                    $next_post = Timber::get_post($next_id);
                 }
 
                 if(isset($projects[$index-1])){
                     $prev_id = $projects[$index-1]->ID;
-                    $prev_post = new TimberPost($prev_id);
+                    $prev_post = Timber::get_post($prev_id);
                 } else {
                     //first
                     $prev_id = $projects[count($projects)-1]->ID;
-                    $prev_post = new TimberPost($prev_id);
+                    $prev_post = Timber::get_post($prev_id);
                 }
             }
         }
@@ -1099,48 +1071,6 @@ function create_user_submission( $data ) {
           'filename'  =>   $attachmentURL,
           'url'  =>  get_post_permalink( $post_id )
       );
-
-    // PNG conversion
-      /*
-    require_once('library/php/svg2png/svg2pngPhantomJS.php');
-
-    try {
-
-      $svg2png = new svg2png();
-      $pngUrl = $svg2png->generatePng('file://' . get_attached_file($attach_id) , $upload_path . $hashed_filenameBase . '.png');
-
-      $file_return = upload_p_file( $hashed_filenameBase . '.png' ,'image/png');
-
-      //return error if there is one
-      if(isset($file_return['error']) || isset($file_return['upload_error_handler'])) {
-
-        $return = array(
-          'status'  =>  'error'
-          );
-
-        error_log("Error uploading PNG to wordpress");
-
-      } else {
-
-        $attach_id = create_p_attachment($file_return,$post_id);
-
-        update_field('png',$attach_id,$post_id);
-
-        $return = array(
-          'status'  =>  'success',
-          'filename'  =>   $attachmentURL,
-          'url'  =>  get_post_permalink( $post_id )
-          );
-      }
-
-    } catch (Exception $e) {
-
-        error_log($e->getMessage());
-        $return = array(
-          'status'  =>  'error'
-        );
-    }*/
-
   }
 
   return $return;

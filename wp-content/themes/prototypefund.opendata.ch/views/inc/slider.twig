@@ -5,7 +5,7 @@
         <!-- Slides -->
         {% for slide in slides %}
             <div class="swiper-slide">
-                {% set img = TimberImage(slide.agency_slider_image) %}
+                {% set img = get_image(slide.agency_slider_image) %}
                 <img class="img-responsive" src="{{ img.src }}" alt="{{ img.alt }}" height="{{ img.height }}" width="{{ img.width }}" />            
             </div>
         {% endfor %}

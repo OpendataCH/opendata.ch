@@ -17,7 +17,7 @@
                     </div>
                     <div class="info col-xs-20 col-sm-20 no-padding">
                         <div class="user">
-                            {% for item in post.get_field('members') %}
+                            {% for item in post.meta('members') %}
                                 {% if item.url %}
                                     <a href="{{item.url}}" target="_blank">{{item.name}}</a>
                                 {% else %}

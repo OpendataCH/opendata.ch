@@ -12,6 +12,7 @@
 namespace Twig\NodeVisitor;
 
 use Twig\Environment;
+use Twig\Node\CheckSecurityCallNode;
 use Twig\Node\CheckSecurityNode;
 use Twig\Node\CheckToStringNode;
 use Twig\Node\Expression\Binary\ConcatBinary;
@@ -26,20 +27,22 @@ use Twig\Node\PrintNode;
 use Twig\Node\SetNode;
 
 /**
- * @final
- *
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @internal
  */
-class SandboxNodeVisitor extends AbstractNodeVisitor
+final class SandboxNodeVisitor implements NodeVisitorInterface
 {
-    protected $inAModule = false;
-    protected $tags;
-    protected $filters;
-    protected $functions;
-
+    private $inAModule = false;
+    /** @var array<string, int> */
+    private $tags;
+    /** @var array<string, int> */
+    private $filters;
+    /** @var array<string, int> */
+    private $functions;
     private $needsToStringWrap = false;
 
-    protected function doEnterNode(Node $node, Environment $env)
+    public function enterNode(Node $node, Environment $env): Node
     {
         if ($node instanceof ModuleNode) {
             $this->inAModule = true;
@@ -51,22 +54,22 @@ class SandboxNodeVisitor extends AbstractNodeVisitor
         } elseif ($this->inAModule) {
             // look for tags
             if ($node->getNodeTag() && !isset($this->tags[$node->getNodeTag()])) {
-                $this->tags[$node->getNodeTag()] = $node;
+                $this->tags[$node->getNodeTag()] = $node->getTemplateLine();
             }
 
             // look for filters
             if ($node instanceof FilterExpression && !isset($this->filters[$node->getNode('filter')->getAttribute('value')])) {
-                $this->filters[$node->getNode('filter')->getAttribute('value')] = $node;
+                $this->filters[$node->getNode('filter')->getAttribute('value')] = $node->getTemplateLine();
             }
 
             // look for functions
             if ($node instanceof FunctionExpression && !isset($this->functions[$node->getAttribute('name')])) {
-                $this->functions[$node->getAttribute('name')] = $node;
+                $this->functions[$node->getAttribute('name')] = $node->getTemplateLine();
             }
 
             // the .. operator is equivalent to the range() function
             if ($node instanceof RangeBinary && !isset($this->functions['range'])) {
-                $this->functions['range'] = $node;
+                $this->functions['range'] = $node->getTemplateLine();
             }
 
             if ($node instanceof PrintNode) {
@@ -97,12 +100,13 @@ class SandboxNodeVisitor extends AbstractNodeVisitor
         return $node;
     }
 
-    protected function doLeaveNode(Node $node, Environment $env)
+    public function leaveNode(Node $node, Environment $env): ?Node
     {
         if ($node instanceof ModuleNode) {
             $this->inAModule = false;
 
-            $node->getNode('constructor_end')->setNode('_security_check', new Node([new CheckSecurityNode($this->filters, $this->tags, $this->functions), $node->getNode('display_start')]));
+            $node->setNode('constructor_end', new Node([new CheckSecurityCallNode(), $node->getNode('constructor_end')]));
+            $node->setNode('class_end', new Node([new CheckSecurityNode($this->filters, $this->tags, $this->functions), $node->getNode('class_end')]));
         } elseif ($this->inAModule) {
             if ($node instanceof PrintNode || $node instanceof SetNode) {
                 $this->needsToStringWrap = false;
@@ -112,7 +116,7 @@ class SandboxNodeVisitor extends AbstractNodeVisitor
         return $node;
     }
 
-    private function wrapNode(Node $node, $name)
+    private function wrapNode(Node $node, string $name): void
     {
         $expr = $node->getNode($name);
         if ($expr instanceof NameExpression || $expr instanceof GetAttrExpression) {
@@ -120,7 +124,7 @@ class SandboxNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    private function wrapArrayNode(Node $node, $name)
+    private function wrapArrayNode(Node $node, string $name): void
     {
         $args = $node->getNode($name);
         foreach ($args as $name => $_) {
@@ -128,10 +132,8 @@ class SandboxNodeVisitor extends AbstractNodeVisitor
         }
     }
 
-    public function getPriority()
+    public function getPriority(): int
     {
         return 0;
     }
 }
-
-class_alias('Twig\NodeVisitor\SandboxNodeVisitor', 'Twig_NodeVisitor_Sandbox');

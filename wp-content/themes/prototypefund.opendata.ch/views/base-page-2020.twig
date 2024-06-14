@@ -7,7 +7,7 @@
 	<header class="header {% if isHome %}home{% endif %}">
 		<div class="logo-container col-xs-24 col-md-12 no-padding">
 			<div id="fixed-logo-p" {% if isHome %} style="opacity:0;{% endif %}">
-				<a class="logo-link" href="{{ site.url }}">
+				<a class="logo-link" href="{{ site.link }}">
 					<span class="sr-only">prototypefund.ch logo</span>
 					<div aria-hidden="true" class="svg-logo-p svg-logo-p-dims" ></div>
 				</a>
@@ -15,7 +15,7 @@
 			{% if isHome %}
 				<div class="header-inner-wrapper">
 					<div class="logo-large-wrapper show">
-						<a aria-hidden="true" href="{{ site.url }}">
+						<a aria-hidden="true" href="{{ site.link }}">
 							<h1 class="logo" title="{{ options.logo_title }}">
 								<img aria-hidden="true" class="img-responsive" src="{{ theme.link }}/library/images/logo-ptf.svg" alt="Prototype Fund"/>
 							</h1>
@@ -122,13 +122,13 @@ s.parentNode.insertBefore(g, s);
 
 		var currentPageId = {{ post.id }};
 var themePath = '{{ function('get_template_directory_uri') }}';
-var siteURL = '{{ site.url }}';
+var siteURL = '{{ site.link }}';
 var languageCode = '{{ options.languageCode }}';
 var isHome = '{{ isHome }}';
-var showMap = '{{ showMap }}';{% if post.get_field('projects_total') %}
-var totalProject = '{{ post.get_field('projects_total') }}';{% endif %}
-{% if post.get_field('fill_percentage') %}
-var fillPercentage = '{{ post.get_field('fill_percentage') }}';{% endif %}
+var showMap = '{{ showMap }}';{% if post.meta('projects_total') %}
+var totalProject = '{{ post.meta('projects_total') }}';{% endif %}
+{% if post.meta('fill_percentage') %}
+var fillPercentage = '{{ post.meta('fill_percentage') }}';{% endif %}
 
 function onFormularSend() {
 window.controller.onFormularSend();

@@ -20,8 +20,8 @@
                         </div>
                         <div class="project-list-item-text-wrap">
                             <h1 class="project-list-item-headline uppercase">{{ post.post_title }}</h1>
-                            <div class="project-list-item-copy">{{ post.get_field('content1') }}</div>
-                            <div class="project-list-item-members">{% for item in post.get_field('members') %}
+                            <div class="project-list-item-copy">{{ post.meta('content1') }}</div>
+                            <div class="project-list-item-members">{% for item in post.meta('members') %}
                                     {% if item.email %}
                                         <span class="project-list-item-member"><a href="mailto:{{item.email}}" target="_blank">{{item.name}}</a></span>{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}
                                     {% else %}<span class="project-list-item-member">{{item.name}}{% if(loop.last == false)%}<span class="project-list-item-member-spacer">,</span>{% endif %}{% endif %}</span>
@@ -54,7 +54,7 @@
                 {% else %}
                     {% if post.thumbnail %}
                         <!-- has teaser image -->
-                        {% set img = Image(post.thumbnail)  %}
+                        {% set img = get_image(post.thumbnail)  %}
                         <div class="project-teaser-image" style="background-image:url({{img.src('ptf-16x9_large') }})"></div>
                     {% else %}
                         <!-- has no teaser image -->

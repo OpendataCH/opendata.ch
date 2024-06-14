@@ -8,7 +8,7 @@
             </div>
             <div data-sticky-container class="blogpost-content">
                 <div class="row no-margin">
-                    <div class="blogpost-left col-xs-24 {% if TimberImage(post.thumbnail).src('large')|length == 0 and video_embed_url == false %}col-md-18{% else %}col-md-14{% endif %} no-padding">
+                    <div class="blogpost-left col-xs-24 {% if get_image(post.thumbnail).src('large')|length == 0 and video_embed_url == false %}col-md-18{% else %}col-md-14{% endif %} no-padding">
                         <header class="article-header">
                             <h1 class="page-title" itemprop="headline">{{ post.title }}</h1>
                         </header>
@@ -31,12 +31,12 @@
                             {% endfor %}
                         </div>
                     </div>
-                    {% if TimberImage(post.thumbnail).src('large')|length > 0 or post.get_field('images')|length > 0 or video_embed|length > 0 %}
+                    {% if get_image(post.thumbnail).src('large')|length > 0 or post.meta('images')|length > 0 or video_embed|length > 0 %}
                         <div data-margin-top="100" class="sticky blogpost-right col-xs-24 col-md-10 no-padding blog-images">
-                            {% if( TimberImage(post.thumbnail).src('large')|length ) %}
+                            {% if( get_image(post.thumbnail).src('large')|length ) %}
                                 <div class="image-wrapper">
                                     <div class="image-container">
-                                        <img src="{{ TimberImage(post.thumbnail).src('large') }}" class="img-responsive" alt="{{post.title}}" />
+                                        <img src="{{ get_image(post.thumbnail).src('large') }}" class="img-responsive" alt="{{post.title}}" />
                                     </div>
                                 </div>
                             {% endif %}

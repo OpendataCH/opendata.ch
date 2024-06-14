@@ -31,7 +31,7 @@
                             {% for logo in options.footer_logos %}
                                 <div class="sponsor-item">
                                     <p class="sponsor-item-caption">{{ logo.footer_logo_headline }}</p>
-                                    <a href="{{ logo.footer_logo_url }}" target="_blank"><img class="img-responsive" src="{{TimberImage(logo.footer_logo_image).src}}" alt="{{logo.footer_logo_image.alt}}"></a>
+                                    <a href="{{ logo.footer_logo_url }}" target="_blank"><img class="img-responsive" src="{{get_image(logo.footer_logo_image).src}}" alt="{{logo.footer_logo_image.alt}}"></a>
                                 </div>
                             {% endfor %}
                         {% endif %}
@@ -50,8 +50,8 @@
                     <nav aria-label="{{ __('Footer', 'theme') }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                         {% if( post.id != 58 and post.id != 157) %}
                             <ul class="nav footer-nav">
-                                {% for item in footernav.get_items %}
-                                    <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+                                {% for item in footernav.items %}
+                                    <li class="menu-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.link}}">{{item.title}}</a>
                                     </li>
                                 {% endfor %}
                             </ul>

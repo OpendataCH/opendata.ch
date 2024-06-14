@@ -10,9 +10,9 @@
             </div>
         </div>
         <div class="news-tile-hover">
-            {% if post.get_field('excerpt')|length > 0 %}
+            {% if post.meta('excerpt')|length > 0 %}
                 <div class="news-tile-excerpt">
-                    {{ function('wp_trim_words', post.get_field('excerpt'), 30, '...') }}
+                    {{ function('wp_trim_words', post.meta('excerpt'), 30, '...') }}
                 </div>
 
             {% else %}
@@ -22,8 +22,8 @@
 
             {% endif %}
 
-            <div class="news-tile-color {% if TimberImage(post.thumbnail).src('medium')|length %}with-image{% endif %}" ></div>
-            {% if TimberImage(post.thumbnail).src('medium')|length > 0 %}<div class="news-tile-image"></div>{% endif %}
+            <div class="news-tile-color {% if get_image(post.thumbnail).src('medium')|length %}with-image{% endif %}" ></div>
+            {% if get_image(post.thumbnail).src('medium')|length > 0 %}<div class="news-tile-image"></div>{% endif %}
         </div>
         <div class="news-tile-content">
             <div class="news-tile-content-inner">

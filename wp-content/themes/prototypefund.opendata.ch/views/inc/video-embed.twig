@@ -9,7 +9,7 @@
 
         <button class="videoPoster js-videoPoster" style="background-image:url(
         {% if post.video_poster %}
-            {{ TimberImage(post.video_poster).src('ru-image-1030w') }}
+            {{ get_image(post.video_poster).src('ru-image-1030w') }}
         {% else %}
             {% set id = function('get_youtube_video_id',item.video_embed_url) %}
             {% set post_url = 'https://img.youtube.com/vi/' ~ id ~ '/0.jpg'  %}

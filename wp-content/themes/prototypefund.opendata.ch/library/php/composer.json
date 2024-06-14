@@ -1,8 +1,13 @@
 {
     "require": {
         "abraham/twitteroauth": "^0.6.4",
-        "jonnyw/php-phantomjs": "4.*",
         "mustache/mustache": "~2.5",
-		"enshrined/svg-sanitize":"^0"
+		"enshrined/svg-sanitize":"^0",
+        "timber/timber": "2.1"    
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
     }
 }
