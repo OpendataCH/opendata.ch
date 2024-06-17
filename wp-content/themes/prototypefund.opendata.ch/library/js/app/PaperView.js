@@ -742,8 +742,7 @@
             }
 
             //create SVG
-            var svg = container.exportSVG({ asString: true });
-
+            var svg = paper.project.exportSVG({ asString: true });
             // SVG cleanup
             $svg = $(svg);
 

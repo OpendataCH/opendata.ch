@@ -1,22 +1,22 @@
 /*!
- * Paper.js v0.12.4 - The Swiss Army Knife of Vector Graphics Scripting.
+ * Paper.js v0.12.17 - The Swiss Army Knife of Vector Graphics Scripting.
  * http://paperjs.org/
  *
- * Copyright (c) 2011 - 2019, Juerg Lehni & Jonathan Puckey
- * http://scratchdisk.com/ & https://puckey.studio/
+ * Copyright (c) 2011 - 2020, Jürg Lehni & Jonathan Puckey
+ * http://juerglehni.com/ & https://puckey.studio/
  *
  * Distributed under the MIT license. See LICENSE file for details.
  *
  * All rights reserved.
  *
- * Date: Sun Dec 15 21:25:00 2019 +0100
+ * Date: Thu Nov 3 21:15:36 2022 +0100
  *
  ***
  *
  * Straps.js - Class inheritance library with support for bean-style accessors
  *
- * Copyright (c) 2006 - 2019 Juerg Lehni
- * http://scratchdisk.com/
+ * Copyright (c) 2006 - 2020 Jürg Lehni
+ * http://juerglehni.com/
  *
  * Distributed under the MIT license.
  *
@@ -575,7 +575,7 @@ statics: {
 						if (Base.isPlainObject(arg)) {
 							arg.insert = false;
 							if (useTarget) {
-								args = args.concat([{ insert: true }]);
+								args = args.concat([Item.INSERT]);
 							}
 						}
 					}
@@ -821,7 +821,7 @@ var PaperScope = Base.extend({
 		}
 	},
 
-	version: "0.12.4",
+	version: "0.12.17",
 
 	getView: function() {
 		var project = this.project;
@@ -1218,6 +1218,7 @@ var Numerical = new function() {
 		CURVETIME_EPSILON: 1e-8,
 		GEOMETRIC_EPSILON: 1e-7,
 		TRIGONOMETRIC_EPSILON: 1e-8,
+		ANGULAR_EPSILON: 1e-5,
 		KAPPA: 4 * (sqrt(2) - 1) / 3,
 
 		isZero: function(val) {
@@ -3135,6 +3136,7 @@ var Item = Base.extend(Emitter, {
 			return extend.base.apply(this, arguments);
 		},
 
+		INSERT: { insert: true },
 		NO_INSERT: { insert: false }
 	},
 
@@ -3221,13 +3223,13 @@ new function() {
 		matrix._owner = this;
 		this._style = new Style(project._currentStyle, this, project);
 		if (internal || hasProps && props.insert == false
-			|| !settings.insertItems && !(hasProps && props.insert === true)) {
+			|| !settings.insertItems && !(hasProps && props.insert == true)) {
 			this._setProject(project);
 		} else {
 			(hasProps && props.parent || project)
 					._insertItem(undefined, this, true);
 		}
-		if (hasProps && props !== Item.NO_INSERT) {
+		if (hasProps && props !== Item.NO_INSERT && props !== Item.INSERT) {
 			this.set(props, {
 				internal: true, insert: true, project: true, parent: true
 			});
@@ -3657,15 +3659,25 @@ new function() {
 			var rotation = this.getRotation(),
 				decomposed = this._decomposed,
 				matrix = new Matrix(),
-				center = this.getPosition(true);
-			matrix.translate(center);
-			if (rotation)
-				matrix.rotate(rotation);
-			matrix.scale(scaling.x / current.x, scaling.y / current.y);
-			if (rotation)
-				matrix.rotate(-rotation);
-			matrix.translate(center.negate());
-			this.transform(matrix);
+				isZero = Numerical.isZero;
+			if (isZero(current.x) || isZero(current.y)) {
+				matrix.translate(decomposed.translation);
+				if (rotation) {
+					matrix.rotate(rotation);
+				}
+				matrix.scale(scaling.x, scaling.y);
+				this._matrix.set(matrix);
+			} else {
+				var center = this.getPosition(true);
+				matrix.translate(center);
+				if (rotation)
+					matrix.rotate(rotation);
+				matrix.scale(scaling.x / current.x, scaling.y / current.y);
+				if (rotation)
+					matrix.rotate(-rotation);
+				matrix.translate(center.negate());
+				this.transform(matrix);
+			}
 			if (decomposed) {
 				decomposed.scaling = scaling;
 				this._decomposed = decomposed;
@@ -3679,7 +3691,7 @@ new function() {
 
 	setMatrix: function() {
 		var matrix = this._matrix;
-		matrix.initialize.apply(matrix, arguments);
+		matrix.set.apply(matrix, arguments);
 	},
 
 	getGlobalMatrix: function(_dontClone) {
@@ -3878,27 +3890,45 @@ new function() {
 			this.setName(name);
 	},
 
-	rasterize: function(resolution, insert) {
+	rasterize: function(arg0, arg1) {
+		var resolution,
+			insert,
+			raster;
+		if (Base.isPlainObject(arg0)) {
+			resolution = arg0.resolution;
+			insert = arg0.insert;
+			raster = arg0.raster;
+		} else {
+			resolution = arg0;
+			insert = arg1;
+		}
+		if (!raster) {
+			raster = new Raster(Item.NO_INSERT);
+		}
 		var bounds = this.getStrokeBounds(),
 			scale = (resolution || this.getView().getResolution()) / 72,
 			topLeft = bounds.getTopLeft().floor(),
 			bottomRight = bounds.getBottomRight().ceil(),
-			size = new Size(bottomRight.subtract(topLeft)),
-			raster = new Raster(Item.NO_INSERT);
-		if (!size.isZero()) {
-			var canvas = CanvasProvider.getCanvas(size.multiply(scale)),
-				ctx = canvas.getContext('2d'),
+			boundsSize = new Size(bottomRight.subtract(topLeft)),
+			rasterSize = boundsSize.multiply(scale);
+		raster.setSize(rasterSize, true);
+
+		if (!rasterSize.isZero()) {
+			var ctx = raster.getContext(true),
 				matrix = new Matrix().scale(scale).translate(topLeft.negate());
 			ctx.save();
 			matrix.applyToContext(ctx);
 			this.draw(ctx, new Base({ matrices: [matrix] }));
 			ctx.restore();
-			raster.setCanvas(canvas);
 		}
-		raster.transform(new Matrix().translate(topLeft.add(size.divide(2)))
-				.scale(1 / scale));
-		if (insert === undefined || insert)
+		raster._matrix.set(
+			new Matrix()
+				.translate(topLeft.add(boundsSize.divide(2)))
+				.scale(1 / scale)
+		);
+		if (insert === undefined || insert) {
 			raster.insertAbove(this);
+		}
 		return raster;
 	},
 
@@ -4683,7 +4713,7 @@ new function() {
 		}
 
 		var blendMode = this._blendMode,
-			opacity = this._opacity,
+			opacity = Numerical.clamp(this._opacity, 0, 1),
 			normalBlend = blendMode === 'normal',
 			nativeBlend = BlendMode.nativeModes[blendMode],
 			direct = normalBlend && opacity === 1
@@ -5332,7 +5362,7 @@ var Raster = Item.extend({
 		source: null
 	},
 	_prioritize: ['crossOrigin'],
-	_smoothing: true,
+	_smoothing: 'low',
 	beans: true,
 
 	initialize: function Raster(source, position) {
@@ -5346,7 +5376,7 @@ var Raster = Item.extend({
 						? source
 						: null;
 			if (object && object !== Item.NO_INSERT) {
-				if (object.getContent || object.naturalHeight != null) {
+				if (object.getContext || object.naturalHeight != null) {
 					image = object;
 				} else if (object) {
 					var size = Size.read(arguments);
@@ -5390,20 +5420,23 @@ var Raster = Item.extend({
 				this, 'setSize');
 	},
 
-	setSize: function() {
+	setSize: function(_size, _clear) {
 		var size = Size.read(arguments);
 		if (!size.equals(this._size)) {
 			if (size.width > 0 && size.height > 0) {
-				var element = this.getElement();
+				var element = !_clear && this.getElement();
 				this._setImage(CanvasProvider.getCanvas(size));
-				if (element)
+				if (element) {
 					this.getContext(true).drawImage(element, 0, 0,
 							size.width, size.height);
+				}
 			} else {
 				if (this._canvas)
 					CanvasProvider.release(this._canvas);
 				this._size = size.clone();
 			}
+		} else if (_clear) {
+			this.clear();
 		}
 	},
 
@@ -5556,7 +5589,9 @@ var Raster = Item.extend({
 	},
 
 	setSmoothing: function(smoothing) {
-		this._smoothing = smoothing;
+		this._smoothing = typeof smoothing === 'string'
+			? smoothing
+			: smoothing ? 'low' : 'off';
 		this._changed(257);
 	},
 
@@ -5695,9 +5730,14 @@ var Raster = Item.extend({
 				rect.width, rect.height);
 	},
 
-	setImageData: function(data ) {
+	putImageData: function(data ) {
 		var point = Point.read(arguments, 1);
 		this.getContext(true).putImageData(data, point.x, point.y);
+	},
+
+	setImageData: function(data) {
+		this.setSize(data);
+		this.getContext(true).putImageData(data, 0, 0);
 	},
 
 	_getBounds: function(matrix, options) {
@@ -5722,12 +5762,16 @@ var Raster = Item.extend({
 	_draw: function(ctx, param, viewMatrix) {
 		var element = this.getElement();
 		if (element && element.width > 0 && element.height > 0) {
-			ctx.globalAlpha = this._opacity;
+			ctx.globalAlpha = Numerical.clamp(this._opacity, 0, 1);
 
 			this._setStyles(ctx, param, viewMatrix);
 
+			var smoothing = this._smoothing,
+				disabled = smoothing === 'off';
 			DomElement.setPrefixed(
-				ctx, 'imageSmoothingEnabled', this._smoothing
+				ctx,
+				disabled ? 'imageSmoothingEnabled' : 'imageSmoothingQuality',
+				disabled ? false : smoothing
 			);
 
 			ctx.drawImage(element,
@@ -6797,13 +6841,13 @@ statics: {
 		}
 
 		padding /= 2;
-		var minPad = min[coord] - padding,
-			maxPad = max[coord] + padding;
+		var minPad = min[coord] + padding,
+			maxPad = max[coord] - padding;
 		if (    v0 < minPad || v1 < minPad || v2 < minPad || v3 < minPad ||
 				v0 > maxPad || v1 > maxPad || v2 > maxPad || v3 > maxPad) {
 			if (v1 < v0 != v1 < v3 && v2 < v0 != v2 < v3) {
-				add(v0, padding);
-				add(v3, padding);
+				add(v0, 0);
+				add(v3, 0);
 			} else {
 				var a = 3 * (v1 - v2) - v0 + v3,
 					b = 2 * (v0 + v2) - 4 * v1,
@@ -7691,10 +7735,13 @@ var CurveLocation = Base.extend({
 		this._intersection = this._next = this._previous = null;
 	},
 
-	_setCurve: function(curve) {
-		var path = curve._path;
+	_setPath: function(path) {
 		this._path = path;
 		this._version = path ? path._version : 0;
+	},
+
+	_setCurve: function(curve) {
+		this._setPath(curve._path);
 		this._curve = curve;
 		this._segment = null;
 		this._segment1 = curve._segment1;
@@ -7702,7 +7749,14 @@ var CurveLocation = Base.extend({
 	},
 
 	_setSegment: function(segment) {
-		this._setCurve(segment.getCurve());
+		var curve = segment.getCurve();
+		if (curve) {
+			this._setCurve(curve);
+		} else {
+			this._setPath(segment._path);
+			this._segment1 = segment;
+			this._segment2 = null;
+		}
 		this._segment = segment;
 		this._time = segment === this._segment1 ? 0 : 1;
 		this._point = segment._point.clone();
@@ -7908,7 +7962,7 @@ var CurveLocation = Base.extend({
 				offset = Curve.getLength(v,
 					end && count ? roots[count - 1] : 0,
 					!end && count ? roots[0] : 1);
-			offsets.push(count ? offset : offset / 64);
+			offsets.push(count ? offset : offset / 32);
 		}
 
 		function isInRange(angle, min, max) {
@@ -8267,7 +8321,7 @@ var PathItem = Item.extend({
 				matched = [],
 				count = 0;
 			ok = true;
-			var boundsOverlaps = CollisionDetection.findBoundsOverlaps(paths1, paths2, Numerical.GEOMETRIC_EPSILON);
+			var boundsOverlaps = CollisionDetection.findItemBoundsCollisions(paths1, paths2, Numerical.GEOMETRIC_EPSILON);
 			for (var i1 = length1 - 1; i1 >= 0 && ok; i1--) {
 				var path1 = paths1[i1];
 				ok = false;
@@ -9445,7 +9499,6 @@ new function() {
 							length = flattener.length,
 							from = -style.getDashOffset(), to,
 							i = 0;
-						from = from % length;
 						while (from > 0) {
 							from -= getOffset(i--) + getOffset(i--);
 						}
@@ -9618,9 +9671,11 @@ new function() {
 				}
 			}
 			if (extent) {
-				var epsilon = 1e-7,
+				var epsilon = 1e-5,
 					ext = abs(extent),
-					count = ext >= 360 ? 4 : Math.ceil((ext - epsilon) / 90),
+					count = ext >= 360
+						? 4
+						: Math.ceil((ext - epsilon) / 90),
 					inc = extent / count,
 					half = inc * Math.PI / 360,
 					z = 4 / 3 * Math.sin(half) / (1 + Math.cos(half)),
@@ -9793,13 +9848,16 @@ statics: {
 		}
 
 		var length = segments.length - (closed ? 0 : 1);
-		for (var i = 1; i < length; i++)
-			addJoin(segments[i], join);
-		if (closed) {
-			addJoin(segments[0], join);
-		} else if (length > 0) {
-			addCap(segments[0], cap);
-			addCap(segments[segments.length - 1], cap);
+		if (length > 0) {
+			for (var i = 1; i < length; i++) {
+				addJoin(segments[i], join);
+			}
+			if (closed) {
+				addJoin(segments[0], join);
+			} else {
+				addCap(segments[0], cap);
+				addCap(segments[segments.length - 1], cap);
+			}
 		}
 		return bounds;
 	},
@@ -9925,10 +9983,14 @@ Path.inject({ statics: new function() {
 
 	function createPath(segments, closed, args) {
 		var props = Base.getNamed(args),
-			path = new Path(props && props.insert == false && Item.NO_INSERT);
+			path = new Path(props && (
+				props.insert == true ? Item.INSERT
+				: props.insert == false ? Item.NO_INSERT
+				: null
+			));
 		path._add(segments);
 		path._closed = closed;
-		return path.set(props, { insert: true });
+		return path.set(props, Item.INSERT);
 	}
 
 	function createEllipse(center, radius, args) {
@@ -10881,8 +10943,8 @@ PathItem.inject(new function() {
 
 			if (inter) {
 				collect(inter);
-				while (inter && inter._prev)
-					inter = inter._prev;
+				while (inter && inter._previous)
+					inter = inter._previous;
 				collect(inter, start);
 			}
 			return crossings;
@@ -11646,7 +11708,9 @@ var Color = Base.extend(new function() {
 			if (!color) {
 				if (window) {
 					if (!colorCtx) {
-						colorCtx = CanvasProvider.getContext(1, 1);
+						colorCtx = CanvasProvider.getContext(1, 1, {
+							willReadFrequently: true
+						});
 						colorCtx.globalCompositeOperation = 'copy';
 					}
 					colorCtx.fillStyle = 'rgba(0,0,0,0)';
@@ -12774,7 +12838,7 @@ var View = Base.extend(Emitter, {
 		if (window && element) {
 			this._id = element.getAttribute('id');
 			if (this._id == null)
-				element.setAttribute('id', this._id = 'view-' + View._id++);
+				element.setAttribute('id', this._id = 'paper-view-' + View._id++);
 			DomEvent.add(element, this._viewEvents);
 			var none = 'none';
 			DomElement.setPrefixed(element.style, {
@@ -13111,7 +13175,7 @@ var View = Base.extend(Emitter, {
 
 	setMatrix: function() {
 		var matrix = this._matrix;
-		matrix.initialize.apply(matrix, arguments);
+		matrix.set.apply(matrix, arguments);
 	},
 
 	transform: function(matrix) {
@@ -14005,7 +14069,7 @@ var Tween = Base.extend(Emitter, {
 	_class: 'Tween',
 
 	statics: {
-		easings: {
+		easings: new Base({
 			linear: function(t) {
 				return t;
 			},
@@ -14065,7 +14129,7 @@ var Tween = Base.extend(Emitter, {
 					? 16 * t * t * t * t * t
 					: 1 + 16 * (--t) * t * t * t * t;
 			}
-		}
+		})
 	},
 
 	initialize: function Tween(object, from, to, duration, easing, start) {
@@ -14111,7 +14175,7 @@ var Tween = Base.extend(Emitter, {
 
 	update: function(progress) {
 		if (this.running) {
-			if (progress > 1) {
+			if (progress >= 1) {
 				progress = 1;
 				this.running = false;
 			}
@@ -14133,14 +14197,14 @@ var Tween = Base.extend(Emitter, {
 				this._setProperty(this._parsedKeys[key], value);
 			}
 
-			if (!this.running && this._then) {
-				this._then(this.object);
-			}
 			if (this.responds('update')) {
 				this.emit('update', new Base({
 					progress: progress,
 					factor: factor
 				}));
+			}
+			if (!this.running && this._then) {
+				this._then(this.object);
 			}
 		}
 		return this;
@@ -14271,10 +14335,10 @@ var Http = {
 	}
 };
 
-var CanvasProvider = {
+var CanvasProvider = Base.exports.CanvasProvider = {
 	canvases: [],
 
-	getCanvas: function(width, height) {
+	getCanvas: function(width, height, options) {
 		if (!window)
 			return null;
 		var canvas,
@@ -14289,7 +14353,7 @@ var CanvasProvider = {
 			canvas = document.createElement('canvas');
 			clear = false;
 		}
-		var ctx = canvas.getContext('2d');
+		var ctx = canvas.getContext('2d', options || {});
 		if (!ctx) {
 			throw new Error('Canvas ' + canvas +
 					' is unable to provide a 2D context.');
@@ -14305,9 +14369,9 @@ var CanvasProvider = {
 		return canvas;
 	},
 
-	getContext: function(width, height) {
-		var canvas = this.getCanvas(width, height);
-		return canvas ? canvas.getContext('2d') : null;
+	getContext: function(width, height, options) {
+		var canvas = this.getCanvas(width, height, options);
+		return canvas ? canvas.getContext('2d', options || {}) : null;
 	},
 
 	release: function(obj) {
@@ -14505,7 +14569,7 @@ var BlendMode = new function() {
 		this[mode] = true;
 	}, {});
 
-	var ctx = CanvasProvider.getContext(1, 1);
+	var ctx = CanvasProvider.getContext(1, 1, { willReadFrequently: true });
 	if (ctx) {
 		Base.each(modes, function(func, mode) {
 			var darken = mode === 'darken',
@@ -15539,8 +15603,12 @@ new function() {
 
 		function onLoad(svg) {
 			try {
-				var node = typeof svg === 'object' ? svg : new self.DOMParser()
-						.parseFromString(svg, 'image/svg+xml');
+				var node = typeof svg === 'object'
+					? svg
+					: new self.DOMParser().parseFromString(
+						svg.trim(),
+						'image/svg+xml'
+					);
 				if (!node.nodeName) {
 					node = null;
 					throw new Error('Unsupported SVG source: ' + source);
@@ -15567,7 +15635,7 @@ new function() {
 			}
 		}
 
-		if (typeof source === 'string' && !/^.*</.test(source)) {
+		if (typeof source === 'string' && !/^[\s\S]*</.test(source)) {
 			var node = document.getElementById(source);
 			if (node) {
 				onLoad(node);

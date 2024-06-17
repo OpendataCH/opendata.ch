@@ -1,6 +1,6 @@
 <?php
 
-$cachebust = '?v=16';
+$cachebust = '?v=17';
 //$cachebust = '?v=' . rand(5, 15);
 
 /* Welcome to Bones :)
@@ -161,7 +161,7 @@ function bones_scripts_and_styles() {
         wp_register_script( 'sticky-js', get_stylesheet_directory_uri() . '/library/js/libs/sticky.min.js', array(), '', true );
         wp_register_script( 'mailchimp-forms-js', get_stylesheet_directory_uri() . '/library/js/utils/MailchimpForms.js', array(), '', true );
         wp_register_script( 'logger-js', get_stylesheet_directory_uri() . '/library/js/libs/logger.min.js', array(), '', true );
-        wp_register_script( 'paper-js', get_stylesheet_directory_uri() . '/library/js/libs/paper/paper-core.min.js', array(), '', true );
+        wp_register_script( 'paper-js', get_stylesheet_directory_uri() . '/library/js/libs/paper/paper-core.min.js'. $cachebust, array(), '', true );
         wp_register_script( 'filesaver-js', get_stylesheet_directory_uri() . '/library/js/libs/FileSaver.min.js', array(), '', true );
         wp_register_script( 'isotope-js', get_stylesheet_directory_uri() . '/library/js/libs/isotope.pkgd.min.js', array(), '', true );
         wp_register_script( 'plyr-js', get_stylesheet_directory_uri() . '/library/js/libs/plyr.js', array(), '', true );
