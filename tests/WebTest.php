@@ -2,7 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 use Goutte\Client;
-use GuzzleHttp\Client as GuzzleClient;
 
 class WebTest extends TestCase
 {
@@ -16,7 +15,7 @@ class WebTest extends TestCase
 	 */
 	private $url;
 
-	public function setUp()
+	protected function setUp(): void
 	{
 		$this->client = new Client();
 		$this->url = $_ENV['URL'];
@@ -32,24 +31,24 @@ class WebTest extends TestCase
 
 		// check title
 		$h2 = $crawler->filter('h2')->first()->text();
-		$this->assertContains('Opendata.ch ist die Schweizer Sektion der Open Knowledge Foundation.', $h2);
+		$this->assertEquals('Together for an open, innovative and fair society', $h2);
 
-		// check posts
-		$posts = $crawler->filter('#content .post');
-		$this->assertGreaterThan(3, $posts->count());
+		// check home news teasers
+		$teasers = $crawler->filter('.HomeNews .Teaser');
+		$this->assertGreaterThan(3, $teasers->count());
 	}
 
-	public function testVorstand()
+	public function testBoard()
 	{
 		$crawler = $this->client->request('GET', $this->url);
 
-		// go to Vorstand
-		$crawler = $this->client->click($crawler->selectLink('Organisation')->link());
-		$crawler = $this->client->click($crawler->selectLink('Vorstand')->link());
+		// go to board
+		$crawler = $this->client->click($crawler->selectLink('About')->link());
+		$crawler = $this->client->click($crawler->selectLink('Board')->link());
 
-		// check Vorstand
+		// check board
 		$h2 = $crawler->filter('h2')->first()->text();
-		$this->assertEquals('Andreas Kellerhals, Präsident', $h2);
+		$this->assertEquals('Andreas Kellerhals', $h2);
 	}
 
 	public function testEvents()
@@ -57,7 +56,7 @@ class WebTest extends TestCase
 		$crawler = $this->client->request('GET', $this->url . 'events/');
 
 		// check events
-		$events = $crawler->filter('#projects .project');
+		$events = $crawler->filter('.EventsPast .Teaser');
 		$this->assertGreaterThan(10, $events->count());
 	}
 }
