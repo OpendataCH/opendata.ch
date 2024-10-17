@@ -83,8 +83,10 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
-/** Disable all file modifications including updates and update notifications */
-define('DISALLOW_FILE_MODS', true);
+/* Configure file modifications and updates */
+define('DISALLOW_FILE_MODS', false);
+define('DISALLOW_FILE_EDIT', true);
+define('WP_AUTO_UPDATE_CORE', 'minor');
 
 define('WPLANG', 'de_DE');
 
