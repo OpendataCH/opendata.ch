@@ -1,12 +1,12 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Goutte\Client;
+use Symfony\Component\BrowserKit\HttpBrowser;
 
 class WebTest extends TestCase
 {
 	/**
-	 * @var Client
+	 * @var HttpBrowser
 	 */
 	private $client;
 
@@ -17,7 +17,7 @@ class WebTest extends TestCase
 
 	protected function setUp(): void
 	{
-		$this->client = new Client();
+		$this->client = new HttpBrowser();
 		$this->url = $_ENV['URL'];
 
 		if (!$this->url) {
