@@ -26,6 +26,5 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-add -
         ssh -o ForwardAgent=yes ${{ env.SSH_USER }}@${{ env.SSH_HOST }} <<END
           cd /home/www-data/opendata.ch && 
-          git pull --rebase --stat && 
-          /home/www-data/bin/composer update --no-dev --no-interaction --no-progress --optimize-autoloader
+          git pull --rebase --stat
         END
