@@ -19,7 +19,7 @@ use enshrined\svgSanitize\Sanitizer;
 if ( is_plugin_active( 'timber-library/timber.php' ) ) {
     // Disable the old plugin version of timber.
     deactivate_plugins( 'timber-library/timber.php' );
-} 
+}
 
 Timber\Timber::init();
 Timber::$dirname = array('templates', 'views');
@@ -28,7 +28,7 @@ class StarterSite extends Timber\Site {
 
     function __construct() {
         add_action('after_setup_theme', array($this, 'theme_supports'));
-        add_filter('timber/context', array($this, 'add_to_context'));        
+        add_filter('timber/context', array($this, 'add_to_context'));
         parent::__construct();
     }
 
@@ -1468,5 +1468,176 @@ function get_data_from_post_query($items){
     }
     return $arr;
 }
+
+function add_migration_menu_page() {
+    add_menu_page(
+        'Migration Overview',
+        'Migration',
+        'manage_options',
+        'acf-migration',
+        'render_migration_page',
+        'dashicons-database-import',
+        80
+    );
+}
+add_action('admin_menu', 'add_migration_menu_page');
+
+function render_migration_page() {
+    global $wpdb;
+
+    // Handle migration actions
+    if (isset($_POST['action'])) {
+        check_admin_referer('faq_migration');
+
+        $is_dry_run = $_POST['action'] === 'dry_run';
+        migrate_faq_data($is_dry_run);
+    }
+
+    // Start output buffering
+    ob_start();
+    ?>
+    <div class="wrap">
+        <h1>Migration Overview</h1>
+
+        <div class="card">
+            <h2>FAQ Migration</h2>
+            <p>Migrate FAQ data from old structure to new flexible structure.</p>
+
+            <form method="post">
+                <?php wp_nonce_field('faq_migration'); ?>
+
+                <button type="submit" name="action" value="dry_run" class="button button-secondary">
+                    Dry Run Migration
+                </button>
+
+                <button type="submit" name="action" value="migrate" class="button button-primary" style="margin-left: 10px;">
+                    Perform Migration
+                </button>
+            </form>
+        </div>
+
+        <!-- Rest of your existing migration page code -->
+    </div>
+    <?php
+    echo ob_get_clean();
+}
+
+function migrate_faq_data($is_dry_run = true) {
+    global $wpdb;
+
+    echo '<div class="notice notice-info"><p>Starting ' . ($is_dry_run ? 'dry run of ' : '') . 'FAQ migration...</p></div>';
+
+    // Get all pages using the FAQ template
+    $faq_pages = get_posts(array(
+        'post_type' => 'page',
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'page-faq.php',
+        'posts_per_page' => -1
+    ));
+
+    foreach ($faq_pages as $page) {
+        echo '<h3>Processing page: ' . esc_html($page->post_title) . ' (ID: ' . $page->ID . ')</h3>';
+
+        // Get existing FAQ data
+        $introtext = get_field('introtext', $page->ID);
+        $basics_headline = get_field('basics_headline', $page->ID);
+        $basics_blocks = get_field('basics_blocks', $page->ID);
+        $details_headline = get_field('details_headline', $page->ID);
+        $details_blocks = get_field('details_blocks', $page->ID);
+
+        // Prepare new structure
+        $new_sections = array();
+
+        // Add basics section if it exists
+        if ($basics_blocks) {
+            $new_sections[] = array(
+                'section_headline' => $basics_headline ?: 'Basics',
+                'faq_items' => $basics_blocks
+            );
+        }
+
+        // Add details section if it exists
+        if ($details_blocks) {
+            $new_sections[] = array(
+                'section_headline' => $details_headline ?: 'Details',
+                'faq_items' => $details_blocks
+            );
+        }
+
+        // Preview the changes
+        echo '<div style="margin-left: 20px;">';
+        echo '<h4>New Structure:</h4>';
+        echo '<pre>' . esc_html(print_r($new_sections, true)) . '</pre>';
+
+        if (!$is_dry_run) {
+            // Update the fields
+            update_field('introtext', $introtext, $page->ID);
+            update_field('faq_sections', $new_sections, $page->ID);
+
+            // Update the field group reference
+            update_post_meta($page->ID, '_faq_sections', 'field_faq_sections');
+
+            echo '<div class="notice notice-success"><p>Migration completed for this page.</p></div>';
+        }
+        echo '</div>';
+    }
+
+    if ($is_dry_run) {
+        echo '<div class="notice notice-warning"><p>This was a dry run. No changes were made to the database.</p></div>';
+    } else {
+        echo '<div class="notice notice-success"><p>Migration completed successfully!</p></div>';
+    }
+}
+
+add_action('admin_head', function() {
+    ?>
+    <style>
+        .migration-preview {
+            background: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .notice {
+            margin: 15px 0;
+        }
+        pre {
+            background: #f0f0f1;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+    <?php
+});
+
+function enqueue_faq_admin_scripts($hook) {
+    // Only load on post/page edit screens
+    if (!in_array($hook, ['post.php', 'post-new.php'])) {
+        return;
+    }
+
+    // Only load for pages using the FAQ template
+    if (get_page_template_slug() === 'page-faq.php') {
+        global $post;
+
+        wp_enqueue_script(
+            'faq-id-generator',
+            get_template_directory_uri() . '/library/js/admin/faq-id-generator.js',
+            ['jquery', 'acf-input'],
+            '1.0.0',
+            true
+        );
+
+        // Pass the permalink to JavaScript
+        wp_localize_script(
+            'faq-id-generator',
+            'faqSettings',
+            array(
+                'permalink' => get_permalink($post->ID)
+            )
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'enqueue_faq_admin_scripts');
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
