@@ -104,6 +104,8 @@ a.fixed-top-left{
 }
 
 .sponsors{
+  display: flex;
+
   .sponsor-item{
     display: inline-block;
   }
