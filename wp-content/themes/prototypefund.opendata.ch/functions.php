@@ -1483,7 +1483,7 @@ function enqueue_faq_admin_scripts($hook) {
             'faq-id-generator',
             get_template_directory_uri() . '/library/js/admin/faq-id-generator.js',
             ['jquery', 'acf-input'],
-            '1.0.0',
+            '1.0.1',
             true
         );
 

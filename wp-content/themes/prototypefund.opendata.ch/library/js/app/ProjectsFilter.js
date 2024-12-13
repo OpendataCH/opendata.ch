@@ -8,21 +8,12 @@
     };
 
     var ref, controller, $filterBtn, $filterTabs, $projects, $nothingFoundInfo, $projectsList, showFilter, $topicFilterBtns, $topicFilterResetBtn,
-        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions, $srStatus;
+        topicsFilterArray, $paginationButtons, $newsFilterResetBtn, $pagination, page_index, $descriptionWrap, $descriptions, $srStatus,
+        isInternalHashChange = true;
     function ProjectsFilter(pController){
         ref = this;
         controller = pController;
         page_index = 1;
-
-        /*
-         var $claims = $('.project-list-item-copy.claim').find('p');
-         $claims.each(function(){
-         var $content = $(this).html();
-         $(this).html('<span class="claim-highlight">' + $content + '</span>');
-         });
-         */
-
-
 
         Array.prototype.diff = function(arr2) {
             var ret = [];
@@ -94,6 +85,11 @@
                     history.pushState(null, null, url);
                 }
 
+                if(isInternalHashChange && $('body').hasClass('page-template-page-faq')) {
+                    var current = $tab.attr('id');
+                    history.pushState(null, null, '#' + $tab.attr('id'));
+                }
+
             } else {
                 //close
                 $tab.removeClass('open');
@@ -101,10 +97,15 @@
                 var tl = TweenMax.to($content, 0.3, { height: 0, display: 'none', ease: Power3.easeOut, onStart : function() {
                     this.target[0].style.overflow = 'hidden';
                 }}, 0);
-                
+
                 if(current){
                     var url =  ref.setUrlParameter(window.location.href,'filter','');
                     history.pushState(null, null, url);
+                }
+
+                if($('body').hasClass('page-template-page-faq')) {
+                    isInternalHashChange = true;
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
                 }
             }
         });
@@ -341,6 +342,16 @@
         var regex = new RegExp('[\\?|&]' + parameter.toLowerCase() + '=([^&#]*)');
         var results = regex.exec('?' + url.toLowerCase().split('?')[1]);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+
+    ProjectsFilter.prototype.onHashChange = function(hash) {
+        if (hash && $('body').hasClass('page-template-page-faq')) {
+            isInternalHashChange = false;
+            var elem = document.getElementById(hash);
+            if(elem) $(elem).find('.filter-tab-header button').trigger('click');
+            isInternalHashChange = true;
+        }
     };
 
     window.ProjectsFilter = ProjectsFilter;

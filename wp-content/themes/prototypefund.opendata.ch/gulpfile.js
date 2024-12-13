@@ -50,7 +50,14 @@ var libs = [
 
 gulp.task('uglify', function() {
     gulp.src(libs)
-        .pipe(uglify('app.min.js'))
+        .pipe(uglify('app.min.js', {
+            compress: true,
+            mangle: true,
+            output: {
+                beautify: false,
+                comments: false
+            }
+        }))
         .pipe(gulp.dest(config.base_path + 'js/'))
 });
 

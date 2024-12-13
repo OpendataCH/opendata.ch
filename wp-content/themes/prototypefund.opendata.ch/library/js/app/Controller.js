@@ -244,7 +244,6 @@
 
         //sub navigation
         $toggleSubmenu.each(function(idx,el){
-            console.log(el);
             el.addEventListener('click',function(e){
                 $toggleSubmenu.each(function(idx,al) {
                     if(!al.isEqualNode(e.currentTarget)) {
@@ -322,7 +321,7 @@
             if (e.keyCode == 9) {
                 $body.addClass('focus-styled');
             }
-        });         
+        });
 
     };
 
