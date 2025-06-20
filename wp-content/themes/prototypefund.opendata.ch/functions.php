@@ -466,8 +466,6 @@ function get_projects($rounds) {
         'post_type'      => 'project',
         'post_status'    => 'publish',
         'posts_per_page' => -1,
-        'orderby'        => 'title',
-        'order'          => 'ASC',
         'meta_query'     => $meta_query,
     ];
 
@@ -476,6 +474,8 @@ function get_projects($rounds) {
     foreach ($projects as $post) {
         $projects_extended[] = extendProjectPost($post);
     }
+
+    usort($projects_extended, fn($a, $b) => strcasecmp($a->title, $b->title));
 
     return $projects_extended;
 }

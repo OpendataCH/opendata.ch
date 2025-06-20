@@ -31,7 +31,7 @@
 			</div>
 		{% endif %}
 
-		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list cached" style="opacity:0;">
+		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list" style="opacity:0;">
             {% for post in projects %}
                 {% include 'views/inc/project-list-item.twig' %}
 			{%  endfor %}
