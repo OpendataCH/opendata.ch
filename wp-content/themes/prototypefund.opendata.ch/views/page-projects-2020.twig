@@ -32,16 +32,9 @@
 		{% endif %}
 
 		<div tabindex="-1" aria-label="{{ __('Project list', 'theme') }}" class="projects-list" style="opacity:0;">
-			{% for post in projects %}
-				{% if post.meta('featured') == 1 %}
-					{% include 'views/inc/project-list-item.twig' %}
-				{% endif %}
+            {% for post in projects %}
+                {% include 'views/inc/project-list-item.twig' %}
 			{%  endfor %}
-			{% for post in projects %}
-				{% if post.meta('featured') != 1 %}
-					{% include 'views/inc/project-list-item.twig' %}
-				{% endif %}
-			{% endfor %}
 		</div>
 		<div class="row">
 			<div class="col-xs-24">

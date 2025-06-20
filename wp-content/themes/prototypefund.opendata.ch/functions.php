@@ -445,42 +445,39 @@ function get_rounds($rounds, $choices){
 /**
 * Returns the projects
 */
-function get_projects($rounds){
+function get_projects($rounds) {
+    $projects_extended = [];
 
-    //get all projects
+    $meta_query = [];
 
-    $projects_extended = array();
+    if (!empty($rounds)) {
+        $meta_query['relation'] = 'OR';
 
-    $meta_query = array();
-    $meta_query['relation'] = 'OR';
-
-    if(is_array($rounds)){
-        foreach($rounds as $round){
-            $query = array();
-            $query['key'] = 'round';
-            $query['compare'] = 'LIKE';
-            $query['value'] = $round;
-            $meta_query[] = $query;
+        foreach ($rounds as $round) {
+            $meta_query[] = [
+                'key'     => 'round',
+                'value'   => '"' . $round . '"',
+                'compare' => 'LIKE',
+            ];
         }
     }
 
-    $args = array(
-        'post_type' => 'project',
-        'post_status' => 'publish',
-        'orderby' => 'title',
-        'order' => 'ASC',
+    $args = [
+        'post_type'      => 'project',
+        'post_status'    => 'publish',
         'posts_per_page' => -1,
-        'meta_query' => $meta_query
-    );
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'meta_query'     => $meta_query,
+    ];
 
     $projects = Timber::get_posts($args);
 
     foreach ($projects as $post) {
-        $post = extendProjectPost($post);
-        $projects_extended[] = $post;
+        $projects_extended[] = extendProjectPost($post);
     }
-    return $projects_extended;
 
+    return $projects_extended;
 }
 
 function extendProjectPost($post){
