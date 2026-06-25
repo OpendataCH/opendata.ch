@@ -22,7 +22,7 @@
     "gulp-livereload": "^4.0.2",
     "gulp-notify": "^3.2.0",
     "gulp-replace": "^0.6.1",
-    "gulp-svg-sprite": "^1.4.0",
+    "gulp-svg-sprite": "^2.0.3",
     "gulp-uglifyjs": "^0.6.2",
     "gulp-usemin": "^0.3.29"
   },
